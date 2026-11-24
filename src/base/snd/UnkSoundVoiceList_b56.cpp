@@ -12,7 +12,7 @@
 #include "game/operator_new.h"
 
 struct UnkKeyUseTable;  // src/game/UnkUnit100/UnkUnit100Release.cpp
-void fn_7100104ae4(UnkKeyUseTable* self, const u32* key);
+void DecrementCountedKeyUse(UnkKeyUseTable* self, const u32* key);
 void fn_7100104ef4();
 struct UnkSoundVoice2_b56;
 
@@ -84,7 +84,7 @@ bool fn_71000fbf2c(UnkSoundSystemVoices_b56* self, UnkSoundVoice2_b56* voice, bo
     UnkVoiceFlagPayload_b56 payload = {voice->id, flag};
     fn_71000faac4(reinterpret_cast<base::snd::UnkSoundSystemATK*>(self), 1, &payload);
     Remove_b56(self->flagged, voice);
-    fn_7100104ae4(reinterpret_cast<UnkKeyUseTable*>(self->keys), &voice->key);
+    DecrementCountedKeyUse(reinterpret_cast<UnkKeyUseTable*>(self->keys), &voice->key);
     self->groups[voice->group]--;
     self->channels[voice->channel]--;
     ReturnVoice_b56(self, voice);
@@ -100,7 +100,7 @@ bool fn_71000fc074(UnkSoundSystemVoices_b56* self, UnkSoundVoice2_b56* voice) {
     payload.id = voice->id;
     fn_71000faac4(reinterpret_cast<base::snd::UnkSoundSystemATK*>(self), 3, &payload);
     Remove_b56(self->plain, voice);
-    fn_7100104ae4(reinterpret_cast<UnkKeyUseTable*>(self->keys), &voice->key);
+    DecrementCountedKeyUse(reinterpret_cast<UnkKeyUseTable*>(self->keys), &voice->key);
     ReturnVoice_b56(self, voice);
     return true;
 }

@@ -147,7 +147,7 @@ void CChozoWarriorAttack_UpdateSweptTriangleCollider(UnkChozoWarriorAttack_l4936
     AddPoint(&outline, point, p, reinterpret_cast<const CVector3D*>(&hand));
     AddPoint(&outline, point, p, reinterpret_cast<const CVector3D*>(&tip));
     AddPoint(&outline, point, p, reinterpret_cast<const CVector3D*>(&self->last_tip));
-    fn_7100119f98(&outline, true);
+    SetPolylineClosed(&outline, true);
     fn_7100d62d40(outlines, &outline);
     shape->field_0x98 = true;
     self->last_tip = tip;

@@ -133,8 +133,8 @@ void fn_71009d0e28(UnkPickableItem_l9d0e28* self) {
         if (tank && player->inventory) {
             UnkInventory* inventory = player->inventory;
             UnkTunableLine line(StringOf(self->name));
-            line = fn_710013c834(line.Str(), "_MAX", g_unk_710162e2ed);
-            line = fn_710013c834(line.Str(), "_CURRENT", g_unk_710162e2ed);
+            line = ReplaceAllSubstrings(line.Str(), "_MAX", g_unk_710162e2ed);
+            line = ReplaceAllSubstrings(line.Str(), "_CURRENT", g_unk_710162e2ed);
             // The id the name gives, built in place and destroyed by hand.
             alignas(CStrId) char storage[sizeof(CStrId)];
             CStrId_ConstructFromRntString(reinterpret_cast<UnkStrIdBase*>(storage), *line.Str(), true);

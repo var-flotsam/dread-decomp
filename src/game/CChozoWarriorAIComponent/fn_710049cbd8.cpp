@@ -47,7 +47,7 @@ struct UnkSelfFar {
 bool CChozoWarriorAIComponent_IsTargetAboveMinDistanceToFloor(UnkSelf_710049cbd8* self) {
     UnkBody_49cbd8* body = reinterpret_cast<UnkBody_49cbd8*>(fn_7100d7c990(self->field_0x30));
     if (body && body->field_0x208 && body->field_0x208->field_0xf9 && fn_71009e8590(body->field_0x208) >= 1 &&
-        (fn_71009e75e8(body->field_0x208) || fn_7100df5630(g_unk_7101d47310))) {
+        (fn_71009e75e8(body->field_0x208) || IsPlayerGhostAuraStateIn3To6(g_unk_7101d47310))) {
         u32 mode = self->field_0x70;
         u8 flag = self->field_0x94;
         bool clear = flag == 0;

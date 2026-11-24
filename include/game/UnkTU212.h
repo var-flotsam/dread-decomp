@@ -8,4 +8,4 @@
 struct UnkNamedNode;
 struct UnkObject_710019506c;
 void fn_710019506c(UnkObject_710019506c* self);
-UnkNamedNode* fn_7100195310(UnkNamedNode* node);
+UnkNamedNode* FindFirstDescendantWithPayload(UnkNamedNode* node);

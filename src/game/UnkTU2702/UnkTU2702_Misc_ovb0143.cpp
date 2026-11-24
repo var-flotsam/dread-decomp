@@ -175,7 +175,7 @@ void fn_71010f9cf8(UnkAIReset_b0143* self) {
         fn_71002874dc(&self->field_0xd8[i]);
     self->count = 0;
     self->field_0x100 = 0;
-    fn_7100119f98(outline, 0);
+    SetPolylineClosed(outline, 0);
     self->field_0x1108 = 0;
     UnkWeakTarget** item = &self->owner;
     fn_7100874460(self->field_0x18a8, item);

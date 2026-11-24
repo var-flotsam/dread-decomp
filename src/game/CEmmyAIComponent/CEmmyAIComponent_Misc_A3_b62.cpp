@@ -34,5 +34,5 @@ bool fn_710054abf4(void*) {
         if (player->field_0x2e0 && fn_7100300cf4(player->field_0x2e0))
             return true;
     }
-    return !fn_7100df5740(g_unk_7101d47310);
+    return !IsOpticCamouflageAbilityInState6(g_unk_7101d47310);
 }

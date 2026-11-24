@@ -27,7 +27,7 @@ void CCharClassStopForceEmmyChasePulseEvent_StopForcedChasePulse(UnkChasePulseEv
         fn_7100ddb6dc(reg);
         g_unk_71726bee10 = reg;
     }
-    UnkCentralUnit* unit = fn_7100ddb768(reinterpret_cast<UnkUnit2547*>(reg));
+    UnkCentralUnit* unit = GetFirstCentralUnitListObject(reinterpret_cast<UnkUnit2547*>(reg));
     if (!unit)
         return;
     fn_7100775610(unit, false, &self->id);

@@ -95,13 +95,13 @@ void fn_710015b160() {
         SetBlendMode(top.mode);
         SetBlendValue14(top.field_0x14);
         SetBlendValue10(top.field_0x10);
-        fn_710015afd0(top.field_0x0, top.field_0x4, top.field_0x8);
+        SetStencilOpsIfChanged(top.field_0x0, top.field_0x4, top.field_0x8);
     } else {
         const UnkBlendState& base = g_unk_716e29c6d0.base;
         SetBlendEnable(base.enable);
         SetBlendMode(base.mode);
         SetBlendValue14(base.field_0x14);
         SetBlendValue10(base.field_0x10);
-        fn_710015afd0(base.field_0x0, base.field_0x4, base.field_0x8);
+        SetStencilOpsIfChanged(base.field_0x0, base.field_0x4, base.field_0x8);
     }
 }

@@ -2060,7 +2060,7 @@ address,size,name,name_source,subsystem,status
 0x710118aabc,308,fn_710118aabc,unknown,game?,O
 0x710118abf0,656,fn_710118abf0,unknown,game?,U
 0x710118ae80,1284,fn_710118ae80,unknown,unknown,O
-0x710118b384,260,fn_710118b384,unknown,unknown,O
+0x710118b384,260,CallOnLuaLibrariesReloadedForScriptPath,inferred,unknown,O
 0x710118b488,1556,fn_710118b488,unknown,unknown,U
 0x710118ba9c,700,fn_710118ba9c,unknown,audio?,U
 0x710118bd58,504,fn_710118bd58,unknown,unknown,U
@@ -2134,7 +2134,7 @@ address,size,name,name_source,subsystem,status
 0x71011938b4,8,fn_71011938b4,unknown,unknown,O
 0x71011938bc,176,fn_71011938bc,unknown,unknown,O
 0x710119396c,112,fn_710119396c,unknown,game/components?,O
-0x71011939dc,204,fn_71011939dc,unknown,game?,O
+0x71011939dc,204,CreateAndCacheResourceOnLookupMiss,inferred,game?,O
 0x7101193aa8,108,fn_7101193aa8,unknown,unknown,O
 0x7101193b14,308,fn_7101193b14,unknown,unknown,O
 0x7101193c48,108,fn_7101193c48,unknown,unknown,O
@@ -3907,7 +3907,7 @@ address,size,name,name_source,subsystem,status
 0x71011f5d80,272,fn_71011f5d80,unknown,gui?,O
 0x71011f5e90,36,fn_71011f5e90,unknown,gui?,O
 0x71011f5eb4,160,fn_71011f5eb4,unknown,gui?,O
-0x71011f5f54,60,fn_71011f5f54,unknown,gui?,O
+0x71011f5f54,60,SetStageItemEnabled,inferred,gui?,O
 0x71011f5f90,180,fn_71011f5f90,unknown,gui?,O
 0x71011f6044,376,fn_71011f6044,unknown,gui?,O
 0x71011f61bc,132,fn_71011f61bc,unknown,gui?,O

@@ -45,9 +45,9 @@ __attribute__((always_inline)) static inline Entry* MoveTo(base::global::CRntVec
     return p;
 }
 
-__attribute__((noinline)) void fn_710061c9ec(base::global::CRntVector<Entry>* self, const Entry* value);
+__attribute__((noinline)) void PushBackStrIdEntry(base::global::CRntVector<Entry>* self, const Entry* value);
 
-void fn_710061c9ec(base::global::CRntVector<Entry>* self, const Entry* value) {
+void PushBackStrIdEntry(base::global::CRntVector<Entry>* self, const Entry* value) {
     u32 n = self->count;
     u32 old_capacity = self->capacity;
     u32 new_capacity = old_capacity;
@@ -81,7 +81,7 @@ void fn_710061c898(base::global::CRntVector<Entry>* self, const base::global::CR
         self->capacity = n;
     }
     for (const Entry *p = other->data, *end = p + other->count; p != end; ++p)
-        fn_710061c9ec(self, p);
+        PushBackStrIdEntry(self, p);
 }
 
 // Copy assignment: the entries are destroyed, the other's capacity reserved and each entry pushed.
@@ -97,7 +97,7 @@ base::global::CRntVector<Entry>* fn_710061cb84(base::global::CRntVector<Entry>* 
             self->capacity = n;
         }
         for (const Entry *p = other->data, *end = p + other->count; p != end; ++p)
-            fn_710061c9ec(self, p);
+            PushBackStrIdEntry(self, p);
     }
     return self;
 }
@@ -105,7 +105,7 @@ base::global::CRntVector<Entry>* fn_710061cb84(base::global::CRntVector<Entry>* 
 void fn_710061cd0c(base::global::CRntVector<Entry>* self, const Entry* value, u32 index) {
     u32 n = self->count;
     if (n == index) {
-        fn_710061c9ec(self, value);
+        PushBackStrIdEntry(self, value);
         return;
     }
     u32 cap = self->capacity;

@@ -97,7 +97,7 @@ struct UnkShkPoint_ovb0041 {
     f32 x, y;
 };
 
-void fn_71006b16b0(UnkShkImpact_ovb0041* self, UnkShkTarget_ovb0041* target);
+void SetWeakHandleRefAt0x18(UnkShkImpact_ovb0041* self, UnkShkTarget_ovb0041* target);
 
 static inline CVector3D ColumnZ(const UnkMatrix44& m) {
     CVector3D v;
@@ -119,7 +119,7 @@ static inline UnkModelManager* ModelManager() {
 void CShakernautAIComponent_StartExplosionAtPoint(UnkShkImpact_ovb0041* self, const UnkShkPoint_ovb0041* at, void* unused, UnkShkTarget_ovb0041* target) {
     self->x = at->x;
     self->y = at->y;
-    fn_71006b16b0(self, target);
+    SetWeakHandleRefAt0x18(self, target);
     UnkShkTargetComps_ovb0041* comps = target->ai->comps;
     self->field_0x0 = comps->field_0x728;
     self->field_0x8 = comps->field_0x72c;

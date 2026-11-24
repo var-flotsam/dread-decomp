@@ -27,7 +27,7 @@ static inline void Release(CStrId* id) {
     }
 }
 
-void fn_7100d86d30(UnkStrIdTable* self) {
+void ShrinkStrIdPointerDictionaryToFit(UnkStrIdTable* self) {
     if (self->count == self->capacity)
         return;
     void** values = static_cast<void**>(self->allocator->vf_0x40((u64)self->count * sizeof(void*), 8, self->flags));

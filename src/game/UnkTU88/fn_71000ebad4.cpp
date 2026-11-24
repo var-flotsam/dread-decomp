@@ -20,7 +20,7 @@ struct UnkSetNode_b257j;
 struct UnkFirstSetNode_l0ebad4;
 
 using UnkNamedSet_b257j = base::global::UnkBucketSet<UnkSetNode_b257j>;
-void fn_71000ea16c(UnkNamedSet_b257j* self);
+void ClearNamedListNodeBucketSet(UnkNamedSet_b257j* self);
 
 extern char g_unk_7101a1b918[];
 extern char g_unk_7101a1b938[];
@@ -93,10 +93,10 @@ void fn_71000ebad4(UnkResRegistry_l0ebad4* self) {
     DestroyDictionary(&self->descs, [](UnkResDesc* desc) { desc->~UnkResDesc(); });
     base::global::UnkPooledBucketSet<UnkSetNode_b257j>* types = &self->types;
     types->nodes.field_0x3c = true;
-    fn_71000ea16c(types);
+    ClearNamedListNodeBucketSet(types);
     types->node_allocator = nullptr;
     types->nodes.~UnkBlockPool();
-    fn_71000ea16c(types);
+    ClearNamedListNodeBucketSet(types);
     types->buckets.Free();
     fn_71000ea064(&self->first);
     self->first.buckets.Free();

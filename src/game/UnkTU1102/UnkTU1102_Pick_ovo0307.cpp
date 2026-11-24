@@ -84,7 +84,7 @@ u32 XParasiteAI_PickWeightedChoice(UnkXParasiteAI* self) {
 
 void XParasiteAI_SetEffectActive(UnkXParasiteAI* self, bool on);
 
-void fn_71006e75e8(UnkXParasiteAI* self, bool on) {
+void SetXParasiteEffectAndBindingSlots(UnkXParasiteAI* self, bool on) {
     if (UnkXParasiteHolder* holder = ModelHolder(self->owner)) {
         if (holder->shape->field_0x11c)
             *reinterpret_cast<char*>(&holder->shape->field_0x114) = !on;

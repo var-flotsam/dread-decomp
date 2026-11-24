@@ -217,7 +217,7 @@ extern u32 g_unk_7101aa9e38[][1024];
 extern const f32 g_unk_7101647bec[4] HIDDEN;
 
 struct UnkLinkedCell_e;
-void fn_7100e78180(UnkLinkedCell_e* self);
+void RecomputeLinkedCellNeighbourMask(UnkLinkedCell_e* self);
 void fn_7100e78060(UnkLinkedCell_e* self);
 
 struct UnkGridCell_e {
@@ -264,7 +264,7 @@ void fn_7100e95480(UnkMinimapOwner_e* self) {
             continue;
         u8 kind = cell->kind;
         if (cell->dirty)
-            fn_7100e78180(reinterpret_cast<UnkLinkedCell_e*>(cell));
+            RecomputeLinkedCellNeighbourMask(reinterpret_cast<UnkLinkedCell_e*>(cell));
         u8 links = cell->field_0x3f;
         if (cell->field_0x42)
             fn_7100e78060(reinterpret_cast<UnkLinkedCell_e*>(cell));

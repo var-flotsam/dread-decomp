@@ -30,7 +30,7 @@ struct UnkPlayerRequest_b50 {
 void fn_7100225314(void* item);
 
 // The worker: while the player runs, takes requests (waiting up to 10 ms each) and runs them.
-void fn_7100223b8c(UnkPlayerThread_b50* thread) {
+void RunMovieInputHandlerThread(UnkPlayerThread_b50* thread) {
     UnkPlayerWork_b50* self = thread->field_0x1f0;
     while (__atomic_load_n(&thread->field_0x1e4, __ATOMIC_ACQUIRE) != 3 && self->field_0x20 != 0) {
         u64 message = 0;

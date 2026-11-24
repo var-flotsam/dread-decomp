@@ -53,7 +53,7 @@ __attribute__((always_inline)) inline bool CentralShapeTest_A3_b70(Point point) 
         fn_7100ddb6dc(reg);
         g_unk_71726bee10 = reg;
     }
-    char* unit = reinterpret_cast<char*>(fn_7100ddb768(reinterpret_cast<UnkUnit2547*>(reg)));
+    char* unit = reinterpret_cast<char*>(GetFirstCentralUnitListObject(reinterpret_cast<UnkUnit2547*>(reg)));
     if (!unit)
         return false;
     auto* target = reinterpret_cast<UnkShapeTarget_A3_b70*>(

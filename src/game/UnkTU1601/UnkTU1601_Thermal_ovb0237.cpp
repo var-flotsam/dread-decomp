@@ -272,7 +272,7 @@ UnkThermalSlot_b0237* fn_7100a94ac4(UnkThermalSlot_b0237* self, UnkThermalSlot_b
 }
 
 
-void fn_7100a95868(UnkCallbackSetVector* v, const UnkCallbackSetElem* value) {
+void PushCopyOntoCallbackSetArray(UnkCallbackSetVector* v, const UnkCallbackSetElem* value) {
     v->PushBackCopy<CCharClassWaterPoolComponent_ReserveCallbackSetArray>(*value);
 }
 

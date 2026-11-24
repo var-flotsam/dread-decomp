@@ -69,7 +69,7 @@ static inline void Append(UnkWeakRefList_639f7c* list, UnkWeakTarget* actor) {
     }
 }
 
-void fn_7100639f7c(UnkMemberA_b0025* self_, void* item) {
+void AddWeakRefOnceAndSetCurrentIfOnlyEntry(UnkMemberA_b0025* self_, void* item) {
     UnkAIList_639f7c* self = reinterpret_cast<UnkAIList_639f7c*>(self_);
     if (!base::reflection::refl_FindTyped<UnkRefl_fn_710063a360>(item))
         return;

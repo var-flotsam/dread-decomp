@@ -26,7 +26,7 @@ void fn_710086da20(UnkPropertyArrays* self, u32 capacity) {
             UnkHeatableValue_0xd0* dst = values;
             for (u32 i = 0; i < self->count; ++i, ++dst, ++src) {
                 CHeatableShieldComponent_CopyConstructEntry(dst, src);
-                fn_710086e0ac(src);
+                DestroyHeatableShieldValueRecord(src);
             }
             self->allocator->vf_0x48(self->values);
         }

@@ -89,7 +89,7 @@ void fn_7100b1e0d0(UnkMap_b257f* self) {
     self->Clear();
 }
 
-void fn_7100b1e3fc(UnkMap_b257f* self, UnkEvent_b257f* event) {
+void DispatchEventToHandlersForKey(UnkMap_b257f* self, UnkEvent_b257f* event) {
     if (event->handled)
         return;
     if (!event->source || !event->source->field_0x10)

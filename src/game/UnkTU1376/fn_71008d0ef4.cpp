@@ -68,7 +68,7 @@ static inline void RequestState(UnkDoorStateMachine_l8d0ef4* self, s32 id) {
     self->pending = 0x7fffffff;
 }
 
-bool fn_71008d0ef4(void* p) {
+bool OpenDoorUnlessOpen(void* p) {
     UnkDoorLife_l8d0ef4* self = static_cast<UnkDoorLife_l8d0ef4*>(p);
     UnkDoorState_l8d0ef4* current = self->machine.current;
     if (current && current->id == 1)

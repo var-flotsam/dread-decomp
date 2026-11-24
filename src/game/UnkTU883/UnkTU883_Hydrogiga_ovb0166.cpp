@@ -126,7 +126,7 @@ void fn_71005c0d10(UnkHydrogigaAI_b0166* self, UnkHydrogigaOther_b0166* other, u
     self->pending = false;
 }
 
-s32 fn_71005c0f2c(UnkHydrogigaAI_b0166* self) {
+s32 CountHydrogigaPartsWithValueAtOrAboveThreshold(UnkHydrogigaAI_b0166* self) {
     UnkHydrogigaObject_b0166* a = self->parts[0]->object;
     UnkHydrogigaObject_b0166* b = self->parts[1]->object;
     s32 n = a->field_0x4bc >= a->field_0x4b0;
@@ -219,7 +219,7 @@ void fn_71005c18dc(UnkHydrogigaAI_b0166* self, UnkActorWith_b0166* actor) {
 
 // ---- the table's reallocation ----
 
-void fn_71005c4630(UnkHydrogigaTable_b0166* self, u32 n) {
+void ReserveHydrogigaKeyedTable(UnkHydrogigaTable_b0166* self, u32 n) {
     if (self->capacity >= n)
         return;
     auto* v = static_cast<UnkHydrogigaEntry_b0166*>(

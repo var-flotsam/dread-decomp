@@ -28,7 +28,7 @@ struct UnkParasiteBehavior_b0282 : base::reflection::UnkReflObject {
 };
 
 struct UnkXParasiteMode_A3_b75;
-void fn_71006ea584(UnkXParasiteAI* self, void* inner);
+void RebuildXParasiteEntriesFromList(UnkXParasiteAI* self, void* inner);
 CStrId fn_71007cd398(void* behavior);
 
 void XParasiteAI_ApplyBehavior(UnkXParasiteAI* self, UnkParasiteBehavior_b0282* behavior) {
@@ -47,10 +47,10 @@ void XParasiteAI_ApplyBehavior(UnkXParasiteAI* self, UnkParasiteBehavior_b0282* 
     s32 kind = behavior->vf_0x18();
     if (kind == 4) {
         u8* cast = fn_710009d50c(behavior->vf_0x0(), fn_71007cc85c()) ? reinterpret_cast<u8*>(behavior) : nullptr;
-        fn_71006ea584(self, cast + 0x20);
+        RebuildXParasiteEntriesFromList(self, cast + 0x20);
     } else if (kind == 5) {
         u8* cast = fn_710009d50c(behavior->vf_0x0(), fn_71007ccf84()) ? reinterpret_cast<u8*>(behavior) : nullptr;
-        fn_71006ea584(self, cast + 0x60);
+        RebuildXParasiteEntriesFromList(self, cast + 0x60);
         UnkGameManager* manager = g_unk_7101d47310;
         UnkWeakTarget* entity;
         {

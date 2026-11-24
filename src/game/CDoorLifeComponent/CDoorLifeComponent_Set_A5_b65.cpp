@@ -7,7 +7,7 @@ struct UnkDoorLife_b44a2;
 
 void fn_71008d51e4(UnkDoorLife_b44a2* self, bool open, bool quiet) {
     if (open) {
-        fn_71008d0ef4(self);
+        OpenDoorUnlessOpen(self);
         return;
     }
     fn_71008d498c(self, !quiet, 1, 1);

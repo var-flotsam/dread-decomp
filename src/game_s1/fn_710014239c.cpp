@@ -32,7 +32,7 @@ struct UnkKeyOwner_14239c {
     base::global::CRntVector<u64> moved;  // +0x88
 };
 
-void* fn_7100142504(UnkKeySet* set, const u64* key);  // erases the key
+void* EraseChainedMapNodeByU64Key(UnkKeySet* set, const u64* key);  // erases the key
 
 bool fn_710014239c(UnkKeyOwner_14239c* self, u64 key) {
     if (self->set.buckets.size == 0)
@@ -43,7 +43,7 @@ bool fn_710014239c(UnkKeyOwner_14239c* self, u64 key) {
     for (UnkKeyNode* n = *bucket; n; n = n->next) {
         if (n->key == key) {
             self->moved.PushBack(key);
-            fn_7100142504(&self->set, &key);
+            EraseChainedMapNodeByU64Key(&self->set, &key);
             return true;
         }
     }

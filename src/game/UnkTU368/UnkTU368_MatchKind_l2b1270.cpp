@@ -10,7 +10,7 @@
             return true;                             \
     } else
 
-bool fn_71002b1270(UnkQueryObj* obj, u32 mask) {
+bool ObjectKindMatchesFirstSetMaskBit(UnkQueryObj* obj, u32 mask) {
     if (obj != nullptr) {
         KIND_CASE(2, 1)
         KIND_CASE(3, 2)

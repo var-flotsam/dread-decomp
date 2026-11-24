@@ -13,7 +13,7 @@ struct UnkFadeLayerColor {
 };
 static_assert(__builtin_offsetof(UnkFadeLayerColor, bytes) == 0x17c, "UnkFadeLayerColor layout");
 
-void fn_710019c4fc(UnkFadeLayer* layer, const base::color::CColor4F* color) {
+void SetFadeLayerColor(UnkFadeLayer* layer, const base::color::CColor4F* color) {
     auto* self = reinterpret_cast<UnkFadeLayerColor*>(layer);
     self->color = *color;
     self->bytes[0] = (u8)(s32)(self->color.r * 255.0f);

@@ -26,7 +26,7 @@ struct UnkObj_710118b384 {
     CRntString path;
 };
 
-void fn_710118b384(UnkObj_710118b384* self) {
+void CallOnLuaLibrariesReloadedForScriptPath(UnkObj_710118b384* self) {
     CRntString* path = &self->path;
     if (!path->data || !path->data[0])
         return;

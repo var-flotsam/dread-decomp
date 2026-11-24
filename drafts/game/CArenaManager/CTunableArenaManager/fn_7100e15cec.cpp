@@ -88,7 +88,7 @@ struct UnkArenaTable_ovb0108 {
     UnkStrIdTable table;
 
     ~UnkArenaTable_ovb0108() {
-        fn_71004f11f8(&table);
+        ClearStrIdKeyedRecord10Table(&table);
         if (table.keys)
             table.allocator->vf_0x48(table.keys);
         if (table.values)

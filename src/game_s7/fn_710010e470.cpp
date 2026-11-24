@@ -87,7 +87,7 @@ void fn_710010f4b0()
 // The boxes and the tree's nodes are both arrays of E; fn_710010e364 resizes either (on unit 107's
 // UnkBoxVector_b0236, the same layout).
 static inline void Resize(base::global::CRntVector<E>* self, u32 n) {
-    fn_710010e364(reinterpret_cast<UnkBoxVector_b0236*>(self), n);
+    ResizeBoxVector(reinterpret_cast<UnkBoxVector_b0236*>(self), n);
 }
 
 // The empty box built from its two corners and the box around a range. The range's split position
@@ -145,7 +145,7 @@ void fn_710010d9fc(base::global::CRntVector<E>* tree, base::global::CRntVector<E
         // The same array, as unit 107 lays it out.
         UnkBoxVector_b0236* vector = reinterpret_cast<UnkBoxVector_b0236*>(boxes);
         UnkVec3f split = fn_710010df80(nullptr, vector, first, last);
-        UnkVec3f spread = fn_710010e15c(nullptr, vector, first, last, &split);
+        UnkVec3f spread = ComputeBoxCentersMeanSquaredDistanceToPoint(nullptr, vector, first, last, &split);
         u32 axis = spread.x < spread.y;
         f32 at = axis ? split.y : split.x;
         E* lo = boxes->data + first;

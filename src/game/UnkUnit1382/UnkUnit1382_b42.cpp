@@ -121,7 +121,7 @@ struct UnkLightScalar_b42 {
     UnkFade1D_b42 fade;  // 0x10c
 };
 
-void fn_71008e61f4(UnkLightingLight3* light, f32 a, f32 b) {
+void FadeCharClassLightScalarValue(UnkLightingLight3* light, f32 a, f32 b) {
     UnkLightScalar_b42* self = reinterpret_cast<UnkLightScalar_b42*>(light);
     if (b + 0.001f >= 0.0f && b - 0.001f <= 0.0f) {
         self->fade.target = a;

@@ -67,7 +67,7 @@ void CCentralUnitComponent_ReservePairEntryVector(base::global::CRntVector<UnkEn
 __attribute__((always_inline)) static inline void DestroyEntry_b0230(UnkSetPair_b0230* pair) {
     reinterpret_cast<UnkEntry_cu*>(pair)->~UnkEntry_cu();
 }
-void fn_710077ae90(UnkPairVec_b0230* self, u32 n);
+void ResizeCallbackSetPairVector(UnkPairVec_b0230* self, u32 n);
 
 // Copies one entry into place (fn_7100779d34 as src/clones/clones_02.cpp declares it).
 // fn_7100779d34 (src/clones/clones_02.cpp declares it with untyped pointers, which would change the code).
@@ -77,7 +77,7 @@ void CopyPair_b0230(UnkSetPair_b0230* self, const UnkSetPair_b0230* other) {
     new (self) UnkSetPair_b0230(*other);
 }
 
-void fn_710077a700(base::global::CRntVector<UnkEntry_cu>* vec, const UnkEntry_cu* element) {
+void AppendCallbackSetPairVectorEntry(base::global::CRntVector<UnkEntry_cu>* vec, const UnkEntry_cu* element) {
     UnkPairVec_b0230* self = reinterpret_cast<UnkPairVec_b0230*>(vec);
     const UnkSetPair_b0230* value = reinterpret_cast<const UnkSetPair_b0230*>(element);
     u32 n = self->count;
@@ -112,7 +112,7 @@ void fn_710077a700(base::global::CRntVector<UnkEntry_cu>* vec, const UnkEntry_cu
 }
 
 // Makes the array hold `n` entries, default-constructing the new ones (after fn_710077a630 has made room).
-void fn_710077ae90(UnkPairVec_b0230* self, u32 n) {
+void ResizeCallbackSetPairVector(UnkPairVec_b0230* self, u32 n) {
     CCentralUnitComponent_ReservePairEntryVector(reinterpret_cast<base::global::CRntVector<UnkEntry_cu>*>(self), n);
     for (u32 i = self->count; i < n; ++i)
         new (&self->data[i]) UnkSetPair_b0230();
@@ -142,7 +142,7 @@ UnkSetPair_b0230* fn_710077ad70(UnkPairVec_b0230* self, u32 index) {
                 self->capacity = grown;
             }
         }
-        fn_710077ae90(self, index + 1);
+        ResizeCallbackSetPairVector(self, index + 1);
     }
     return &self->data[index];
 }
@@ -267,7 +267,7 @@ struct UnkSource_b0230 {
 static_assert(sizeof(UnkSource_b0230) == 0x40, "UnkSource_b0230 layout");
 
 struct UnkWeakTarget;
-void fn_7100772eb0(UnkSource_b0230* self, UnkWeakTarget* target);
+void ConstructResolvedLinkToTarget(UnkSource_b0230* self, UnkWeakTarget* target);
 
 struct UnkCentral_b0230 {
     u8 pad_0x0[0x540];
@@ -298,7 +298,7 @@ void fn_7100772cf8(UnkCentral_b0230* self, const CStrId* name) {
     if (!found)
         return;
     UnkSource_b0230 tmp;
-    fn_7100772eb0(&tmp, found);
+    ConstructResolvedLinkToTarget(&tmp, found);
     const base::UnkRefHandle* from_handle = &tmp.handle_slot;
     base::UnkRefHandle* to_handle = reinterpret_cast<base::UnkRefHandle*>(reinterpret_cast<u8*>(self) + 0x578);
     fn_710031d208(to_handle, from_handle);
@@ -467,7 +467,7 @@ void fn_71007749d4(UnkCentralUnit_b49* unit) {
 
 // Constructs the handle source of `target`: an empty callable array and the handle target's weak handle
 // (created on first use), in state 2.
-__attribute__((noinline)) void fn_7100772eb0(UnkSource_b0230* self, UnkWeakTarget* target) {
+__attribute__((noinline)) void ConstructResolvedLinkToTarget(UnkSource_b0230* self, UnkWeakTarget* target) {
     self->vtable = g_unk_7101a20998 + 2;
     self->items.data = nullptr;
     self->items.count = 0;
@@ -543,7 +543,7 @@ void fn_7100775358(UnkCentralUnit_b49* unit) {
         }
         if (found) {
             if (UnkDoorLock* door = fn_71002af860(found))
-                fn_71008cdf84(door);
+                BreakDoorVignettesAndNotifyDoorOpened(door);
         }
     }
     if (self->mode == 2)
@@ -557,7 +557,7 @@ void fn_7100775358(UnkCentralUnit_b49* unit) {
 void fn_710077a96c(UnkPairVec_b0230* self, const UnkSetPair_b0230* value, u32 index) {
     u32 n = self->count;
     if (n == index) {
-        fn_710077a700(reinterpret_cast<base::global::CRntVector<UnkEntry_cu>*>(self), reinterpret_cast<const UnkEntry_cu*>(value));
+        AppendCallbackSetPairVectorEntry(reinterpret_cast<base::global::CRntVector<UnkEntry_cu>*>(self), reinterpret_cast<const UnkEntry_cu*>(value));
         return;
     }
     u32 cap = self->capacity;

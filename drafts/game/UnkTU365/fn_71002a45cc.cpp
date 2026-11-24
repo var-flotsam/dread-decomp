@@ -130,6 +130,6 @@ bool fn_71002a45cc(UnkOwner_2a45cc* self, UnkEdgeLinks_2a45cc* links, UnkTileOut
         stay = crossed || edge == start;
     } while (!(edge == start) || crossed);
 
-    fn_7100119f98(outline, true);
+    SetPolylineClosed(outline, true);
     return false;
 }

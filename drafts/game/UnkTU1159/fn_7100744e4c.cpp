@@ -174,7 +174,7 @@ void fn_7100744c80(UnkUnit2560Element* self) {
 }
 
 void fn_7100745830(void* sub, f32 dt, void* anim, f32 time);
-UnkVec3f fn_7100745f80(UnkElementParent_ovb0215* parent);
+UnkVec3f GetPositionPlusParentTranslationAndOffset(UnkElementParent_ovb0215* parent);
 
 void fn_71007451d0(UnkUnit2560Element* self, f32 dt) {
     fn_7100745830(self->sub, dt, self->field_0x58, self->field_0x60);
@@ -185,7 +185,7 @@ void fn_71007451d0(UnkUnit2560Element* self, f32 dt) {
         a = self->pos[2];
         b = self->offset[2];
     } else if (self->parent) {
-        UnkVec3f base = fn_7100745f80(self->parent);
+        UnkVec3f base = GetPositionPlusParentTranslationAndOffset(self->parent);
         f32 vx = self->pos[0] + self->offset[0];
         f32 vy = self->pos[1] + self->offset[1];
         f32 vz = self->pos[2] + self->offset[2];
@@ -210,7 +210,7 @@ UnkVec3f fn_71007452d0(UnkUnit2560Element* self) {
         return UnkVec3f(self->pos[0] + self->offset[0], self->pos[1] + self->offset[1],
                         self->pos[2] + self->offset[2]);
     if (self->parent) {
-        UnkVec3f base = fn_7100745f80(self->parent);
+        UnkVec3f base = GetPositionPlusParentTranslationAndOffset(self->parent);
         f32 vx = self->pos[0] + self->offset[0];
         f32 vy = self->pos[1] + self->offset[1];
         f32 vz = self->pos[2] + self->offset[2];

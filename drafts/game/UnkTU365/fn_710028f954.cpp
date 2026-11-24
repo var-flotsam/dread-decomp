@@ -455,7 +455,7 @@ s32 fn_710028f954(UnkNavMeshGenerator_28f954* self, UnkNavSource_28f954* source,
             }
         }
 
-        fn_7100119f98(reinterpret_cast<UnkTileOutline*>(&outline), true);
+        SetPolylineClosed(reinterpret_cast<UnkTileOutline*>(&outline), true);
         if (outline.EdgeCount() > 2) {
             PushBackCopy(out, outline);
             out->changed = true;

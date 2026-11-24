@@ -38,5 +38,5 @@ void CPoisonFlyDiveAttack_ClearStateAndReleaseHandle(UnkPoisonFlyDive* self) {
     }
     u8* part = manager->pad_0x0 + 0x80;
     fn_710063a748(part, self->field_0x8);
-    fn_710063c670(part);
+    ZeroHeldOwnerCountIncrementOthersAndReleaseHandle(part);
 }

@@ -21,13 +21,13 @@ struct UnkReflTypedPtr;
 }
 
 // Whether the holder's bool attribute under the key fn_7100090910 is set; false for a null holder.
-bool fn_71000e6db0(UnkVersionEntry* self);
+bool IsLinkAttributeSet(UnkVersionEntry* self);
 
 // Gets the field's value.
-bool fn_71000e78e0(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);
+bool ReadReflectedFieldIntoTypedRef(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);
 
 // Sets the field's value.
-bool fn_71000e7a80(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);
+bool SetReflectedFieldValue(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);
 
 // Reads the field of `obj` into a value: through its accessor, or by converting the value at its offset.
 UnkTunableReflValue fn_71000e76dc(UnkTunableFieldHandle* field, const base::reflection::UnkReflTypedPtr* obj);

@@ -100,7 +100,7 @@ bool fn_710056a6a8(UnkEmmyAttack_l56a6a8* self, UnkActor* other, UnkHitSource_l5
     }
     auto* emmy = reinterpret_cast<UnkEmmyAI_l56a6a8*>(ai);
     if (reinterpret_cast<UnkActor*>(fn_7100dec788(g_unk_7101d47310)) == other) {
-        bool paused = fn_7100df5740(g_unk_7101d47310);
+        bool paused = IsOpticCamouflageAbilityInState6(g_unk_7101d47310);
         u32 mode = reinterpret_cast<UnkEmmyTunable_l56a6a8*>(&g_unk_71726affc0)->mode;
         if ((mode == 1 || mode == 2) && paused)
             return false;

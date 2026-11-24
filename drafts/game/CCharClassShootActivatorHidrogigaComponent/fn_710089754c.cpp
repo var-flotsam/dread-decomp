@@ -23,7 +23,7 @@ struct UnkHydrogigaAI_b57a3;
 struct UnkSteamJetParts_b49;
 struct UnkSteamJetPart_b49;
 
-s32 fn_71005c0f2c(UnkHydrogigaAI_b57a3* self);
+s32 CountHydrogigaPartsWithValueAtOrAboveThreshold(UnkHydrogigaAI_b57a3* self);
 UnkSteamJetPart_b49** fn_71008921a0(UnkSteamJetParts_b49* self, u32 index);
 
 struct UnkHydrogigaShooter_l89754c;
@@ -244,7 +244,7 @@ void fn_710089754c(UnkHydrogigaShooter_l89754c* self, f32 dt) {
     if (!found || !self->shot_pending)
         return;
     auto* shooter_ai = reinterpret_cast<UnkHydrogigaAI_b57a3*>(hydrogiga);
-    if (!fn_71005befd8(shooter_ai) || static_cast<u32>(fn_71005c0f2c(shooter_ai)) <= 1) {
+    if (!fn_71005befd8(shooter_ai) || static_cast<u32>(CountHydrogigaPartsWithValueAtOrAboveThreshold(shooter_ai)) <= 1) {
         if (hydrogiga->field_0x14cb8 && hydrogiga->field_0x14cb8->id == 2)
             hydrogiga->field_0x149c4 = 0;
         if (UnkShooterAI_l89754c* owner_ai = OwnerAI(self)) {

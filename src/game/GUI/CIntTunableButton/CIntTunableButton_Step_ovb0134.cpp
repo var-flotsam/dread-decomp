@@ -93,7 +93,7 @@ void CIntTunableButton_StepTunableValue(UnkIntTunableButton_ovb0134* self, s32 d
             UnkReflField* field = self->field;
             s32* p = &self->value;
             UnkTypedPtr_ovb0134 value = {fn_7100014768(), p};
-            fn_71000e7a80(field, reinterpret_cast<const UnkReflFieldObject*>(&obj),
+            SetReflectedFieldValue(field, reinterpret_cast<const UnkReflFieldObject*>(&obj),
                           reinterpret_cast<UnkReflValueArg*>(&value));
         }
     }

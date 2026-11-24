@@ -307,5 +307,5 @@ void fn_7100a3b6f0(UnkCallbackSetVector* self, const UnkCallbackSetVector* other
 }
 
 void fn_7100a954c8(UnkCallbackSetVector* self, const UnkCallbackSetVector* other) {
-    self->CopyConstruct<CCharClassWaterPoolComponent_ReserveCallbackSetArray, fn_7100a95868>(*other);
+    self->CopyConstruct<CCharClassWaterPoolComponent_ReserveCallbackSetArray, PushCopyOntoCallbackSetArray>(*other);
 }

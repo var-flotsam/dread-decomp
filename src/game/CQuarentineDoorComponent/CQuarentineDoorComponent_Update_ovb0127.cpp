@@ -75,7 +75,7 @@ static inline bool Waiting(UnkQuarentineUpdateDoor_ovb0127& door, UnkAnimationCo
 void fn_71007df4e4(UnkQuarentineUpdateDoor_ovb0127* self) {
     UnkAnimationComponent* animation = self->owner->animation;
     if (Waiting(*self, animation) && fn_71011782ec(animation, 0xf4061ff25a2163d6)) {
-        fn_71007df12c(reinterpret_cast<UnkQuarentineDoor_b54*>(self), true);
+        ApplyDoorOpenState(reinterpret_cast<UnkQuarentineDoor_b54*>(self), true);
         self->field_0x2a1 = false;
     }
     auto* player = reinterpret_cast<UnkQuarentinePlayer_ovb0127*>(fn_7100dec788(g_unk_7101d47310));

@@ -32,7 +32,7 @@ using base::reflection::UnkReflTypeIdArg;
 using base::reflection::UnkReflTypeOf;
 
 u32 XParasiteAI_PickWeightedChoice(UnkXParasiteAI* self);
-void fn_71006e75e8(UnkXParasiteAI* self, bool on);
+void SetXParasiteEffectAndBindingSlots(UnkXParasiteAI* self, bool on);
 
 extern const u64 g_unk_717270b8b0 __attribute__((visibility("hidden")));
 extern UnkPropertyName g_unk_717270b8c8 __attribute__((visibility("hidden")));
@@ -212,7 +212,7 @@ void fn_71006e6ee0(UnkXParasiteAI* self) {
         }
         HideEffect(self);
     } else {
-        fn_71006e75e8(self, true);
+        SetXParasiteEffectAndBindingSlots(self, true);
     }
 
     auto* game = reinterpret_cast<UnkXParasiteGameOwner_l6e6ee0*>(fn_7100defcd4(g_unk_7101d47310));

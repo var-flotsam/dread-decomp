@@ -16,7 +16,7 @@ struct UnkTimeKeys {
     u32 count;
 };
 // The key at `index` (out of line).
-UnkTimeKey* fn_7100b8ad14(UnkTimeKeys* self, u32 index);
+UnkTimeKey* GetTimeKeyAtGrowingWithDefaults(UnkTimeKeys* self, u32 index);
 
 // A motion's timeline: its frame count and last frame, which motions it has, its time keys, its tracks
 // and its events. Names and layout are placeholders.

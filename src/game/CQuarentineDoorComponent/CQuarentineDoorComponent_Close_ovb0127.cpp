@@ -62,5 +62,5 @@ void fn_71007df218(UnkQuarentineDoor_ovb0127* self) {
     }
     if (auto* collision = self->body->collision)
         CCollisionComponent_SyncAnimationColliderTracks(collision);
-    fn_71007df12c(reinterpret_cast<UnkQuarentineDoor_b54*>(self), false);
+    ApplyDoorOpenState(reinterpret_cast<UnkQuarentineDoor_b54*>(self), false);
 }

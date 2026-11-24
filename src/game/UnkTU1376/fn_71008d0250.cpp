@@ -157,7 +157,7 @@ void fn_71008d0250(UnkDoorLife_l8d0250* self) {
         bool after = fn_710002fb70(&self->keys);
         if (before != after) {
             if (after)
-                fn_71008d0ef4(self);
+                OpenDoorUnlessOpen(self);
             else
                 fn_71008d498c(reinterpret_cast<UnkDoorLife_b44a2*>(self), 0, 0, 0);
         }
@@ -201,7 +201,7 @@ void fn_71008d0250(UnkDoorLife_l8d0250* self) {
             mask.id = UnkAll_SpitSend().value;
             CAnimationComponent_SendActionToTrack(animation, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b968, &g_unk_7172769740, &mask);
         }
-        fn_71008d0ef4(self);
+        OpenDoorUnlessOpen(self);
     }
 
     self->sounds[0] = g_unk_7108b6c460;

@@ -23,11 +23,11 @@ struct UnkPolypsModel_ovb0090 {
 };
 
 // Finds the material entry named by `hash` (fn_7100146d0c).
-bool fn_7100146d0c(UnkPolypsModel_ovb0090* model, u64 hash, s32* index);
+bool FindEntryIndexByKeyInHolderList(UnkPolypsModel_ovb0090* model, u64 hash, s32* index);
 
 static inline void SetColor(UnkPolypsModel_ovb0090* model, u64 hash, s32* index, bool on, const CColor4F* lit,
                             const CColor4F* off) {
-    if (fn_7100146d0c(model, hash, index)) {
+    if (FindEntryIndexByKeyInHolderList(model, hash, index)) {
         s32 i = *index;
         const CColor4F* color = on ? lit : off;
         UnkEntryListA1_134* list = model->holder->list;
@@ -38,7 +38,7 @@ static inline void SetColor(UnkPolypsModel_ovb0090* model, u64 hash, s32* index,
 void fn_71005b63fc(void* self, UnkPolypsModel_ovb0090* model, bool on) {
     s32 index = -1;
     CColor4F color(1.0f, 1.0f, 1.0f, 1.0f);
-    if (fn_7100146d0c(model, 0x3bf7c05ac2b83cc9, &index)) {
+    if (FindEntryIndexByKeyInHolderList(model, 0x3bf7c05ac2b83cc9, &index)) {
         s32 i = index;
         fn_71001934e0(model->holder->list, i, 3, &color, 1);
         color.a = on ? 1.0f : 0.0f;

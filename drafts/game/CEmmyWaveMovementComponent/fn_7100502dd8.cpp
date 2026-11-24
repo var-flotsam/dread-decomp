@@ -92,7 +92,7 @@ static inline void Flatten(CVector2D* out, const CVector3D& v) {
 void fn_7100502dd8(UnkWaveMovement_l502dd8* self, f32 dt) {
     fn_71010d1a90(reinterpret_cast<UnkMovementComponent*>(self), dt);
     if (auto* unit = reinterpret_cast<UnkCentralUnit_l502dd8*>(
-            fn_7100ddb768(reinterpret_cast<UnkUnit2547*>(Registry_l502dd8())))) {
+            GetFirstCentralUnitListObject(reinterpret_cast<UnkUnit2547*>(Registry_l502dd8())))) {
         auto* target = reinterpret_cast<UnkAreaTarget_l502dd8*>(
             *fn_71002a76a4(reinterpret_cast<UnkBreakablePart*>(unit->area_part)));
         if (target && target->actor) {

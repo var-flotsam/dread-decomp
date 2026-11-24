@@ -168,12 +168,12 @@ u32 fn_7100a8f448(UnkTeleporter_b0233* self, bool flag) {
 
 extern UnkTeleporterFxEntry_b0233 g_unk_7172751a60[8] __attribute__((visibility("hidden")));
 
-void fn_7100a8e614(UnkTeleporterSelf_b0233* self);
+void DisableAllModeTableIdsOnActorComponent(UnkTeleporterSelf_b0233* self);
 struct UnkEnergyWaveFxComp_b49;
 
 void fn_7100a8e4c0(UnkTeleporterSelf_b0233* self) {
     fn_7100a9f300(self);
-    fn_7100a8e614(self);
+    DisableAllModeTableIdsOnActorComponent(self);
     for (UnkTeleporterFxEntry_b0233& entry : g_unk_7172751a60) {
         if (entry.value == self->mode) {
             UnkFxId_b0233 name = entry.id;

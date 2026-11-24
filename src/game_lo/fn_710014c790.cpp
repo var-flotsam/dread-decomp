@@ -10,7 +10,7 @@ struct UnkRegistry_710014c790;
 extern UnkRegistry_710014c790* unk_710b372d68;  // the registry (reached through the GOT)
 
 void fn_7100169f34(UnkRegistry_710014c790* registry, base::UnkStrIdMember* key);
-void fn_710014d838(void* block, u32 arg);
+void ResizeStrIdEntryArray(void* block, u32 arg);
 
 struct UnkStruct_710014c790 {
     void** vtable;
@@ -34,7 +34,7 @@ struct UnkStruct_710014c790 {
         field_0x40 = 0;
         fn_710014d9e8(field_0x144, 0);
         field_0xc0c = false;
-        fn_710014d838(field_0x7cc, 0);
+        ResizeStrIdEntryArray(field_0x7cc, 0);
         field_0x6c8 = 0;
         fn_710014d9e8(field_0x144, 0);
         field_0x40 = 0;

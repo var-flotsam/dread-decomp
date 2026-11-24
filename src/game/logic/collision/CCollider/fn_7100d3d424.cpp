@@ -412,7 +412,7 @@ UnkPairArray* fn_7100e52e64(UnkPairArray* self, const UnkPairArray* other) {
         self->count = 0;
         fn_7100e52b58(self, other->capacity);
         for (const UnkFreedVectorPair *it = other->data, *end = it + other->count; it != end; ++it)
-            fn_7100e52cf4(self, it);
+            PushBackRecord60Copy(self, it);
     }
     return self;
 }

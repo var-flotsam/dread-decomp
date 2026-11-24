@@ -1291,7 +1291,7 @@ address,size,name,name_source,subsystem,status
 0x710092e4e8,216,fn_710092e4e8,unknown,game/components?,O
 0x710092e5c0,636,fn_710092e5c0,unknown,game/components?,U
 0x710092e83c,1880,fn_710092e83c,unknown,game/components?,U
-0x710092ef94,288,fn_710092ef94,unknown,game/components?,O
+0x710092ef94,288,SetWeakRefAt0ToObjectHandle,inferred,game/components?,O
 0x710092f0b4,336,fn_710092f0b4,unknown,game/components?,O
 0x710092f204,2208,fn_710092f204,unknown,game/components?,m
 0x710092faa4,488,fn_710092faa4,unknown,game/components?,U
@@ -2344,7 +2344,7 @@ address,size,name,name_source,subsystem,status
 0x710097b990,160,fn_710097b990,unknown,game?,O
 0x710097ba30,180,fn_710097ba30,unknown,game/player?,U
 0x710097baf0,140,fn_710097baf0,unknown,unknown,O
-0x710097bb7c,316,fn_710097bb7c,unknown,unknown,O
+0x710097bb7c,316,ConstructStrIdVectorFromIdArray,inferred,unknown,O
 0x710097bcb8,484,fn_710097bcb8,unknown,game/player?,O
 0x710097be9c,816,fn_710097be9c,unknown,ai/navmesh?,U
 0x710097c1cc,156,fn_710097c1cc,unknown,unknown,O
@@ -2410,7 +2410,7 @@ address,size,name,name_source,subsystem,status
 0x710097ec40,4,fn_710097ec40,unknown,unknown,O
 0x710097ec44,156,fn_710097ec44,unknown,unknown,O
 0x710097ece0,4,fn_710097ece0,unknown,unknown,O
-0x710097ecf0,1092,fn_710097ecf0,unknown,unknown,O
+0x710097ecf0,1092,InitMagnetGrappleTransitionIdStatics,inferred,unknown,O
 0x710097f134,84,fn_710097f134,unknown,unknown,O
 0x710097f188,16,fn_710097f188,unknown,unknown,O
 0x710097f198,16,fn_710097f198,unknown,unknown,O
@@ -2514,7 +2514,7 @@ address,size,name,name_source,subsystem,status
 0x7100985390,508,fn_7100985390,unknown,unknown,U
 0x710098558c,488,fn_710098558c,unknown,unknown,U
 0x7100985774,660,fn_7100985774,unknown,unknown,O
-0x7100985a08,384,fn_7100985a08,unknown,unknown,O
+0x7100985a08,384,IsCircleAtTargetPositionFreeOfCollision,inferred,unknown,O
 0x7100985b88,656,fn_7100985b88,unknown,unknown,O
 0x7100985e18,504,fn_7100985e18,unknown,unknown,O
 0x7100986010,1360,fn_7100986010,unknown,unknown,U
@@ -4261,7 +4261,7 @@ address,size,name,name_source,subsystem,status
 0x71009e2bfc,56,fn_71009e2bfc,unknown,game/player?,O
 0x71009e2c34,1096,fn_71009e2c34,unknown,game/player?,U
 0x71009e307c,268,fn_71009e307c,unknown,game/player?,m
-0x71009e3188,408,fn_71009e3188,unknown,game/player?,O
+0x71009e3188,408,ApplySamusForwardBackwardScaleOrReset,inferred,game/player?,O
 0x71009e3320,644,fn_71009e3320,unknown,game/player?,U
 0x71009e35a4,3168,fn_71009e35a4,unknown,game/player?,U
 0x71009e4204,764,fn_71009e4204,unknown,game/player?,U
@@ -4284,7 +4284,7 @@ address,size,name,name_source,subsystem,status
 0x71009e6b00,1180,fn_71009e6b00,unknown,game/player?,U
 0x71009e6f9c,64,fn_71009e6f9c,unknown,game/player?,O
 0x71009e6fdc,1008,fn_71009e6fdc,unknown,game/player?,U
-0x71009e73cc,384,fn_71009e73cc,unknown,game/player?,O
+0x71009e73cc,384,GetMovementSpeedLimitAndDecayRate,inferred,game/player?,O
 0x71009e754c,156,fn_71009e754c,unknown,game/player?,O
 0x71009e75e8,64,fn_71009e75e8,unknown,game/player?,O
 0x71009e7628,204,fn_71009e7628,unknown,game/player?,O
@@ -4330,7 +4330,7 @@ address,size,name,name_source,subsystem,status
 0x71009ea19c,568,fn_71009ea19c,unknown,game/player?,O
 0x71009ea3d4,16,fn_71009ea3d4,unknown,game/player?,O
 0x71009ea3e4,640,fn_71009ea3e4,unknown,game/player?,U
-0x71009ea664,400,fn_71009ea664,unknown,game/player?,O
+0x71009ea664,400,IsCapsuleSweepAheadInFacingDirectionClear,inferred,game/player?,O
 0x71009ea7f4,660,fn_71009ea7f4,unknown,game/player?,U
 0x71009eaa88,900,fn_71009eaa88,unknown,game/player?,U
 0x71009eae0c,32,fn_71009eae0c,unknown,game/player?,O
@@ -4374,7 +4374,7 @@ address,size,name,name_source,subsystem,status
 0x71009ee2f0,148,fn_71009ee2f0,unknown,game/player?,O
 0x71009ee384,828,fn_71009ee384,unknown,game/player?,O
 0x71009ee6c0,1908,fn_71009ee6c0,unknown,game/player?,U
-0x71009eee34,240,fn_71009eee34,unknown,game/player?,O
+0x71009eee34,240,SetSamusLegOverrideKeyActive,inferred,game/player?,O
 0x71009eef24,448,fn_71009eef24,unknown,game/player?,m
 0x71009ef0e4,44,fn_71009ef0e4,unknown,game/player?,O
 0x71009ef110,3724,fn_71009ef110,unknown,game/player?,U
@@ -4435,7 +4435,7 @@ address,size,name,name_source,subsystem,status
 0x71009f1158,4,fn_71009f1158,unknown,game/player?,O
 0x71009f115c,136,fn_71009f115c,unknown,game/player?,O
 0x71009f11e4,264,fn_71009f11e4,unknown,game/player?,O
-0x71009f12f0,952,fn_71009f12f0,unknown,game/player?,O
+0x71009f12f0,952,InitSamusMovementStatics,inferred,game/player?,O
 0x71009f16a8,4,CSceneComponent::refl_AddAttributes,reflection,game/components,O
 0x71009f16ac,244,CSceneComponent::refl_GetClass,reflection,game/components,O
 0x71009f17a0,4,CSceneComponent::refl_AddFields,reflection,game/components,O

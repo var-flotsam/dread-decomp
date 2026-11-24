@@ -41,7 +41,7 @@ using base::global::CStrId;
 using base::global::CRntFile;
 using base::global::UnkStringData;
 
-u64 fn_7100b8a428(CRntFile* file, CStrId* out) {
+u64 ReadLengthPrefixedStrIdFromFile(CRntFile* file, CStrId* out) {
     u16 length;
     u64 total = CRntFile_Read(file, &length, 2, 1);
     if (length != 0) {

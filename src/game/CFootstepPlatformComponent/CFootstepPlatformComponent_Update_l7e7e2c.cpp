@@ -84,7 +84,7 @@ void fn_71007e7e2c(UnkFootstepPlatform_l7e7e2c* self, f32 dt) {
             Resolve_l7e7e2c(self);
             UnkDoorLock* lock = fn_71002af860(static_cast<UnkWeakTarget*>(Target_l7e7e2c(self)));
             if (lock && !fn_71008d5e08(lock)) {
-                fn_71008d0ef4(lock);
+                OpenDoorUnlessOpen(lock);
                 Resolve_l7e7e2c(self);
                 MarkTimeline_l7e7e2c(Target_l7e7e2c(self));
                 MarkTimeline_l7e7e2c(self->owner);

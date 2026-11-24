@@ -141,7 +141,7 @@ void fn_71003d6348(UnkSniperShootAttack_l3d6348* self, f32 dt) {
     f32 pitch = Lerp(params->pitch_start, params->pitch_full, progress);
     f32 volume = Lerp(params->volume_start, params->volume_full, progress);
     if (Playing(ChargeSound(self))) {
-        fn_7100105da8(Get(ChargeSound(self)), pitch, 0.2f);
+        SetSoundVoicePitchOverDuration(Get(ChargeSound(self)), pitch, 0.2f);
         fn_7100105d34(Get(ChargeSound(self)), volume, false, 0.2f);
     }
 

@@ -61,7 +61,7 @@ static inline bool Get(UnkBoostObject_l305c24* obj, const u64& key, f32* out) {
     typed.ptr = obj;
     UnkBoostValue_l305c24 value = {fn_710000abbc(), out};
     if (UnkBoostField_l305c24* field = cls->FindField(key)) {
-        fn_71000e78e0(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+        ReadReflectedFieldIntoTypedRef(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                       reinterpret_cast<UnkReflValueArg*>(&value));
         return true;
     }

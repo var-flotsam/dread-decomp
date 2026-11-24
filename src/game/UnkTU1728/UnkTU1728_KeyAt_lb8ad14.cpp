@@ -16,7 +16,7 @@ struct UnkTimeKey_b8ad14 {
     ~UnkTimeKey_b8ad14() {}
 };
 
-UnkTimeKey* fn_7100b8ad14(UnkTimeKeys* self, u32 index) {
+UnkTimeKey* GetTimeKeyAtGrowingWithDefaults(UnkTimeKeys* self, u32 index) {
     auto* keys = reinterpret_cast<base::global::CRntVector<UnkTimeKey_b8ad14>*>(self);
     if (keys->field_0x14 && keys->count <= index) {
         // First to the next multiple of the step, then to exactly index + 1 keys.

@@ -211,7 +211,7 @@ void fn_71002cddd0(UnkElements* v, UnkElement* value, u32 index) {
 }
 
 struct UnkCollection48_A2_b68;
-void fn_71002ce01c(UnkCollection48_A2_b68* collection, u32 index) {
+void EraseEntry48AtIndex(UnkCollection48_A2_b68* collection, u32 index) {
     UnkElements* self = reinterpret_cast<UnkElements*>(collection);
     if (index < self->count) {
         u64 i = index;

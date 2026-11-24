@@ -29,7 +29,7 @@ using base::reflection::UnkTypedRef;
 using UnkString100 = UnkBufferString<0x100, g_unk_7101a194b8>;
 
 struct UnkFormatSource;
-UnkString100 fn_7100adc570(UnkFormatSource* self);
+UnkString100 FormatValueAsString(UnkFormatSource* self);
 void fn_710007e7d8(CRntString* self, const char* str, bool borrowed);
 void fn_7100ad386c(UnkErasedVector* self, UnkErasedValue_0x10* value);
 extern const char g_unk_710164b8a8[];
@@ -88,7 +88,7 @@ struct UnkIdValueHolder_b0217 {
     }
 };
 
-UnkReflPathArg_ovb0106* fn_7100ad2e20() {
+UnkReflPathArg_ovb0106* GetPathRootIdValue() {
     static UnkIdValueHolder_b0217 holder;
     return reinterpret_cast<UnkReflPathArg_ovb0106*>(&holder.value);
 }
@@ -150,7 +150,7 @@ union UnkStrIdSlot_b0217 {
 };
 
 // The value a piece of text stands for: "[number]" is an unsigned, anything else a string id.
-__attribute__((noinline)) UnkReturnedValue_b0217 fn_7100ad32d0(UnkNoArg, const CRntString* text) {
+__attribute__((noinline)) UnkReturnedValue_b0217 ParseValueFromBracketedNumberOrStrId(UnkNoArg, const CRntString* text) {
     const char* data = text->data;
     if (data[0] == '[' && data[(s32)(text->length - 1)] == ']') {
         u32 number = strtol(data + 1, nullptr, 10);
@@ -169,7 +169,7 @@ struct UnkPieceText_b0217 : UnkString100 {
 };
 
 static inline UnkReturnedValue_b0217 Parse(const UnkPieceText_b0217& piece) {
-    return fn_7100ad32d0(UnkNoArg(), piece.Str());
+    return ParseValueFromBracketedNumberOrStrId(UnkNoArg(), piece.Str());
 }
 static inline void Push(UnkErasedVector* self, UnkReturnedValue_b0217&& value) {
     fn_7100ad386c(self, reinterpret_cast<UnkErasedValue_0x10*>(&value));
@@ -180,7 +180,7 @@ static inline void Push(UnkErasedVector* self, UnkReturnedValue_b0217&& value) {
     Push(self, Parse(UnkPieceText_b0217((text)->data + (start), (length))))
 
 // Builds the array from a text of pieces split at the separator.
-void fn_7100ad3118(UnkErasedVector* self, const CRntString* text) {
+void ConstructValueArrayFromSeparatedText(UnkErasedVector* self, const CRntString* text) {
     self->step = 10;
     self->data = nullptr;
     self->count = 0;
@@ -226,18 +226,18 @@ struct UnkStringOut_b0217 {
 };
 
 // A value as text; an unsigned one in brackets.
-__attribute__((noinline)) UnkStringOut_b0217 fn_7100ad370c(UnkNoArg, UnkPathValue_b0217* value) {
+__attribute__((noinline)) UnkStringOut_b0217 FormatValueAsTextPieceBracketingUnsigned(UnkNoArg, UnkPathValue_b0217* value) {
     UnkStringOut_b0217 out;
     CRntString& result = out.str;
     if (value->type == fn_7100005178()) {
         fn_710007e7d8(&result, g_unk_710164b8a8, true);
         {
-            UnkString100 text = fn_7100adc570(reinterpret_cast<UnkFormatSource*>(value));
+            UnkString100 text = FormatValueAsString(reinterpret_cast<UnkFormatSource*>(value));
             CRntString_Append(&result, text.Str());
         }
         CRntString_AppendChar(&result, ']');
     } else {
-        UnkString100 text = fn_7100adc570(reinterpret_cast<UnkFormatSource*>(value));
+        UnkString100 text = FormatValueAsString(reinterpret_cast<UnkFormatSource*>(value));
         CRntString_MoveConstruct(&result, text.Str());
     }
     return out;
@@ -251,7 +251,7 @@ static inline void Append(CRntString& self, const CRntString& other) {
 }
 
 // The values' texts joined with the separator between them.
-UnkStringOut_b0217 fn_7100ad3614(void* source) {
+UnkStringOut_b0217 JoinValueListIntoSeparatedString(void* source) {
     UnkPathValues_b0217* values = static_cast<UnkPathValues_b0217*>(source);
     UnkStringOut_b0217 out;
     if (!values->count) {
@@ -260,9 +260,9 @@ UnkStringOut_b0217 fn_7100ad3614(void* source) {
     }
     UnkPathValue_b0217* it = values->data;
     // fn_7100ad370c's first argument carries nothing: the original leaves that register as it was.
-    UnkStringOut_b0217 joined_text = fn_7100ad370c(UnkNoArg(), it);
+    UnkStringOut_b0217 joined_text = FormatValueAsTextPieceBracketingUnsigned(UnkNoArg(), it);
     for (++it; it != values->data + values->count; ++it) {
-        Append(joined_text.str, Concat(CRntString(g_unk_710164b8a9), fn_7100ad370c(UnkNoArg(), it)));
+        Append(joined_text.str, Concat(CRntString(g_unk_710164b8a9), FormatValueAsTextPieceBracketingUnsigned(UnkNoArg(), it)));
     }
     new (&out.str) CRntString(static_cast<CRntString&&>(joined_text.str));
     return out;

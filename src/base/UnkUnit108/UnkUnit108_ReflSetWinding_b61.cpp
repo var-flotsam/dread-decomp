@@ -48,7 +48,7 @@ UnkReflValue fn_710011e40c(void*, char* obj, UnkReflValue* const* args) {
     if (ccw ? self->winding != 2 : self->winding != 1) {
         if (self->field_0x2c) {
             if ((ccw != 0) != (self->SignedArea() >= 0.0f))
-                fn_7100118c78(self);
+                ReversePolygonVertexXYOrder(self);
         }
         self->winding = ccw ? 2 : 1;
     }

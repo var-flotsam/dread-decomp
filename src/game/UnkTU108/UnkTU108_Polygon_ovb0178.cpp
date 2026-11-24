@@ -222,7 +222,7 @@ UnkPolygonArray* fn_710011f340(UnkPolygonArray* self, const UnkPolygonArray* oth
 struct UnkEntryVector108_b67a1 : UnkPolygonArray {};
 
 // Destroys the polygon at index and moves the later ones down.
-void fn_710011f95c(UnkEntryVector108_b67a1* v, u32 index) {
+void ErasePolygonArrayElementAt(UnkEntryVector108_b67a1* v, u32 index) {
     if (index < v->count) {
         u64 i = index;
         v->data[i].~UnkPolygon48();
@@ -285,7 +285,7 @@ struct UnkPolygonBase {
 struct UnkPolygon_b61 : UnkPolygonBase {};
 
 // Reverses the x and y of the vertices (z stays).
-void fn_7100118c78(UnkPolygon_b61* self) {
+void ReversePolygonVertexXYOrder(UnkPolygon_b61* self) {
     UnkPointSet_b61* points = reinterpret_cast<UnkPointSet_b61*>(self);
     u32 edges = self->EdgeCount();
     if (edges == 0)
@@ -325,24 +325,24 @@ static inline __attribute__((always_inline)) f32 SignedArea(const UnkPolygonBase
 }
 
 // Turns the pending winding states 3 and 4 into 2 and 1, reversing the points when needed.
-void fn_7100119c1c(UnkTarget108* target) {
+void ResolvePendingPolygonWinding(UnkTarget108* target) {
     if (!target->closed)
         return;
     u32 state = target->state;
     if (state == 4) {
         if (!(SignedArea(target) >= 0.0f))
-            fn_7100118c78(reinterpret_cast<UnkPolygon_b61*>(target));
+            ReversePolygonVertexXYOrder(reinterpret_cast<UnkPolygon_b61*>(target));
         target->state = 2;
     } else if (state == 3) {
         if (SignedArea(target) >= 0.0f)
-            fn_7100118c78(reinterpret_cast<UnkPolygon_b61*>(target));
+            ReversePolygonVertexXYOrder(reinterpret_cast<UnkPolygon_b61*>(target));
         target->state = 1;
     }
 }
 struct UnkPolygon2D : UnkPolygonBase {};
 
 // The edge before or after vertex along dir: its index is stored in *a, the dot product in *b.
-UnkSegment2D fn_71001190a0(UnkPolygon2D* polygon, u32 vertex, const UnkVec2Result* dir, u32* a, u32* b) {
+UnkSegment2D GetAdjacentPolygonEdgeAlongDirection(UnkPolygon2D* polygon, u32 vertex, const UnkVec2Result* dir, u32* a, u32* b) {
     UnkSegment2D seg = polygon->Edge(vertex);
     f32 ex = seg.end.x - seg.start.x;
     f32 ey = seg.end.y - seg.start.y;
@@ -368,7 +368,7 @@ u32 fn_710011884c(UnkPolygon2D* polygon, u32 vertex, const UnkVec2Result* dir) {
 }
 
 // Whether the edge after the vertex continues along dir.
-bool fn_7100118788(UnkPolygon2D* polygon, u32 vertex, const UnkVec2Result* dir) {
+bool PolygonHasAdjacentEdgeAlongDirection(UnkPolygon2D* polygon, u32 vertex, const UnkVec2Result* dir) {
     UnkSegment2D seg = polygon->Edge(vertex);
     f32 ex = seg.end.x - seg.start.x;
     f32 ey = seg.end.y - seg.start.y;

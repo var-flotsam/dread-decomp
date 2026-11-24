@@ -27,7 +27,7 @@ struct UnkScratchString {
 
 // Looks up the uniform range `name` selects in one of three tables (the scratch string's hash is the
 // key) and writes its handle (an index plus 15) to `out`; false when absent or its block is empty.
-bool fn_710015ddc0(UnkUniformTables* self, u32 kind, u64* out, const char* name) {
+bool FindUniformLocationByName(UnkUniformTables* self, u32 kind, u64* out, const char* name) {
     *out = 0;
     if (!self || !name)
         return false;
@@ -61,7 +61,7 @@ bool fn_710015ddc0(UnkUniformTables* self, u32 kind, u64* out, const char* name)
 
 // Looks a uniform block up by name: compares the name with each block's and writes the block's index
 // plus 0xffff to `outIndex`.
-bool fn_710015dc04(UnkUniformTable* table, const void* name, u32* outIndex) {
+bool FindBlockHandleByName(UnkUniformTable* table, const void* name, u32* outIndex) {
     static UnkScratchString s_name;
     CRntString_AssignCString(s_name.Get(), static_cast<const char*>(name));
     for (u64 i = 0; i < table->block_count; ++i) {

@@ -81,7 +81,7 @@ extern const UnkLegKeys g_unk_7172741018 __attribute__((visibility("hidden")));
 
 struct UnkEntity;
 struct UnkFlagged;
-void fn_71009eee34(UnkSamusMovement* self, const u64* key, bool active, bool flag);
+void SetSamusLegOverrideKeyActive(UnkSamusMovement* self, const u64* key, bool active, bool flag);
 void fn_71009ef110(UnkSamusMovement* self, const UnkVec3f* a, const UnkVec3f* b);
 void fn_71009eff9c(UnkSamusMovement* self, bool flag, f32 dt);
 
@@ -178,8 +178,8 @@ void fn_71009e0160(UnkSamusMovement* self, bool flag, f32 dt) {
     if (self->field_0x5310 != value)
         self->field_0x5310 = value;
     bool ignore_slope = fn_710117b348(Anim(self), fn_7100c34a78());
-    fn_71009eee34(self, &g_unk_7172741018.field_0x0, valid, ignore_slope);
-    fn_71009eee34(self, &g_unk_7172741018.field_0x8, fn_710117b348(Anim(self), fn_7100c48a08()), ignore_slope);
+    SetSamusLegOverrideKeyActive(self, &g_unk_7172741018.field_0x0, valid, ignore_slope);
+    SetSamusLegOverrideKeyActive(self, &g_unk_7172741018.field_0x8, fn_710117b348(Anim(self), fn_7100c48a08()), ignore_slope);
     if (!fn_710002fb70(self->timer)) {
         // The constant is a CVector3D; the fields are the same layout, copied word by word (UnkVec3f).
         const UnkVec3f& zero = reinterpret_cast<const UnkVec3f&>(g_unk_710164779c);

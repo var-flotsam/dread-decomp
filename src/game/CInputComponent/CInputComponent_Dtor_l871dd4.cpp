@@ -19,7 +19,7 @@ extern void* g_unk_7101a7a568[];
 extern void* g_unk_7101a7a710[];
 extern char g_unk_7101a7a730[];
 struct UnkOuterList_A4_b75;
-void fn_710086f394(UnkOuterList_A4_b75* self);
+void DestroyStrIdKeyedListOfLists(UnkOuterList_A4_b75* self);
 
 struct UnkInputActionTag_l871dd4;
 using UnkInputActionNode_l871dd4 = base::UnkSListNode<UnkInputActionTag_l871dd4>;
@@ -65,7 +65,7 @@ void fn_7100871dd4(UnkInputComponent_l871dd4* self) {
     self->lists[0].Free();
     fn_710002f67c(self->field_0xbc0);
     fn_710002f67c(self->field_0xb10);
-    fn_710086f394(reinterpret_cast<UnkOuterList_A4_b75*>(self->field_0xad0));
+    DestroyStrIdKeyedListOfLists(reinterpret_cast<UnkOuterList_A4_b75*>(self->field_0xad0));
     self->actions.vtable = g_unk_7101a7a730 + 0x10;
     self->actions.Clear();
     self->table.vtable = &g_unk_7101a7a710[2];

@@ -819,7 +819,7 @@ address,size,name,name_source,subsystem,status
 0x7100540384,172,fn_7100540384,unknown,game/ai?,O
 0x7100540430,992,fn_7100540430,unknown,game/ai?,U
 0x7100540810,332,fn_7100540810,unknown,unknown,O
-0x710054095c,376,fn_710054095c,unknown,unknown,O
+0x710054095c,376,PassEmmyBarrierStrIdToManager,inferred,unknown,O
 0x7100540ad4,764,fn_7100540ad4,unknown,unknown,U
 0x7100540dd0,1784,fn_7100540dd0,unknown,unknown,U
 0x71005414c8,456,fn_71005414c8,unknown,unknown,O
@@ -2700,7 +2700,7 @@ address,size,name,name_source,subsystem,status
 0x710059c75c,92,fn_710059c75c,unknown,unknown,O
 0x710059c7b8,340,fn_710059c7b8,unknown,game?,O
 0x710059c90c,100,fn_710059c90c,unknown,unknown,O
-0x710059c970,752,fn_710059c970,unknown,game/ai?,O
+0x710059c970,752,AppendWeakRefIfAbsent,inferred,game/ai?,O
 0x710059cc60,620,fn_710059cc60,unknown,game/ai?,U
 0x710059cecc,308,fn_710059cecc,unknown,game?,O
 0x710059d000,1004,fn_710059d000,unknown,game/ai?,O
@@ -3563,7 +3563,7 @@ address,size,name,name_source,subsystem,status
 0x71005c0d10,356,fn_71005c0d10,unknown,game/ai?,O
 0x71005c0e74,136,fn_71005c0e74,unknown,game/ai?,O
 0x71005c0efc,48,fn_71005c0efc,unknown,game/ai?,O
-0x71005c0f2c,68,fn_71005c0f2c,unknown,game/ai?,O
+0x71005c0f2c,68,CountHydrogigaPartsWithValueAtOrAboveThreshold,inferred,game/ai?,O
 0x71005c0f70,152,fn_71005c0f70,unknown,game/ai?,O
 0x71005c1008,220,fn_71005c1008,unknown,game/ai?,O
 0x71005c10e4,232,fn_71005c10e4,unknown,game/ai?,U
@@ -3634,7 +3634,7 @@ address,size,name,name_source,subsystem,status
 0x71005c448c,4,fn_71005c448c,unknown,game/ai?,O
 0x71005c4490,4,fn_71005c4490,unknown,game/ai?,O
 0x71005c4494,412,fn_71005c4494,unknown,game/ai?,m
-0x71005c4630,500,fn_71005c4630,unknown,game/ai?,O
+0x71005c4630,500,ReserveHydrogigaKeyedTable,inferred,game/ai?,O
 0x71005c4824,4,fn_71005c4824,unknown,game/ai?,O
 0x71005c4828,400,fn_71005c4828,unknown,game/ai?,O
 0x71005c49b8,24,fn_71005c49b8,unknown,game/ai?,O

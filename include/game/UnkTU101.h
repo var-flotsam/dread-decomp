@@ -13,7 +13,7 @@ struct UnkSound;
 struct UnkSoundVoice2_b56;
 void fn_7100105d34(UnkInterp_7100105d34*, f32, bool, f32);
 void fn_7100105034(void*);
-void fn_7100105da8(UnkInterp_7100105d34* self, f32 value, f32 time);
+void SetSoundVoicePitchOverDuration(UnkInterp_7100105d34* self, f32 value, f32 time);
 void fn_7100105ef4(void* sound, f32 time, f32 step, bool arg3);
 void fn_7100104f08(void* voice);
 void fn_710010519c(UnkSoundVoice2_b56* voice, void* system, u32 seq, bool flag);

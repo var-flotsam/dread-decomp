@@ -24,7 +24,7 @@ struct UnkMove_b152;
 void fn_71010d1e88(UnkMovement3_ovb0048* self, void* a, void* b, f32 t, void* c, void* d, void* e);
 void fn_7100352240(UnkAimComponent* self, UnkAimOutput* out);
 void fn_71009e307c(UnkMovement_l9e307c* self, const f32* amount);
-void fn_71009e3188(UnkMove_b152* self, f32* values);
+void ApplySamusForwardBackwardScaleOrReset(UnkMove_b152* self, f32* values);
 void fn_71010db084(void* unused, void* arg);
 void fn_7100301750(CAbilityComponent* self, void* arg);
 extern base::reflection::UnkTunable g_unk_7172a03d80;
@@ -216,7 +216,7 @@ void fn_71009e2c34(UnkSamusMovement_l9e2c34* self, f32 dt) {
     if (!animation || !fn_710117b348(animation, fn_7100d029c8()))
         fn_71010daf1c(self, &self->body, true, dt);
     fn_71009e307c(reinterpret_cast<UnkMovement_l9e307c*>(self), reinterpret_cast<const f32*>(&self->body));
-    fn_71009e3188(reinterpret_cast<UnkMove_b152*>(self), reinterpret_cast<f32*>(&self->body));
+    ApplySamusForwardBackwardScaleOrReset(reinterpret_cast<UnkMove_b152*>(self), reinterpret_cast<f32*>(&self->body));
     fn_71009e3320(self, &self->body);
 
     f32 min_speed = self->tunables->min_speed;

@@ -74,7 +74,7 @@ struct UnkUnit280Record_b59 {
     }
 };
 
-void fn_71001fe260(void* dst, const void* src) {
+void CopyConstructRntVectorOf28ByteEntries(void* dst, const void* src) {
     new (dst) UnkUnit280Record_b59(*static_cast<const UnkUnit280Record_b59*>(src));
 }
 
@@ -83,7 +83,7 @@ void fn_71001fe260(void* dst, const void* src) {
 struct UnkUnit280RecordRef_b59 {
     u64 words[5];
 
-    UnkUnit280RecordRef_b59(const UnkUnit280RecordRef_b59& o) { fn_71001fe260(this, &o); }
+    UnkUnit280RecordRef_b59(const UnkUnit280RecordRef_b59& o) { CopyConstructRntVectorOf28ByteEntries(this, &o); }
 };
 
 struct UnkUnit280Array_b59 {

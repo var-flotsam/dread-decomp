@@ -31,6 +31,6 @@ __attribute__((always_inline)) static inline void CallEach(UnkComponentOwner* se
 }
 
 void fn_7100d7adec(UnkComponentOwner* self) { CallEach<0x148>(self); }
-void fn_7100d7ae80(UnkComponentOwner* self) { CallEach<0x150>(self); }
+void CallVf150OnEachCComponent(UnkComponentOwner* self) { CallEach<0x150>(self); }
 void fn_7100d7af14(UnkComponentOwner* self) { CallEach<0x158>(self); }
 void fn_7100d7b300(UnkComponentOwner* self) { CallEach<0x138>(self); }

@@ -516,7 +516,7 @@ struct UnkComponentOwner;
 
 struct UnkDropTarget;
 
-void fn_7100d7ae80(UnkComponentOwner* self);
+void CallVf150OnEachCComponent(UnkComponentOwner* self);
 void fn_7101192a4c(void* self);
 void fn_7100219c44(UnkRenderManager* self, u32 value);
 void fn_710021a09c(UnkRenderManager* self, u32 value);
@@ -561,7 +561,7 @@ void fn_7101197ae0(UnkScene_b0188* self, UnkRefObj_b0188* arg) {
     }
     fn_7100073f48(rumble, 0, 0);
     if (UnkPlayer* player = fn_7100dec788(g_unk_7101d47310))
-        fn_7100d7ae80(reinterpret_cast<UnkComponentOwner*>(player));
+        CallVf150OnEachCComponent(reinterpret_cast<UnkComponentOwner*>(player));
     if (self->pending) {
         void* mgr = g_unk_7172729910;
         if (!mgr) {

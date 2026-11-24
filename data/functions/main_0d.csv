@@ -3490,7 +3490,7 @@ address,size,name,name_source,subsystem,status
 0x7100d7ac18,444,fn_7100d7ac18,unknown,unknown,U
 0x7100d7add4,24,fn_7100d7add4,unknown,unknown,O
 0x7100d7adec,148,fn_7100d7adec,unknown,unknown,O
-0x7100d7ae80,148,fn_7100d7ae80,unknown,unknown,O
+0x7100d7ae80,148,CallVf150OnEachCComponent,inferred,unknown,O
 0x7100d7af14,148,fn_7100d7af14,unknown,unknown,O
 0x7100d7afa8,172,fn_7100d7afa8,unknown,unknown,O
 0x7100d7b054,20,fn_7100d7b054,unknown,unknown,O
@@ -3509,7 +3509,7 @@ address,size,name,name_source,subsystem,status
 0x7100d7b7dc,104,fn_7100d7b7dc,unknown,unknown,O
 0x7100d7b844,156,fn_7100d7b844,unknown,game/ai?,O
 0x7100d7b8e0,132,fn_7100d7b8e0,unknown,game?,O
-0x7100d7b964,288,fn_7100d7b964,unknown,game/components?,O
+0x7100d7b964,288,AssignWeakHandleAt0x398,inferred,game/components?,O
 0x7100d7ba84,56,fn_7100d7ba84,unknown,unknown,O
 0x7100d7babc,436,fn_7100d7babc,unknown,script/bindings?,O
 0x7100d7bc70,88,fn_7100d7bc70,unknown,game/components?,O
@@ -4071,7 +4071,7 @@ address,size,name,name_source,subsystem,status
 0x7100d8696c,352,fn_7100d8696c,unknown,unknown,O
 0x7100d86acc,252,fn_7100d86acc,unknown,unknown,O
 0x7100d86bc8,360,fn_7100d86bc8,unknown,unknown,O
-0x7100d86d30,356,fn_7100d86d30,unknown,unknown,O
+0x7100d86d30,356,ShrinkStrIdPointerDictionaryToFit,inferred,unknown,O
 0x7100d86e94,308,fn_7100d86e94,unknown,unknown,O
 0x7100d86fc8,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CEntity*>>::Begin",reflection,engine/reflection,O
 0x7100d86fd4,20,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CEntity*>>::End",reflection,engine/reflection,O
@@ -4202,7 +4202,7 @@ address,size,name,name_source,subsystem,status
 0x7100d8cba8,220,base::reflection::refl_GetType<CEnvironmentVisualPresets*>,reflection,engine/reflection,O
 0x7100d8cc84,220,base::reflection::refl_GetType<CEnvironmentSoundPresets*>,reflection,engine/reflection,O
 0x7100d8cd60,220,base::reflection::refl_GetType<CEnvironmentMusicPresets*>,reflection,engine/reflection,O
-0x7100d8ce3c,156,fn_7100d8ce3c,unknown,engine/reflection?,O
+0x7100d8ce3c,156,DestroyOpsEntryVector,inferred,engine/reflection?,O
 0x7100d8ced8,492,fn_7100d8ced8,unknown,engine/reflection?,O
 0x7100d8d0c4,144,fn_7100d8d0c4,unknown,engine/reflection?,O
 0x7100d8d154,776,fn_7100d8d154,unknown,engine/reflection?,O
@@ -4380,7 +4380,7 @@ address,size,name,name_source,subsystem,status
 0x7100d9adf4,380,fn_7100d9adf4,unknown,engine/reflection?,O
 0x7100d9af70,220,base::reflection::refl_GetType<CLightInfo*>,reflection,engine/reflection,O
 0x7100d9b04c,220,base::reflection::refl_GetType<CLightInfo const*>,reflection,engine/reflection,O
-0x7100d9b128,100,fn_7100d9b128,unknown,unknown,O
+0x7100d9b128,100,ConstructCLightsDefLightEntry,inferred,unknown,O
 0x7100d9b18c,240,fn_7100d9b18c,unknown,engine/reflection?,O
 0x7100d9b27c,356,fn_7100d9b27c,unknown,unknown,O
 0x7100d9b3e0,964,fn_7100d9b3e0,unknown,unknown,U
@@ -5378,14 +5378,14 @@ address,size,name,name_source,subsystem,status
 0x7100ddb6e4,16,fn_7100ddb6e4,unknown,unknown,O
 0x7100ddb6f4,4,fn_7100ddb6f4,unknown,unknown,O
 0x7100ddb6f8,112,fn_7100ddb6f8,unknown,game/components?,O
-0x7100ddb768,84,fn_7100ddb768,unknown,unknown,O
-0x7100ddb7bc,164,fn_7100ddb7bc,unknown,unknown,O
+0x7100ddb768,84,GetFirstCentralUnitListObject,inferred,unknown,O
+0x7100ddb7bc,164,BroadcastSubAreaChangeToCentralUnits,inferred,unknown,O
 0x7100ddb860,108,fn_7100ddb860,unknown,game/components?,O
 0x7100ddb8cc,108,fn_7100ddb8cc,unknown,game/components?,O
 0x7100ddb938,108,fn_7100ddb938,unknown,game/components?,O
 0x7100ddb9a4,112,fn_7100ddb9a4,unknown,unknown,O
-0x7100ddba14,168,fn_7100ddba14,unknown,game/player?,O
-0x7100ddbabc,192,fn_7100ddbabc,unknown,unknown,O
+0x7100ddba14,168,GetHighestCentralUnitValueAndId,inferred,game/player?,O
+0x7100ddbabc,192,SetStateAndSendValueToCentralUnitTargets,inferred,unknown,O
 0x7100ddbb7c,224,fn_7100ddbb7c,unknown,unknown,O
 0x7100ddbc60,140,fn_7100ddbc60,unknown,unknown,O
 0x7100ddbcec,40,fn_7100ddbcec,unknown,unknown,O
@@ -5626,10 +5626,10 @@ address,size,name,name_source,subsystem,status
 0x7100df554c,124,fn_7100df554c,unknown,unknown,O
 0x7100df55c8,28,fn_7100df55c8,unknown,unknown,O
 0x7100df55e4,76,fn_7100df55e4,unknown,unknown,O
-0x7100df5630,144,fn_7100df5630,unknown,unknown,O
+0x7100df5630,144,IsPlayerGhostAuraStateIn3To6,inferred,unknown,O
 0x7100df56c0,128,fn_7100df56c0,unknown,unknown,O
-0x7100df5740,180,fn_7100df5740,unknown,unknown,O
-0x7100df57f4,128,fn_7100df57f4,unknown,game/components?,O
+0x7100df5740,180,IsOpticCamouflageAbilityInState6,inferred,unknown,O
+0x7100df57f4,128,GetPlayerOpticCamouflageAbility,inferred,game/components?,O
 0x7100df5874,180,fn_7100df5874,unknown,unknown,O
 0x7100df5928,128,fn_7100df5928,unknown,unknown,O
 0x7100df59a8,36,fn_7100df59a8,unknown,game/player?,O
@@ -5677,7 +5677,7 @@ address,size,name,name_source,subsystem,status
 0x7100dfb050,352,fn_7100dfb050,unknown,unknown,O
 0x7100dfb1b0,384,fn_7100dfb1b0,unknown,unknown,O
 0x7100dfb330,1064,fn_7100dfb330,unknown,unknown,O
-0x7100dfb758,472,fn_7100dfb758,unknown,unknown,O
+0x7100dfb758,472,CallScriptFunctionByName,inferred,unknown,O
 0x7100dfb930,632,fn_7100dfb930,unknown,unknown,O
 0x7100dfbba8,508,fn_7100dfbba8,unknown,unknown,O
 0x7100dfbda4,152,fn_7100dfbda4,unknown,unknown,O

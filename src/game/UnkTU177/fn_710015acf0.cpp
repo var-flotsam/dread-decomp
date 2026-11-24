@@ -91,5 +91,5 @@ void fn_710015acf0(const UnkBlendState* desc) {
         value = g_unk_716e29c244;
         g_unk_716e29b9b0(context, 1, value);
     }
-    fn_710015afd0(desc->field_0x0, desc->field_0x4, desc->field_0x8);
+    SetStencilOpsIfChanged(desc->field_0x0, desc->field_0x4, desc->field_0x8);
 }

@@ -14,7 +14,7 @@ struct UnkUnit2754Item {
     UnkSceneObj_71010e2278* object;  // 0x18
 };
 
-void fn_71011f5f54(UnkUnit2754Item* self, bool enabled) {
+void SetStageItemEnabled(UnkUnit2754Item* self, bool enabled) {
     if (self->enabled != enabled) {
         self->enabled = enabled;
         if (enabled && self->object)

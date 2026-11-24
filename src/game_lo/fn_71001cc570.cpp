@@ -6,7 +6,7 @@
 void fn_71001597a0(u32 value);
 void fn_71001597f0(f32 value);
 void fn_7100159790(u32 value);
-void fn_7100159660(bool a, bool b, bool c);
+void ClearColorAndDepthStencilTargets(bool a, bool b, bool c);
 
 struct UnkStruct_71001cc570 {
     u8 pad_0x0[0x50];
@@ -35,5 +35,5 @@ void fn_71001cc570(UnkStruct_71001cc570* self) {
     fn_71001597a0(self->field_0x50);
     fn_71001597f0(self->field_0x54);
     fn_7100159790(self->field_0x58);
-    fn_7100159660(x, y, self->field_0x3183665);
+    ClearColorAndDepthStencilTargets(x, y, self->field_0x3183665);
 }

@@ -73,7 +73,7 @@ struct UnkValueArg_b0165 {
 
 struct UnkTypedPair_b0157;
 
-void fn_7100ad3118(UnkPath_b0165* out, const char* text);
+void ConstructValueArrayFromSeparatedText(UnkPath_b0165* out, const char* text);
 UnkResolved_b0165 fn_7100ad7cc0(void* path);
 void fn_71000a1710(UnkValueArg_b0165* out, const UnkReflValue* value);
 s32 fn_7100fbde70(void* state, UnkTypedPair_b0157* value, s32 arg0, s32 arg1);
@@ -125,7 +125,7 @@ s32 fn_7101095fb0(lua_State* L) {
     ++text->use_count;
     {
         UnkPath_b0165 path;
-        fn_7100ad3118(&path, text->text);
+        ConstructValueArrayFromSeparatedText(&path, text->text);
         new (&resolved.value) UnkResolved_b0165(fn_7100ad7cc0(&path));
         path.args.Free();
     }

@@ -467,7 +467,7 @@ void SAlpha_ApplyMaterialStateByFlags(UnkMatStateOwner_ovb0098* self, u32 flags)
         fn_710015a860(self->field_0xa8);
         fn_710015aa20(self->field_0xa9);
         if (self->field_0xa8)
-            fn_710015a8c0(self->field_0xac);
+            SetDepthCompareFunc(self->field_0xac);
     }
     if (flags & 0x80)
         fn_71001a7dc8(self);
@@ -489,7 +489,7 @@ struct UnkReflField;
 struct UnkReflFieldObject;
 struct UnkReflValueArg;
 // The member object a field of `obj` holds.
-UnkReflTypedPtr fn_71000e755c(UnkReflField* field, const UnkReflTypedPtr* obj);
+UnkReflTypedPtr GetReflectedFieldTypedPtr(UnkReflField* field, const UnkReflTypedPtr* obj);
 // The field's attribute `key` as a value (an empty value when the field has none).
 void fn_710007ca94(CRntFile*, char*);
 // Reads `size` bytes (fn_710007c714 with one element).
@@ -555,7 +555,7 @@ void SAlpha_ReadReflectedFieldsFromFile(UnkNoArg, CRntFile* file, void* dst) {
             typed.ptr = obj;
             char* text = buf;
             UnkReadValue_ovb0098 value = {fn_71000081e8(), &text};
-            fn_71000e7a80(reinterpret_cast<UnkReflField*>(f), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+            SetReflectedFieldValue(reinterpret_cast<UnkReflField*>(f), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                           reinterpret_cast<UnkReflValueArg*>(&value));
         } else {
             const CClass* k = f->type->GetClass();
@@ -566,7 +566,7 @@ void SAlpha_ReadReflectedFieldsFromFile(UnkNoArg, CRntFile* file, void* dst) {
                     UnkReflTypedPtr typed;
                     typed.type = reinterpret_cast<char*>(obj->GetClass());
                     typed.ptr = obj;
-                    new (&member) UnkReflTypedPtr(fn_71000e755c(reinterpret_cast<UnkReflField*>(f), &typed));
+                    new (&member) UnkReflTypedPtr(GetReflectedFieldTypedPtr(reinterpret_cast<UnkReflField*>(f), &typed));
                 }
                 fn_710007c70c(file, member.ptr, f->type->size);
             }

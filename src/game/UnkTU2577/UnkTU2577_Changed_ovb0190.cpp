@@ -51,7 +51,7 @@ void fn_7100eeac18(UnkSubAreaChange_b190* self);
 
 struct UnkDoorRegistry_b61;
 struct UnkUnit2547;
-void fn_7100ddb7bc(UnkUnit2547* self, void* a, void* b, void* c, void* d, bool e);
+void BroadcastSubAreaChangeToCentralUnits(UnkUnit2547* self, void* a, void* b, void* c, void* d, bool e);
 
 void fn_7100eeaa48(CSubAreaManager* self, const CStrId& prev_a, const CStrId& prev_b, const CStrId& cur_a,
                    const CStrId& cur_b, bool flag) {
@@ -62,7 +62,7 @@ void fn_7100eeaa48(CSubAreaManager* self, const CStrId& prev_a, const CStrId& pr
         fn_7100ddb6dc(reg);
         g_unk_71726bee10 = reg;
     }
-    fn_7100ddb7bc(reinterpret_cast<UnkUnit2547*>(reg), const_cast<CStrId*>(&prev_a), const_cast<CStrId*>(&prev_b),
+    BroadcastSubAreaChangeToCentralUnits(reinterpret_cast<UnkUnit2547*>(reg), const_cast<CStrId*>(&prev_a), const_cast<CStrId*>(&prev_b),
                   const_cast<CStrId*>(&cur_a), const_cast<CStrId*>(&cur_b), flag);
     UnkSubAreaChange_b190 change(prev_a, prev_b, cur_a, cur_b, flag);
     fn_7100ef1608(reinterpret_cast<u8*>(self) + 0xa60, &change);

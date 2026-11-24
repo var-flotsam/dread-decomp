@@ -10,7 +10,7 @@
 #include "game/UnkBehaviorTree.h"
 
 struct UnkGooplotAI_A3_b66;
-void fn_710059c970(void* list, void* actor);
+void AppendWeakRefIfAbsent(void* list, void* actor);
 void fn_7100599ec4(UnkGooplotAI_A3_b66* self);
 
 struct UnkGooplotFlags_A3_b66 {
@@ -47,7 +47,7 @@ void fn_7100599e0c(UnkGooplotAI_A3_b66* self) {
         fn_7100da7e2c(m);
         g_unk_71726af468 = m;
     }
-    fn_710059c970(reinterpret_cast<char*>(g_unk_71726af468) + 0x138, self->actor);
+    AppendWeakRefIfAbsent(reinterpret_cast<char*>(g_unk_71726af468) + 0x138, self->actor);
     flags->field_0x19a = false;
     flags->field_0x2 = false;
     flags->field_0x0 = false;

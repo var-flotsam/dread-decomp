@@ -72,7 +72,7 @@ CStrId fn_7101065a10(UnkNamedTreeOwner_l065a10* self) {
                     do {
                         UnkNamedNode* child = *p;
                         if (child->children.count) {
-                            UnkNamedNode* node = child->payload ? child : fn_7100195310(child);
+                            UnkNamedNode* node = child->payload ? child : FindFirstDescendantWithPayload(child);
                             if (node)
                                 return node->name;
                         }

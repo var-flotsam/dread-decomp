@@ -162,7 +162,7 @@ void fn_7100224ef4(UnkChildOwner60* self) { PassEach<fn_710021b944>(self); }
 struct UnkElem_0x48 {
     u8 data[0x48];
 };
-void fn_7100119d3c(UnkElem_0x48* elem, bool flag);
+void SetPolygonWindingDirection(UnkElem_0x48* elem, bool flag);
 
 struct UnkElemArray_7100125338 {
     UnkElem_0x48* data;
@@ -172,7 +172,7 @@ struct UnkElemArray_7100125338 {
 void fn_7100125338(UnkElemArray_7100125338* self, bool flag) {
     UnkElem_0x48* end = self->data + self->count;
     for (UnkElem_0x48* p = self->data; p != end; ++p)
-        fn_7100119d3c(p, flag);
+        SetPolygonWindingDirection(p, flag);
 }
 
 // The same over the 0xb0-byte values of a keyed array held at 0xe8 in an object, passing a

@@ -29,7 +29,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 
-void fn_7100ddbabc(UnkUnit2547* self, u32 state, f32 value);
+void SetStateAndSendValueToCentralUnitTargets(UnkUnit2547* self, u32 state, f32 value);
 void fn_710116a150(void* self, CStrId* id);
 extern CStrId g_unk_71726de5c8 __attribute__((visibility("hidden")));
 // The blackboard property holding the grab's kind.
@@ -192,5 +192,5 @@ void fn_7100506370(UnkEmmyGrabAttack_l506370* self) {
         if (player->field_0x1c0)
             fn_710116a150(player->field_0x1c0, &g_unk_71726de5c8);
     }
-    fn_7100ddbabc(Registry(), 0, reinterpret_cast<const UnkGrabTunable_l506370&>(g_unk_71726e0aa8).registry_time);
+    SetStateAndSendValueToCentralUnitTargets(Registry(), 0, reinterpret_cast<const UnkGrabTunable_l506370&>(g_unk_71726e0aa8).registry_time);
 }

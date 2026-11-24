@@ -35,5 +35,5 @@ base::reflection::UnkReflValue fn_7100639bc8() {
 
 void fn_7100639274(char* self) {
     fn_71010ff2b8(self);
-    fn_710063c670(GetManager<3>()->pad_0x0 + 0x80);
+    ZeroHeldOwnerCountIncrementOthersAndReleaseHandle(GetManager<3>()->pad_0x0 + 0x80);
 }

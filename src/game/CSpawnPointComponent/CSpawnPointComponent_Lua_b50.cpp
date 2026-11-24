@@ -79,7 +79,7 @@ struct UnkSpawner_71011275d8 {
     bool field_0x13a;
 };
 
-void fn_7100d7b964(void* actor, void* self);
+void AssignWeakHandleAt0x398(void* actor, void* self);
 
 // The object told of each spawn: the target of the link at +0x60, seen through fn_71007c04f0.
 static UnkSpawner_71011275d8* Spawner(CSpawnPointComponent* self) {
@@ -97,7 +97,7 @@ void CSpawnPointComponent_OnEntityGenerated(CSpawnPointComponent* self, void* ac
             if (spawner->field_0x13a)
                 self->field_0x2b8 = false;
     }
-    fn_7100d7b964(actor, self);
+    AssignWeakHandleAt0x398(actor, self);
     self->ResolveField0x60();
     if (UnkSpawner_71011275d8* spawner = Spawner(self)) {
         UnkOwnerDef_71011275d8* def = self->Owner<UnkOwnerDef_71011275d8>();

@@ -130,7 +130,7 @@ struct UnkAnimRequest {
         : action(nullptr), flags(0), a(DefaultTime()), b(DefaultBlend()), idx(-1), mask(UnkAll_SpitSend().value) {}
 };
 
-bool fn_710070df40(UnkTrack* track, UnkAnimRequest* request);
+bool CanAnimationTrackAcceptRequest(UnkTrack* track, UnkAnimRequest* request);
 bool fn_710070dffc(UnkTrack* track, UnkAnimRequest* request);
 
 struct UnkAnimComponent_ovb0009 {
@@ -157,7 +157,7 @@ bool fn_7101177044(UnkStruct_7101176ea8* self, void* r, s32 idx, void* data, Unk
     if (!fn_710024fbc8(component))
         request.flags.value |= 0x2000;
     UnkTrack* track = static_cast<UnkTrack*>(data);
-    if (!track || !fn_710070df40(track, &request))
+    if (!track || !CanAnimationTrackAcceptRequest(track, &request))
         return false;
     return fn_710070dffc(track, &request);
 }
@@ -171,7 +171,7 @@ bool fn_7101178394(UnkAnimComponent_ovb0009* self, u64 key, void* id, const u32*
     UnkAnimRequest request;
     request.action = action;
     request.flags = *flags;
-    return fn_710070df40((*self->tracks->field_0xc8.Find(key))->field_0x70, &request);
+    return CanAnimationTrackAcceptRequest((*self->tracks->field_0xc8.Find(key))->field_0x70, &request);
 }
 
 // fn_7101177044 with the track whose name hash is `key`.
@@ -644,7 +644,7 @@ bool fn_710117617c(UnkAnimComponent_617c* self) {
 // ---- Lists --------------------------------------------------------------------------------
 
 struct UnkOwner_710070f098;
-void fn_710070f098(UnkOwner_710070f098* self, u32 value, u32 extra);
+void SetKeyEntryInListSortedByValueDesc(UnkOwner_710070f098* self, u32 value, u32 extra);
 
 struct UnkActorTarget {
     u8 pad_0x0[0x4c0];
@@ -654,7 +654,7 @@ struct UnkActorTarget {
 // Adds `value` to the list at +0x4c0 and, when `apply` is set, runs fn_7101178c88 (the counterpart
 // of fn_7101178e08, CAnimationComponent_b52.cpp).
 void fn_710117662c(UnkActorTarget* self, u32 value, u32 extra, bool apply, bool flag, f32 time) {
-    fn_710070f098(reinterpret_cast<UnkOwner_710070f098*>(self->list_0x4c0), value, extra);
+    SetKeyEntryInListSortedByValueDesc(reinterpret_cast<UnkOwner_710070f098*>(self->list_0x4c0), value, extra);
     if (apply)
         CAnimationComponent_ResendActionsToAllTracks(reinterpret_cast<UnkAnimationComponent*>(self), flag, time);
 }

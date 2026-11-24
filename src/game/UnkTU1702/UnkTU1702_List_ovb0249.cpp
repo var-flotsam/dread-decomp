@@ -47,7 +47,7 @@ struct UnkListOwner_b0249 {
 struct UnkListFlags_b0249 : UnkGuiObj {
 };
 
-void fn_7100b52284(UnkListOwner_b0249* owner, UnkListScreen_b0249* screen) {
+void SetUpFileMenuListComposition(UnkListOwner_b0249* owner, UnkListScreen_b0249* screen) {
     // Lives to the end of the function, but is destroyed straight after the assignment.
     union Holder {
         CRntString str;
@@ -120,7 +120,7 @@ struct UnkPopUpOwner_b0249 {
     UnkReflObject* popup;  // 0x540
 };
 
-void fn_7100b5206c(UnkPopUpTimer_b0249* self, UnkPopUpOwner_b0249* owner, f32 dt) {
+void TickFileMenuNewChozoMemoriesPromptTimer(UnkPopUpTimer_b0249* self, UnkPopUpOwner_b0249* owner, f32 dt) {
     if (!(self->timer >= 0.0f))
         return;
     self->timer += dt;

@@ -20,6 +20,6 @@ struct UnkUniformTable;
 struct UnkNamedValueTable;
 // The name lookups (src/game/UnkTU180/UnkTU180_NameLookup.cpp): a uniform range's handle by name in
 // one stage's table, a uniform block's index by name, and a named value.
-bool fn_710015ddc0(UnkUniformTables* self, u32 kind, u64* out, const char* name);
-bool fn_710015dc04(UnkUniformTable* table, const void* name, u32* outIndex);
+bool FindUniformLocationByName(UnkUniformTables* self, u32 kind, u64* out, const char* name);
+bool FindBlockHandleByName(UnkUniformTable* table, const void* name, u32* outIndex);
 bool fn_710015e600(UnkNamedValueTable* table, const void* name, u32* outValue);

@@ -21,5 +21,5 @@ static inline bool GetBoxed(char* state, void** out, u32 index) {
     return true;
 }
 
-bool fn_71010beee0(char* state, void** out, u32 index) { return GetBoxed<fn_7100fbc470>(state, out, index); }
+bool GetBoxedGameObjectFromLua(char* state, void** out, u32 index) { return GetBoxed<fn_7100fbc470>(state, out, index); }
 bool fn_71010bef20(char* state, void** out, u32 index) { return GetBoxed<fn_71010758e0>(state, out, index); }

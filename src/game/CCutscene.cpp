@@ -96,7 +96,7 @@ struct UnkCutscene {
 static_assert(__builtin_offsetof(UnkCutscene, track) == 0x180, "UnkCutscene placeholder layout");
 static_assert(__builtin_offsetof(UnkCutscene, field_0x4b8) == 0x4b8, "UnkCutscene placeholder layout");
 
-void fn_710019c4fc(UnkFadeLayer* layer, const base::color::CColor4F* color);
+void SetFadeLayerColor(UnkFadeLayer* layer, const base::color::CColor4F* color);
 
 // Shows the fade layer and sets its colour while a fade event spans the current position, hides
 // it otherwise. At the last frame (within 1e-5) the position steps back by one frame length.
@@ -122,7 +122,7 @@ void fn_710106b2bc(UnkCutscene* self, f32 frame) {
     fn_710020ac34(&root->screen->fade, true);
     base::color::CColor4F color = LerpColor4FClampedNonNegative((pos - ev->start) / (ev->end - ev->start),
                                                 UnkColorFromPacked(ev->from), UnkColorFromPacked(ev->to));
-    fn_710019c4fc(static_cast<UnkGuiRoot_CCutscene*>(g_unk_7101d47330)->screen->fade_holder->layer, &color);
+    SetFadeLayerColor(static_cast<UnkGuiRoot_CCutscene*>(g_unk_7101d47330)->screen->fade_holder->layer, &color);
 }
 
 static_assert(sizeof(UnkNamedNode) == 0x98, "UnkNamedNode placeholder layout");
@@ -224,7 +224,7 @@ base::global::CStrId fn_7101065450(UnkNamedTreeOwner* a, UnkNamedTreeOwner* b) {
                 if (children.count) {
                     UnkNamedNode** p = children.begin();
                     do {
-                        UnkNamedNode* leaf = fn_7100195310(*p);
+                        UnkNamedNode* leaf = FindFirstDescendantWithPayload(*p);
                         if (leaf && nodes_b->Get(leaf->name))
                             return leaf->name;
                     } while (++p != children.end());

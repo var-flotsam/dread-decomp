@@ -64,7 +64,7 @@ static inline void Set(UnkSpawnGroupObject_l11c6dc* obj, u64 key, void* in) {
     typed.ptr = obj;
     UnkSpawnGroupValue_l11c6dc value = {Type(), in};
     if (UnkSpawnGroupField_l11c6dc* field = cls->FindField(key))
-        fn_71000e7a80(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+        SetReflectedFieldValue(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                       reinterpret_cast<UnkReflValueArg*>(&value));
 }
 

@@ -36,6 +36,6 @@ void* fn_7100169e28(UnkPool_b54a1* self, void* owner, u32 flags) {
 void* fn_71001c35b4(UnkPool_b54a1* self, void* owner, u32 flags) {
     return self->Create<0x188, fn_710019bd2c>(owner, flags);
 }
-void* fn_71001cb410(UnkPool_b54a1* self, void* owner, u32 flags) {
+void* CreateModelInstanceInSceneRegistry(UnkPool_b54a1* self, void* owner, u32 flags) {
     return self->Create<0x29d0, fn_7100198aac>(owner, flags);
 }

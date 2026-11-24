@@ -37,7 +37,7 @@ char* fn_71003440dc(char* p0, u32 p1, char* p2, char* p3, char* p4, char* p5);
 
 struct UnkDoorRegistry_b61;
 struct UnkUnit2547;
-void fn_7100ddbabc(UnkUnit2547* self, u32 state, f32 value);
+void SetStateAndSendValueToCentralUnitTargets(UnkUnit2547* self, u32 state, f32 value);
 struct UnkFixedCamera_fc;
 struct UnkArg_fc;
 extern base::reflection::UnkTunable g_unk_717270f910;
@@ -165,7 +165,7 @@ void CAutofocusAimCameraCtrl_OnPossess(UnkAutofocusCtrl_afc* self, UnkAutofocusA
                       reinterpret_cast<char*>(&aim_inner), reinterpret_cast<char*>(&aim_outer));
     }
     const UnkAutofocusTunable_afc* tunable = reinterpret_cast<const UnkAutofocusTunable_afc*>(&g_unk_717270f910);
-    fn_7100ddbabc(Registry_afc(), 1, tunable->field_0x48);
+    SetStateAndSendValueToCentralUnitTargets(Registry_afc(), 1, tunable->field_0x48);
     NotifyEmmys_afc(true);
     fn_7100000790("CurrentScenario.OnAimCameraPossess", g_unk_710162e2ed);
 }

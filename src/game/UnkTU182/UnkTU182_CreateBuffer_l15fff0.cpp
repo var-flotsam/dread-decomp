@@ -33,7 +33,7 @@ static inline u32 AlignUp(u32 value, u32 align) {
     return value + (align - value % align) % align;
 }
 
-void fn_710015fff0(UnkRenderTargetSlot* out, u32 width, u32 height) {
+void CreateRowStridedTextureRecord(UnkRenderTargetSlot* out, u32 width, u32 height) {
     UnkGfxTexture** result = reinterpret_cast<UnkGfxTexture**>(out);
     *result = nullptr;
     u32 n = g_unk_716e2a7568;

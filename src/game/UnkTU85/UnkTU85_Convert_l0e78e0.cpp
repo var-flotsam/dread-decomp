@@ -33,7 +33,7 @@ struct UnkReflField {
     UnkFieldAccessor_l0e78e0* accessor;
 };
 
-bool fn_71000e78e0(::UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* dst) {
+bool ReadReflectedFieldIntoTypedRef(::UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* dst) {
     UnkFieldAccessor_l0e78e0* accessor = field->accessor;
     if (accessor) {
         UnkReflValueArg arg;

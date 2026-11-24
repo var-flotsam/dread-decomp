@@ -51,7 +51,7 @@ struct UnkMainMenuMember2f8_ovb0126 {
     UnkSoundHandle sound;  // 0x30
 };
 
-void fn_7100b52460(UnkMainMenuMember2f8_ovb0126* self) {
+void DestroyMainMenuSoundMember(UnkMainMenuMember2f8_ovb0126* self) {
     self->vtable = g_unk_7101a9d190 + 0x10;
     FadeOut(&self->sound);
     self->vtable = g_unk_7101a9c360 + 0x10;
@@ -127,7 +127,7 @@ struct UnkTitleScreenSteps_ovb0215 {
     f32 timer;  // 0x28
 };
 
-void fn_7100b532a0(UnkTitleScreenSteps_ovb0215* self, f32 dt, UnkTitleTarget* target) {
+void StepTitleScreenPhasesByState(UnkTitleScreenSteps_ovb0215* self, f32 dt, UnkTitleTarget* target) {
     if (!fn_7100f00778(Music())) {
         self->delay = 0.001f;
         self->state = 3;

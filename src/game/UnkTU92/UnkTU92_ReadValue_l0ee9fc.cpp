@@ -52,7 +52,7 @@ inline bool ReadStrId(UnkTypedRef* dst, const base::global::CStrId* name) {
     return fn_710009d7a8(type, dst, &src);
 }
 
-bool fn_71000ee9fc(void* reader, u32 kind, UnkReadArg_b0026* arg, const base::global::CStrId* name) {
+bool ReadReflListingTopEntryByKind(void* reader, u32 kind, UnkReadArg_b0026* arg, const base::global::CStrId* name) {
     if (!fn_71000ee4e8(reader, kind, arg, name))
         return false;
     UnkListOwner_b0236* self = static_cast<UnkListOwner_b0236*>(reader);

@@ -70,7 +70,7 @@ struct UnkSlotInit_b0246 {
 };
 static_assert(sizeof(UnkSlotInit_b0246) == 0x78, "UnkSlotInit_b0246 layout");
 
-void fn_710015ef10() {
+void InitBinariesSourcesStatics() {
     UnkUnit181Statics_b0246& s = g_unk_716e2aadb0;
     s.header = 6;
     new (&s.binaries) CStrId("binaries", true);

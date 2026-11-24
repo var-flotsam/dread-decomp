@@ -175,7 +175,7 @@ static inline const base::math::CVector3D* Colors_ovb0203() {
 }
 
 // The colour of a minimap marker's kind: one of nine class pointers picks its entry of the table.
-const base::math::CVector3D* fn_7100b37b80(const void* kind) {
+const base::math::CVector3D* GetMinimapMarkerColorForKind(const void* kind) {
     const void* type = *static_cast<const void* const*>(kind);
     if (type == g_unk_71727c7fe8.data)
         return &Colors_ovb0203()[46];

@@ -60,7 +60,7 @@ static inline void Set(UnkStartPointObject_l16bbf0* obj, u64 key, void* in) {
     typed.ptr = obj;
     UnkStartPointValue_l16bbf0 value = {Type(), in};
     if (UnkStartPointField_l16bbf0* field = cls->FindField(key))
-        fn_71000e7a80(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
+        SetReflectedFieldValue(reinterpret_cast<UnkReflField*>(field), reinterpret_cast<const UnkReflFieldObject*>(&typed),
                       reinterpret_cast<UnkReflValueArg*>(&value));
 }
 

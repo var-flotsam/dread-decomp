@@ -31,7 +31,7 @@ struct UnkFieldOwner;
 bool fn_710009a430(UnkFlagsetType_b0068* self, const UnkReflFieldObject* obj, CVariable* field, CRntFile* file);
 bool fn_7100099890(const CEnumType* self, const char* name, s32* out);
 bool fn_71000e74bc(CVariable* field);  // whether a field without an accessor can be set
-UnkReflTypedPtr fn_71000e755c(const UnkReflFieldInfo* field, UnkFieldOwner* owner);
+UnkReflTypedPtr GetReflectedFieldTypedPtr(const UnkReflFieldInfo* field, UnkFieldOwner* owner);
 // Sets the enum value `value` in the object `obj` points to.
 void fn_7100099960(const CEnumType* self, const UnkReflFieldObject* obj, s32 value);
 
@@ -48,14 +48,14 @@ struct UnkReadRef {
 };
 
 inline bool SetField(UnkReadField* field, const UnkReadRef* obj, UnkReadRef* value) {
-    return fn_71000e7a80(reinterpret_cast<CVariable*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
+    return SetReflectedFieldValue(reinterpret_cast<CVariable*>(field), reinterpret_cast<const UnkReflFieldObject*>(obj),
                          reinterpret_cast<UnkReflValueArg*>(value));
 }
 
 // Where the field's member of `self` is, with its type.
 inline UnkReflTypedPtr MemberOf(UnkReflObject* self, UnkReadField* field) {
     UnkReadRef obj = {self->vf_0x0(), self};
-    return fn_71000e755c(reinterpret_cast<const UnkReflFieldInfo*>(field), reinterpret_cast<UnkFieldOwner*>(&obj));
+    return GetReflectedFieldTypedPtr(reinterpret_cast<const UnkReflFieldInfo*>(field), reinterpret_cast<UnkFieldOwner*>(&obj));
 }
 
 // Reads a T's bytes from the file into `value` and sets the field to it.

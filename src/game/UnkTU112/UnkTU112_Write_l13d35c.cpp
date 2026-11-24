@@ -60,7 +60,7 @@ static inline void WriteId(CRntFile* file, const CStrId& id) {
     Write(file, d->String());
 }
 
-void fn_710013d35c(UnkTunableRegistry* self, UnkTunableWriteList_l13d35c* list, CRntFile* file) {
+void WriteGroupedIdValueLinesToFile(UnkTunableRegistry* self, UnkTunableWriteList_l13d35c* list, CRntFile* file) {
     const CStrId& newline = g_unk_710b3726f8[0];
     const CStrId& separator = g_unk_710b3726f8[1];
     CStrId group(UnkStrIdInline(), nullptr, false);

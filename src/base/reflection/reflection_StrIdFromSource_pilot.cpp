@@ -11,7 +11,7 @@ using base::global::CStrId;
 
 CStrId* fn_7100ad37c0(CStrId* self, void* source) {
     UnkStrIdSlot slot;
-    CRntString str = fn_7100ad3614(source);
+    CRntString str = JoinValueListIntoSeparatedString(source);
     CStrId_ConstructFromRntString(&slot.id, str, true);
     self->ReleaseAndTake(slot.id);
     return self;

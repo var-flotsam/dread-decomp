@@ -108,7 +108,7 @@ bool fn_7100a141e8(UnkAutsharpSpawn_la141e8* self) {
         break;
     }
 
-    if (fn_7100df5740(g_unk_7101d47310))
+    if (IsOpticCamouflageAbilityInState6(g_unk_7101d47310))
         return false;
     if (fn_7101053a7c(g_unk_7101d47310->field_0x1040))
         return false;

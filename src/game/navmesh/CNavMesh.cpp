@@ -973,7 +973,7 @@ struct UnkNavMeshItemPair;
 void fn_71002b2f68(UnkNavMeshItem* self, u64 field_0x0, const CStrId& id, s32 field_0x10, bool flag,
                    const UnkNavMeshItemEntries* entries, const UnkNavMeshItemPair* pair, u16 field_0x1ec,
                    u8 field_0x1ee);
-void fn_71002b3524(UnkNavMeshItem* self, base::global::CRntFile* file);  // reads the item's data
+void ReadNavMeshItemCellIds(UnkNavMeshItem* self, base::global::CRntFile* file);  // reads the item's data
 
 struct alignas(8) UnkNavLoadItem {
     u8 raw[0x208];
@@ -1315,7 +1315,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
             }
         }
         if (nverts > 0 && ncells > 0)
-            fn_710010ddc4(reinterpret_cast<UnkNavMeshTree*>(m->tree), &reader.file);
+            ReadWordAndRectArrayFromFile(reinterpret_cast<UnkNavMeshTree*>(m->tree), &reader.file);
 
         // Named lists of cell ids (only the non-empty ones are added).
         s32 nlists = 0;
@@ -1573,7 +1573,7 @@ void fn_710027563c(UnkNavMesh* mesh, const char* path) {
                     m->items.EmplaceBack(static_cast<UnkNavLoadItem&&>(item.item));
                 }
                 UnkNavLoadItem* it = ItemAt(m, m->items.count - 1);
-                fn_71002b3524(it->Get(), &reader.file);
+                ReadNavMeshItemCellIds(it->Get(), &reader.file);
                 base::global::CRntVector<u16>* covered = it->Cells();
                 for (u16 *p = covered->data, *end = p + covered->count; p != end; ++p)
                     CellAt(m, *p)->item = it;

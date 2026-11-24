@@ -160,7 +160,7 @@ void fn_7100293e30(void* self, const UnkSegmentList_l293e30* input, UnkNavPolygo
         CopySegment(first, segments.head->value);
         segments.Remove(segments.head);
         UnkNavPolygon_l293e30 polygon;
-        fn_7100119f98(reinterpret_cast<UnkTileOutline*>(&polygon), true);
+        SetPolylineClosed(reinterpret_cast<UnkTileOutline*>(&polygon), true);
         UnkSegment2D current;
         CopySegment(current, first);
         for (;;) {

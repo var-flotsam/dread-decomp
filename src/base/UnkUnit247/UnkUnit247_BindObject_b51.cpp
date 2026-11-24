@@ -8,7 +8,7 @@
 #include "types.h"
 
 bool fn_7100199558(void* object, const u64* hash);
-void fn_710016ac04(void* list, void* object, base::UnkStrIdMember* name);
+void ResetRefsMatchingIdAndAppendTargetEntry(void* list, void* object, base::UnkStrIdMember* name);
 void fn_710016aa9c(void* list, void* object);
 
 struct UnkBindSource_71001bbee4 {
@@ -32,7 +32,7 @@ void fn_71001bbee4(UnkBinder_71001bbee4* self, const UnkBindSource_71001bbee4* s
                 u64 hash = *reinterpret_cast<const u64*>(
                     reinterpret_cast<const char*>(fn_71000ce740(&self->names, i)->data) + 0x30);
                 if (fn_7100199558(object, &hash))
-                    fn_710016ac04(self->list, object, fn_71000ce740(&self->names, i));
+                    ResetRefsMatchingIdAndAppendTargetEntry(self->list, object, fn_71000ce740(&self->names, i));
             }
             return;
         }

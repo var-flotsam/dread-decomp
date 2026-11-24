@@ -56,7 +56,7 @@ struct UnkSetVector_la95b08 {
 
 void fn_7100a95b08(UnkSetVector_la95b08* self, const UnkSetElem_la95b08* value, u32 index) {
     if (index == self->count) {
-        fn_7100a95868(reinterpret_cast<UnkCallbackSetVector*>(self),
+        PushCopyOntoCallbackSetArray(reinterpret_cast<UnkCallbackSetVector*>(self),
                       reinterpret_cast<const UnkCallbackSetElem*>(value));
         return;
     }

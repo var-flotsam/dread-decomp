@@ -51,7 +51,7 @@ static inline void DestroyEntry(UnkListEntry_b0236* e) {
 }
 
 // Starts the listing with the value of the reference.
-void fn_71000ee314(UnkListOwner_b0236* self, const UnkTypedRef* ref, u32 arg) {
+void InitReflValueListWithRoot(UnkListOwner_b0236* self, const UnkTypedRef* ref, u32 arg) {
     UnkReflValue value;
     UnkListEntry_b0236 entry;
     UnkTypedRef copy;

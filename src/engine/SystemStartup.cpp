@@ -948,7 +948,7 @@ bool fn_7100129ff0(const UnkBox2D* box, const UnkShape8Geometry* shape, UnkConta
 // does), and whether a circle lies inside a capsule (within `tolerance`).
 bool fn_7100127720(const UnkCircle2D* a, const UnkCircle2D& b, UnkContactBuffer<2>* out, bool flag);
 bool fn_71001271d0(const void* b, const UnkCircle2D* a, UnkContactBuffer<2>* out, bool flag);
-bool fn_710010f838(const UnkCircle2D* circle, const UnkCapsule2D* capsule, f32 tolerance);
+bool IsCapsuleCentreInsideCircle(const UnkCircle2D* circle, const UnkCapsule2D* capsule, f32 tolerance);
 
 // A circle against a capsule, as fn_7100129ff0 (the list is not checked for four contacts after the
 // upper circle). With no contact and `flag` set, a circle inside the capsule gives a contact at the
@@ -1004,7 +1004,7 @@ bool fn_710012a9a0(const UnkCircle2D* circle, const UnkShape8Geometry* shape, Un
     }
     if (out->count != 0 || !flag)
         return hit;
-    if (fn_710010f838(circle, a, 0.0f)) {
+    if (IsCapsuleCentreInsideCircle(circle, a, 0.0f)) {
         if (out->count == 0)
             out->Add();
         out->items[0].SetPoint(CVector3D{a->center.x, a->center.y, 0.0f});

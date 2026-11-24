@@ -149,7 +149,7 @@ void fn_7100d62ec0(UnkPolygonCollectionShape_ld62ec0* self, CRntFile* file) {
 
         bool closed = true;
         Read(file, &closed);
-        fn_7100119f98(&outline, closed);
+        SetPolylineClosed(&outline, closed);
         base::math::CVector2D min = {0.0f, 0.0f};
         base::math::CVector2D max = {0.0f, 0.0f};
         Read(file, &min);
