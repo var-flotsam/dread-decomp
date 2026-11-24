@@ -67,7 +67,7 @@ struct UnkHydrogigaHitTarget_ovb0078 {
 
 static inline bool SameId(const CStrId& a, const CStrId& b) { return a.data == b.data; }
 
-u32 fn_71005b9a00(void*, UnkHydrogigaOwner_ovb0078* owner, void*, UnkHydrogigaHitTarget_ovb0078* target) {
+u32 CCharClassHydrogigaAIComponent_ClassifyPolypCollider(void*, UnkHydrogigaOwner_ovb0078* owner, void*, UnkHydrogigaHitTarget_ovb0078* target) {
     if (void* object = target->field_0x60) {
         CStrId* id = fn_7100864018(owner->field_0x2a0, object);
         if (SameId(*id, CStrId("polyp", true)))

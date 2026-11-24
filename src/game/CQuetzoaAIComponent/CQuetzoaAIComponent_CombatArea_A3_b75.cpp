@@ -49,7 +49,7 @@ struct UnkQuetzoaAI_A3_b75 {
     CBlackboard blackboard;  // 0x1260
 };
 
-void fn_710064ab64(UnkQuetzoaAI_A3_b75* self) {
+void CQuetzoaAIComponent_UpdateIsInCombatAreaBlackboard(UnkQuetzoaAI_A3_b75* self) {
     fn_71010c424c(reinterpret_cast<UnkParent*>(self));
     UnkQuetzoaSpawnHolder_A3_b75* holder =
         *reinterpret_cast<UnkQuetzoaSpawnHolder_A3_b75**>(reinterpret_cast<char*>(self->actor) + 0x398);

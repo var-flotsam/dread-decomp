@@ -23,8 +23,8 @@ using base::global::CFilePathStrId;
 using base::global::CStrId;
 
 using UnkModelMap_b0119 = base::global::CRntSmallDictionary<base::UnkPooledString, UnkModelValue_b0119>;
-void fn_7100939678(UnkModelMap_b0119* self, u32 capacity);
-void fn_7100938ba0(UnkModelValue_b0119* self, const CStrId* name, const CFilePathStrId* path,
+void CMultiModelUpdaterComponent_ReserveModelMap(UnkModelMap_b0119* self, u32 capacity);
+void CMultiModelUpdaterComponent_ConstructModelEntry(UnkModelValue_b0119* self, const CStrId* name, const CFilePathStrId* path,
                    UnkCountedResource* resource);
 
 // A map entry, built in place by fn_7100938ba0: the resource reference and the render model made for it.
@@ -55,7 +55,7 @@ static inline UnkSceneNode* Node_l93852c(UnkModel* model) {
     return model ? &model->field_0x8 : nullptr;
 }
 
-bool fn_710093852c(UnkMultiModel_l93852c* self, const CStrId* name, const CFilePathStrId* path) {
+bool CMultiModelUpdaterComponent_AddModel(UnkMultiModel_l93852c* self, const CStrId* name, const CFilePathStrId* path) {
     UnkModelMap_b0119& models = self->models;
     if (Find_l93852c(models, *name) != models.End())
         return true;
@@ -64,7 +64,7 @@ bool fn_710093852c(UnkMultiModel_l93852c* self, const CStrId* name, const CFileP
     UnkModel* model;  // set once the entry is built
     UnkResRef resource = fn_71000ead80(g_unk_7101d472f8, &key, 1, nullptr);
     UnkModelEntry_l93852c entry;
-    fn_7100938ba0(entry.Value(), name, path, resource.ptr);
+    CMultiModelUpdaterComponent_ConstructModelEntry(entry.Value(), name, path, resource.ptr);
 
     UnkRenderManager* manager = g_unk_7101d47300;
     model = nullptr;
@@ -75,11 +75,11 @@ bool fn_710093852c(UnkMultiModel_l93852c* self, const CStrId* name, const CFileP
     fn_71001436a0(entry.model, 0);
 
     if (models.count == models.capacity)
-        fn_7100939678(&models, models.count + models.step);
+        CMultiModelUpdaterComponent_ReserveModelMap(&models, models.count + models.step);
     // The key is a copy of the name.
     new (&models.keys[models.count]) CStrId(*name);
-    fn_7100939804(&models.values[models.count], entry.Value());
+    CMultiModelUpdaterComponent_CopyConstructModelMapValue(&models.values[models.count], entry.Value());
     ++models.count;
-    fn_7100938dec(entry.Resource());
+    CMultiModelUpdaterComponent_DestroyModelMapValue(entry.Resource());
     return true;
 }

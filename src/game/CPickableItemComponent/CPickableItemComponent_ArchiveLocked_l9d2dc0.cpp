@@ -78,7 +78,7 @@ static inline s32 ScenarioIndex(const CStrId& scenario) {
     return 0;
 }
 
-bool fn_71009d2dc0(const CStrId& scenario) {
+bool CPickableItemComponent_IsScenarioArchiveLocked(const CStrId& scenario) {
     CBlackboard* blackboard = &g_unk_7101d47310->field_0x820;
     UnkFlagList_l9d2dc0 locked;
     const CStrId& section_id = FlagsSectionId();

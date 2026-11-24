@@ -81,7 +81,7 @@ static void InitListenerSet(base::UnkDeferredSet<void>* set) {
     set->locked = false;
 }
 
-void fn_7100896410() {
+void CCharClassShootActivatorComponent_InitStatics() {
     UnkShootActivatorStatics_l896410& tu = g_unk_717272cf40;
     InitHeaderIds(&tu.ids);
     tu.field_0x30 = -1.0f;

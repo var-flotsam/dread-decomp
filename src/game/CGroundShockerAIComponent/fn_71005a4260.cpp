@@ -36,7 +36,7 @@ void CGroundShockerAIComponent_Destroy(UnkOwner_71005a4260* self) {
     self->Destroy();
 }
 
-void CGroundShockerAIComponent_DeletingDestroy(UnkOwner_71005a4260* self) {
+void CGroundShockerAIComponent_DestroyAndDelete(UnkOwner_71005a4260* self) {
     self->Destroy();
     operator delete(self);
 }

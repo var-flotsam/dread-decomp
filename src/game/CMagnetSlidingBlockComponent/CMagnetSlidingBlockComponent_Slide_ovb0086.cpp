@@ -195,7 +195,7 @@ void fn_710091feb4(UnkMagnetSlidingBlock_b0086* self) {
 }
 
 // Stops the rumble and starts the sliding one (0.3 strength, from the block's file).
-void fn_71009201a8(UnkMagnetSlidingBlock_b0086* self) {
+void CMagnetSlidingBlockComponent_StartLoopRumble(UnkMagnetSlidingBlock_b0086* self) {
     self->StopRumble();
     UnkMagnetRumbleParams_b0086 params;
     params.path = g_unk_71727375f0;
@@ -215,7 +215,7 @@ void fn_71009200a8(UnkMagnetSlidingBlock_b0086* self, s32 state) {
     f32 speed2 = self->Lerp();
     self->field_0x348 = kept * (self->field_0x334 / speed2);
     fn_7100d7c828(reinterpret_cast<UnkActor*>(self->owner), &g_unk_710164b248, false);
-    fn_71009201a8(self);
+    CMagnetSlidingBlockComponent_StartLoopRumble(self);
 }
 
 // The other way (state 3): from the +0x334 range to the +0x338 one, and the rumble stops.
@@ -258,7 +258,7 @@ void fn_7100921248(UnkMagnetSlidingBlock_b0086* self, f32 target) {
 
 // Turns the block's colliders on or off and applies the matching speed (zero while the timer at
 // +0x358 runs, as fn_710092103c).
-void fn_7100920f40(UnkMagnetSlidingBlock_b0086* self, bool on) {
+void CMagnetSlidingBlockComponent_SetCollidersAndSpeed(UnkMagnetSlidingBlock_b0086* self, bool on) {
     UnkOut_71008651c8 found(0xf);
     fn_71008651c8(self->owner->colliders, &g_unk_71727375d0, &found);
     for (UnkStruct_71008651c8_Entry** it = found.data; it != found.data + found.count; ++it)
@@ -266,7 +266,7 @@ void fn_7100920f40(UnkMagnetSlidingBlock_b0086* self, bool on) {
     self->speed = on ? 1.0f : 0.0f;
     if (fn_710002fb70(self->timer))
         self->speed = 0.0f;
-    fn_71009210d4(reinterpret_cast<CMagnetSlidingBlockComponent*>(self), self->speed);
+    CMagnetSlidingBlockComponent_SendMaterialColorChange(reinterpret_cast<CMagnetSlidingBlockComponent*>(self), self->speed);
     found.Free();
 }
 
@@ -313,7 +313,7 @@ static inline f32 NonNegative(f32 v) { return v <= 0.0f ? 0.0f : v; }
 
 // Fades the block's glow material (key 0x117cd46281e7f67a) to its colour with alpha `speed`.
 // Out of line in the original (fn_7100920f40 calls it).
-__attribute__((noinline)) void fn_71009210d4(CMagnetSlidingBlockComponent* component, f32 speed) {
+__attribute__((noinline)) void CMagnetSlidingBlockComponent_SendMaterialColorChange(CMagnetSlidingBlockComponent* component, f32 speed) {
     UnkMagnetSlidingBlock4_b0086* self = reinterpret_cast<UnkMagnetSlidingBlock4_b0086*>(component);
     u64 key = 0x117cd46281e7f67a;
     UnkMagnetModelComponent_b0086* model = self->owner->model;

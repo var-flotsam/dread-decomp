@@ -20,7 +20,7 @@ struct UnkCaterzillaSend_b58 {
     UnkCaterzillaSendOwner_b58* owner;
 };
 
-void fn_71003f775c(UnkCaterzillaSend_b58* self) {
+void CCaterzillaAIComponent_SendRelaxSpawn90(UnkCaterzillaSend_b58* self) {
     fn_71003695b8(reinterpret_cast<UnkBehaviorTreeAI*>(self));
     UnkActorTarget* target = self->owner->field_0x220;
     if (target) {

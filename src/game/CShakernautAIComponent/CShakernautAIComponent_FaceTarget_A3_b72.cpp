@@ -19,7 +19,7 @@ struct UnkShakernautAI_A3_b72 {
     f32 dir_y;
 };
 
-void fn_71006b113c(UnkShakernautAI_A3_b72* self, void* arg) {
+void CShakernautAIComponent_TurnDirectionTowardTarget(UnkShakernautAI_A3_b72* self, void* arg) {
     fn_7100369d80(reinterpret_cast<UnkWarriorSend_b58*>(self), arg);
     UnkActor* target = fn_7100d7c990(self->owner);
     if (!target)

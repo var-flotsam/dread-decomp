@@ -38,5 +38,5 @@ UnkCallbackSetVector* fn_7100a3b7f4(UnkCallbackSetVector* self, const UnkCallbac
 }
 
 UnkCallbackSetVector* fn_7100a955cc(UnkCallbackSetVector* self, const UnkCallbackSetVector* other) {
-    return Assign<fn_7100a959a0, fn_7100a956b8, fn_7100a95868>(self, other);
+    return Assign<fn_7100a959a0, CCharClassWaterPoolComponent_ReserveCallbackSetArray, fn_7100a95868>(self, other);
 }

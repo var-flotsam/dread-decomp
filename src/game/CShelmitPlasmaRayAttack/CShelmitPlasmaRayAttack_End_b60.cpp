@@ -85,7 +85,7 @@ static inline bool Active_b60a4(UnkSwitchObject* p) {
     return fn_71002084b4(reinterpret_cast<UnkUnit285_b46a1*>(p->field_0x28));
 }
 
-void fn_71006b4900(UnkPlasmaRayAttack_b60a4* self) {
+void CShelmitPlasmaRayAttack_RemovePlasmaRayColliderAndEffects(UnkPlasmaRayAttack_b60a4* self) {
     UnkPlasmaRayOwner_b60a4* owner = self->owner;
     if (!owner || !owner->collision)
         return;

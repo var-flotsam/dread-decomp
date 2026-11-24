@@ -136,7 +136,7 @@ static inline UnkVec3f TargetPos(UnkTakumakuDash_ovb0135* self, const UnkVec3f& 
 }
 
 // The update: the base's (fn_71003609a8), then the facing and distance to the target and the state's step.
-void fn_71006cec98(UnkTakumakuDash_ovb0135* self, f32 dt) {
+void CTakumakuDashAttack_UpdateTargetSideAndState(UnkTakumakuDash_ovb0135* self, f32 dt) {
     fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);
     self->state = self->next;
     self->in_front = false;

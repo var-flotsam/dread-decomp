@@ -26,7 +26,7 @@ static const char* const kNames[7] = {
     "Event log when Boss is defeated", "DefeatedBossID",
 };
 
-void fn_71008c0270() {
+void CChozoCommanderXLifeComponent_InitStatics() {
     UnkChozoCommanderXLifeTU& tu = g_unk_7172730280;
     InitHeader(tu.header);
     for (int i = 0; i < 7; ++i) {

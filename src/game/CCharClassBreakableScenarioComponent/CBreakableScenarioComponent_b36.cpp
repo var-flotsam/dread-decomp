@@ -35,7 +35,7 @@ bool fn_71007519d8(UnkBreakableScenario* self) {
         if (!it->vf_0x20()) {
             UnkBreakableTarget* target = *fn_71002a76a4(it);
             if (void* obj = fn_7100751520(target ? target->field_0x10 : nullptr))
-                fn_710076351c(obj);
+                CBreakableVignetteComponent_Break(obj);
         }
         ++it;
         size -= sizeof(UnkBreakablePart);

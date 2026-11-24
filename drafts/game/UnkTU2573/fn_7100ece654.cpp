@@ -65,7 +65,7 @@ struct UnkTU2573TargetList {
     base::global::CRntVector<UnkTU2573TargetEntry> targets;  // 0xf8
 };
 
-void fn_710085c338(base::global::CRntVector<UnkTU2573TargetEntry>* entries, u32 capacity);
+void CSamusGunComponent_ReserveRefEntryVector(base::global::CRntVector<UnkTU2573TargetEntry>* entries, u32 capacity);
 u32 fn_710086427c(UnkReflObject* collision, void* key);
 
 void fn_7100ece654(UnkTU2573TargetList* self, UnkTU2573Actor* actor, UnkTU2573KeyRef* keyRef) {
@@ -88,7 +88,7 @@ void fn_7100ece654(UnkTU2573TargetList* self, UnkTU2573Actor* actor, UnkTU2573Ke
     if ((s32)n >= (s32)capacity)
         for (;;) {
         }
-    fn_710085c338(&v, capacity);
+    CSamusGunComponent_ReserveRefEntryVector(&v, capacity);
     new (&v.data[v.count]) UnkTU2573TargetEntry(handle, UnkTU2573TargetInfo(id));
     ++v.count;
 }

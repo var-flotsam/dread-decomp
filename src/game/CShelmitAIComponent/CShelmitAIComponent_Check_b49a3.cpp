@@ -20,7 +20,7 @@ struct UnkShelmitAI_b49a3 {
     UnkShelmitState_b49a3 state;  // 0x146c8
 };
 
-void fn_71006bbf5c(UnkShelmitAI_b49a3* self, void* arg, u32 skip) {
+void CShelmitAIComponent_CheckMinGrapplePullTimeToBreak(UnkShelmitAI_b49a3* self, void* arg, u32 skip) {
     UnkShelmitTarget_b49a3* target;
     // Expected not to call: the original places the call after the return.
     bool reached = skip == 0 && (target = self->state.target) != nullptr && self->state.value >= target->limit;

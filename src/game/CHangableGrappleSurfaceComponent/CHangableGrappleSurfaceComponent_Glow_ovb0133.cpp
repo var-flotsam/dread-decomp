@@ -68,7 +68,7 @@ struct UnkGrappleSurface_A5_b65;
 
 static inline f32 NonNegative(f32 v) { return v <= 0.0f ? 0.0f : v; }
 
-void fn_710082566c(UnkGrappleSurface_A5_b65* surface, f32 factor) {
+void CHangableGrappleSurfaceComponent_FadeMaterialAlpha(UnkGrappleSurface_A5_b65* surface, f32 factor) {
     UnkGlowSurface_ovb0133* self = reinterpret_cast<UnkGlowSurface_ovb0133*>(surface);
     u64 key = 0x117cd46281e7f67a;
     UnkGlowModelComponent_ovb0133* model = self->owner->model;

@@ -70,7 +70,7 @@ static inline UnkBase_71003cc474* AsDtorArg(UnkWeaponDamage_ovb0054* d) {
     return reinterpret_cast<UnkBase_71003cc474*>(d);
 }
 
-void fn_7100ac7224(UnkWeaponMovement_ovb0054* self) {
+void CWeaponMovement_Construct(UnkWeaponMovement_ovb0054* self) {
     fn_71010d0754(reinterpret_cast<UnkCharacterMovementFull_ovb0021*>(self));
     self->vtable = g_unk_7101a96ea8 + 0x10;
     self->field_0x230 = nullptr;

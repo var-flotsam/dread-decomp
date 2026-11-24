@@ -17,7 +17,7 @@ using base::reflection::UnkReflObject;
 extern CStrId g_unk_7172713428 __attribute__((visibility("hidden")));  // CBreakableVignetteComponent's id
 extern CType g_unk_7172713430 __attribute__((visibility("hidden")));   // its type
 
-UnkReflObject* fn_7100762b8c(void* key) {
+UnkReflObject* CBreakableVignetteComponent_FindByKey(void* key) {
     UnkGameManagerIdList* list = fn_7100de94cc(g_unk_7101d47310, reinterpret_cast<const u64*>(&g_unk_7172713428));
     UnkReflObject* obj = fn_710024e2e8(list, key);
     if (obj == nullptr)

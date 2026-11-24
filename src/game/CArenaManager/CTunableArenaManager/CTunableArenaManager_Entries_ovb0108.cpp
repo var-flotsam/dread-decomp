@@ -89,7 +89,7 @@ struct UnkArenaEntry_ovb0108 {
 };
 static_assert(sizeof(UnkArenaEntry_ovb0108) == 0x80, "UnkArenaEntry_ovb0108 layout");
 
-__attribute__((flatten)) void fn_7100e167d4(char* self) {
+__attribute__((flatten)) void CArenaManager_DestroyArenaEntry(char* self) {
     reinterpret_cast<UnkArenaEntry_ovb0108*>(self)->~UnkArenaEntry_ovb0108();
 }
 

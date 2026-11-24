@@ -30,7 +30,7 @@ struct UnkNailongTurnAI_A3_b76 {
     UnkNailongTurnState_A3_b76 state;  // 0x1483c
 };
 
-void fn_710062175c(UnkNailongTurnAI_A3_b76* self, UnkActor* target) {
+void CNailongAIComponent_FlipDirectionIfActorBehind(UnkNailongTurnAI_A3_b76* self, UnkActor* target) {
     UnkNailongTurnState_A3_b76* st = &self->state;
     fn_7101108124(reinterpret_cast<UnkQuetzoaAIComponent*>(self), target);
     CVector3D dir = CVector3D{target->field_0x44, target->field_0x54, target->field_0x64} -

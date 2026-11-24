@@ -58,7 +58,7 @@ struct UnkQuetzoaAI_l64b3f4 {
 static_assert(__builtin_offsetof(UnkQuetzoaAI_l64b3f4, dodge) == 0x14ae8, "UnkQuetzoaAI_l64b3f4");
 
 // Whether the way is clear at `offset` from the owner.
-bool fn_710064b884(UnkQuetzoaAI_l64b3f4* self, const CVector3D* offset);
+bool CQuetzoaAIComponent_SweepCollidesAlongDelta(UnkQuetzoaAI_l64b3f4* self, const CVector3D* offset);
 
 // The blend a dodge is sent with: no id, 0.06 seconds.
 struct UnkDodgeBlend_l64b3f4 {
@@ -133,13 +133,13 @@ bool fn_710064b3f4(UnkQuetzoaAI_l64b3f4* self) {
         offset.x = (side == facing ? dodge->near_reach : dodge->far_reach) * facing;
         offset.y = 0.0f;
         offset.z = 0.0f;
-        if (fn_710064b884(self, &offset)) {
+        if (CQuetzoaAIComponent_SweepCollidesAlongDelta(self, &offset)) {
             // Blocked: the other side, when the target is close.
             if (!(__builtin_fabsf(dx) < 200.0f))
                 return dodge->started;
             side = -side;
             offset.x = (facing == side ? dodge->near_reach : dodge->far_reach) * facing;
-            if (fn_710064b884(self, &offset))
+            if (CQuetzoaAIComponent_SweepCollidesAlongDelta(self, &offset))
                 return dodge->started;
         }
         {

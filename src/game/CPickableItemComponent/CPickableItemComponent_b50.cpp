@@ -80,7 +80,7 @@ private:
 };
 
 struct UnkItemDesc_l9cfe98;
-void fn_71009cfe98(UnkItemDesc_l9cfe98* self, f32 value_0xa8, f32 value_0x50, const char* id_0x98,
+void CPickableItemComponent_SetIdsStringsAndKind(UnkItemDesc_l9cfe98* self, f32 value_0xa8, f32 value_0x50, const char* id_0x98,
                    const char* kind, const char* id_0xa0, const char* id_0xb8, const char* string_0xc0,
                    const char* string_0xf0, bool flag);
 
@@ -99,7 +99,7 @@ static inline bool HasData(const CRntFile* file) {
     return file->position < file->size;
 }
 
-bool fn_71009cfbf0(UnkPickableItem_l9cfbf0* self, CRntFile* file) {
+bool CPickableItemComponent_ReadItemDataFromFile(UnkPickableItem_l9cfbf0* self, CRntFile* file) {
     const char* id_0x98;
     f32 value_0xa8 = 0.0f;
     f32 value_0x50 = 0.0f;
@@ -119,7 +119,7 @@ bool fn_71009cfbf0(UnkPickableItem_l9cfbf0* self, CRntFile* file) {
     CRntFile_ReadCString(file, &string_0xc0);
     CRntFile_ReadCString(file, &string_0xf0);
     CRntFile_Read(file, &flag, 1, 1);
-    fn_71009cfe98(reinterpret_cast<UnkItemDesc_l9cfe98*>(self), value_0xa8, value_0x50, id_0x98, kind,
+    CPickableItemComponent_SetIdsStringsAndKind(reinterpret_cast<UnkItemDesc_l9cfe98*>(self), value_0xa8, value_0x50, id_0x98, kind,
                   id_0xa0, id_0xb8, string_0xc0, string_0xf0, flag);
 
     if (HasData(file)) {

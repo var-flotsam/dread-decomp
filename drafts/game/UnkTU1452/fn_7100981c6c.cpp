@@ -37,7 +37,7 @@ struct alignas(8) UnkAltFlags_ovb0115 {
 };
 
 struct UnkAltNamedRequest_ovb0115;
-void fn_71007121e0(UnkAltNamedRequest_ovb0115* self, const CStrId& name, const UnkAltFlags_ovb0115& flags,
+void CAlternativeActionPlayerComponent_InitRequestFromStrId(UnkAltNamedRequest_ovb0115* self, const CStrId& name, const UnkAltFlags_ovb0115& flags,
                    UnkAltDesc_ovb0115c desc, UnkAltBlend_ovb0115c blend);
 
 struct UnkPartId_l981c6c {
@@ -79,7 +79,7 @@ struct UnkNamedRequest_l981c6c {
 
     UnkNamedRequest_l981c6c(const CStrId& name_, const UnkAltFlags_ovb0115& flags_, UnkAltDesc_ovb0115c desc,
                             UnkAltBlend_ovb0115c blend_) {
-        fn_71007121e0(reinterpret_cast<UnkAltNamedRequest_ovb0115*>(this), name_, flags_, desc, blend_);
+        CAlternativeActionPlayerComponent_InitRequestFromStrId(reinterpret_cast<UnkAltNamedRequest_ovb0115*>(this), name_, flags_, desc, blend_);
     }
     ~UnkNamedRequest_l981c6c() {
         if (UnkStringPool* pool = g_unk_7101d47108) {

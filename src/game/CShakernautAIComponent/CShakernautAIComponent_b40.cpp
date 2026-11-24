@@ -67,7 +67,7 @@ static inline __attribute__((always_inline)) void Step_sh(UnkShakernautAICompone
     }
 }
 
-void fn_71006ae2dc(UnkShakernautAIComponent* self, f32 dt) {
+void CShakernautAIComponent_UpdateTimersAndRepeatedActions(UnkShakernautAIComponent* self, f32 dt) {
     UnkTimers_sh* t = &self->timers;
     fn_7100369c44(reinterpret_cast<UnkSelf_7100369c44*>(self), dt);  // with `dt`, as the original
     UnkReflObject* ai = self->owner->ai;

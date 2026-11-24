@@ -16,7 +16,7 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 struct UnkTimedMap_ovb0071;
-void fn_7100f0f7b4(UnkTimedMap_ovb0071* self, u32 capacity);
+void CPlayerInfo_ReserveTimedEntryMap(UnkTimedMap_ovb0071* self, u32 capacity);
 void fn_7100f0f980(UnkPropertyArrays* self, u32 capacity);
 
 // The frame timer as this function reads it.
@@ -123,7 +123,7 @@ struct UnkTimedMap_lf0e4e4 {
     // Adds an entry under key whose properties allocate through llocator.
     UnkTimedEntry_lf0e4e4* Add(const CStrId& key, base::UnkAllocator* allocator) {
         if (count == capacity)
-            fn_7100f0f7b4(reinterpret_cast<UnkTimedMap_ovb0071*>(this), count + step);
+            CPlayerInfo_ReserveTimedEntryMap(reinterpret_cast<UnkTimedMap_ovb0071*>(this), count + step);
         new (&ids[count]) CStrId(key);
         new (&values[count]) UnkTimedEntry_lf0e4e4(allocator);
         u32 n = ++count;

@@ -8,7 +8,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
-bool fn_7100846aac(char* self) {
+bool CHyperBeamGun_TryActivate(char* self) {
     u8* armed = reinterpret_cast<u8*>(self + 0x18fa);
     if (*armed)
         return false;

@@ -11,21 +11,21 @@
 using namespace unk_prop;
 
 struct UnkMultiModelUpdater_l93881c;
-u32 fn_710093881c(UnkMultiModelUpdater_l93881c* self, UnkProp* p);
+u32 CMultiModelUpdaterComponent_ReadProperty(UnkMultiModelUpdater_l93881c* self, UnkProp* p);
 
 struct UnkSamusModelUpdater_l939fd4 {
     u8 pad_0x0[0x219];
     bool field_0x219;
 };
 
-u32 fn_7100939fd4(UnkSamusModelUpdater_l939fd4* self, UnkProp* p) {
+u32 CSamusModelUpdaterComponent_ReadProperty(UnkSamusModelUpdater_l939fd4* self, UnkProp* p) {
     if (!Is(p, Key(0x1ff8)))
-        return fn_710093881c(reinterpret_cast<UnkMultiModelUpdater_l93881c*>(self), p);
+        return CMultiModelUpdaterComponent_ReadProperty(reinterpret_cast<UnkMultiModelUpdater_l93881c*>(self), p);
     {
         const char* name;
         CRntFile_ReadCString(p->stream, &name);
         CStrId id(name, true);
-        fn_7100938ebc(self, reinterpret_cast<const u64*>(&id));
+        CMultiModelUpdaterComponent_SelectModelByName(self, reinterpret_cast<const u64*>(&id));
     }
     self->field_0x219 = false;
     return true;

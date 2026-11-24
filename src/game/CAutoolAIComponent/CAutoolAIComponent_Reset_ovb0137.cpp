@@ -153,7 +153,7 @@ struct UnkAutoolRefSlot_ovb0137 {
 using UnkAutoolPointArray_ovb0137 = base::global::CRntSmallDictionary<UnkVec3f, UnkAutoolRefSlot_ovb0137>;
 
 // Reserves room for `n` entries in both arrays.
-void fn_71003c6fa4(UnkAutoolPointArray_ovb0137* self, u32 n) {
+void CAutoolAIComponent_ReservePointDictionary(UnkAutoolPointArray_ovb0137* self, u32 n) {
     if (self->capacity >= n)
         return;
     UnkAutoolRefSlot_ovb0137* refs =

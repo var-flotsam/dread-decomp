@@ -38,7 +38,7 @@ struct UnkAltActionArrays_A3_b74 {
     u32 step;                        // 0x60
 };
 
-void fn_710071263c(UnkAltActionArrays_A3_b74* arrays, u32 capacity);
+void CAlternativeActionPlayerComponent_ReserveEntryArrays(UnkAltActionArrays_A3_b74* arrays, u32 capacity);
 
 struct UnkAltActionLink_A3_b74 {
     u8 pad_0x0[0x18];
@@ -58,7 +58,7 @@ struct UnkAltAction_A3_b74 {
 void fn_7100711e20(UnkAltAction_A3_b74* self, const base::global::CStrId* id, f32 a, f32 b) {
     UnkAltActionArrays_A3_b74* arrays = &self->arrays;
     if (arrays->count == arrays->capacity)
-        fn_710071263c(arrays, arrays->step + arrays->count);
+        CAlternativeActionPlayerComponent_ReserveEntryArrays(arrays, arrays->step + arrays->count);
     base::global::CStrId* dst = &arrays->ids[arrays->count];
     base::global::UnkStringData* data = id->data;
     __builtin_memcpy(dst, &data, sizeof(data));

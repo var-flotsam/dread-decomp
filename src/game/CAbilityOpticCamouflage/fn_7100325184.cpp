@@ -2,6 +2,6 @@
 // referred to before.
 #include "game_s2/UnkWeakHandle.h"
 
-void fn_7100325184(UnkWeakTarget* self, UnkWeakHandle** out) {
+void CAbilityOpticCamouflage_GetWeakHandle(UnkWeakTarget* self, UnkWeakHandle** out) {
     AssignRef(out, GetWeakHandle(self));
 }

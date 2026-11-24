@@ -317,7 +317,7 @@ struct UnkEntryList_p {
 // As src/game/CMinimapManager/fn_7100ea5c40.cpp and src/game_aca57c/fn_7100e9bf60.cpp declare them.
 struct UnkRecord_e9bf60;
 struct UnkRecordBuckets;
-void fn_7100ea5c40(char* set, UnkPoolIter* it);
+void CMinimapManager_EraseHashSetNodeAtIterator(char* set, UnkPoolIter* it);
 struct UnkRecord118;
 
 // As src/game/CMinimapManager/CTunableMinimapManager_KeyedFind_b55.cpp and the same unit's other batch declare them.
@@ -367,7 +367,7 @@ __attribute__((always_inline)) static inline void EraseNode(UnkMinimapOwner_p* s
     it->ref.set = set;
     it->ref.bucket = bucket;
     it->ref.version = version;
-    fn_7100ea5c40(set, it);
+    CMinimapManager_EraseHashSetNodeAtIterator(set, it);
 }
 
 // The record whose key is the given one, or the end.

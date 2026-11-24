@@ -39,7 +39,7 @@ struct UnkOmniLight {
 
 #define UNK_CHANGED(a, b) ((a) - 0.001f > (b) || (a) + 0.001f < (b))
 
-void fn_71008f18a4(UnkOmniLight* self) {
+void COmniLightComponent_UpdatePositionFromOwner(UnkOmniLight* self) {
     fn_71010c424c(reinterpret_cast<UnkParent*>(self));
     UnkOmniOwner* owner = self->owner;
     // The position is copied as words.

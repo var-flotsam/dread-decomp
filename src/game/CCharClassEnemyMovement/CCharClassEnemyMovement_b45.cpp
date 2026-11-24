@@ -16,7 +16,7 @@ struct UnkEnemyMovement_b45a2 {
     f32 field_0x6c;
 };
 
-f32 fn_7100964f8c(UnkEnemyMovement_b45a2* self, UnkActor* actor) {
+f32 CCharClassEnemyMovement_GetAngularSpeed(UnkEnemyMovement_b45a2* self, UnkActor* actor) {
     if (actor->field_0x220) {
         UnkTrackQuery query = {fn_7100c43508(), nullptr, -1.0f};
         fn_710117b08c(static_cast<UnkAnimationComponent*>(actor->field_0x220), &query);

@@ -26,13 +26,13 @@ static inline UnkFxCache* GetCache() {
 static inline void PreloadFx(const char* path, u32 kind) {
     UnkFxCache* cache = GetCache();
     CFilePathStrId id(path, true);
-    fn_7100851bc0(cache, &id, kind, false);
+    CPlasmaBeamGun_PreloadParticleFxPool(cache, &id, kind, false);
 }
 
 static inline void PreloadModel(const char* path, u32 kind) {
     UnkFxCache* cache = GetCache();
     CFilePathStrId id(path, true);
-    fn_7100851d6c(cache, &id, kind, false);
+    CPlasmaBeamGun_PreloadModelFxPool(cache, &id, kind, false);
 }
 
 void CPowerBeamGun_PreloadEffects(UnkPlasmaBeamGun_ovb0135* self) {

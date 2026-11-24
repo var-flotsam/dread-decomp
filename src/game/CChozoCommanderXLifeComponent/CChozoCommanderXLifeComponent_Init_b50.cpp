@@ -23,7 +23,7 @@ struct UnkChozoCommanderXLife {
     UnkReflRegistryMap table;  // 0x278
 };
 
-void fn_71008bd7d4(UnkChozoCommanderXLife* self) {
+void CChozoCommanderXLifeComponent_ClearStateAndInitRegistryMap(UnkChozoCommanderXLife* self) {
     fn_710115fc5c(reinterpret_cast<char*>(self));
     self->field_0x269 = false;
     self->field_0x26c = 0;

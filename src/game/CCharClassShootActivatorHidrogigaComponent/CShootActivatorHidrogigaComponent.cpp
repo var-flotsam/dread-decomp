@@ -20,11 +20,11 @@ struct UnkHidrogigaShootActivator {
     bool field_0x601;
 };
 
-void fn_7100890ae4(UnkHidrogigaShootActivator* self);
+void CCharClassShootActivatorComponent_RegisterWithPlayerAndCollectLinkedTargets(UnkHidrogigaShootActivator* self);
 using UnkRef = base::UnkRefPtrMember;
 
 void fn_7100897298(UnkHidrogigaShootActivator* self) {
-    fn_7100890ae4(self);
+    CCharClassShootActivatorComponent_RegisterWithPlayerAndCollectLinkedTargets(self);
     char* found = fn_71005c1008(self->field_0x30);
     if (found) {
         if (self->field_0x5b0 == 1) {

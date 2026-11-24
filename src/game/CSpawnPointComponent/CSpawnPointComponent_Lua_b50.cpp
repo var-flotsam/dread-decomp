@@ -88,7 +88,7 @@ static UnkSpawner_71011275d8* Spawner(CSpawnPointComponent* self) {
     return nullptr;
 }
 
-void fn_71011275d8(CSpawnPointComponent* self, void* actor) {
+void CSpawnPointComponent_OnEntityGenerated(CSpawnPointComponent* self, void* actor) {
     if (!actor)
         return;
     if (self->iMaxNumToGenerate < 0) {

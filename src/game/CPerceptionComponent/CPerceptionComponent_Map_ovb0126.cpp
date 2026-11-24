@@ -140,7 +140,7 @@ struct UnkPerceptionComponent_ovb0126 {
     UnkPerceptionMap_ovb0126 map;  // 0x48
 };
 
-bool fn_71009c8338(UnkPerceptionComponent_ovb0126* self, void* arg) {
+bool CPerceptionComponent_CreatePerceiversFromCharClass(UnkPerceptionComponent_ovb0126* self, void* arg) {
     bool r = fn_71010c41bc(reinterpret_cast<UnkBaseComponent*>(self), arg);
     base::reflection::UnkReflObject* o = self->owner;
     auto* cls = reinterpret_cast<UnkCharClassPerception_ovb0126*>(

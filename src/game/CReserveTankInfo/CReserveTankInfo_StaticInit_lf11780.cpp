@@ -45,7 +45,7 @@ static inline __attribute__((always_inline)) void InitFlag(UnkDef_7100fc4b34& de
                        name, refl_TypeOf<fn_710000d228>(), fn_7100f11624, fn_7100f10870);
 }
 
-void fn_7100f11780() {
+void CReserveTankInfo_InitStatics() {
     UnkReserveTankInfoTU& tu = g_unk_71729dbe00;
     InitHeader(tu.header);
     fn_7100f0fdbc();

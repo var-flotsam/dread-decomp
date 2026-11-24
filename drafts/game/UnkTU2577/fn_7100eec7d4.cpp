@@ -33,8 +33,8 @@ struct UnkEntryList_eec7d4 {
 struct UnkOwner_7100ca7634;
 struct UnkObserverGroupOwner_ovb0055;
 struct UnkObserverGroupItems_ovb0055;
-void* fn_7100ca7634(UnkOwner_7100ca7634*, const CStrId*);
-UnkObserverGroupItems_ovb0055* fn_7100ca7510(UnkObserverGroupOwner_ovb0055*, const CStrId*);
+void* CBTObserverComponent_FindGroupByStrId(UnkOwner_7100ca7634*, const CStrId*);
+UnkObserverGroupItems_ovb0055* CBTObserverComponent_InsertEmptyVectorByStrId(UnkObserverGroupOwner_ovb0055*, const CStrId*);
 
 struct UnkGroupMember_eec7d4 {
     u8 pad_0x0[0x58];
@@ -70,7 +70,7 @@ void fn_7100eec7d4(UnkSubAreaMgr_eec7d4* self) {
         UnkGroupMember_eec7d4** end = group->members + group->member_count;
         for (UnkGroupMember_eec7d4** member = group->members; member != end; ++member) {
             auto* list = static_cast<UnkEntryList_eec7d4*>(
-                fn_7100ca7634(reinterpret_cast<UnkOwner_7100ca7634*>(table), &(*member)->id));
+                CBTObserverComponent_FindGroupByStrId(reinterpret_cast<UnkOwner_7100ca7634*>(table), &(*member)->id));
             if (!list)
                 continue;
             for (UnkTableEntry_eec7d4** it = list->data; it != list->data + list->count; ++it)
@@ -80,7 +80,7 @@ void fn_7100eec7d4(UnkSubAreaMgr_eec7d4* self) {
 
     if (entries.count != 0) {
         auto* dst = reinterpret_cast<CRntVector<UnkTableEntry_eec7d4*>*>(
-            fn_7100ca7510(reinterpret_cast<UnkObserverGroupOwner_ovb0055*>(table),
+            CBTObserverComponent_InsertEmptyVectorByStrId(reinterpret_cast<UnkObserverGroupOwner_ovb0055*>(table),
                           reinterpret_cast<const CStrId*>(&g_unk_71729daa38[5])));
         if (dst != &entries) {
             dst->Clear();

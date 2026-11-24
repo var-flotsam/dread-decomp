@@ -68,7 +68,7 @@ inline void SetSectionBool(CBlackboard* blackboard, CBlackboard::CSection* secti
     }
 }
 
-void fn_7100759b34(UnkTileGroupComponent_l759b34* self, CBlackboard* blackboard) {
+void CBreakableTileGroupComponent_ReadTileStatesAndWriteFakeHusks(UnkTileGroupComponent_l759b34* self, CBlackboard* blackboard) {
     CBlackboard::CSection* section = fn_71010472e0(blackboard, fn_71011a2fbc(g_unk_7101d47310->field_0x608));
     if (!section)
         return;

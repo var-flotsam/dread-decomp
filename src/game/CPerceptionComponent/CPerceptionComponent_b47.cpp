@@ -32,7 +32,7 @@ struct UnkPerceptionComponent {
     u32 field_0x58;
 };
 
-void fn_71009c8520(UnkPerceptionComponent* self) {
+void CPerceptionComponent_CopyValuesToPerceivers(UnkPerceptionComponent* self) {
     fn_71010c424c(reinterpret_cast<UnkParent*>(self));
     UnkPerceiver** it = self->field_0x48;
     UnkPerceiver** end = it + self->field_0x58;

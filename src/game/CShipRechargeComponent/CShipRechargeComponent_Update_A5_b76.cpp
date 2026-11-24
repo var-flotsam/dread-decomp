@@ -236,7 +236,7 @@ static inline const char* UserName_A5_b76(UnkShipRecharge_A5_b76* self) {
     return "";
 }
 
-void fn_7100a8bfc8(UnkShipRecharge_A5_b76* self, f32 dt) {
+void CShipRechargeComponent_UpdateLevelChangeUse(UnkShipRecharge_A5_b76* self, f32 dt) {
     if (!self->no_level) {
         self->time += dt;
         static const CFilePathStrId s_music("streams/music/matad_jintojo_32728k.wav", true);

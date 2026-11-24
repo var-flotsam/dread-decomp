@@ -10,7 +10,7 @@
 #include "types.h"
 
 struct UnkAttack_b0086;
-void fn_71003624f4(UnkAttack_b0086* self, u32 value, f32* first, f32* second);
+void CAttack_GetDistanceRange(UnkAttack_b0086* self, u32 value, f32* first, f32* second);
 
 struct UnkChozoListTag_l455f7c;
 using UnkChozoList_l455f7c = base::UnkSList<UnkChozoListTag_l455f7c>;
@@ -118,7 +118,7 @@ void fn_7100455f7c(UnkChozoCommanderAI_l455f7c* self, UnkChozoOther_l455f7c* oth
         return;
     f32 min = -1.0f;
     f32 max = -1.0f;
-    fn_71003624f4(reinterpret_cast<UnkAttack_b0086*>(self->attack_0x149a8), self->field_0x1140, &min, &max);
+    CAttack_GetDistanceRange(reinterpret_cast<UnkAttack_b0086*>(self->attack_0x149a8), self->field_0x1140, &min, &max);
     if (!(min < 0.0f) && !(dist >= min))
         return;
     if (!(max < 0.0f) && !(dist <= max))

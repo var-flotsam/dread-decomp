@@ -41,7 +41,7 @@ bool fn_7100d5b268(void* tracker, u32 mask, const UnkVec3f* from, const UnkVec3f
 
 struct UnkBombMovement_ovb0078;
 struct UnkBombActor_ovb0078;
-void fn_7100aabf4c(UnkBombMovement_ovb0078* self, UnkBombActor_ovb0078* actor, UnkVec3f* pos,
+void CBombMovement_ComputePositionNearActor(UnkBombMovement_ovb0078* self, UnkBombActor_ovb0078* actor, UnkVec3f* pos,
                    UnkVec3f* offset);
 
 struct UnkContactSource_l58c040 {
@@ -131,7 +131,7 @@ void fn_710058c040(UnkGoliathBombMovement_l58c040* self, UnkBombActor_l58c040* a
         nx = normal->x;
         ny = normal->y;
         nz = normal->z;
-        fn_7100aabf4c(reinterpret_cast<UnkBombMovement_ovb0078*>(self), reinterpret_cast<UnkBombActor_ovb0078*>(actor),
+        CBombMovement_ComputePositionNearActor(reinterpret_cast<UnkBombMovement_ovb0078*>(self), reinterpret_cast<UnkBombActor_ovb0078*>(actor),
                       pos, rotation);
         if (self->pull_back) {
             f32 distance = actor->radius * 0.33f;
@@ -140,7 +140,7 @@ void fn_710058c040(UnkGoliathBombMovement_l58c040* self, UnkBombActor_l58c040* a
             pos->z -= nz * distance;
         }
     } else {
-        fn_7100aabf4c(reinterpret_cast<UnkBombMovement_ovb0078*>(self), reinterpret_cast<UnkBombActor_ovb0078*>(actor),
+        CBombMovement_ComputePositionNearActor(reinterpret_cast<UnkBombMovement_ovb0078*>(self), reinterpret_cast<UnkBombActor_ovb0078*>(actor),
                       pos, rotation);
         nx = 0.0f;
         ny = 1.0f;

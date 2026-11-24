@@ -68,7 +68,7 @@ void fn_71006ba298(UnkShelmitAI_l6ba298* self) {
         mode->field_0xd8 = value;
         mode->field_0xd4 = value;
         mode->field_0xdc = 0.0f;
-        fn_71006badf4(reinterpret_cast<UnkShelmitAI*>(self), value);
+        CShelmitAIComponent_ApplyCrystalEmissiveFactor(reinterpret_cast<UnkShelmitAI*>(self), value);
     }
     fn_71006ba194(reinterpret_cast<UnkShelmitAI*>(self));
     u32 current = mode->mode;

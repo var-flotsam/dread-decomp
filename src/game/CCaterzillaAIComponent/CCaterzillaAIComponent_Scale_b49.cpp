@@ -18,7 +18,7 @@ struct UnkCaterzillaAIScale_b49 {
     f32 factor;
 };
 
-void fn_71003f8450(UnkCaterzillaAIScale_b49* self, UnkCaterzillaOut_b49* out) {
+void CCaterzillaAIComponent_ScaleOutputVectorsByFactor(UnkCaterzillaAIScale_b49* self, UnkCaterzillaOut_b49* out) {
     fn_7101111c24(self, out);
     if (self->scaled) {
         f32 f = self->factor;

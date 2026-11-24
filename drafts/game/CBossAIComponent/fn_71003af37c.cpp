@@ -102,7 +102,7 @@ s64 fn_71003af37c(UnkBossAI_l3af37c* self, const CStrId& id, bool any) {
             kind = 10;
         } else if (id == g_unk_71726bc5f0) {
             UnkBossLink_l3af37c* link = self->owner->field_0x398;
-            if (!(*fn_710112bf20(link ? link->field_0x10 : nullptr) == g_unk_71726bc608))
+            if (!(*CSpawnPointComponent_GetField0x60TargetId(link ? link->field_0x10 : nullptr) == g_unk_71726bc608))
                 kind = 11;
             else
                 kind = any || !ManagerCheck_l3af37c() ? 12 : kind;

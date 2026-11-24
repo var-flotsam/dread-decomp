@@ -122,7 +122,7 @@ static inline void AddKey(UnkMagnetSlidingBlock_l91f3a8* self, CStrId* key) {
     bool before = fn_710002fb70(list);
     fn_710002fd10(list, key);
     if (before != fn_710002fb70(list))
-        fn_7100920f40(reinterpret_cast<UnkMagnetSlidingBlock_b0086*>(self), !fn_710002fb70(list));
+        CMagnetSlidingBlockComponent_SetCollidersAndSpeed(reinterpret_cast<UnkMagnetSlidingBlock_b0086*>(self), !fn_710002fb70(list));
 }
 
 void fn_710091f3a8(UnkMagnetSlidingBlock_l91f3a8* self) {

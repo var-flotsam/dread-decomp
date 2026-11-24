@@ -117,7 +117,7 @@ static inline __attribute__((always_inline)) void RemoveAt(UnkBillboardCollision
 }
 
 // Takes `entry` out of the map once.
-void fn_7100725610(UnkBillboardCollision_ovb0137* self, UnkEntry* entry) {
+void CBillboardCollisionComponent_RemoveEntry(UnkBillboardCollision_ovb0137* self, UnkEntry* entry) {
     UnkEntry** p = self->map.Find(entry);
     if (p == self->map.values + self->map.count)
         return;
@@ -150,7 +150,7 @@ void fn_71007251e0(UnkBillboardCollision_ovb0137* self) {
             continue;
         UnkBillboardKey_ovb0137* key = self->map.keys[n - 1];
         if (!key || !fn_7100744e1c(reinterpret_cast<UnkSwarmMember_ovb6*>(key))) {
-            fn_7100725610(self, entry);
+            CBillboardCollisionComponent_RemoveEntry(self, entry);
             continue;
         }
         UnkVec3Result pos = fn_71007455dc(reinterpret_cast<UnkStruct_71007455dc*>(key));

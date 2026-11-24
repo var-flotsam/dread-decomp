@@ -20,7 +20,7 @@ void fn_71007dff10(void* p);
 extern char g_unk_717271f378[];
 extern char g_unk_717271f379[];
 
-void fn_71007e59e0() {
+void CCharClassEventScenarioComponent_InitStatics() {
     InitHeaderIds(&g_unk_717271f3d0.ids);
     InitId(&g_unk_717271f348, "EVENTSCENARIO");
     InitProperty(&g_unk_717271f350, g_unk_7101a73580, g_unk_71726db788, "EventFinished", TypeOf<fn_710000d228>(),

@@ -32,7 +32,7 @@ struct UnkIdPair;
 struct UnkStateObject;
 
 struct UnkStruct_710071faf4;
-void fn_710071faf4(UnkStruct_710071faf4* self, const UnkStruct_710071faf4* other);
+void CAudioComponent_CopyConstructSoundSlot(UnkStruct_710071faf4* self, const UnkStruct_710071faf4* other);
 
 struct UnkInterp_7100105f94;
 
@@ -158,7 +158,7 @@ struct UnkAudioSound_ovb0015 {
 static_assert(sizeof(UnkAudioSound_ovb0015) == 0xd0, "UnkAudioSound_ovb0015 layout");
 
 // Releases the slot's ids: the id pair, then the file-path id and the string ids, left empty.
-__attribute__((noinline)) void fn_710071f878(UnkAudioSound_ovb0015* self) {
+__attribute__((noinline)) void CAudioComponent_ReleaseSoundSlotIds(UnkAudioSound_ovb0015* self) {
     fn_7100026f70(reinterpret_cast<UnkIdPair*>(self->field_0x98));
     self->field_0x28.Reset();
     self->field_0x20.Reset();
@@ -204,7 +204,7 @@ struct UnkAudioLinkCopy_ovb0015 {
 static_assert(sizeof(UnkAudioLinkCopy_ovb0015) == 0xb0, "UnkAudioLinkCopy_ovb0015 layout");
 
 // The constructor is inlined into the original; flatten keeps it from being emitted out of line.
-__attribute__((flatten, noinline)) void fn_710071f97c(UnkAudioLinkCopy_ovb0015* self,
+__attribute__((flatten, noinline)) void CAudioComponent_CopyConstructLinkEntry(UnkAudioLinkCopy_ovb0015* self,
                                                       const UnkAudioLinkCopy_ovb0015* other) {
     new (self) UnkAudioLinkCopy_ovb0015(*other);
 }
@@ -258,7 +258,7 @@ static_assert(sizeof(UnkAudioLinkNew_ovb0015) == 0xb0, "UnkAudioLinkNew_ovb0015 
 void fn_7100718994(UnkAudioLinkNew_ovb0015* self, UnkSoundHandle handle);
 
 // Builds a link for `handle` playing `sound`, then sets it up (fn_7100718994).
-__attribute__((flatten)) void fn_710071cca8(UnkAudioLinkNew_ovb0015* self, UnkSoundHandle handle,
+__attribute__((flatten)) void CAudioComponent_ConstructSoundLink(UnkAudioLinkNew_ovb0015* self, UnkSoundHandle handle,
                                             const UnkAudioIdRes_ovb0015* sound) {
     new (self) UnkAudioLinkNew_ovb0015(handle, *sound);
     fn_7100718994(self, handle);
@@ -301,7 +301,7 @@ struct UnkAudioVector_ovb0015 {
 };
 
 // Makes room for `n` links: the links are copied into a new array and released in the old one.
-__attribute__((noinline)) void fn_7100719444(UnkAudioVector_ovb0015<UnkAudioLink_ovb0015>* self, u32 n) {
+__attribute__((noinline)) void CAudioComponent_ReserveSoundLinks(UnkAudioVector_ovb0015<UnkAudioLink_ovb0015>* self, u32 n) {
     if (self->capacity >= n)
         return;
     UnkAudioLink_ovb0015* p = static_cast<UnkAudioLink_ovb0015*>(
@@ -309,7 +309,7 @@ __attribute__((noinline)) void fn_7100719444(UnkAudioVector_ovb0015<UnkAudioLink
     if (UnkAudioLink_ovb0015* src = self->data) {
         UnkAudioLink_ovb0015* dst = p;
         for (u32 i = 0; i < self->count; ++i, ++src, ++dst) {
-            fn_710071f97c(reinterpret_cast<UnkAudioLinkCopy_ovb0015*>(dst),
+            CAudioComponent_CopyConstructLinkEntry(reinterpret_cast<UnkAudioLinkCopy_ovb0015*>(dst),
                           reinterpret_cast<UnkAudioLinkCopy_ovb0015*>(src));
             src->Release();
         }
@@ -367,9 +367,9 @@ void fn_7100718c80(UnkAudioComponent_ovb0015* self) {
         if (UnkAudioSound_ovb0015* src = v.data) {
             UnkAudioSound_ovb0015* dst = p;
             for (u32 i = 0; i < v.count; ++i, ++dst, ++src) {
-                fn_710071faf4(reinterpret_cast<UnkStruct_710071faf4*>(dst),
+                CAudioComponent_CopyConstructSoundSlot(reinterpret_cast<UnkStruct_710071faf4*>(dst),
                               reinterpret_cast<UnkStruct_710071faf4*>(src));
-                fn_710071f878(src);
+                CAudioComponent_ReleaseSoundSlotIds(src);
             }
             v.allocator->vf_0x48(v.data);
         }
@@ -377,7 +377,7 @@ void fn_7100718c80(UnkAudioComponent_ovb0015* self) {
         v.capacity = 0x80;
     }
     new (&self->links) UnkAudioVector_ovb0015<UnkAudioLink_ovb0015>(0x80);
-    fn_7100719444(&self->links, 0x80);
+    CAudioComponent_ReserveSoundLinks(&self->links, 0x80);
     new (&self->pairs) UnkAudioPairList_ovb0015();
     self->field_0xc0 = 0;
     self->field_0x158 = 0;
@@ -387,7 +387,7 @@ void fn_7100718c80(UnkAudioComponent_ovb0015* self) {
 // Stops every slot: a sound still playing has its values saved into the slot and is stopped
 // (fn_7100105034), the slot gets the empty handle; the live count drops for each slot. Then every
 // slot's ids are released and the array emptied.
-void fn_710071e534(UnkAudioComponent_ovb0015* self) {
+void CAudioComponent_ClearSoundSlots(UnkAudioComponent_ovb0015* self) {
     UnkAudioSound_ovb0015* end = self->sounds.data + self->sounds.count;
     for (UnkAudioSound_ovb0015* s = self->sounds.data; s != end; ++s) {
         if (UnkAudioSoundState_ovb0015* state =
@@ -410,12 +410,12 @@ void fn_710071e534(UnkAudioComponent_ovb0015* self) {
         --g_unk_717270f61c;
     }
     for (u32 i = 0; i < self->sounds.count; ++i)
-        fn_710071f878(&self->sounds.data[i]);
+        CAudioComponent_ReleaseSoundSlotIds(&self->sounds.data[i]);
     self->sounds.count = 0;
 }
 
 // The first link not stopped whose handle names the same sound as `handle` (both may name none).
-UnkAudioLink_ovb0015* fn_7100719d00(UnkAudioComponent_ovb0015* self, const UnkSoundHandle* handle) {
+UnkAudioLink_ovb0015* CAudioComponent_FindLinkBySoundHandle(UnkAudioComponent_ovb0015* self, const UnkSoundHandle* handle) {
     UnkAudioLink_ovb0015* link = self->links.data;
     UnkAudioLink_ovb0015* end = link + self->links.count;
     UnkSoundHandle target = *handle;
@@ -475,7 +475,7 @@ struct UnkAudioSettingsOwner_ovb0015 {
 
 // Saves the group settings at +0x118 to +0x138, then stops the sounds (fn_7100719064 with true,
 // false, true, true).
-void fn_710071f5e8(UnkAudioSettingsOwner_ovb0015* self) {
+void CAudioComponent_SaveGroupLevels(UnkAudioSettingsOwner_ovb0015* self) {
     self->saved = self->current;
     fn_7100719064(reinterpret_cast<UnkEntitySoundComponent*>(self), true, false, true, true);
 }

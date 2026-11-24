@@ -22,7 +22,7 @@ struct UnkKraidAI_b56a3 {
     u64 field_0x149a8;
 };
 
-void fn_71005fe760(UnkKraidAI_b56a3* self) {
+void CKraidAIComponent_CloseMouth(UnkKraidAI_b56a3* self) {
     self->field_0x149a0 = 0;
     self->field_0x149a8 = 0;
     void* target = self->owner->field_0x220;
@@ -54,7 +54,7 @@ struct UnkKraidAITimer_b56a3 {
     UnkKraidTimerSource_b56a3* field_0x14a30;
 };
 
-void fn_71005fe88c(UnkKraidAITimer_b56a3* self) {
+void CKraidAIComponent_RestartCloseMouthTimer(UnkKraidAITimer_b56a3* self) {
     if (self->field_0x149a4 <= 0.0f) {
         void* target = self->owner->field_0x220;
         u64 hash = *reinterpret_cast<u64*>(reinterpret_cast<char*>(g_unk_71726f3778.data) + 0x30);

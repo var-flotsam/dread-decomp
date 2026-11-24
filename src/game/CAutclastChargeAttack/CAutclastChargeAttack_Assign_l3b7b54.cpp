@@ -13,8 +13,8 @@ using base::math::CVector3D;
 
 using UnkChargeEntries_ovb0016 = base::global::CRntVector<UnkChargeEntry_ovb0016>;
 
-void fn_71003b78f8(UnkChargeEntries_ovb0016* entries, u32 n);
-void fn_71003b7a64(UnkChargeEntries_ovb0016* entries, const UnkChargeEntry_ovb0016& entry);
+void CAutclastChargeAttack_ReserveChargeEntries(UnkChargeEntries_ovb0016* entries, u32 n);
+void CAutclastChargeAttack_PushBackEntry(UnkChargeEntries_ovb0016* entries, const UnkChargeEntry_ovb0016& entry);
 
 struct UnkWords32_l3b7b54 {
     u64 v[4];
@@ -73,11 +73,11 @@ UnkAutclastChargeAttack_l3b7b54* fn_71003b7b54(UnkAutclastChargeAttack_l3b7b54* 
     self->field_0x8c = other->field_0x8c;
     if (self != other) {
         self->entries.Clear();
-        fn_71003b78f8(&self->entries, other->entries.capacity);
+        CAutclastChargeAttack_ReserveChargeEntries(&self->entries, other->entries.capacity);
         if (other->entries.count != 0) {
             const UnkChargeEntry_ovb0016* end = other->entries.data + other->entries.count;
             for (const UnkChargeEntry_ovb0016* p = other->entries.data; p != end; ++p)
-                fn_71003b7a64(&self->entries, *p);
+                CAutclastChargeAttack_PushBackEntry(&self->entries, *p);
         }
     }
     return self;

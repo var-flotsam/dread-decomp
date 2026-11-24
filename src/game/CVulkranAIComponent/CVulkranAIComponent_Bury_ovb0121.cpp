@@ -61,7 +61,7 @@ struct UnkVulkranAIEnd_ovb0121 {
     UnkVulkranRefList_ovb0121 second;  // 0x14760
 };
 
-void fn_71006dbb78(UnkVulkranAIEnd_ovb0121* self) {
+void CVulkranAIComponent_ClearEntityRefLists(UnkVulkranAIEnd_ovb0121* self) {
     fn_71010ff2b8(reinterpret_cast<char*>(self));
     self->first.RemoveEntities();
     self->first.Clear();

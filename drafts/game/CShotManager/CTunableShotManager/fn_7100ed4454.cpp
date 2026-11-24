@@ -18,11 +18,11 @@ struct UnkShotManager_b0011;
 // As src/game/CShotManager.cpp declares it: the element at `i`, growing the array to it.
 UnkShot** fn_7100ed4b68(base::global::CRntVector<UnkShot*>* self, u32 i);
 // As src/game/CShotManager/CTunableShotManager_Resize_b43.cpp defines it.
-void fn_7100ede9e4(base::global::CRntVector<UnkObj290_b43a3>* self, u32 n);
+void CShotManager_ResizeObj290Vector(base::global::CRntVector<UnkObj290_b43a3>* self, u32 n);
 // As src/game/CShotManager/CTunableShotManager/fn_7100ed4cb8.cpp defines it: loads the projectile models.
-void fn_7100ed4cb8(UnkProjectiles* self);
+void CShotManager_LoadProjectileModels(UnkProjectiles* self);
 // As src/game/CShotManager/CTunableShotManager/CTunableShotManager_Shots_ovb0011.cpp defines it.
-void fn_7100ed54fc(UnkShotManager_b0011* self);
+void CShotManager_AcquireShotLights(UnkShotManager_b0011* self);
 
 // As src/game/CShotManager/CTunableShotManager_Resize_b43.cpp defines it.
 struct UnkObj290_b43a3 {
@@ -108,7 +108,7 @@ struct UnkShots_led4454 : CRntVector<UnkObj290_b43a3> {
             if (UnkObj290_b43a3* old = data) {
                 UnkObj290_b43a3* dst = p;
                 for (u32 i = 0; i < count; ++i) {
-                    fn_7100eddc68(dst, old);
+                    CShotManager_CopyConstructElement290(dst, old);
                     old->vf_0x0();
                     ++dst;
                     ++old;
@@ -123,7 +123,7 @@ struct UnkShots_led4454 : CRntVector<UnkObj290_b43a3> {
     // Grows (fn_7100ede9e4) or shrinks to `n` shots.
     void Resize(u32 n) {
         if (count < n) {
-            fn_7100ede9e4(this, n);
+            CShotManager_ResizeObj290Vector(this, n);
         } else if (count != n) {
             for (u32 i = n; i < count; ++i)
                 data[i].vf_0x0();
@@ -211,7 +211,7 @@ void fn_7100ed4454(void* self) {
         *fn_7100ed4b68(&manager->field_0x58, i) = nullptr;
 
     manager->tables = UnkShotTables_led4454();
-    fn_7100ed4cb8(reinterpret_cast<UnkProjectiles*>(manager));
+    CShotManager_LoadProjectileModels(reinterpret_cast<UnkProjectiles*>(manager));
 
     UnkShotTunable_led4454* tunables = g_unk_71729cf280.field_0x28;
     manager->field_0x240[0][0] = &tunables[0];
@@ -238,5 +238,5 @@ void fn_7100ed4454(void* self) {
     manager->field_0x240[4][3] = &tunables[13];
     manager->field_0x240[4][4] = &tunables[10];
 
-    fn_7100ed54fc(reinterpret_cast<UnkShotManager_b0011*>(manager));
+    CShotManager_AcquireShotLights(reinterpret_cast<UnkShotManager_b0011*>(manager));
 }

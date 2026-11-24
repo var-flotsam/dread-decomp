@@ -78,7 +78,7 @@ static inline void InitEffect(CFilePathStrId* id, const char* path) {
     fn_7100000250(fn_7100000c7c, id, &g_unk_7101a19000);
 }
 
-void fn_7100905300() {
+void CCharClassLiquidPoolComponent_InitStatics() {
     UnkLiquidPoolTU& tu = g_unk_7172734188;
     InitHeader(tu.header);
     tu.field_0x98 = -1.0f;

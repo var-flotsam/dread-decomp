@@ -28,7 +28,7 @@ static inline void InitEmptyStrId(CStrId* id) {
         base::global::UnkEnsureStringPool();
     id->data = &g_unk_7101d47108->empty;
 }
-bool fn_7100a0d480(UnkWeightPlatform_b49a4* self, bool on);
+bool CWeightActivatedPlatformSmartObjectComponent_SetDisabledByEmmyNearby(UnkWeightPlatform_b49a4* self, bool on);
 
 struct UnkWapIdMap_la08d5c {
     u8 pad_0x0[0x40];
@@ -127,7 +127,7 @@ void fn_7100a08d5c(UnkWeightPlatform_la08d5c* self) {
         self->states[i].Init(kIds[i]);
     self->watch = nullptr;
     self->delegate.object = reinterpret_cast<UnkWeightPlatform_b49a4*>(self);
-    self->delegate.function = fn_7100a0d480;
+    self->delegate.function = CWeightActivatedPlatformSmartObjectComponent_SetDisabledByEmmyNearby;
     self->delegate.field_0x10 = false;
     fn_7100a0cfe8(&self->ids);
     fn_7100066630(&self->key, &g_unk_7101d58d10);

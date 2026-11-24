@@ -50,7 +50,7 @@ struct UnkReflObject;
 void fn_7100d59994(UnkTracker_71008618cc* self, UnkReflObject* collider);
 
 // Moves the tile's render object (when it has one) to the tile's place and scale.
-void fn_7100c9e968(UnkQueryObj* self) {
+void CBreakableTileGroup_ApplyTileTransformToRenderObject(UnkQueryObj* self) {
     if (self->field_0x48 == kNoRenderObject)
         return;
     UnkVec3f pos(0.0f, 0.0f, 0.0f);
@@ -108,7 +108,7 @@ struct UnkTileEdges {
 };
 
 // The tile's four edges, clockwise from the top one; an edge past the list's count is cleared first.
-void fn_7100ca2ec4(UnkQueryObj* self, UnkTileEdges* out) {
+void CBreakableTileGroup_GetTileEdges(UnkQueryObj* self, UnkTileEdges* out) {
     f32 x = self->field_0x28;
     f32 y = self->field_0x2c;
     f32 max_x = x + 100.0f;
@@ -126,7 +126,7 @@ struct UnkTileModels {
 };
 
 // Drops the tile's render object and creates a new one from its type's model, when there is one.
-void fn_7100c9ea2c(UnkQueryObj* self) {
+void CBreakableTileGroup_RecreateTileRenderObjectFromTypeModel(UnkQueryObj* self) {
     if (self->field_0x48 != kNoRenderObject) {
         fn_7100219e10(g_unk_7101d47300, self->field_0x48);
         self->field_0x48 = kNoRenderObject;

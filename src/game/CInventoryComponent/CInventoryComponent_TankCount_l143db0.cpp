@@ -30,7 +30,7 @@ static inline s64 Amount(UnkInventory_7101143db0* self, UnkPropertyEx<>& item) {
     return (s64)**amount;
 }
 
-s64 fn_7101143db0(UnkInventory_7101143db0* self, u64 kind) {
+s64 CInventoryComponent_GetTankCount(UnkInventory_7101143db0* self, u64 kind) {
     switch (kind) {
     case 0:
         return Amount(self, g_unk_717275a2d8);  // ITEM_ENERGY_TANK_SHARDS

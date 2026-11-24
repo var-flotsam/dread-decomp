@@ -23,7 +23,7 @@ void fn_71008dff20(void* p);
 extern char g_unk_7172732370;
 void fn_71008e03dc(void* p);
 
-void fn_71008e2ac0() {
+void CItemLifeComponent_InitStatics() {
     UnkItemLifeTU& tu = g_unk_7172732448;
     InitHeader(tu.header);
     new (&g_unk_7172732318) CStrId("LIFE", true);

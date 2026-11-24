@@ -30,7 +30,7 @@ struct UnkRecordTable_b43a3 {
     }
 };
 
-void fn_7100e050b0(UnkRecordTable_b43a3* self);
+void CGameManager_ClearStrIdKeyedOwnedTable(UnkRecordTable_b43a3* self);
 
 struct UnkTunableTables_b43a3 {
     char* vtable;
@@ -41,7 +41,7 @@ static_assert(__builtin_offsetof(UnkTunableTables_b43a3, second) == 0x38, "UnkTu
 
 void fn_7100e04e80(UnkTunableTables_b43a3* self) {
     self->vtable = g_unk_7101aa9aa0 + 0x10;
-    fn_7100e050b0(&self->second);
+    CGameManager_ClearStrIdKeyedOwnedTable(&self->second);
     self->second.Free();
     fn_7100ae31f8(reinterpret_cast<UnkIdRecordTable<UnkOwned<UnkKeyedStrIds, fn_7100ae2df8>>*>(&self->first));
     self->first.Free();

@@ -30,7 +30,7 @@ struct UnkQuetzoaXMultiAttack_b57a4 {
 
 void fn_710063d920(UnkQuetzoaXMultiAttack_b57a4* self);
 
-void fn_710063d7c0(UnkQuetzoaXMultiAttack_b57a4* self, f32 dt) {
+void CQuetzoaXMultiTargetAttack_UpdateShotCountdown(UnkQuetzoaXMultiAttack_b57a4* self, f32 dt) {
     fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);
     if (!self->field_0x30)
         return;

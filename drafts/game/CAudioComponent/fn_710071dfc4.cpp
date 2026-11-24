@@ -17,7 +17,7 @@ void fn_710071ddac(UnkEntitySoundComponent* self);
 void fn_710071e27c(UnkEntitySoundComponent* self, f32 dt);
 
 struct UnkAudioLinkCopy_ovb0015;
-void fn_710071f97c(UnkAudioLinkCopy_ovb0015* self, const UnkAudioLinkCopy_ovb0015* other);
+void CAudioComponent_CopyConstructLinkEntry(UnkAudioLinkCopy_ovb0015* self, const UnkAudioLinkCopy_ovb0015* other);
 
 // CStrId::Reset on the file-path pool.
 struct UnkAudioPathId_l71dfc4 {
@@ -93,7 +93,7 @@ void fn_710071dfc4(UnkAudioComponent_l71dfc4* self, f32 dt) {
             erased.field_0x38.Reset();
             for (u64 i = index; i < links.count - 1; ++i) {
                 UnkAudioLink_l71dfc4* at = &links.data[i];
-                fn_710071f97c(reinterpret_cast<UnkAudioLinkCopy_ovb0015*>(at),
+                CAudioComponent_CopyConstructLinkEntry(reinterpret_cast<UnkAudioLinkCopy_ovb0015*>(at),
                               reinterpret_cast<UnkAudioLinkCopy_ovb0015*>(at + 1));
                 UnkAudioLink_l71dfc4& moved = (&links.data[i])[1];
                 fn_7100026f70(reinterpret_cast<UnkIdPair*>(moved.field_0x90));

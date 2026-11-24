@@ -21,7 +21,7 @@ struct UnkFireBallMover_A2_b70 {
     u32 state;  // 0xc8
 };
 
-void fn_71004d78dc(void*, UnkFireBallMover_A2_b70* self) {
+void CCooldownXBossFireBallMovementComponent_FillDamageParams(void*, UnkFireBallMover_A2_b70* self) {
     self->state = 0;
     fn_71008c1538(reinterpret_cast<UnkRequest*>(self),
                   *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&g_unk_7172716160) + 0x194));

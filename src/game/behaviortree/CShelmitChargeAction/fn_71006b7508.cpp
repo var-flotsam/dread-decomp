@@ -11,7 +11,7 @@
 #include "types.h"
 
 struct UnkShelmitAI_b35;
-void fn_71006bb908(UnkShelmitAI_b35* self, f32 dt);
+void CShelmitAIComponent_StartCrystalEmissiveRampToMin(UnkShelmitAI_b35* self, f32 dt);
 
 struct UnkShelmitChargeCharClass_l6b7508 : base::reflection::UnkReflObject {
     u8 pad_0x8[0x63c - 0x8];
@@ -77,7 +77,7 @@ u32 fn_71006b7508(UnkShelmitChargeAction_l6b7508* self, f32 dt) {
             fn_710117ae38(animation, track, false)) {
             self->stage = 2;
             if (isShelmit && charClass)
-                fn_71006bb908(reinterpret_cast<UnkShelmitAI_b35*>(ai), charClass->field_0x63c);
+                CShelmitAIComponent_StartCrystalEmissiveRampToMin(reinterpret_cast<UnkShelmitAI_b35*>(ai), charClass->field_0x63c);
         }
         break;
     case 3:

@@ -14,7 +14,7 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 using base::reflection::UnkReflValue;
 
-void fn_7101174314(void* object, const void* path, const CRntString* modifiers);
+void CModelUpdaterComponent_ReleaseModelAndApplyPath(void* object, const void* path, const CRntString* modifiers);
 
 struct UnkPathData_A5_b67 {
     u8 pad_0x0[0x10];
@@ -74,7 +74,7 @@ UnkReflValue fn_710090396c(void*, char* obj, UnkReflValue* const* args) {
         if (void* object = self->owner->object) {
             if (value->data != &g_unk_7101d47200->empty) {
                 ++reinterpret_cast<UnkPathData_A5_b67*>(value->data)->count;
-                fn_7101174314(object, reinterpret_cast<UnkPathData_A5_b67*>(value->data)->path, &g_unk_7101d58d10);
+                CModelUpdaterComponent_ReleaseModelAndApplyPath(object, reinterpret_cast<UnkPathData_A5_b67*>(value->data)->path, &g_unk_7101d58d10);
             }
         }
     }

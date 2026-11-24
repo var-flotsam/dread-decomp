@@ -10,10 +10,10 @@
 struct UnkMagnetSlidingBlockRail_ovb0097;
 struct UnkMagnetSlidingBlock_b0086;
 struct CMagnetSlidingBlockComponent;
-void fn_71009210d4(CMagnetSlidingBlockComponent* self, f32 speed);
+void CMagnetSlidingBlockComponent_SendMaterialColorChange(CMagnetSlidingBlockComponent* self, f32 speed);
 extern void* g_unk_7101a82960[];
 extern void* g_unk_7101a82c58[];
 extern UnkProperty g_unk_7172737530;
 UnkMagnetSlidingBlockRail_ovb0097* fn_710091f6bc(void* object);
-void fn_7100920f40(UnkMagnetSlidingBlock_b0086* self, bool on);
+void CMagnetSlidingBlockComponent_SetCollidersAndSpeed(UnkMagnetSlidingBlock_b0086* self, bool on);
 extern base::global::CStrId g_unk_71727375d8 __attribute__((visibility("hidden")));

@@ -72,7 +72,7 @@ static inline bool SameName(const u64& a, const u64& b) {
     return a == b;
 }
 
-bool fn_710063ddcc(CAttack* self, UnkQuetzoaXContext_ovb0127* ctx, u32 mode) {
+bool CQuetzoaXMultiTargetAttack_CanStart(CAttack* self, UnkQuetzoaXContext_ovb0127* ctx, u32 mode) {
     bool ok = fn_7100360b84(self, ctx, mode);
     UnkReflObject* ai = static_cast<UnkReflObject*>(self->field_0x8->field_0x240);
     if (!ai)

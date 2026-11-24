@@ -30,7 +30,7 @@ static_assert(__builtin_offsetof(UnkBillboardComponent_l72f844, resources) == 0x
 static_assert(__builtin_offsetof(UnkBillboardComponent_l72f844, second_resources) == 0x108, "layout");
 
 // `arg` (x1) reaches the base step untouched.
-bool fn_710072f844(UnkBillboardComponent_l72f844* self, void* arg) {
+bool CCharClassBillboardComponent_FillPoolFromPaths(UnkBillboardComponent_l72f844* self, void* arg) {
     bool r = fn_71011ace94(reinterpret_cast<UnkModelEntity*>(self), arg);
     if (self->count != 0) {
         self->resources.Reserve(self->count);

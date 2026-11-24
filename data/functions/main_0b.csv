@@ -2958,7 +2958,7 @@ address,size,name,name_source,subsystem,status
 0x7100b8f094,288,CAIAction::refl_CopyAssign,reflection,game/ai,O
 0x7100b8f1b4,288,CAIAction::refl_MoveAssign,reflection,game/ai,O
 0x7100b8f2d4,116,fn_7100b8f2d4,unknown,game/ai?,O
-0x7100b8f348,120,fn_7100b8f348,unknown,game/ai?,O
+0x7100b8f348,120,CAIAction_DestroyAndDelete,inferred,game/ai?,O
 0x7100b8f3c0,28,fn_7100b8f3c0,unknown,game/ai?,O
 0x7100b8f3dc,4,fn_7100b8f3dc,unknown,game/ai?,O
 0x7100b8f3e0,4,fn_7100b8f3e0,unknown,game/ai?,O
@@ -4786,8 +4786,8 @@ address,size,name,name_source,subsystem,status
 0x7100bc6914,244,CCharClassPlayRandomTimelineEvent::refl_GetClass,reflection,game/characters,O
 0x7100bc6a08,2716,CCharClassPlayRandomTimelineEvent::refl_AddFields,reflection,game/characters,O
 0x7100bc74a4,388,CCharClassPlayRandomTimelineEvent::refl_InitClass,reflection,game/characters,O
-0x7100bc7628,452,fn_7100bc7628,unknown,game/characters?,O
-0x7100bc77ec,332,fn_7100bc77ec,unknown,game/characters?,O
+0x7100bc7628,452,CCharClassPlayRandomTimelineEvent_PlayRandomTimeline,inferred,game/characters?,O
+0x7100bc77ec,332,CCharClassPlayRandomTimelineEvent_CheckPlayOnly,inferred,game/characters?,O
 0x7100bc7938,220,fn_7100bc7938,unknown,game/characters?,O
 0x7100bc7a14,28,fn_7100bc7a14,unknown,game/characters?,O
 0x7100bc7a30,628,fn_7100bc7a30,unknown,game/characters?,O

@@ -41,7 +41,7 @@ struct UnkCreditsCtor_ovb0070 {
 };
 static_assert(__builtin_offsetof(UnkCreditsCtor_ovb0070, field_0xa80) == 0xa80, "layout");
 
-void fn_7101183f84(UnkCreditsCtor_ovb0070* self) {
+void CCreditsMode_Construct(UnkCreditsCtor_ovb0070* self) {
     fn_7101186780(reinterpret_cast<UnkMusicTrigger*>(self));
     self->vtable = &g_unk_7101cb4ef8[2];
     self->time = 0.0f;

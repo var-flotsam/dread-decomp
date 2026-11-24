@@ -19,7 +19,7 @@ struct UnkRefRecord10_b0011;
 struct UnkRefRecord18_b0011;
 using UnkRefRecord10Vec_b0011 = UnkCopyVec_b0011<UnkRefRecord10_b0011>;
 using UnkRefRecord18Vec_b0011 = UnkCopyVec_b0011<UnkRefRecord18_b0011>;
-void fn_7100ede32c(UnkRefRecord10Vec_b0011* self, const UnkRefRecord10Vec_b0011* other);
+void CShotManager_CopyConstructRefPtrAndWordVector(UnkRefRecord10Vec_b0011* self, const UnkRefRecord10Vec_b0011* other);
 void fn_7100ede1f0(UnkRefRecord18Vec_b0011* self, const UnkRefRecord18Vec_b0011* other);
 
 struct UnkWords2_leddc68 {
@@ -112,7 +112,7 @@ static inline void AssignResource(UnkCountedResource** slot, UnkCountedResource*
     }
 }
 
-void fn_7100eddc68(UnkObj290_b43a3* selfObj, UnkObj290_b43a3* otherObj) {
+void CShotManager_CopyConstructElement290(UnkObj290_b43a3* selfObj, UnkObj290_b43a3* otherObj) {
     UnkShot_leddc68* self = reinterpret_cast<UnkShot_leddc68*>(selfObj);
     const UnkShot_leddc68* other = reinterpret_cast<const UnkShot_leddc68*>(otherObj);
     self->vtable = g_unk_7101ca9fe0 + 2;
@@ -166,7 +166,7 @@ void fn_7100eddc68(UnkObj290_b43a3* selfObj, UnkObj290_b43a3* otherObj) {
     self->field_0x94[23] = other->field_0x94[23];
     fn_7100ede1f0(reinterpret_cast<UnkRefRecord18Vec_b0011*>(self->field_0xf8),
                   reinterpret_cast<const UnkRefRecord18Vec_b0011*>(other->field_0xf8));
-    fn_7100ede32c(reinterpret_cast<UnkRefRecord10Vec_b0011*>(self->field_0x120),
+    CShotManager_CopyConstructRefPtrAndWordVector(reinterpret_cast<UnkRefRecord10Vec_b0011*>(self->field_0x120),
                   reinterpret_cast<const UnkRefRecord10Vec_b0011*>(other->field_0x120));
     self->field_0x148 = other->field_0x148;
     new (&self->field_0x158) CStrId(other->field_0x158);

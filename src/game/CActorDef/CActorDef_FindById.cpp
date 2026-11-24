@@ -26,7 +26,7 @@ static inline UnkActorDefEntry345* FindById345(const UnkActorDef345* self, const
     return nullptr;
 }
 
-UnkActorDefEntry345* fn_7100255334(const UnkActorDef345* self, const u64* id) {
+UnkActorDefEntry345* CActorDef_FindPartById(const UnkActorDef345* self, const u64* id) {
     return FindById345(self, id);
 }
 

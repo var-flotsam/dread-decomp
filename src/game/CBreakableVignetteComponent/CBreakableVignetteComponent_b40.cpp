@@ -34,7 +34,7 @@ struct UnkBreakableVignette_bv {
     void* field_0x48;
 };
 
-void fn_7100763318(UnkBreakableVignette_bv* self) {
+void CBreakableVignetteComponent_ApplyBrokenStateAndLinkToManager(UnkBreakableVignette_bv* self) {
     auto show = reinterpret_cast<u32 (*)(UnkRenderManager*, bool, u64, u32, bool)>(fn_7100219c6c);
     while (show(g_unk_7101d47300, !self->field_0x39, self->field_0x40->key, 0, false) == 2) {
     }

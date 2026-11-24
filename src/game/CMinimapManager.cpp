@@ -757,7 +757,7 @@ void fn_7100e9d1f8(UnkMinimapOwner* self, s32 kind) {
 
 #include "base/UnkBlockFreeList.h"
 
-void fn_7100eb2cc0(void* self, u32 a, u32 b);         // sets up the pooled set at 0xd64210
+void CMinimapManager_SetUpPooledSet(void* self, u32 a, u32 b);         // sets up the pooled set at 0xd64210
 
 // The vtables (GOT 0x7101cd03a8, 0x7101d298c8, 0x7101cd05f8, 0x7101cd05f0).
 
@@ -1101,7 +1101,7 @@ void fn_7100e8c114(UnkMinimapManager* self) {
     fn_710008377c(&set.pool_blocks);
     set.pool_field_0x38 = 0;
     set.pool_field_0x3c = false;
-    fn_7100eb2cc0(&set, 0x7d, 500);
+    CMinimapManager_SetUpPooledSet(&set, 0x7d, 500);
 
     self->field_0xd642a0 = 0;
     new (&self->field_0xd642a8) UnkMinimapBuffer;

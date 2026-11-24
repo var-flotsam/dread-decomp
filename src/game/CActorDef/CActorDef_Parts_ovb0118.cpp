@@ -177,7 +177,7 @@ struct UnkActorDefLoad_ovb0118 {
     base::global::CRntVector<UnkActorDefPart2_ovb0118*> parts;  // 0xa0
 };
 
-bool fn_7100254fdc(UnkActorDefLoad_ovb0118* self, UnkActorDefContext_ovb0118* context) {
+bool CActorDef_InitFromContext(UnkActorDefLoad_ovb0118* self, UnkActorDefContext_ovb0118* context) {
     if (context->stream && !self->vf_0x30(context->stream))
         return false;
     self->name = context->name;

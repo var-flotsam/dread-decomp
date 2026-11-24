@@ -10,7 +10,7 @@ struct UnkSoundHandle;
 void fn_7100719064(UnkEntitySoundComponent* self, bool a, bool b, bool c, bool d);
 void fn_710071a524(UnkEntitySoundComponent* self, void* a, f32 x, f32 y);
 void fn_7100719894(void* player, UnkSoundHandle handle, f32 a, f32 b);
-UnkSoundHandle fn_710071a338(UnkEntitySoundComponent* self, void* a);
+UnkSoundHandle CAudioComponent_FindSoundHandleByPath(UnkEntitySoundComponent* self, void* a);
 void fn_710071a398(void* target, u32* mask, f32 a, f32 b);
 extern s32 g_unk_717270f61c;  // The live sound count.
 extern void* g_unk_7101a6cca0[];

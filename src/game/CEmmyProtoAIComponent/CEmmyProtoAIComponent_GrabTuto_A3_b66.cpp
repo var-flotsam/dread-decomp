@@ -22,7 +22,7 @@ struct UnkProtoNamedId_A3_b66 : UnkIdSource {
     UnkQualifiedId qid;
 };
 
-bool fn_71004fc4a8() {
+bool CEmmyProtoAIComponent_IsGrabTutoNotLaunched() {
     bool flag = false;
     UnkGameManager* gm = g_unk_7101d47310;
     CBlackboard* blackboard = &gm->field_0x968;

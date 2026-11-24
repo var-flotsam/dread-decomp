@@ -18,7 +18,7 @@ struct UnkKeyedStrIdMapA_ovb0062 {
     u32 capacity;
 };
 
-void fn_7100251f78(UnkKeyedStrIdMapA_ovb0062* self);
+void CActorComponent_ShrinkValueStrIdArraysToCount(UnkKeyedStrIdMapA_ovb0062* self);
 
 UnkKeyedStrIdMapA_ovb0062* fn_7100251e10(UnkKeyedStrIdMapA_ovb0062* self, const UnkKeyedStrIdMapA_ovb0062* other) {
     if (self == other)
@@ -28,7 +28,7 @@ UnkKeyedStrIdMapA_ovb0062* fn_7100251e10(UnkKeyedStrIdMapA_ovb0062* self, const 
             self->keys[i].Reset();
     self->count = 0;
     if (other->count != self->capacity) {
-        fn_7100251f78(self);
+        CActorComponent_ShrinkValueStrIdArraysToCount(self);
         fn_7100248ce8(self, other->count);
     }
     __builtin_memcpy(self->values, other->values, (u64)other->count * 8);

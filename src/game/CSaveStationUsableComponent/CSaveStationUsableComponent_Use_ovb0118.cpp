@@ -102,7 +102,7 @@ void fn_7100a8a068(UnkSaveStation_ovb0118* self) {
     fn_7100d7c828(reinterpret_cast<UnkActor*>(target), &g_unk_710164b5c8, false);
 }
 
-bool fn_7100a89bf8(UnkSaveStation_ovb0118* self, UnkWeakTarget* user) {
+bool CSaveStationUsableComponent_AskSaveQuestion(UnkSaveStation_ovb0118* self, UnkWeakTarget* user) {
     if (!user)
         return false;
     AssignRef(&self->user, fn_7100d78378(user));
@@ -166,7 +166,7 @@ static inline void* MusicManager() {
     return music;
 }
 
-void fn_7100a8a438(UnkSaveStation2_ovb0118* self, f32 dt) {
+void CSaveStationUsableComponent_TickStartLevelMusicWait(UnkSaveStation2_ovb0118* self, f32 dt) {
     self->time += dt;
     base::reflection::UnkReflObject* object = self->char_class;
     UnkSaveStationClass2_ovb0118* char_class =

@@ -53,7 +53,7 @@ struct UnkLightsRecord_ovb0078 {
     }
 };
 
-void fn_7100da1508(UnkLightsArray_b42a3* self, u32 capacity) {
+void CLightsDef_ReserveLights(UnkLightsArray_b42a3* self, u32 capacity) {
     reinterpret_cast<base::global::CRntVector<UnkLightsRecord_ovb0078>*>(self)->Reserve(capacity);
 }
 
@@ -93,12 +93,12 @@ void fn_7100da18e4(UnkLightsArray_b42a3* self, UnkLightsRecord_ovb0078* value, u
         if ((s32)new_capacity <= (s32)index)
             for (;;) {
             }
-        fn_7100da1508(self, new_capacity);
+        CLightsDef_ReserveLights(self, new_capacity);
         index = self->count;
     } else {
         if (cap <= n && self->step != 0)
             cap = (n / self->step + 1) * self->step;
-        fn_7100da1508(self, cap);
+        CLightsDef_ReserveLights(self, cap);
         for (u32 i = self->count - 1; i >= index; --i) {
             UnkLightsRecord_ovb0078* q = &Records(self)[i];
             new (q + 1) UnkLightsRecord_ovb0078(static_cast<UnkLightsRecord_ovb0078&&>(*q));

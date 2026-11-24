@@ -55,7 +55,7 @@ static inline bool IsPlaying(UnkScorpiusAI_l697968* self, u64 track) {
     return fn_710117ae38(self->owner->anim, track, false);
 }
 
-void fn_7100697968(UnkScorpiusAI_l697968* self, UnkAabb* out) {
+void CScorpiusAIComponent_GrowBoundsAroundOwner(UnkScorpiusAI_l697968* self, UnkAabb* out) {
     fn_71011061d0(reinterpret_cast<UnkBoundsComponent*>(self), out);
     UnkScorpiusOwner_l697968* owner = self->owner;
     UnkVec3 pos = {owner->xform.m[3], owner->xform.m[7], owner->xform.m[11]};

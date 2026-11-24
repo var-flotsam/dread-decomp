@@ -11,7 +11,7 @@ extern CFilePathStrId g_unk_717272cf88 __attribute__((visibility("hidden")));
 extern CStrId g_unk_717272d388 __attribute__((visibility("hidden")));
 extern CFilePathStrId g_unk_717272d390 __attribute__((visibility("hidden")));
 
-UnkIdPathPair fn_710089162c() {
+UnkIdPathPair CCharClassShootActivatorComponent_GetPistonMagMachineryLoopPresetIds() {
     return {g_unk_717272cf80, g_unk_717272cf88};
 }
 

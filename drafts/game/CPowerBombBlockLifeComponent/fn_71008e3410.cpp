@@ -50,7 +50,7 @@ struct UnkPowerBombBlockLifeParts_ovb0127 {
     UnkStruct_7100233684* owner;  // 0x30
 };
 
-void fn_71008e36d0(UnkPowerBombBlockLifeParts_ovb0127* self);
+void CPowerBombBlockLifeComponent_SwitchModelToBreakParts(UnkPowerBombBlockLifeParts_ovb0127* self);
 bool fn_7101176e78(UnkStruct_7101176ea8* self, void* key, void** out);
 
 extern UnkProperty g_unk_71727325b0;  // "Dead"
@@ -95,7 +95,7 @@ void fn_71008e3410(UnkPowerBombBlockLifeRestore_l8e3410* self, CBlackboard* blac
     if (!dead || !found)
         return;
 
-    fn_71008e36d0(reinterpret_cast<UnkPowerBombBlockLifeParts_ovb0127*>(self));
+    CPowerBombBlockLifeComponent_SwitchModelToBreakParts(reinterpret_cast<UnkPowerBombBlockLifeParts_ovb0127*>(self));
     if (void* target = fn_71002b3b84(reinterpret_cast<UnkWeakTarget*>(self->owner)))
         fn_71009c0f1c(target, g_unk_7172732638.data->Key());
 

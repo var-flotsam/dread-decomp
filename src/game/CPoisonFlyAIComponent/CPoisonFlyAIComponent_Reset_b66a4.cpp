@@ -44,7 +44,7 @@ static inline __attribute__((always_inline)) void Release_b66a4p(UnkRefCounted_b
         p->vf_0x10();
 }
 
-bool fn_7100639ec0(UnkPoisonFlyReset_b66a4* self) {
+bool CPoisonFlyAIComponent_ReleaseNodesAndReloadTunable(UnkPoisonFlyReset_b66a4* self) {
     for (UnkRefNode_b66a4p* n = self->head; n;) {
         UnkRefNode_b66a4p* cur = n;
         n = n->next;

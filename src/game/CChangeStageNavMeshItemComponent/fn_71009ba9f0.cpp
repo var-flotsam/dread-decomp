@@ -65,7 +65,7 @@ inline const CStrId& ChangeStageNavmeshItemId() {
     return s_id;
 }
 
-void fn_71009ba9f0() {
+void CChangeStageNavMeshItemComponent_InitStatics() {
     InitHeader(g_unk_717273d710);
     new (&g_unk_717273d728) CStrId(fn_7100de8f78(ChangeStageNavmeshItemId()));
     fn_7100000250(CStrId_Destroy, &g_unk_717273d728, &g_unk_7101a19000);

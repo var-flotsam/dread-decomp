@@ -50,8 +50,8 @@ struct UnkEnergyGun_A4_b76;
 struct UnkSamusGun_l858818;
 void fn_710083db50(UnkGun_ovb0091* self, f32 dt);
 void fn_7100859544(UnkSamusGun_l858818* self);
-u64 fn_710085961c(UnkSamusGun_l858818* self);
-u64 fn_7100859798(UnkEnergyGun_b52* self);
+u64 CSamusGunComponent_GetPrimaryWeaponKey(UnkSamusGun_l858818* self);
+u64 CSamusGunComponent_GetSecondaryWeaponSelectKey(UnkEnergyGun_b52* self);
 u64 fn_7100859a20(UnkEnergyGun_A4_b76* self);
 bool fn_7100d5bfbc(void* tracker, u32 mask, UnkCollisionObject* object, void* arg, u32);
 
@@ -336,8 +336,8 @@ static inline void SendAnimation_l858818(base::reflection::UnkReflObject* animat
 
 static inline u64 StateAction_l858818(UnkSamusGun_l858818* self) {
     if (self->field_0x128)
-        return fn_710085961c(self);
-    return fn_7100859798(reinterpret_cast<UnkEnergyGun_b52*>(self));
+        return CSamusGunComponent_GetPrimaryWeaponKey(self);
+    return CSamusGunComponent_GetSecondaryWeaponSelectKey(reinterpret_cast<UnkEnergyGun_b52*>(self));
 }
 
 void fn_7100858818(UnkSamusGun_l858818* self, f32 dt) {

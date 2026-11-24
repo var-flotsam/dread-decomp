@@ -30,7 +30,7 @@ static inline bool IsNear(f32 v, f32 target) {
     return v - 0.05f <= target && v + 0.05f >= target;
 }
 
-void fn_7100673908(UnkSabotoruAttack_ovb0118* self) {
+void CSabotoruTurnInDoorAttack_SelectIdByOwnerOrientation(UnkSabotoruAttack_ovb0118* self) {
     const UnkMatrix44& m = fn_710002614c(&self->owner->transform);
     f32 side = m.m[1];
     f32 up = m.m[5];

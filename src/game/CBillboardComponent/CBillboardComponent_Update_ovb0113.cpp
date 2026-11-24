@@ -86,7 +86,7 @@ static inline void SwitchOff(const u32* id) {
         fn_71001f3224(entry->data->toggle, 0);
 }
 
-void fn_71007274f4(UnkBillboardComponent_ovb0113* self) {
+void CBillboardComponent_SwitchOffEntriesAndStopEffect(UnkBillboardComponent_ovb0113* self) {
     fn_71010c4230(reinterpret_cast<UnkHandleOwner_71010c4230*>(self));
     SwitchOff(&self->id);
     SwitchOff(&self->glow_id);
@@ -106,7 +106,7 @@ struct UnkParent;
 void fn_7100745dac(UnkBillboardItem_ovb0113* item, f32 dt);
 void fn_7100728064(UnkBillboardComponent_ovb0113* self);
 
-void fn_7100727ee4(UnkBillboardComponent_ovb0113* self, f32 dt) {
+void CBillboardComponent_UpdateGroupsAndSwitchOnEntries(UnkBillboardComponent_ovb0113* self, f32 dt) {
     fn_71010c424c(reinterpret_cast<UnkParent*>(self));
     void* manager = Manager_ovb0113();
     UnkBillboardEntry_ovb0113* first = Find_ovb0113(manager, self->id);

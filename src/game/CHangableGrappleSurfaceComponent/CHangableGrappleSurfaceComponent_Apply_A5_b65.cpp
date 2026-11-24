@@ -12,11 +12,11 @@ struct UnkGrappleSurface_A5_b65 {
     UnkGrappleSurfaceTunable_A5_b65* tunable;
 };
 
-void fn_710082566c(UnkGrappleSurface_A5_b65* self, f32 factor);
+void CHangableGrappleSurfaceComponent_FadeMaterialAlpha(UnkGrappleSurface_A5_b65* self, f32 factor);
 
-void fn_7100825654(UnkGrappleSurface_A5_b65* self, bool forced) {
+void CHangableGrappleSurfaceComponent_FadeGlowToFullOrNotAllowedIntensity(UnkGrappleSurface_A5_b65* self, bool forced) {
     if (forced)
-        fn_710082566c(self, 1.0f);
+        CHangableGrappleSurfaceComponent_FadeMaterialAlpha(self, 1.0f);
     else
-        fn_710082566c(self, self->tunable->factor);
+        CHangableGrappleSurfaceComponent_FadeMaterialAlpha(self, self->tunable->factor);
 }

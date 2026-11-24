@@ -40,7 +40,7 @@ f32 fn_71006396dc(UnkPoisonFlyAI_ovb0001* self) {
 struct UnkParent;
 // As src/game/CPoisonFlyAIComponent/CPoisonFlyAIComponent_OffsetTime_b67a4.cpp declares it.
 struct UnkPoisonFlyAI_b67a4;
-void fn_71006393d4(UnkPoisonFlyAI_b67a4* self, f32 dt);
+void CPoisonFlyAIComponent_UpdateAttackOffsetTime(UnkPoisonFlyAI_b67a4* self, f32 dt);
 // As src/game/UnkUnit958/UnkUnit958_b35.cpp declares it.
 struct UnkUnit958List;
 struct UnkUnit958Entry;
@@ -117,7 +117,7 @@ void fn_71006392cc(UnkPoisonFlyAI1_ovb0001* self, f32 dt) {
         target->y = y;
         target->z = z;
     }
-    fn_71006393d4(reinterpret_cast<UnkPoisonFlyAI_b67a4*>(self), dt);
+    CPoisonFlyAIComponent_UpdateAttackOffsetTime(reinterpret_cast<UnkPoisonFlyAI_b67a4*>(self), dt);
 }
 
 // As src/game/CInfesterAIComponent/CInfesterAIComponent_Send_b57.cpp declares it.

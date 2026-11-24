@@ -10,7 +10,7 @@
 #include "types.h"
 
 struct UnkGunShots_ovb0070;
-void fn_710085c338(UnkGunShots_ovb0070* shots, u32 n);
+void CSamusGunComponent_ReserveRefEntryVector(UnkGunShots_ovb0070* shots, u32 n);
 
 // What a shot refers to: the owner whose target is looked up.
 struct UnkShotSource_lac77c4 : base::UnkRefCounted {
@@ -55,7 +55,7 @@ struct UnkWeaponMovement_lac77c4 {
 // Grows the array with default shots or destroys the shots past `n`.
 static inline void Resize(UnkWeaponShots_lac77c4* shots, u32 n) {
     if (shots->count < n) {
-        fn_710085c338(reinterpret_cast<UnkGunShots_ovb0070*>(shots), n);
+        CSamusGunComponent_ReserveRefEntryVector(reinterpret_cast<UnkGunShots_ovb0070*>(shots), n);
         for (u32 i = shots->count; i < n; ++i)
             new (&shots->data[i]) UnkWeaponShot_lac77c4();
         shots->count = n;

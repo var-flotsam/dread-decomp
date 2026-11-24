@@ -9,7 +9,7 @@ struct UnkSelf_7100480928 {
     UnkWeakHandle* field_0x60;
 };
 
-void fn_7100480928(UnkSelf_7100480928* self) {
+void CChozoWarriorXChangeWallAttack_UnlinkTrackedObjectCallback(UnkSelf_7100480928* self) {
     fn_71004936a0(self);
     if (UnkWeakHandle* handle = self->field_0x60) {
         if (UnkWeakTarget* target = handle->target)

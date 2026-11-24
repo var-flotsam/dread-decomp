@@ -21,8 +21,8 @@ struct UnkActorDefFactory;
 struct UnkCharClass_ovb0066;
 struct UnkAssetNameData_ovb0113;
 
-void fn_71011abe2c(UnkCharClass_ovb0066* self);
-UnkTunableLine fn_7100e05430(UnkAssetNameData_ovb0113** id);
+void CCharClass_Construct(UnkCharClass_ovb0066* self);
+UnkTunableLine CGameManager_BuildRuntimeAssetPath(UnkAssetNameData_ovb0113** id);
 extern char g_unk_7101a20c58[];
 
 // A counted reference to a resource whose destructor reads the pointer once (as in
@@ -92,7 +92,7 @@ struct UnkActorDefRequest_le051b4 {
 
 UnkSpawnDefRef_b52 fn_7100e051b4(UnkActorDefFactory* factory, const CStrId* name) {
     UnkCharClass_le051b4* object = static_cast<UnkCharClass_le051b4*>(fn_71000839a0(0x168, 5));
-    fn_71011abe2c(reinterpret_cast<UnkCharClass_ovb0066*>(object));
+    CCharClass_Construct(reinterpret_cast<UnkCharClass_ovb0066*>(object));
     UnkSpawnDefRef_b52 ref;
     if (object) {
         object->vf_0x18();
@@ -104,7 +104,7 @@ UnkSpawnDefRef_b52 fn_7100e051b4(UnkActorDefFactory* factory, const CStrId* name
 
     UnkActorDefKey_le051b4 key(
         *reinterpret_cast<const CStrId*>(g_unk_71727b9530),
-        UnkStringPath_le051b4(*fn_7100e05430(reinterpret_cast<UnkAssetNameData_ovb0113**>(const_cast<CStrId*>(name)))
+        UnkStringPath_le051b4(*CGameManager_BuildRuntimeAssetPath(reinterpret_cast<UnkAssetNameData_ovb0113**>(const_cast<CStrId*>(name)))
                                    .Str())
             .Path());
     UnkActorDefRequest_le051b4 request(*name);

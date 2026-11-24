@@ -56,7 +56,7 @@ struct UnkAreaFXColl_ovb0081 {
 
 void fn_710086493c(void* container, u32 flags, UnkAreaFXEntries_ovb0081* out);
 
-void fn_71007fee9c(UnkAreaFXColl_ovb0081* self) {
+void CAreaFXComponent_CollectOwnerColliders(UnkAreaFXColl_ovb0081* self) {
     void* container = self->owner->field_0x2a0;
     if (!container)
         return;
@@ -82,7 +82,7 @@ void fn_71007fee9c(UnkAreaFXColl_ovb0081* self) {
     }
 }
 
-void fn_7100801fa4(UnkAreaFXColl_ovb0081* self) {
+void CAreaFXComponent_ReleaseColliderList(UnkAreaFXColl_ovb0081* self) {
     if (UnkGameManagerSub_0x608* scenario = g_unk_7101d47310->field_0x608) {
         if (UnkTracker_71008618cc* tracker = static_cast<UnkTracker_71008618cc*>(scenario->field_0x820)) {
             for (u64 i = 0; i < self->entries.count; ++i) {

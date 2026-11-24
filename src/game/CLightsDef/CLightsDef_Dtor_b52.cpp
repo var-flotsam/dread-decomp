@@ -47,11 +47,11 @@ struct UnkLightsDefObj_b52 : UnkLightsDefBase_b52 {
     __attribute__((always_inline)) ~UnkLightsDefObj_b52() { vtable = &g_unk_7101aa9140[2]; }
 };
 
-void fn_7100d9ee70(UnkLightsDefObj_b52* self) {
+void CLightsDef_Destroy(UnkLightsDefObj_b52* self) {
     self->~UnkLightsDefObj_b52();
 }
 
 // By reference: the object is known to exist, so the delete has no null check.
-void fn_7100d9ef14(UnkLightsDefObj_b52& self) {
+void CLightsDef_DestroyAndDelete(UnkLightsDefObj_b52& self) {
     delete &self;
 }

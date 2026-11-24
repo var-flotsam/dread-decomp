@@ -114,7 +114,7 @@ static inline bool Sweep(UnkTree* tree, u32 mask, UnkShape* shape, const UnkMatr
     return fn_7100d5babc(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(&sweep.v), query, false);
 }
 
-bool fn_710064b884(UnkQuetzoaAI_l64b884* self, const base::math::CVector3D* delta) {
+bool CQuetzoaAIComponent_SweepCollidesAlongDelta(UnkQuetzoaAI_l64b884* self, const base::math::CVector3D* delta) {
     UnkQuetzoaPart_l64b884* part = self->owner->part;
     UnkFlaggedMask_l64b884* flagged = self->owner->flagged;
     UnkCollider_l64b884* collider =

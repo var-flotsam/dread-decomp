@@ -16,17 +16,17 @@ struct UnkWeightPlatform_b49a4 {
     bool enabled;
 };
 
-void fn_7100a0a2dc(UnkWeightPlatform_b49a4* self);
+void CWeightActivatedPlatformSmartObjectComponent_RequestState6AndClearFinished(UnkWeightPlatform_b49a4* self);
 
-bool fn_7100a0d480(UnkWeightPlatform_b49a4* self, bool on) {
+bool CWeightActivatedPlatformSmartObjectComponent_SetDisabledByEmmyNearby(UnkWeightPlatform_b49a4* self, bool on) {
     if (self->enabled) {
         UnkWeightPlatformState_b49a4* s = self->field_0x190;
         if (on) {
             if (s != nullptr && s->state != 6)
-                fn_7100a0a2dc(self);
+                CWeightActivatedPlatformSmartObjectComponent_RequestState6AndClearFinished(self);
         } else {
             if (s == nullptr || s->state == 6)
-                fn_7100a09cd4(self);
+                CWeightActivatedPlatformSmartObjectComponent_RequestState5AndClearFinished(self);
         }
     }
     return false;

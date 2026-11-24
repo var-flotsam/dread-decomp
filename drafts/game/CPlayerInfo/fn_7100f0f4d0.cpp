@@ -10,10 +10,10 @@ struct UnkRecord {
 };
 
 struct UnkPlayerInfo;
-void fn_7100f0e100(UnkPlayerInfo* self, const UnkRecord& record);
+void CPlayerInfo_RefreshHasItemFlagOnMessage(UnkPlayerInfo* self, const UnkRecord& record);
 
 bool fn_7100f0f4d0(UnkPlayerInfo* self, const UnkRecord* in) {
     UnkRecord copy = *in;
-    fn_7100f0e100(self, copy);
+    CPlayerInfo_RefreshHasItemFlagOnMessage(self, copy);
     return false;
 }

@@ -94,7 +94,7 @@ static_assert(__builtin_offsetof(UnkMineAI3_ovb0132, sound) == 0x146d8, "layout"
 
 // Moves the playing sound's volume and pitch to the given values over 0.2 (and its third value over
 // 0.2); starts the sound (g_unk_71726e4750) with them when it isn't playing.
-void fn_710057dadc(UnkMineAI3_ovb0132* self, f32 volume, f32 pitch) {
+void CFulmiteBellyMineAIComponent_PlayOrUpdateSoundVolumeAndPitch(UnkMineAI3_ovb0132* self, f32 volume, f32 pitch) {
     UnkMineSoundHandle_ovb0132* sound = &self->sound;
     if (sound->Playing()) {
         fn_7100105d34(sound->Get(), volume, false, 0.2f);

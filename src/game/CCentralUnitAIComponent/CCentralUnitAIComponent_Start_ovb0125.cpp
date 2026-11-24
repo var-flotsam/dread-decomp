@@ -40,7 +40,7 @@ static inline bool Near(f32 a, f32 b) {
     return __builtin_fabsf(a - b) < 0.001f;
 }
 
-void fn_7100403b30(UnkCentralUnitAI_ovb0125* self) {
+void CCentralUnitAIComponent_CopyOwnerPositionAndForceOwnerAngle(UnkCentralUnitAI_ovb0125* self) {
     fn_7100369650(reinterpret_cast<char*>(self));
     UnkCentralUnitOwner_ovb0125* owner = self->owner;
     UnkVec3f pos = owner->xform.GetTranslation();

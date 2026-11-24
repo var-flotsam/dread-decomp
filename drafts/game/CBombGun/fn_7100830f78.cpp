@@ -25,7 +25,7 @@ struct UnkActor;
 
 extern const u64 g_unk_710164ac50;
 
-void fn_7100aac004(UnkBombAimMovement_ovb0078* self, UnkWeakTarget* target);
+void CBombMovement_SetTargetAndCacheAngle(UnkBombAimMovement_ovb0078* self, UnkWeakTarget* target);
 
 // A counted reference to a weak handle.
 struct UnkHandleRef_l830f78 {
@@ -207,7 +207,7 @@ bool fn_7100830f78(UnkBombGun_l830f78* self) {
         if (UnkWeakHandle* handle = targets.target.ptr) {
             UnkWeakTarget* target = handle->target;
             if (target && (reinterpret_cast<UnkTargetObject_l830f78*>(target)->Flags() & 0x8000))
-                fn_7100aac004(reinterpret_cast<UnkBombAimMovement_ovb0078*>(movement), target);
+                CBombMovement_SetTargetAndCacheAngle(reinterpret_cast<UnkBombAimMovement_ovb0078*>(movement), target);
         }
         if (UnkBossHolder_l830f78* holder = BehaviorManager()->holder) {
             if (UnkBossActor_l830f78* actor = holder->actor) {

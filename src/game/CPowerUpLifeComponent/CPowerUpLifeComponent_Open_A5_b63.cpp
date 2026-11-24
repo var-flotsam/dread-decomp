@@ -63,7 +63,7 @@ static inline UnkPowerUpEntity_A5_b63* Entity_A5_b63(UnkPowerUpLife_A5_b63* self
     return self->link ? self->link->entity : nullptr;
 }
 
-u32 fn_71008e51c4(UnkPowerUpLife_A5_b63* self) {
+u32 CPowerUpLifeComponent_OpenAndReleaseLinkedEntity(UnkPowerUpLife_A5_b63* self) {
     if (!self->link || !self->link->entity)
         return 0;
     if (UnkScriptCaller* script = self->owner->script)

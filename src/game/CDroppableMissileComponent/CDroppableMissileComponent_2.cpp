@@ -19,7 +19,7 @@ struct UnkDroppableMissileComponent {
     UnkQualifiedId item;
 };
 
-void fn_71007bc738(UnkDroppableMissileComponent* self, UnkDroppableMissileOwner* owner) {
+void CDroppableMissileComponent_AddFiveToOwnerItemCapped(UnkDroppableMissileComponent* self, UnkDroppableMissileOwner* owner) {
     if (!owner)
         return;
     UnkInventory* inventory = owner->inventory;

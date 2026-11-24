@@ -43,7 +43,7 @@ void fn_71008823e8(void* p);
 extern UnkMultiLockOnLists g_unk_717272b660;
 void fn_7100882460(void* p);
 
-void fn_7100883e20() {
+void CMultiLockOnBlockComponent_InitStatics() {
     UnkMultiLockOnBlockTU& tu = g_unk_717272b730;
     InitHeader(tu.header);
     fn_7100881a68();

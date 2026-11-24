@@ -102,7 +102,7 @@ UnkSoundHandle fn_7100d7c45c(UnkEntityWithSound* self, void* a, void* b, void* c
     return g_unk_7108b6c460;
 }
 UnkSoundHandle fn_7100d7c590(UnkEntityWithSound* self, void* a) {
-    if (self->sound) return fn_710071a338(self->sound, a);
+    if (self->sound) return CAudioComponent_FindSoundHandleByPath(self->sound, a);
     return g_unk_7108b6c460;
 }
 // fn_71009dacbc is given a third flag it does not read (src/game/CRumbleComponent.cpp).

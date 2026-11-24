@@ -27,7 +27,7 @@ struct UnkMeleeTarget_sdp {
 
 void fn_710068685c(CAttack* self, f32 dt);
 
-void fn_7100687170(CAttack* self, f32 dt) {
+void CScorpiusDefensiveSpikeBallPrickAttack_SetTargetOverrideFromTrackAndUpdate(CAttack* self, f32 dt) {
     UnkMeleeTarget_sdp* target = reinterpret_cast<UnkMeleeTarget_sdp*>(fn_7100d7c990(self->field_0x8));
     UnkMeleeOverride_sdp* melee = target->melee_override;
     UnkAnimationComponent* anim = static_cast<UnkAnimationComponent*>(self->field_0x8->field_0x220);

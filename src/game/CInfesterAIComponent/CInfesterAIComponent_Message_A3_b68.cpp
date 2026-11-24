@@ -26,7 +26,7 @@ struct UnkInfesterMsg_A3_b68 {
     bool field_0x20;
 };
 
-u32 fn_71005ccb5c(UnkInfesterAI_A3_b68* self, UnkInfesterMsg_A3_b68* msg) {
+u32 CInfesterAIComponent_OnMessageClearScared(UnkInfesterAI_A3_b68* self, UnkInfesterMsg_A3_b68* msg) {
     u32 result =
         fn_7101111dc8(reinterpret_cast<UnkNailongAI_b46a2*>(self), reinterpret_cast<UnkNailongMsg_b46a2*>(msg));
     if (msg->field_0x20) {

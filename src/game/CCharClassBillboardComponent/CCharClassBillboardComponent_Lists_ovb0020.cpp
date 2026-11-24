@@ -76,7 +76,7 @@ struct UnkCharClassBillboardLists_ovb0020 {
     base::global::CRntVector<char*> hidden;  // 0x108
 };
 
-void fn_71007302e4(UnkCharClassBillboardLists_ovb0020* self, char* item) {
+void CCharClassBillboardComponent_ReturnItemToPool(UnkCharClassBillboardLists_ovb0020* self, char* item) {
     if (self->hidden.count == 0)
         return;
     self->shown.PushBack(item);

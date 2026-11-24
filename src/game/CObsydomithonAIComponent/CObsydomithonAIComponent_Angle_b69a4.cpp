@@ -40,13 +40,13 @@ static inline __attribute__((always_inline)) bool AngleToTarget_b69a4(UnkObsydom
     return true;
 }
 
-bool fn_710062f6e4(UnkObsydomithonAI_b69a4* self, f32* angle) {
+bool CObsydomithonAIComponent_GetAngleToTargetWithStoredOffset(UnkObsydomithonAI_b69a4* self, f32* angle) {
     if (!fn_7100d7c990(self->actor))
         return false;
     return AngleToTarget_b69a4(self, &self->offset, angle);
 }
 
-bool fn_710062f7d4(UnkObsydomithonAI_b69a4* self, const UnkVec2_b69a4* offset, f32* angle) {
+bool CObsydomithonAIComponent_GetAngleToTargetWithOffset(UnkObsydomithonAI_b69a4* self, const UnkVec2_b69a4* offset, f32* angle) {
     if (!fn_7100d7c990(self->actor))
         return false;
     return AngleToTarget_b69a4(self, offset, angle);

@@ -41,7 +41,7 @@ static inline u32 ParseKind(const char* name) {
     return 4;
 }
 
-void fn_71009cfe98(UnkItemDesc_l9cfe98* self, f32 value_0xa8, f32 value_0x50, const char* id_0x98,
+void CPickableItemComponent_SetIdsStringsAndKind(UnkItemDesc_l9cfe98* self, f32 value_0xa8, f32 value_0x50, const char* id_0x98,
                    const char* kind, const char* id_0xa0, const char* id_0xb8, const char* string_0xc0,
                    const char* string_0xf0, bool flag) {
     {

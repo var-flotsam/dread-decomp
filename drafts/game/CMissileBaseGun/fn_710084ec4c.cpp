@@ -163,7 +163,7 @@ static_assert(__builtin_offsetof(UnkMissile_l84ec4c, field_0x3fc) == 0x3fc, "lay
 static_assert(__builtin_offsetof(UnkMissile_l84ec4c, suffix) == 0x598, "layout");
 static_assert(__builtin_offsetof(UnkMissile_l84ec4c, field_0x618) == 0x618, "layout");
 
-void fn_710084f22c(UnkMissileGun_l84ec4c* self);
+void CMissileBaseGun_ConsumeOneAmmo(UnkMissileGun_l84ec4c* self);
 bool fn_710084f30c(UnkMissileGun_l84ec4c* self, const CVector3D* position, const CVector3D* dir,
                    UnkMissileEntity_l84ec4c* entity, UnkMissile_l84ec4c* missile);
 UnkMissile_l84ec4c* fn_7100554660(UnkMissileEntity_l84ec4c* entity);
@@ -184,7 +184,7 @@ static inline f32 Keep(f32 value, f32 dir) {
 bool fn_710084ec4c(UnkMissileGun_l84ec4c* self, UnkMissileShotArg_l84ec4c* shot) {
     if (!self->vf_0x48() || !self->owner)
         return false;
-    fn_710084f22c(self);
+    CMissileBaseGun_ConsumeOneAmmo(self);
     UnkActorDefFactory* factory = g_unk_71726a0220;
     UnkMissileName_l84ec4c* name = reinterpret_cast<UnkMissileName_l84ec4c*>(self->name.data);
     ++name->use_count;

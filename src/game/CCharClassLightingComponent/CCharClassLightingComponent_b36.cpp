@@ -64,7 +64,7 @@ void fn_71008e7f98(UnkLightingComponent3* self, const u64* id, f32 a, f32 b) {
 
 // The destructor body: drops the resource at +0x48, releases and deletes every light, empties the
 // array, then runs the base (fn_710024f910).
-void fn_71008e7bc0(UnkLightingComponent3* self) {
+void CCharClassLightingComponent_ReleaseLightsDefAndDeleteLights(UnkLightingComponent3* self) {
     fn_7100027044(&self->field_0x48);
     u32 count = self->count;
     if (count != 0) {
@@ -96,7 +96,7 @@ bool fn_71008e74f0(UnkLightingComponent3* self, void* arg) {
         fn_71008e6bd0();
         if (fn_710009d50c(type, &g_unk_7172732948)) {
             self->lighting = object;
-            fn_71008e756c(self, reinterpret_cast<char*>(object) + 0x58);
+            CCharClassLightingComponent_SetLightsDefPath(self, reinterpret_cast<char*>(object) + 0x58);
             return result;
         }
     }

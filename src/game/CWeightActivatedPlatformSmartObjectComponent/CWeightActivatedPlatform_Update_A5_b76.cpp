@@ -141,7 +141,7 @@ void fn_7100a0bee0(UnkPlatformUpdate_A5_b76* self, f32 dt) {
             fn_71001c2764(owner->slots, slot, 1, reinterpret_cast<const base::math::CVector4D*>(&color), 1, true);
             fn_7100a09bf8(self, false, progress);
         } else if (fn_710117ae38(animation, SingletonKey_A5_b76(0x1dc0)->hash, false)) {
-            fn_7100a09cd4(reinterpret_cast<UnkWeightPlatform_b49a4*>(self));
+            CWeightActivatedPlatformSmartObjectComponent_RequestState5AndClearFinished(reinterpret_cast<UnkWeightPlatform_b49a4*>(self));
         }
         return;
     }
@@ -290,7 +290,7 @@ void fn_7100a09948(UnkPlatformSelf_A5_b76* self) {
         if (!current || current->id == 6) {
             fn_7100d7c828(reinterpret_cast<UnkActor*>(self->entity), &g_unk_710164b4c8, false);
             self->on = false;
-            fn_7100a09cd4(reinterpret_cast<UnkWeightPlatform_b49a4*>(self));
+            CWeightActivatedPlatformSmartObjectComponent_RequestState5AndClearFinished(reinterpret_cast<UnkWeightPlatform_b49a4*>(self));
         }
     }
     if (void* part = self->entity->part)

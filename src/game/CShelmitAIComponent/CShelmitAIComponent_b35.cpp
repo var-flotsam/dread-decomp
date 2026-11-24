@@ -35,11 +35,11 @@ static inline __attribute__((always_inline)) void Sample(UnkShelmitAI_b35* self,
     if (dt < 0.001f) {
         t->previous = value;
         t->rate = 0.0f;
-        fn_71006badf4(reinterpret_cast<UnkShelmitAI*>(self), value);
+        CShelmitAIComponent_ApplyCrystalEmissiveFactor(reinterpret_cast<UnkShelmitAI*>(self), value);
         return;
     }
     t->rate = (value - t->previous) / dt;
 }
 
-void fn_71006ba4a8(UnkShelmitAI_b35* self, f32 dt) { Sample<&UnkShelmitSource::field_0x638>(self, dt); }
-void fn_71006bb908(UnkShelmitAI_b35* self, f32 dt) { Sample<&UnkShelmitSource::field_0x634>(self, dt); }
+void CShelmitAIComponent_BlendCrystalEmissiveToMax(UnkShelmitAI_b35* self, f32 dt) { Sample<&UnkShelmitSource::field_0x638>(self, dt); }
+void CShelmitAIComponent_StartCrystalEmissiveRampToMin(UnkShelmitAI_b35* self, f32 dt) { Sample<&UnkShelmitSource::field_0x634>(self, dt); }

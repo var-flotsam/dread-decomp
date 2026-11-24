@@ -13,7 +13,7 @@ struct UnkLightsArray_b42a3;
 void fn_7100da0870(UnkClearedArray* self, u32 count);  // Resizes.
 void fn_7100d9dce8();
 void fn_7100d9e2cc();
-void fn_7100da1508(UnkLightsArray_b42a3* self, u32 capacity);
+void CLightsDef_ReserveLights(UnkLightsArray_b42a3* self, u32 capacity);
 extern char g_unk_71727ba998;
 extern char g_unk_71727ba999;
 extern char g_unk_71727ba99a;

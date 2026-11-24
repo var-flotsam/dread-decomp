@@ -17,7 +17,7 @@ bool fn_71010fc554(base::reflection::UnkReflObject* component, f32* out);
 bool fn_71010fc5fc(base::reflection::UnkReflObject* component, f32* out);
 // As src/game/CChozoWarriorAIComponent/fn_710049cbd8.cpp defines it.
 struct UnkSelf;
-bool fn_710049cbd8(UnkSelf* self);
+bool CChozoWarriorAIComponent_IsTargetAboveMinDistanceToFloor(UnkSelf* self);
 
 struct UnkDeflectorWarriorAI : UnkReflObject {
     u8 pad_0x8[0x14991];
@@ -70,7 +70,7 @@ static inline bool CanDeflect(UnkDeflectorAttack* self, UnkDeflectorWarriorAI* a
     f32 dot = d.x * mx + d.y * my + d.z * mz;
     if (!(dot > 0.3f))
         return false;
-    return !fn_710049cbd8(reinterpret_cast<UnkSelf*>(ai));
+    return !CChozoWarriorAIComponent_IsTargetAboveMinDistanceToFloor(reinterpret_cast<UnkSelf*>(ai));
 }
 
 bool fn_71004943b0(UnkDeflectorAttack* self, void* arg, u32 mode) {

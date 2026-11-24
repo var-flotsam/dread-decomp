@@ -116,7 +116,7 @@ static inline UnkModelManager* ModelManager() {
     return g_unk_71726b0cd8;
 }
 
-void fn_71006b14ec(UnkShkImpact_ovb0041* self, const UnkShkPoint_ovb0041* at, void* unused, UnkShkTarget_ovb0041* target) {
+void CShakernautAIComponent_StartExplosionAtPoint(UnkShkImpact_ovb0041* self, const UnkShkPoint_ovb0041* at, void* unused, UnkShkTarget_ovb0041* target) {
     self->x = at->x;
     self->y = at->y;
     fn_71006b16b0(self, target);

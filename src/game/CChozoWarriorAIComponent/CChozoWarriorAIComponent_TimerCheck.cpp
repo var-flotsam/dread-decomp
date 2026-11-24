@@ -10,6 +10,6 @@ struct UnkChozoWarriorAI733 {
 
 void fn_710049acd8(UnkChozoWarriorAI733* self, void* context, s32 skip) {
     if (skip == 0 && self->field_0x14a1c >= 0.2f) {
-        fn_71004996b0(self);
+        CChozoWarriorAIComponent_ReleaseHandleAndClearTimer(self);
     }
 }

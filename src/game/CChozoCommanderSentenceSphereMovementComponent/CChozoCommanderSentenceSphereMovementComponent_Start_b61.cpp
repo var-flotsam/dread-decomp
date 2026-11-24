@@ -14,7 +14,7 @@
 struct UnkSelf;
 struct UnkStruct_71008618cc;
 struct UnkSentenceSphere_b61a2;
-void fn_710045b8e0(UnkSentenceSphere_b61a2* self);
+void CChozoCommanderSentenceSphereMovementComponent_ApplyRadius(UnkSentenceSphere_b61a2* self);
 extern u64 g_unk_71726ca0e8 __attribute__((visibility("hidden")));
 struct UnkSentenceSphereKey_b61a2;
 extern UnkSentenceSphereKey_b61a2 g_unk_7101649730;  // reached through the GOT
@@ -58,7 +58,7 @@ void fn_710045b780(UnkSentenceSphere_b61a2* self) {
     if (UnkStruct_71008618cc* collision = self->owner->field_0x2a0)
         fn_71008618cc(collision);
     self->field_0x5dc = self->field_0x5d0->field_0x13c;
-    fn_710045b8e0(self);
+    CChozoCommanderSentenceSphereMovementComponent_ApplyRadius(self);
     self->field_0x5e4 = 0;
     self->field_0x5e8 = false;
     if (auto* timeline = static_cast<UnkTimelineComponent*>(self->owner->field_0x2e8)) {

@@ -90,7 +90,7 @@ void fn_71007dc328(UnkEventProp_b48* self) {
         self->vf_0x170();
 }
 
-void fn_71007dc478(UnkEventProp_b48* self) {
+void CCharClassEventPropComponent_SetEventLaunched(UnkEventProp_b48* self) {
     self->launched = true;
     UnkGameManager* manager = g_unk_7101d47310;
     CBlackboard* blackboard = &manager->field_0x968;
@@ -99,7 +99,7 @@ void fn_71007dc478(UnkEventProp_b48* self) {
     self->StoreTrue(blackboard, section_id, g_unk_717271ebe8, &value);
 }
 
-void fn_71007dc598(UnkEventProp_b48* self) {
+void CCharClassEventPropComponent_SetEventFinished(UnkEventProp_b48* self) {
     self->finished = true;
     UnkGameManager* manager = g_unk_7101d47310;
     CBlackboard* blackboard = &manager->field_0x968;

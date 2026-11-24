@@ -27,7 +27,7 @@ using base::reflection::UnkReflObject;
 struct UnkComponent_71005174e0;
 struct UnkDoorEmmyFX_b50;
 
-void fn_71007b6be4(UnkDoorEmmyFX_b50* self, bool add);
+void CDoorEmmyFXComponent_SetEmmyChaseKey(UnkDoorEmmyFX_b50* self, bool add);
 
 // The tunable's switch for the doors' EMMY effect.
 struct UnkEmmyDoorTunable_l512b94 {
@@ -101,7 +101,7 @@ void fn_7100512b94(UnkEmmyChaseAction_l512b94* self, u32 arg) {
                 continue;
             UnkReflObject* fx = door->fx;
             if (fx && fn_710009d50c(fx->vf_0x0(), fn_71007b55e4()))
-                fn_71007b6be4(reinterpret_cast<UnkDoorEmmyFX_b50*>(fx), false);
+                CDoorEmmyFXComponent_SetEmmyChaseKey(reinterpret_cast<UnkDoorEmmyFX_b50*>(fx), false);
         }
     }
 

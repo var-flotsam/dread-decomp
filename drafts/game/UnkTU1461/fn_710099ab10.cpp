@@ -15,7 +15,7 @@ struct UnkComponent;
 struct CSamusMovementState2;
 struct UnkGrappleState_B71a6;
 void fn_71009b0c74(CSamusMovementState2* self);
-void fn_710099adcc(UnkGrappleState_B71a6* self, s32 kind);
+void CSamusGrappleMovementState_ResetDirectionAndFlagsForKind(UnkGrappleState_B71a6* self, s32 kind);
 extern const u64 g_unk_710164b368;
 
 struct UnkGrappleTarget_l99ab10 : UnkWeakTarget {
@@ -88,7 +88,7 @@ static inline UnkGrappleBeamGun_l99ab10* GrappleGun(UnkGrappleState_l99ab10* sel
 void fn_710099ab10(UnkGrappleState_l99ab10* self, s32 kind) {
     fn_71009b0c74(reinterpret_cast<CSamusMovementState2*>(self));
     UnkGrappleActor_l99ab10* actor = self->movement->owner->actor;
-    fn_710099adcc(reinterpret_cast<UnkGrappleState_B71a6*>(self), kind);
+    CSamusGrappleMovementState_ResetDirectionAndFlagsForKind(reinterpret_cast<UnkGrappleState_B71a6*>(self), kind);
     self->field_0xb90 = false;
     self->hold = UnkGrappleHoldValues_l99ab10();
     if (UnkGrappleBeamGun_l99ab10* gun = GrappleGun(self)) {

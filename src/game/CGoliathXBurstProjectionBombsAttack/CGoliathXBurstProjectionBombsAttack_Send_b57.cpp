@@ -30,7 +30,7 @@ struct UnkGoliathXBombsAttack_b57a3 {
     u32 field_0x68;
 };
 
-void fn_71005847a4(UnkGoliathXBombsAttack_b57a3* self, f32 dt) {
+void CGoliathXBurstProjectionBombsAttack_UpdateWaveTimer(UnkGoliathXBombsAttack_b57a3* self, f32 dt) {
     fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);
     f32 t = self->field_0x60;
     if (!(t > 0.0f))

@@ -34,12 +34,12 @@ UnkHandle fn_7100d7c704(UnkEntityWithSound* self, void* a, bool b, bool c, bool 
 
 struct UnkAudio_b50;
 struct UnkSoundRequest_b50;
-UnkSoundHandle fn_710071a7dc(UnkAudio_b50* self, const UnkSoundRequest_b50* request);
+UnkSoundHandle CAudioComponent_PlaySoundWithLimitCheck(UnkAudio_b50* self, const UnkSoundRequest_b50* request);
 
 struct UnkStruct_710071faf4;
-void fn_710071faf4(UnkStruct_710071faf4* self, const UnkStruct_710071faf4* other);
+void CAudioComponent_CopyConstructSoundSlot(UnkStruct_710071faf4* self, const UnkStruct_710071faf4* other);
 struct UnkAudioSound_ovb0015;
-void fn_710071f878(UnkAudioSound_ovb0015* self);
+void CAudioComponent_ReleaseSoundSlotIds(UnkAudioSound_ovb0015* self);
 void fn_710010602c(UnkSoundObject_b50* object, u32 value);
 
 // The object a handle names while it is still the one the handle was made for.
@@ -221,7 +221,7 @@ UnkSoundHandle fn_710071bae8(UnkEntitySoundComponent* component, const u32* para
     p.volume = volume * self->bus_volumes[bus];
     p.level = self->group_levels[group];
 
-    UnkSoundHandle handle = fn_710071a7dc(reinterpret_cast<UnkAudio_b50*>(self),
+    UnkSoundHandle handle = CAudioComponent_PlaySoundWithLimitCheck(reinterpret_cast<UnkAudio_b50*>(self),
                                           reinterpret_cast<const UnkSoundRequest_b50*>(&p));
     if (GetSoundObject_bae8(&handle) || p.field_0x6c) {
         UnkHandle rumble = {nullptr, (u64)-1};
@@ -247,9 +247,9 @@ UnkSoundHandle fn_710071bae8(UnkEntitySoundComponent* component, const u32* para
                 if (UnkAudioSlot_bae8* src = slots.data) {
                     UnkAudioSlot_bae8* dst = data;
                     for (u32 i = 0; i < slots.count; ++i, ++dst, ++src) {
-                        fn_710071faf4(reinterpret_cast<UnkStruct_710071faf4*>(dst),
+                        CAudioComponent_CopyConstructSoundSlot(reinterpret_cast<UnkStruct_710071faf4*>(dst),
                                       reinterpret_cast<UnkStruct_710071faf4*>(src));
-                        fn_710071f878(reinterpret_cast<UnkAudioSound_ovb0015*>(src));
+                        CAudioComponent_ReleaseSoundSlotIds(reinterpret_cast<UnkAudioSound_ovb0015*>(src));
                     }
                     slots.allocator->vf_0x48(slots.data);
                 }

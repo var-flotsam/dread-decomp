@@ -43,7 +43,7 @@ static inline bool NearW(f32 a, f32 b) {
     return a + 1e-5f >= b && a - 1e-5f <= b;
 }
 
-void fn_71008c69a4(UnkDemolitionLifeUpdate* self, f32 dt) {
+void CDemolitionBlockLifeComponent_UpdateLerpingNodeValue(UnkDemolitionLifeUpdate* self, f32 dt) {
     fn_7101160078(reinterpret_cast<UnkCommanderLife_A5_b63*>(self), dt);
     if (Near(self->current.x, self->goal.x) && Near(self->current.y, self->goal.y) &&
         Near(self->current.z, self->goal.z) && NearW(self->current.w, self->goal.w))

@@ -122,7 +122,7 @@ struct UnkPowerBombBlockLifeParts_ovb0127 {
     UnkStruct_7100233684* owner;  // 0x30
 };
 
-void fn_71008e36d0(UnkPowerBombBlockLifeParts_ovb0127* self) {
+void CPowerBombBlockLifeComponent_SwitchModelToBreakParts(UnkPowerBombBlockLifeParts_ovb0127* self) {
     auto* model = reinterpret_cast<UnkPowerBombModel_ovb0127*>(fn_7100233684(self->owner));
     if (!model)
         return;
@@ -162,7 +162,7 @@ struct UnkPowerBombBlockLifeBreak_ovb0127 {
     }
 };
 
-void fn_71008e3808(UnkPowerBombBlockLifeBreak_ovb0127* self) {
+void CPowerBombBlockLifeComponent_HideBreakPartsAndColliders(UnkPowerBombBlockLifeBreak_ovb0127* self) {
     auto* model = reinterpret_cast<UnkPowerBombModel_ovb0127*>(
         fn_7100233684(reinterpret_cast<UnkStruct_7100233684*>(self->owner)));
     if (model) {

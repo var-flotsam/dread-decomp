@@ -191,7 +191,7 @@ static inline __attribute__((always_inline)) void Register_kr(char* self, u32 of
 }
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
-u32 fn_71005fbdb0(char* self, void* arg) {
+u32 CKraidAIComponent_InitAndRegisterAttacks(char* self, void* arg) {
     u32 result = fn_71003ac8f4(reinterpret_cast<UnkBossAIComponent*>(self), arg);
     base::reflection::UnkReflObject* object = *reinterpret_cast<base::reflection::UnkReflObject**>(self + 0x10);
     base::reflection::UnkReflObject* component = nullptr;

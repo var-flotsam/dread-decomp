@@ -29,7 +29,7 @@ struct UnkGrappleState {
 };
 
 // Passes a CCharClassGrappleFinalPullEndEvent on to the first sub-state of kind 4.
-void fn_710099a478(UnkGrappleState* self, UnkReflObject* event) {
+void CSamusGrappleMovementState_ForwardFinalPullEndEventToKind4State(UnkGrappleState* self, UnkReflObject* event) {
     if (!fn_710009d50c(event->vf_0x0(), fn_7100cc21a8()))
         return;
     // The search runs over the byte size of the array.

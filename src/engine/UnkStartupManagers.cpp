@@ -71,7 +71,7 @@ void fn_7100fd4db8(void* self, bool flag);
 
 void fn_710119b048(void* self);
 
-void fn_7100e09794(void* self);
+void CLightManager_Init(void* self);
 
 struct UnkGameObject_0x150;  // src/engine/HostArguments.cpp
 void fn_7100dde0e4(UnkGameObject_0x150* self);
@@ -125,7 +125,7 @@ void fn_7100adfb20(const UnkStartupFlags* flags, CFilePathStrId root) {
     fn_7100fd4db8(Singleton<void, 0xf18, 0x3f, fn_7100fd3804>(reinterpret_cast<void*&>(g_unk_71726bc560)),
                   flags->field_0x0);
     fn_710119b048(Singleton<void, 0x2208, 0x3f, fn_710119aee8>(g_unk_7172729910));
-    fn_7100e09794(Singleton<void, 0x198, 0x3f, fn_7100359118>(g_unk_71726b1688));
+    CLightManager_Init(Singleton<void, 0x198, 0x3f, fn_7100359118>(g_unk_71726b1688));
     fn_7100dde0e4(Singleton<UnkGameObject_0x150, 0x150, 0x3f, fn_7100dde0c8>(g_unk_7101d47370));
     fn_7100ef378c(Singleton<UnkStruct_0x128, 0x150, 0x3f, fn_7100ef3494>(g_unk_7101d47320));
     fn_7100dde79c(Singleton<UnkGameObject_0x60, 0x60, 0x3f, fn_7100dde718>(g_unk_7101d47378));

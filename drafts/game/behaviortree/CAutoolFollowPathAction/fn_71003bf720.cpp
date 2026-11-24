@@ -21,7 +21,7 @@ using base::reflection::UnkReflObject;
 
 extern char g_unk_7101a264d0[];
 extern f32* g_unk_71726beb18;
-u32 fn_71006f5104(void* navigation, void* path_holder);
+u32 CAINavigationComponent_FindIndexOfPointNearestOwner(void* navigation, void* path_holder);
 void fn_7101059fec(void* path, const UnkVec3f* position, u32* a, u32* index, f32* t, f32* distance);
 struct UnkFollowPointOut {
     f32 x, y, z;
@@ -174,7 +174,7 @@ void fn_71003bf720(UnkAutoolFollow_l3bf720* self) {
     u32 index = state->index;
     bool none = false;
     if (index == (u32)-1) {
-        index = fn_71006f5104(navigation, holder);
+        index = CAINavigationComponent_FindIndexOfPointNearestOwner(navigation, holder);
         UnkVec3f position(owner->field_0x44, owner->field_0x54, owner->field_0x64);
         u32 unused;
         u32 segment;

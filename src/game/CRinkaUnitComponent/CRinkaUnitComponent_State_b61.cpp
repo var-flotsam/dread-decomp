@@ -90,19 +90,19 @@ struct UnkRinkaUnit_b61 {
     UnkSmMachine_b61 machine;
 };
 
-void fn_710065ff7c(UnkRinkaUnit_b61* self, u32 a) {
+void CRinkaUnitComponent_RequestState2WithOwnRinkaType(UnkRinkaUnit_b61* self, u32 a) {
     self->field_0x48 = self->field_0x4c;
     self->field_0x50 = a;
     RequestState_b61<3, 4>(&self->machine, 2);
 }
 
-void fn_710066008c(UnkRinkaUnit_b61* self, u32 a, u32 b) {
+void CRinkaUnitComponent_SetKindAndRequestState2(UnkRinkaUnit_b61* self, u32 a, u32 b) {
     self->field_0x50 = a;
     self->field_0x48 = b;
     RequestState_b61<3, 4>(&self->machine, 2);
 }
 
-void fn_7100660198(UnkRinkaUnit_b61* self) {
+void CRinkaUnitComponent_ClearKindAndRequestState1(UnkRinkaUnit_b61* self) {
     self->field_0x48 = 0x7fffffff;
     RequestState_b61<3, 4>(&self->machine, 1);
 }

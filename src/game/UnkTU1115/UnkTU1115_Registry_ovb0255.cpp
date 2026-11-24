@@ -12,7 +12,7 @@
 #include "types.h"
 
 struct UnkWorldGraphEntries_b47a3;
-s32 fn_7100acca04(UnkWorldGraphEntries_b47a3* self, const u64* key);
+s32 CWorldGraph_FindNodeIndexById(UnkWorldGraphEntries_b47a3* self, const u64* key);
 
 // The registry keyed tables: records (or u32 keys) with a bucket array beside them.
 struct UnkTable_b0255 {
@@ -119,10 +119,10 @@ static_assert(__builtin_offsetof(UnkIdMap_b0255, owner) == 0x68, "layout");
 
 __attribute__((noinline)) void fn_71006facbc(UnkQueryEntry_b50* entry) {
     auto* self = reinterpret_cast<UnkIdMap_b0255*>(entry);
-    self->index = fn_7100acca04(self->owner->graph, &self->key);
+    self->index = CWorldGraph_FindNodeIndexById(self->owner->graph, &self->key);
     self->indices.count = 0;
     for (u64 *id = self->ids.data, *end = id + self->ids.count; id != end; ++id) {
-        u32 index = fn_7100acca04(self->owner->graph, id);
+        u32 index = CWorldGraph_FindNodeIndexById(self->owner->graph, id);
         self->indices.PushBack(index);
     }
 }

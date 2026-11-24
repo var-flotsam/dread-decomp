@@ -15,14 +15,14 @@ struct UnkDescribed;
 struct UnkSelf;
 struct UnkWarriorTurn_b58;
 void fn_7100498db8(UnkSelf* self);
-void fn_71004996b0(UnkChozoWarriorAI733* self);
+void CChozoWarriorAIComponent_ReleaseHandleAndClearTimer(UnkChozoWarriorAI733* self);
 UnkDescribed* fn_710049b3cc(UnkChecker* self);
 void fn_710049d094(UnkWarriorTurn_b58* self);
 base::global::CStrId fn_710049c2f4(base::reflection::UnkReflObject* ai, f32 facing);
 extern base::global::CStrId g_unk_71726d1270 __attribute__((visibility("hidden")));
 extern UnkChozoWarriorKind_b67a2* g_unk_71726d1260 __attribute__((visibility("hidden")));
 extern void* g_unk_7101a3cbc8[];
-bool fn_710049cbd8(UnkWarriorAI* ai);
+bool CChozoWarriorAIComponent_IsTargetAboveMinDistanceToFloor(UnkWarriorAI* ai);
 
 namespace base::reflection {
 struct UnkReflObject;

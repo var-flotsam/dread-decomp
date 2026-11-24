@@ -75,7 +75,7 @@ struct UnkLogicActionTrigger_b48 {
     }
 };
 
-void fn_710090f720(UnkLogicActionTrigger_b48* self, CBlackboard* blackboard) {
+void CLogicActionTriggerComponent_LoadEnabledFromBlackboard(UnkLogicActionTrigger_b48* self, CBlackboard* blackboard) {
     CBlackboard::CSection* section = fn_71010472e0(blackboard, fn_71011a2fbc(g_unk_7101d47310->field_0x608));
     if (!section)
         return;

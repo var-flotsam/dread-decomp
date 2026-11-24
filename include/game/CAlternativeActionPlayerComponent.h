@@ -11,6 +11,6 @@ struct UnkSnapArg_b69a4 {
     u32 field_0x0;
     bool skip;
 };
-u32 fn_71007124d8(UnkAlternativeActionPlayer* self, UnkSnapArg_b69a4 arg);  // returns 0
-bool fn_7100712538(UnkAlternativeActionPlayer* self, void*);
+u32 CAlternativeActionPlayerComponent_CopyEntryFirstPairsToSecondPairs(UnkAlternativeActionPlayer* self, UnkSnapArg_b69a4 arg);  // returns 0
+bool CAlternativeActionPlayerComponent_ClearEntriesOnMessage(UnkAlternativeActionPlayer* self, void*);
 extern void* g_unk_7101a6c0b8[];

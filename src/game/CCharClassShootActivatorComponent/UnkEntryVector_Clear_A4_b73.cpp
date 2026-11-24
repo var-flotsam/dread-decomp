@@ -159,8 +159,8 @@ struct UnkPushVector_A4_b73 {
     }
 };
 
-void fn_710089566c(UnkPushVector_A4_b73* v, const UnkPushEntry_A4_b73* value) {
-    v->PushBack<fn_7100895498>(value);
+void CCharClassShootActivatorComponent_EntryArrayPushBackCopy(UnkPushVector_A4_b73* v, const UnkPushEntry_A4_b73* value) {
+    v->PushBack<CCharClassShootActivatorComponent_ReserveCallbackEntryVector>(value);
 }
 
 void fn_71008ab6b4(UnkPushVector_A4_b73* v, const UnkPushEntry_A4_b73* value) {

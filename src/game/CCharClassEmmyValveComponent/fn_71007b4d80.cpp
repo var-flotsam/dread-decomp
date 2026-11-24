@@ -24,7 +24,7 @@ void fn_71007b1bac(void* p);
 extern char g_unk_717271a238[];
 extern char g_unk_717271a239[];
 
-void fn_71007b4d80() {
+void CCharClassEmmyValveComponent_InitStatics() {
     InitHeaderIds(&g_unk_717271a290.ids);
     InitId(&g_unk_717271a208, "EMMY_VALVE");
     InitProperty(&g_unk_717271a210, g_unk_7101a706d8, g_unk_71726db788, "Disabled", TypeOf<fn_710000d228>(),

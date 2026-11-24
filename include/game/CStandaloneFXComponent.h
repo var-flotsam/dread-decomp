@@ -7,5 +7,5 @@
 
 struct UnkStandaloneFx;
 struct UnkStruct_710081348c;
-void fn_7100811f28(UnkStandaloneFx* self);
+void CStandaloneFXComponent_CreateInstanceEffect(UnkStandaloneFx* self);
 void fn_710081348c(UnkStruct_710081348c* self);

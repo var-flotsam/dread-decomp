@@ -16,7 +16,7 @@ using base::global::CStrId;
 struct UnkCentralUnit_b49;
 struct UnkCentralUnitDoor_b46a2;
 struct UnkDoorCentral_A4_b76;
-void fn_71008ca2d0(UnkDoorCentral_A4_b76* self);
+void CDoorCentralUnitLifeComponent_SetStayOpened(UnkDoorCentral_A4_b76* self);
 
 struct UnkLinkHandle_l775fe0 {
     u8 pad_0x0[0x10];
@@ -83,7 +83,7 @@ void fn_7100775fe0(UnkCentralUnit_l775fe0* self, s32 mode) {
     }
     if (self->door.Get()) {
         if (UnkCentralUnitDoor_b46a2* central = fn_71004056fc(self->door.Get())) {
-            fn_71008ca2d0(reinterpret_cast<UnkDoorCentral_A4_b76*>(central));
+            CDoorCentralUnitLifeComponent_SetStayOpened(reinterpret_cast<UnkDoorCentral_A4_b76*>(central));
         } else if (UnkDoorLock* door = fn_71002af860(self->door.Get())) {
             fn_71008d0ef4(door);
         }

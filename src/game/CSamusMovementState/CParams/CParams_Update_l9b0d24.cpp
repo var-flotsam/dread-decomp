@@ -15,7 +15,7 @@ extern void* g_unk_7101a86df8[];
 
 struct UnkSamusImpulseParams_b0105;
 struct UnkSamusMovementTarget_b0105;
-bool fn_71009b05c0(UnkSamusImpulseParams_b0105* self, UnkSamusMovementTarget_b0105* target);
+bool CSamusMovementState_ApplyOffsetToTarget(UnkSamusImpulseParams_b0105* self, UnkSamusMovementTarget_b0105* target);
 
 struct UnkAirTarget_B71a6;
 struct UnkAirRequest_B71a6;
@@ -122,7 +122,7 @@ void fn_71009b0d24(void* object, void* arg) {
     UnkSamusState_l9b0d24* self = static_cast<UnkSamusState_l9b0d24*>(object);
     self->time = *static_cast<const f32*>(arg) + self->time;
     if (!self->impulse_applied && self->impulse) {
-        fn_71009b05c0(self->impulse, self->movement);
+        CSamusMovementState_ApplyOffsetToTarget(self->impulse, self->movement);
         self->impulse_applied = true;
     }
     self->vtable->vf_0x118(self);
