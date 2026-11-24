@@ -28,17 +28,14 @@
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 #include "game/sound/UnkSoundHandle.h"
+#include "game/UnkSoundRef.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
 
 // A handle on a sound: the reference and the serial it was taken with; the sound is gone once the
 // reference's serial differs (or the handle's is -1).
-struct UnkSoundRef {
-    UnkSound* sound;
-    s64 serial;
-};
-inline UnkSound* UnkSoundHandle::Get() const { if (ref && ref->serial == serial && serial != -1) return ref->sound; return nullptr; }
+inline UnkSound* UnkSoundHandle::Get() const { if (ref && ref->serial == serial && serial != -1) return ref->object; return nullptr; }
 
 struct UnkWordPair_fb89b4 {
     u64 field_0x0;

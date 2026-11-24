@@ -16,6 +16,7 @@
 #include "game/UnkTimeline.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
+#include "game/UnkStruct_71007142e8.h"
 
 struct UnkGoliathAI_b58a3;
 struct UnkDashSlashOwner_b0237 {
@@ -34,7 +35,6 @@ struct UnkGoliathAI_b58a3;
 
 // Signature as the other AI units declare it; here it hands back the next state's id, so it is called through
 // a cast.
-
 
 struct UnkHydrogigaAttack_b47;
 void fn_71003627d0(UnkHydrogigaAttack_b47* self);
@@ -56,11 +56,6 @@ u8* fn_710046840c(UnkDashSlashAttack_b0237* self) {
 }
 
 struct UnkStruct_7101176ea8;
-struct UnkStruct_71007142e8 {
-    f32 m[12];
-    u8 pad_0x30[0x40];
-};
-
 struct UnkMotionTracks;
 
 struct UnkDashSlashOwner2_b0237 {
@@ -87,9 +82,9 @@ void fn_71004684d0(UnkDashSlashAttack2_b0237* self) {
     UnkMotionTracks* tracks = timeline->tracks;
     UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
-    f32 x = motion.m[3];
-    f32 y = motion.m[7];
-    f32 z = motion.m[11];
+    f32 x = motion.xform.m[0][3];
+    f32 y = motion.xform.m[1][3];
+    f32 z = motion.xform.m[2][3];
     self->field_0x3c = __builtin_sqrtf(x * x + y * y + z * z);
 }
 

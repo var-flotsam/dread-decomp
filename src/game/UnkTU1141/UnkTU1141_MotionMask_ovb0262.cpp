@@ -4,18 +4,11 @@
 // Names and layouts are placeholders.
 #include "base/math/UnkZeroVector3.h"
 #include "game/UnkMotionRule.h"
+#include "game/UnkStruct_71007142e8.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU32.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-struct UnkStruct_71007142e8 {
-    UnkXform xform;  // 0x0
-    u32 mode;  // 0x5c
-    base::math::CVector3D vector;  // 0x60
-    f32 field_0x6c;
-};
-static_assert(sizeof(UnkStruct_71007142e8) == 0x70, "layout");
 
 // The default vector, copied component by component.
 __attribute__((always_inline)) static inline void SetVector(UnkStruct_71007142e8* self) {

@@ -3,22 +3,15 @@
 // statics).
 #include "base/UnkInitRecord_0x5c.h"
 #include "game/UnkMotionRule.h"
+#include "game/UnkStruct_71007142e8.h"
 #include "game/UnkTU1141.h"
 #include "types.h"
 
-struct UnkStruct_71007142e8 {
-    u8 pad_0x0[0x5c];
-    u32 field_0x5c;
-    u32 field_0x60;
-    u32 field_0x64;
-    u32 field_0x68;
-};
-
 void fn_71007142e8(UnkStruct_71007142e8* self) {
     fn_7100025624(self);
-    self->field_0x5c = 0;
-    self->field_0x60 = 0;
-    self->field_0x64 = 0;
-    self->field_0x68 = 0;
+    self->mode = 0;
+    self->vector.x = 0.0f;
+    self->vector.y = 0.0f;
+    self->vector.z = 0.0f;
     fn_71007143c8(self, UnkFlagsAll_71007142e8());
 }

@@ -19,6 +19,7 @@
 #include "game/UnkTU50.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
+#include "game/UnkSoundRef.h"
 
 using base::global::CStrId;
 using base::global::UnkStringPool;
@@ -37,14 +38,8 @@ void CAudioComponent_CopyConstructSoundSlot(UnkStruct_710071faf4* self, const Un
 struct UnkInterp_7100105f94;
 
 // As src/game/CAudioComponent/CAudioComponent_Stop_b65a4.cpp has them.
-struct UnkSoundObject_b50;
-struct UnkSoundRef {
-    UnkSoundObject_b50* object;
-    s64 serial;
-};
-
 // The object a handle names while it is still the one the handle was made for.
-static inline UnkSoundObject_b50* Resolve_ovb0015(const UnkSoundHandle* handle) {
+static inline UnkSound* Resolve_ovb0015(const UnkSoundHandle* handle) {
     if (handle->ref && handle->ref->serial == handle->serial && handle->serial != -1)
         return handle->ref->object;
     return nullptr;
