@@ -6,7 +6,6 @@
 #include "game/behaviortree/CBehavior.h"
 #include "types.h"
 #include "base/math/UnkZeroVector3.h"
-#include "game/UnkSelf.h"
 
 using base::math::CVector3D;
 
@@ -20,6 +19,13 @@ struct UnkFacing {
     f32 z_0x64;
 };
 
+struct UnkSelf {
+    u8 pad_0x0[0x18];
+    UnkFacing* field_0x18;
+    u8 pad_0x20[0x18];
+    u8 field_0x38[8];
+    CVector3D field_0x40;
+};
 
 #define UNK_NEAR(a, b) ((a) - 0.001f <= (b) && (a) + 0.001f >= (b))
 

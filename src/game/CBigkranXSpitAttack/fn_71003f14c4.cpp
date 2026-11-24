@@ -4,7 +4,6 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
-#include "game/UnkSelf.h"
 
 using base::reflection::CClass;
 
@@ -13,6 +12,15 @@ struct UnkActor_71003b4718 {
     const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkActor_71003b4718*)>(vtable[0])(this); }
 };
 
+struct UnkSelf {
+    u8 pad_0x0[0x28];
+    UnkActor_71003b4718* field_0x28;
+    u8 pad_0x30[0xa0];
+    f32 field_0xd0;
+    u8 pad_0xd4[0x14];
+    u64 field_0xe8;
+    u64 field_0xf0;
+};
 
 void fn_71003606c8(UnkSelf* self, UnkActor_71003b4718* actor);
 
