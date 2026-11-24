@@ -31,6 +31,13 @@ class FakeTree:
     def ls(self, directory):
         return sorted(p for p in self.files if p.startswith(directory + "/"))
 
+    def dirs(self, directory="src"):
+        out = set()
+        for p in self.files:
+            parts = p.split("/")[:-1]
+            out |= {"/".join(parts[:i]) for i in range(2, len(parts) + 1)}
+        return sorted(d for d in out if d.startswith(directory + "/"))
+
 
 FOO = """\
 // The foo unit.
@@ -77,7 +84,7 @@ def members(cls):
 
 
 def items(*specs):
-    return [{"address": a, "name": n, "lookup": n, "class": nb.class_of(n), "evidence": f"facts about {n}",
+    return [{"address": a, "name": n, "lookup": n, "class": nb.class_of(n), "evidence": f"facts about {n} (reads iCount)",
              "rev": "r"} for a, n in specs]
 
 
@@ -444,6 +451,208 @@ class Propose(StateDir):
         found, skipped = nb.unnamed_matched("src/game/CFoo", FakeTree(files), statuses)
         self.assertEqual(found, ["fn_7100000100"])
         self.assertEqual(skipped, ["fn_7100000400"])
+
+    POOL_FILES = {
+        "src/game/CFoo/a.cpp": "int fn_7100000500() { return 1; }\n",
+        "src/game/animtree/CNode/n.cpp": "int fn_7100000100() { return 1; }\n",
+        "src/game/animtree/CNode/CSub/s.cpp": "int fn_7100000110() { return 1; }\n",
+        "src/game/UnkThing/u.cpp": "int fn_7100000200() { return 1; }\n",
+        "src/base/CRes/r.cpp": "int fn_7100000300() { return 1; }\nint fn_7100000310() { return 2; }\n",
+        "src/base/UnkUnit7/x.cpp": "int fn_7100000400() { return 1; }\n",
+        "src/game_lo/fn_7100000600.cpp": "int fn_7100000600() { return 1; }\n",
+        "src/game_s1/UnkUnit9/y.cpp": "int fn_7100000700() { return 1; }\n",
+        "src/lifted/CLift/l.cpp": "int fn_7100000800() { return 1; }\n",
+    }
+
+    def test_pool_directories(self):
+        tree = FakeTree(self.POOL_FILES)
+        self.assertEqual(nb.pool_directories(tree, 1),
+                         ["src/game/CFoo", "src/game/animtree/CNode", "src/game/animtree/CNode/CSub"])
+        self.assertEqual(nb.pool_directories(tree, 2), ["src/base/CRes"])
+        self.assertEqual(nb.pool_directories(tree, 3),
+                         ["src/base/UnkUnit7", "src/game/UnkThing", "src/game_lo", "src/game_s1",
+                          "src/game_s1/UnkUnit9"])
+
+    def test_pool_items_skip_limit_and_no_prefix(self):
+        tree = FakeTree(self.POOL_FILES)
+        statuses = {f"fn_7100000{a}": "O" for a in ("100", "110", "200", "300", "310", "400", "500", "600", "700")}
+        items = nb.pool_items(tree, statuses, 1, 0, "r", skip={"0x7100000500"})
+        # Each directory takes only its own files; the subdirectory is its own unit.
+        self.assertEqual([(i["address"], i["class"]) for i in items],
+                         [("0x7100000100", "CNode"), ("0x7100000110", "CSub")])
+        items = nb.pool_items(tree, statuses, 2, 1, "r", skip=set())
+        self.assertEqual(len(items), 2)  # a directory is never split by the limit, but the first is always taken
+        items = nb.pool_items(tree, statuses, 3, 2, "r", skip=set())
+        self.assertEqual([(i["address"], i["class"], i["unit"]) for i in items],
+                         [("0x7100000200", "", "src/game/UnkThing"), ("0x7100000400", "", "src/base/UnkUnit7")])
+
+    def test_unit_requests_ask_for_no_prefix(self):
+        tree = FakeTree(self.POOL_FILES)
+        it = {"address": "0x7100000600", "name": "fn_7100000600", "lookup": "fn_7100000600", "class": "",
+              "unit": "src/game_lo", "rev": "r"}
+        reqs, meta = nb.build_requests("propose", [it], lambda _: tree, members)
+        content = reqs[0]["params"]["messages"][0]["content"]
+        self.assertIn("Unit: src/game_lo", content[0]["text"])
+        self.assertIn("with no class prefix", content[-1]["text"])
+        self.assertEqual(meta[0]["unit"], "src/game_lo")
+        rev = dict(it, name="CountLiveActors", evidence="counts entries")
+        reqs, _ = nb.build_requests("review", [rev], lambda _: tree, members)
+        self.assertIn("Unit: src/game_lo", reqs[0]["params"]["messages"][0]["content"][0]["text"])
+
+    def test_build_propose_pool_skips_given_addresses(self):
+        args = SimpleNamespace(run="pp", rev="r", pool=2, limit=0, classes=None, dry_run=True, effort="high",
+                               cache_ttl="5m")
+        statuses = {"fn_7100000300": "O", "fn_7100000310": "O"}
+        self.assertEqual(nb.cmd_build_propose(args, tree_factory=lambda rev: FakeTree(self.POOL_FILES),
+                                              members=members, statuses=statuses, skip={"0x7100000300"}), 0)
+        meta = json.loads((nb.STATE / "pp" / "meta.json").read_text())
+        self.assertEqual([m["address"] for m in meta["items"]], ["0x7100000310"])
+
+
+class FixedVerbs(StateDir):
+    def test_apply_holds_names_outside_the_fixed_verbs(self):
+        for bad in ("CFoo_Dtor", "CFoo_DeletingDestructor", "CFoo_InitUnitStatics", "CFoo_StaticInit", "CFoo_Ctor"):
+            self.assertTrue(nb.NOT_FIXED_VERB.search(bad), bad)
+        for good in ("CFoo_Destroy", "CFoo_DestroyAndDelete", "CFoo_InitStatics", "CActor_Construct",
+                     "CActorDef_FindPartById"):
+            self.assertFalse(nb.NOT_FIXED_VERB.search(good), good)
+
+    def test_unanchored_names(self):
+        # No caller and only offsets: held. A string, a reflected member, a caller or a fixed role: not held.
+        self.assertTrue(nb.unanchored("CFoo_ResetTimers", "clears +0x10 and +0x14", False, ["fTime"]))
+        self.assertFalse(nb.unanchored("CFoo_ResetTimers", "clears fTime (+0x10)", False, ["fTime"]))
+        self.assertFalse(nb.unanchored("CFoo_PlayIntro", 'sends "intro" to the timeline', False, []))
+        self.assertFalse(nb.unanchored("CFoo_ResetTimers", "clears +0x10", True, []))
+        self.assertFalse(nb.unanchored("CFoo_InitStatics", "sets +0x10", False, []))
+        self.assertTrue(nb.unanchored("ResetTimerPair", "clears +0x10", False, []))
+
+
+class Safety(StateDir):
+    def write_ledger(self, *rows):
+        nb.LEDGER.parent.mkdir(parents=True, exist_ok=True)
+        with nb.LEDGER.open("w", newline="", encoding="utf-8") as fh:
+            w = csv.DictWriter(fh, fieldnames=nb.LEDGER_COLUMNS)
+            w.writeheader()
+            for r in rows:
+                w.writerow({**{c: "0" for c in nb.LEDGER_COLUMNS}, **r})
+
+    def test_intent_is_written_before_create(self):
+        self.make_run("r1")
+
+        class Timeout(FakeBatches):
+            def create(self, requests):
+                raise TimeoutError("read timed out")
+
+        with self.assertRaises(TimeoutError):
+            nb.cmd_submit(SimpleNamespace(run="r1", budget=180.0), client=fake_client(Timeout()))
+        self.assertTrue((nb.STATE / "r1" / "intent.json").exists())
+        self.assertFalse((nb.STATE / "r1" / "batch.json").exists())
+        worst = json.loads((nb.STATE / "r1" / "intent.json").read_text())["worst_dollars"]
+        self.assertAlmostEqual(nb.committed_spend()[1], worst)   # still counted as pending
+        self.assertEqual(nb.cmd_submit(SimpleNamespace(run="r1", budget=180.0),
+                                       client=fake_client(FakeBatches())), 1)
+
+    def test_reconcile_reports_unknown_batches(self):
+        self.write_ledger({"run": "old", "batch_id": "msgbatch_known", "dollars": "1"})
+
+        class Listing(FakeBatches):
+            def list(self, limit=100):
+                counts = SimpleNamespace(processing=0, succeeded=1, errored=0, canceled=0, expired=0)
+                return iter([SimpleNamespace(id=i, processing_status="ended", request_counts=counts, created_at="t")
+                             for i in ("msgbatch_known", "msgbatch_orphan")])
+
+        out = io.StringIO()
+        with mock.patch("sys.stdout", out):
+            nb.cmd_reconcile(SimpleNamespace(), client=fake_client(Listing([succeeded("a", "{}")])))
+        text = out.getvalue()
+        self.assertIn("msgbatch_orphan", text)
+        self.assertNotIn("not in the ledger: msgbatch_known", text)
+        self.assertIn("1 not in the ledger", text)
+
+    def test_lock_blocks_a_second_submit(self):
+        self.make_run("r1")
+        batches = FakeBatches()
+        with nb.SubmitLock():
+            with self.assertRaises(SystemExit):
+                nb.cmd_submit(SimpleNamespace(run="r1", budget=180.0), client=fake_client(batches),
+                              lock=nb.SubmitLock(wait=0))
+        self.assertEqual(batches.created, [])
+        self.assertFalse((nb.STATE / "submit.lock").exists())
+
+    def test_reused_run_name_is_counted(self):
+        self.write_ledger({"run": "r1", "batch_id": "msgbatch_first", "dollars": "5"})
+        d = nb.STATE / "r1"
+        d.mkdir(parents=True)
+        (d / "batch.json").write_text(json.dumps({"id": "msgbatch_second", "worst_dollars": 7}))
+        self.assertEqual(nb.committed_spend(), (5.0, 7.0))
+        nb.append_ledger({**{c: "0" for c in nb.LEDGER_COLUMNS}, "run": "r1", "batch_id": "msgbatch_second",
+                          "dollars": "3"})
+        self.assertEqual(len(nb.ledger_rows()), 2)
+
+    def test_member_cap_applies_here_too(self):
+        self.make_run("m1")
+        meta = nb.STATE / "m1" / "meta.json"
+        info = json.loads(meta.read_text())
+        info["kind"] = "member-propose"
+        meta.write_text(json.dumps(info))
+        self.write_ledger({"run": "mem-old", "kind": "member-propose", "batch_id": "b0", "dollars": "39.99"})
+        batches = FakeBatches()
+        self.assertEqual(nb.cmd_submit(SimpleNamespace(run="m1", budget=180.0), client=fake_client(batches)), 2)
+        self.assertEqual(batches.created, [])
+
+    def test_apply_refuses_edited_verdicts_and_holds_taken_addresses(self):
+        info = self.make_run("r1", n=2)
+        ids = [m["custom_id"] for m in info["items"]]
+        nb.cmd_submit(SimpleNamespace(run="r1", budget=180.0), client=fake_client(FakeBatches()))
+        nb.cmd_fetch(SimpleNamespace(run="r1"), client=fake_client(FakeBatches(
+            [succeeded(cid, {"verdict": "right", "evidence_true": True, "reason": "r"}) for cid in ids])))
+        calls = []
+
+        def runner(addr, name, reason):
+            calls.append(addr)
+            return SimpleNamespace(returncode=0, stdout="", stderr="")
+
+        # Another run approved the first address: held and listed.
+        other = nb.STATE / "r0"
+        other.mkdir()
+        with (other / "verdicts.csv").open("w", newline="", encoding="utf-8") as fh:
+            w = csv.DictWriter(fh, fieldnames=nb.VERDICT_COLUMNS)
+            w.writeheader()
+            w.writerow({**{c: "" for c in nb.VERDICT_COLUMNS}, "address": info["items"][0]["address"],
+                        "name": "CFoo_Other", "verdict": "right", "evidence_true": "yes", "stated_evidence": "e"})
+        self.assertEqual(nb.cmd_apply(SimpleNamespace(run="r1"), runner=runner, named={}), 0)
+        self.assertEqual(calls, [info["items"][1]["address"]])
+        self.assertIn("approved by run `r0`", (nb.STATE / "r1" / "apply.md").read_text(encoding="utf-8"))
+        # An edited verdicts.csv no longer matches results.jsonl: refused, nothing renamed.
+        vpath = nb.STATE / "r1" / "verdicts.csv"
+        vpath.write_text(vpath.read_text(encoding="utf-8").replace(",right,", ",wrong,", 1), encoding="utf-8")
+        calls.clear()
+        self.assertEqual(nb.cmd_apply(SimpleNamespace(run="r1"), runner=runner, named={}), 1)
+        self.assertEqual(calls, [])
+
+    def test_qualified_lookup_does_not_take_another_class(self):
+        text = ("void CBar::Update() { Tick(); }\n"
+                "struct CFoo { void Update() { Tock(); } };\n"
+                "void Run(CBar* b) { CBar::Update(); }\n")
+        span = nb.find_definition(text, "CFoo::Update")
+        self.assertIn("Tock", text[span[0]:span[1]])
+        span = nb.find_definition(text, "CBar::Update")
+        self.assertIn("Tick", text[span[0]:span[1]])
+        self.assertIsNone(nb.find_definition("void CBar::Update() {}\n", "CFoo::Update"))
+        self.assertEqual(nb.callers_in("void Run() { CBar::Update(); }\n", "CFoo::Update"), [])
+        self.assertEqual(len(nb.callers_in("void Run() { CFoo::Update(); }\n", "CFoo::Update")), 1)
+
+    def test_key_is_stripped_and_base_url_checked(self):
+        seen = []
+        nb.make_client({"DREAD_NAMES_API_KEY": "  fake-test-value\n"}, factory=lambda **kw: seen.append(kw))
+        self.assertEqual(seen, [{"api_key": "fake-test-value"}])
+        nb.make_client({"DREAD_NAMES_API_KEY": "k", "ANTHROPIC_BASE_URL": "https://api.anthropic.com/"},
+                       factory=lambda **kw: "ok")
+        with self.assertRaises(SystemExit) as cm:
+            nb.make_client({"DREAD_NAMES_API_KEY": "fake-secret", "ANTHROPIC_BASE_URL": "https://proxy.example/v1"},
+                           factory=lambda **kw: self.fail("built"))
+        self.assertIn("proxy.example", str(cm.exception))
+        self.assertNotIn("fake-secret", str(cm.exception))
 
 
 if __name__ == "__main__":
