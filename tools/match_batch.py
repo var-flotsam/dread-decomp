@@ -96,7 +96,11 @@ way, because nobody knows its real name: the type Unk<What>_<the suffix the file
 function's address>, unlike any type in the file or the headers; a member field_0x<offset> with its real type
 and an `// 0x<offset>` comment; the bytes before it `u8 pad_0x<offset>[...]`. A descriptive name for a new member
 or type (speed, launch_value, TunablesView) is a guess and is not accepted; use a real name only where the file
-or the headers show it (an existing type that already has the member is better than a new view).
+or the headers show it (an existing type that already has the member is better than a new view). A view is for
+reading or writing a member of a real type: do not give a member a made-up size (`u8 field_0x98[8]`) only to
+take its address, and do not add a second view of an object whose struct the file already defines, with other
+member types. When the real fix is a member's type in a struct outside the function, which you cannot change,
+say so in `change` (the struct, the member, the type) so a person can make it.
 
 Readable source (the project's rules):
 - Code no developer would write is an optimization not undone yet: look for the inlined helper (written once
@@ -156,6 +160,9 @@ INCLUDE = re.compile(r'^[ \t]*#[ \t]*include[ \t]+"([^"]+)"', re.M)
 SPECIFIC = re.compile(r"\b(?:fn_\w+|g_\w+|[A-Za-z_]\w*[A-Z]\w*|[A-Z]\w{2,})\b")
 # Names a candidate may not bring in: a function or global nothing shown declares.
 PLACEHOLDER = re.compile(r"\b(?:fn_[0-9a-f]{6,}|g_unk_\w+)\b")
+# A member that is an array of bytes and not padding: an address taken through a made-up size, an offset cast in
+# another form.
+BYTE_MEMBER = re.compile(r"^[ \t]+(?:u8|s8|char|unsigned char)[ \t]+((?!pad_|unk_)\w+)[ \t]*\[[^\]]*\][ \t]*;", re.M)
 NEW_TYPE = re.compile(r"\b(?:struct|class|union|enum(?:\s+class)?)\s+([A-Za-z_]\w*)\s*(?::[^;{()]*)?\{")
 # Forms a candidate may not have more of than the text it replaces (fakematch's kinds are counted apart).
 FORBIDDEN = {
@@ -197,12 +204,46 @@ def definition_span(text: str, name: str) -> tuple[int, int] | None:
     return None
 
 
-def splice(text: str, name: str, replacement: str) -> str | None:
-    """The file's text with the definition of `name` replaced, or None when the file does not define it."""
+def comment_start(text: str, pos: int) -> int:
+    """Where the block of `//` lines directly above the line of `pos` starts; `pos` when there is none."""
+    line = text.rfind("\n", 0, pos) + 1
+    if text[line:pos].strip():
+        return pos
+    s = line
+    while s > 0:
+        prev = text.rfind("\n", 0, s - 1) + 1
+        if not text[prev:s].lstrip().startswith("//"):
+            break
+        s = prev
+    return s if s != line else pos
+
+
+def splice_span(text: str, name: str, replacement: str) -> tuple[str, int, int] | None:
+    """(the file's text with the definition of `name` replaced, where the new text starts, where it ends), or
+    None when the file does not define it. Helpers and types a replacement brings before the definition go
+    above the comment the file has over the function, which stays (the replacement's own is used when the file
+    has none)."""
     span = definition_span(text, name)
     if span is None:
         return None
-    return text[:span[0]] + replacement.strip() + text[span[1]:]
+    code = replacement.strip()
+    inner = definition_span(code, name)
+    cs = comment_start(text, span[0])
+    if inner is None or inner[0] == 0:
+        new = code
+        cs = span[0]
+    else:
+        fs = comment_start(code, inner[0])
+        prefix = code[:fs].rstrip()
+        comment = text[cs:span[0]] or code[fs:inner[0]]
+        new = (prefix + "\n\n" if prefix else "") + comment + code[inner[0]:]
+    return text[:cs] + new + text[span[1]:], cs, cs + len(new)
+
+
+def splice(text: str, name: str, replacement: str) -> str | None:
+    """The file's text with the definition of `name` replaced, or None when the file does not define it."""
+    got = splice_span(text, name, replacement)
+    return got[0] if got else None
 
 
 def line_of(text: str, pos: int) -> int:
@@ -232,9 +273,8 @@ def screen(path: str, old_text: str, name: str, code: str, pool: str, known: str
     if span is None:
         return None, "the file no longer defines the function"
     old_fn = old_text[span[0]:span[1]]
-    new_text = splice(old_text, name, code)
-    new_span = definition_span(new_text, name)
-    if new_span is None:
+    new_text, new_lo, new_hi = splice_span(old_text, name, code)
+    if definition_span(new_text, name) is None:
         return None, "the candidate does not define the function"
     before, after = counts(old_fn), counts(code)
     for what in FORBIDDEN:
@@ -247,9 +287,10 @@ def screen(path: str, old_text: str, name: str, code: str, pool: str, known: str
     for t in NEW_TYPE.findall(nb.mask(code)):
         if t not in old_types and (t in taken or re.search(rf"\b{re.escape(t)}\b", nb.mask(known))):
             return None, f"defines a type the tree already has: {t}"
-    lo = line_of(new_text, span[0])
-    hi = line_of(new_text, span[0] + len(code.strip()))
-    now = steering_in(path, new_text, lo, hi)
+    blob = BYTE_MEMBER.search(nb.mask(code))
+    if blob and not BYTE_MEMBER.search(nb.mask(old_fn)):
+        return None, f"a byte-array member that is not padding: {blob.group(1)}"
+    now = steering_in(path, new_text, line_of(new_text, new_lo), line_of(new_text, new_hi))
     was = steering_in(path, old_text, line_of(old_text, span[0]), line_of(old_text, span[1]))
     if pool == "clean" and now:
         return None, f"still has a steering form: {now[0][1]}"
