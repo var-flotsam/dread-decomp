@@ -7,39 +7,32 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassPlayEnvironmentStreamEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassPlayEnvironmentStreamEvent
-namespace CCharClassPlayEnvironmentStreamEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassPlayEnvironmentStreamEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Play Environment Stream");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Sound", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fVolume", 0xc, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x10, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())));
-    DREAD_REFLECTED_FIELD(bool, "bLoop", 0x18, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(f32, "fFadeInTime", 0x1c, (DefaultValue, 0.0f));
+void CCharClassPlayEnvironmentStreamEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fVolume", offsetof(CCharClassPlayEnvironmentStreamEvent, fVolume), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", offsetof(CCharClassPlayEnvironmentStreamEvent, sPath), (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())));
+    DREAD_REFLECTED_FIELD(bool, "bLoop", offsetof(CCharClassPlayEnvironmentStreamEvent, bLoop), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fFadeInTime", offsetof(CCharClassPlayEnvironmentStreamEvent, fFadeInTime), (DefaultValue, 0.0f));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x20;
+bool CCharClassPlayEnvironmentStreamEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassPlayEnvironmentStreamEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassPlayEnvironmentStreamEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPlayEnvironmentStreamEvent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassPlayEnvironmentStreamEvent::refl_Destroy(void* obj) { static_cast<CCharClassPlayEnvironmentStreamEvent*>(obj)->~CCharClassPlayEnvironmentStreamEvent(); }
+struct CCharClassPlayEnvironmentStreamEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassPlayEnvironmentStreamEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -50,5 +43,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassPlayEnvironmentStreamEvent
-DREAD_REFLECTED_CLASS(CCharClassPlayEnvironmentStreamEvent, base::global::timeline::CEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassPlayEnvironmentStreamEvent, base::global::timeline::CEvent);
+#pragma GCC diagnostic pop

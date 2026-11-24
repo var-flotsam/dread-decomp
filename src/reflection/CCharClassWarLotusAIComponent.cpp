@@ -7,35 +7,32 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassWarLotusAIComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassWarLotusAIComponent
-namespace CCharClassWarLotusAIComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fImpactToRelaxTime", 0x50c, (DefaultValue, 0.1f));
-    DREAD_REFLECTED_FIELD(f32, "fBumpToRelaxTime", 0x510, (DefaultValue, 0.1f));
-    DREAD_REFLECTED_FIELD(f32, "fImpactTime", 0x514, (DefaultValue, 0.1f));
-    DREAD_REFLECTED_FIELD(f32, "fBumpTime", 0x518, (DefaultValue, 0.1f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassWarLotusAIComponent::refl_AddAttributes(CClass*) {}
+void CCharClassWarLotusAIComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fImpactToRelaxTime", offsetof(CCharClassWarLotusAIComponent, fImpactToRelaxTime), (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fBumpToRelaxTime", offsetof(CCharClassWarLotusAIComponent, fBumpToRelaxTime), (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fImpactTime", offsetof(CCharClassWarLotusAIComponent, fImpactTime), (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fBumpTime", offsetof(CCharClassWarLotusAIComponent, fBumpTime), (DefaultValue, 0.1f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x520;
+bool CCharClassWarLotusAIComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassWarLotusAIComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassWarLotusAIComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassWarLotusAIComponent*>(obj)->refl_GetDynamicClass(); }
+struct CCharClassWarLotusAIComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassWarLotusAIComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
 };
-}  // namespace CCharClassWarLotusAIComponent
-DREAD_REFLECTED_CLASS(CCharClassWarLotusAIComponent, CCharClassBehaviorTreeAIComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassWarLotusAIComponent, CCharClassBehaviorTreeAIComponent);
+#pragma GCC diagnostic pop

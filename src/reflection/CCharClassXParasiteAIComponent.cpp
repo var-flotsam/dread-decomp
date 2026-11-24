@@ -7,46 +7,43 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassXParasiteAIComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassXParasiteAIComponent
-namespace CCharClassXParasiteAIComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fAbsorptionDistance", 0x50c, (DefaultValue, 200.0f));
-    DREAD_REFLECTED_FIELD(u32, "uMaxSimultaneous", 0x510, (DefaultValue, u32(0x5u)));
-    DREAD_REFLECTED_FIELD(f32, "fMaxSteeringAcceleration", 0x514, (DefaultValue, 2000.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMaxSteeringBrake", 0x518, (DefaultValue, 2000.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMaxSteeringChangingDir", 0x51c, (DefaultValue, 2000.0f));
-    DREAD_REFLECTED_FIELD(f32, "fBrakeDistance", 0x520, (DefaultValue, -1.0f));
-    DREAD_REFLECTED_FIELD(bool, "bLimitSteeringForceAngle", 0x524, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(f32, "fMaxSteeringForceAngle", 0x528, (DefaultValue, 2.3561945f));
-    DREAD_REFLECTED_FIELD(f32, "fWanderRadius", 0x52c, (DefaultValue, 200.0f));
-    DREAD_REFLECTED_FIELD(f32, "fInitTime", 0x530, (DefaultValue, 0.5f));
-    DREAD_REFLECTED_FIELD(f32, "fWanderTime", 0x534, (DefaultValue, 4.0f));
-    DREAD_REFLECTED_FIELD(f32, "fOffSetDisplacementNearPowerBomb", 0x538, (DefaultValue, 100.0f));
-    DREAD_REFLECTED_FIELD(f32, "fDistanceArriveEndAttract", 0x53c, (DefaultValue, 100.0f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassXParasiteAIComponent::refl_AddAttributes(CClass*) {}
+void CCharClassXParasiteAIComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fAbsorptionDistance", offsetof(CCharClassXParasiteAIComponent, fAbsorptionDistance), (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(u32, "uMaxSimultaneous", offsetof(CCharClassXParasiteAIComponent, uMaxSimultaneous), (DefaultValue, u32(0x5u)));
+    DREAD_REFLECTED_FIELD(f32, "fMaxSteeringAcceleration", offsetof(CCharClassXParasiteAIComponent, fMaxSteeringAcceleration), (DefaultValue, 2000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxSteeringBrake", offsetof(CCharClassXParasiteAIComponent, fMaxSteeringBrake), (DefaultValue, 2000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxSteeringChangingDir", offsetof(CCharClassXParasiteAIComponent, fMaxSteeringChangingDir), (DefaultValue, 2000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fBrakeDistance", offsetof(CCharClassXParasiteAIComponent, fBrakeDistance), (DefaultValue, -1.0f));
+    DREAD_REFLECTED_FIELD(bool, "bLimitSteeringForceAngle", offsetof(CCharClassXParasiteAIComponent, bLimitSteeringForceAngle), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fMaxSteeringForceAngle", offsetof(CCharClassXParasiteAIComponent, fMaxSteeringForceAngle), (DefaultValue, 2.3561945f));
+    DREAD_REFLECTED_FIELD(f32, "fWanderRadius", offsetof(CCharClassXParasiteAIComponent, fWanderRadius), (DefaultValue, 200.0f));
+    DREAD_REFLECTED_FIELD(f32, "fInitTime", offsetof(CCharClassXParasiteAIComponent, fInitTime), (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fWanderTime", offsetof(CCharClassXParasiteAIComponent, fWanderTime), (DefaultValue, 4.0f));
+    DREAD_REFLECTED_FIELD(f32, "fOffSetDisplacementNearPowerBomb", offsetof(CCharClassXParasiteAIComponent, fOffSetDisplacementNearPowerBomb), (DefaultValue, 100.0f));
+    DREAD_REFLECTED_FIELD(f32, "fDistanceArriveEndAttract", offsetof(CCharClassXParasiteAIComponent, fDistanceArriveEndAttract), (DefaultValue, 100.0f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_Destroy(void* obj) { Destroy(obj); }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x540;
+bool CCharClassXParasiteAIComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassXParasiteAIComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassXParasiteAIComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassXParasiteAIComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassXParasiteAIComponent::refl_Destroy(void* obj) { static_cast<CCharClassXParasiteAIComponent*>(obj)->~CCharClassXParasiteAIComponent(); }
+struct CCharClassXParasiteAIComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassXParasiteAIComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
     static constexpr auto construct = &refl_Construct;
     static constexpr auto destroy = &refl_Destroy;
 };
-}  // namespace CCharClassXParasiteAIComponent
-DREAD_REFLECTED_CLASS(CCharClassXParasiteAIComponent, CCharClassBehaviorTreeAIComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassXParasiteAIComponent, CCharClassBehaviorTreeAIComponent);
+#pragma GCC diagnostic pop

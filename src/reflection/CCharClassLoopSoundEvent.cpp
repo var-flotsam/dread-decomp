@@ -7,49 +7,42 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassLoopSoundEvent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassLoopSoundEvent
-namespace CCharClassLoopSoundEvent {
-void refl_AddAttributes(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassLoopSoundEvent::refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Loop Sound");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Sound", true));
 }
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sSoundID", 0x10, (DefaultValue, base::global::CFilePathStrId(" ", true)));
-    DREAD_REFLECTED_FIELD(CStrId, "sNode", 0x18, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(f32, "fVolume", 0x20, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
-    DREAD_REFLECTED_FIELD(f32, "fRadiusMinAttenuation", 0x24, (DefaultValue, 500.0f), (MinValue, 100.0f), (MaxValue, 50000.0f));
-    DREAD_REFLECTED_FIELD(f32, "fRadiusMaxAttenuation", 0x28, (DefaultValue, 3000.0f), (MinValue, 500.0f), (MaxValue, 50000.0f));
-    DREAD_REFLECTED_FIELD(f32, "fPitch", 0x2c, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
-    DREAD_REFLECTED_FIELD(bool, "bStopOnChangeAnim", 0x30, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(bool, "bStopOnEntityDead", 0x31, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(f32, "fFadeInTime", 0x34, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 10.0f));
-    DREAD_REFLECTED_FIELD(f32, "fFadeOutTime", 0x38, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 10.0f));
-    DREAD_REFLECTED_FIELD(f32, "fStopInTime", 0x3c, (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 30.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sType", 0x48, (DefaultValue, CStrId("N", true)));
-    DREAD_REFLECTED_FIELD(bool, "bRumbleSync", 0x44, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(f32, "fRumbleGainOverride", 0x40, (DefaultValue, -1.0f));
+void CCharClassLoopSoundEvent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sSoundID", offsetof(CCharClassLoopSoundEvent, sSoundID), (DefaultValue, base::global::CFilePathStrId(" ", true)));
+    DREAD_REFLECTED_FIELD(CStrId, "sNode", offsetof(CCharClassLoopSoundEvent, sNode), (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(f32, "fVolume", offsetof(CCharClassLoopSoundEvent, fVolume), (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRadiusMinAttenuation", offsetof(CCharClassLoopSoundEvent, fRadiusMinAttenuation), (DefaultValue, 500.0f), (MinValue, 100.0f), (MaxValue, 50000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fRadiusMaxAttenuation", offsetof(CCharClassLoopSoundEvent, fRadiusMaxAttenuation), (DefaultValue, 3000.0f), (MinValue, 500.0f), (MaxValue, 50000.0f));
+    DREAD_REFLECTED_FIELD(f32, "fPitch", offsetof(CCharClassLoopSoundEvent, fPitch), (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
+    DREAD_REFLECTED_FIELD(bool, "bStopOnChangeAnim", offsetof(CCharClassLoopSoundEvent, bStopOnChangeAnim), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(bool, "bStopOnEntityDead", offsetof(CCharClassLoopSoundEvent, bStopOnEntityDead), (DefaultValue, true));
+    DREAD_REFLECTED_FIELD(f32, "fFadeInTime", offsetof(CCharClassLoopSoundEvent, fFadeInTime), (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 10.0f));
+    DREAD_REFLECTED_FIELD(f32, "fFadeOutTime", offsetof(CCharClassLoopSoundEvent, fFadeOutTime), (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 10.0f));
+    DREAD_REFLECTED_FIELD(f32, "fStopInTime", offsetof(CCharClassLoopSoundEvent, fStopInTime), (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 30.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sType", offsetof(CCharClassLoopSoundEvent, sType), (DefaultValue, CStrId("N", true)));
+    DREAD_REFLECTED_FIELD(bool, "bRumbleSync", offsetof(CCharClassLoopSoundEvent, bRumbleSync), (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(f32, "fRumbleGainOverride", offsetof(CCharClassLoopSoundEvent, fRumbleGainOverride), (DefaultValue, -1.0f));
 }
-bool refl_Equals(const void* a, const void* b) { return a == b; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void* dst, const void* src);
-void refl_MoveConstruct(void* dst, const void* src);
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void* dst, const void* src);
-void* refl_MoveAssign(void* dst, const void* src);
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x50;
+bool CCharClassLoopSoundEvent::refl_Equals(const void* a, const void* b) { return a == b; }
+s32 CCharClassLoopSoundEvent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassLoopSoundEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLoopSoundEvent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassLoopSoundEvent::refl_Destroy(void* obj) { static_cast<CCharClassLoopSoundEvent*>(obj)->~CCharClassLoopSoundEvent(); }
+struct CCharClassLoopSoundEvent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassLoopSoundEvent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -60,5 +53,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassLoopSoundEvent
-DREAD_REFLECTED_CLASS(CCharClassLoopSoundEvent, CCharClassSoundBaseEvent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassLoopSoundEvent, CCharClassSoundBaseEvent);
+#pragma GCC diagnostic pop

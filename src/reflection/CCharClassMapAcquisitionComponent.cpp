@@ -7,42 +7,39 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassMapAcquisitionComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassMapAcquisitionComponent
-namespace CCharClassMapAcquisitionComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareLeftMRNoUsedAction", 0x1b8, (DefaultValue, ""), (Description, "Left prepare use animation when the Map Room has not been used"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareRightMRNoUsedAction", 0x1c0, (DefaultValue, ""), (Description, "Right prepare use animation When the Map Room has not been used"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseInitMRUsedAction", 0x1c8, (DefaultValue, ""), (Description, "Init Use animation when the Map Room has been used"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseMRUsedAction", 0x1d0, (DefaultValue, ""), (Description, "Use animation When the Map Room has been used"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseAfterDownLoadMapAction", 0x1d8, (DefaultValue, ""), (Description, "Use animation When the Map Room has been used after download map"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseEndUseAfterDownLoadMapAction", 0x1e0, (DefaultValue, ""), (Description, "End Use animation When the Map Room has been used"));
-    DREAD_REFLECTED_FIELD(CStrId, "sUsableInitMRUsedAction", 0x1e8, (DefaultValue, ""), (Description, "Init Usable animation when the Map Room has been used"));
-    DREAD_REFLECTED_FIELD(CStrId, "sSaveRingsOpenAction", 0x1f0, (DefaultValue, ""), (Description, "Usable rings save animation begin saving"));
-    DREAD_REFLECTED_FIELD(CStrId, "sSaveRingsCloseAction", 0x1f8, (DefaultValue, ""), (Description, "Usable rings save animation saving"));
-    DREAD_REFLECTED_FIELD(CStrId, "sSaveRingLoopAction", 0x200, (DefaultValue, ""), (Description, "Usable rings save animation end saving"));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassMapAcquisitionComponent::refl_AddAttributes(CClass*) {}
+void CCharClassMapAcquisitionComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareLeftMRNoUsedAction", offsetof(CCharClassMapAcquisitionComponent, sUsePrepareLeftMRNoUsedAction), (DefaultValue, ""), (Description, "Left prepare use animation when the Map Room has not been used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsePrepareRightMRNoUsedAction", offsetof(CCharClassMapAcquisitionComponent, sUsePrepareRightMRNoUsedAction), (DefaultValue, ""), (Description, "Right prepare use animation When the Map Room has not been used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseInitMRUsedAction", offsetof(CCharClassMapAcquisitionComponent, sUseInitMRUsedAction), (DefaultValue, ""), (Description, "Init Use animation when the Map Room has been used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseMRUsedAction", offsetof(CCharClassMapAcquisitionComponent, sUseMRUsedAction), (DefaultValue, ""), (Description, "Use animation When the Map Room has been used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseAfterDownLoadMapAction", offsetof(CCharClassMapAcquisitionComponent, sUseAfterDownLoadMapAction), (DefaultValue, ""), (Description, "Use animation When the Map Room has been used after download map"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseEndUseAfterDownLoadMapAction", offsetof(CCharClassMapAcquisitionComponent, sUseEndUseAfterDownLoadMapAction), (DefaultValue, ""), (Description, "End Use animation When the Map Room has been used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sUsableInitMRUsedAction", offsetof(CCharClassMapAcquisitionComponent, sUsableInitMRUsedAction), (DefaultValue, ""), (Description, "Init Usable animation when the Map Room has been used"));
+    DREAD_REFLECTED_FIELD(CStrId, "sSaveRingsOpenAction", offsetof(CCharClassMapAcquisitionComponent, sSaveRingsOpenAction), (DefaultValue, ""), (Description, "Usable rings save animation begin saving"));
+    DREAD_REFLECTED_FIELD(CStrId, "sSaveRingsCloseAction", offsetof(CCharClassMapAcquisitionComponent, sSaveRingsCloseAction), (DefaultValue, ""), (Description, "Usable rings save animation saving"));
+    DREAD_REFLECTED_FIELD(CStrId, "sSaveRingLoopAction", offsetof(CCharClassMapAcquisitionComponent, sSaveRingLoopAction), (DefaultValue, ""), (Description, "Usable rings save animation end saving"));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x208;
+bool CCharClassMapAcquisitionComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassMapAcquisitionComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassMapAcquisitionComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMapAcquisitionComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassMapAcquisitionComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassMapAcquisitionComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassMapAcquisitionComponent::refl_Destroy(void* obj) { static_cast<CCharClassMapAcquisitionComponent*>(obj)->~CCharClassMapAcquisitionComponent(); }
+void* CCharClassMapAcquisitionComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassMapAcquisitionComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassMapAcquisitionComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassMapAcquisitionComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -53,5 +50,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassMapAcquisitionComponent
-DREAD_REFLECTED_CLASS(CCharClassMapAcquisitionComponent, CCharClassUsableComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassMapAcquisitionComponent, CCharClassUsableComponent);
+#pragma GCC diagnostic pop

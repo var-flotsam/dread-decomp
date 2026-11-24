@@ -7,51 +7,48 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassSamusMovement.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassSamusMovement
-namespace CCharClassSamusMovement {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(f32, "fMinTimeToSpaceJump", 0x98, (DefaultValue, 0.29f));
-    DREAD_REFLECTED_FIELD(f32, "fMinTimeToDoubleJump", 0x9c, (DefaultValue, 0.29f));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFallOilFX", 0xa0, (DefaultValue, "actors/characters/morphball/fx/oilimpact.bcptl"), (Description, "fx id"));
-    DREAD_REFLECTED_FIELD(f32, "fRunningImpulseX", 0xa8, (DefaultValue, 600.0f));
-    DREAD_REFLECTED_FIELD(f32, "fImpulseY", 0xac, (DefaultValue, 1720.0f));
-    DREAD_REFLECTED_FIELD(f32, "fHighJumpBootImpulseY", 0xb0, (DefaultValue, 2107.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMinImpulseY", 0xb4, (DefaultValue, -1800.0f));
-    DREAD_REFLECTED_FIELD(f32, "fMaxImpulseY", 0xb8, (DefaultValue, 2085.0f));
-    DREAD_REFLECTED_FIELD(f32, "fChangeDirectionOnAirBrakeFactor", 0xbc, (DefaultValue, 0.5f));
-    DREAD_REFLECTED_FIELD(f32, "fTimeOnAirAllowingJump", 0xc0, (DefaultValue, 0.1f));
-    DREAD_REFLECTED_FIELD(f32, "fNoJumpingDefaultGravityFactor", 0xc4, (DefaultValue, 2.5f));
-    DREAD_REFLECTED_FIELD(f32, "fTimeToAimUpAfterRaise", 0xc8, (DefaultValue, 0.33f));
-    DREAD_REFLECTED_FIELD(f32, "fTimeToHangClimb", 0xcc, (DefaultValue, 0.3f));
-    DREAD_REFLECTED_FIELD(f32, "fRunningFallInitImpulse", 0xd0, (DefaultValue, 550.0f));
-    DREAD_REFLECTED_FIELD(f32, "fWalkingFallInitImpulse", 0xd4, (DefaultValue, 385.0f));
-    DREAD_REFLECTED_FIELD(f32, "fTimeToAbortSpinJump", 0xd8, (DefaultValue, 0.1f));
-    DREAD_REFLECTED_FIELD(f32, "fSpinJumpVelocityX", 0xdc, (DefaultValue, 600.0f));
-    DREAD_REFLECTED_FIELD(f32, "fAirRunningVelocityX", 0xe0, (DefaultValue, 400.0f));
-    DREAD_REFLECTED_FIELD(f32, "fAirWalkingVelocityX", 0xe4, (DefaultValue, 285.0f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassSamusMovement::refl_AddAttributes(CClass*) {}
+void CCharClassSamusMovement::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeToSpaceJump", offsetof(CCharClassSamusMovement, fMinTimeToSpaceJump), (DefaultValue, 0.29f));
+    DREAD_REFLECTED_FIELD(f32, "fMinTimeToDoubleJump", offsetof(CCharClassSamusMovement, fMinTimeToDoubleJump), (DefaultValue, 0.29f));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFallOilFX", offsetof(CCharClassSamusMovement, sFallOilFX), (DefaultValue, "actors/characters/morphball/fx/oilimpact.bcptl"), (Description, "fx id"));
+    DREAD_REFLECTED_FIELD(f32, "fRunningImpulseX", offsetof(CCharClassSamusMovement, fRunningImpulseX), (DefaultValue, 600.0f));
+    DREAD_REFLECTED_FIELD(f32, "fImpulseY", offsetof(CCharClassSamusMovement, fImpulseY), (DefaultValue, 1720.0f));
+    DREAD_REFLECTED_FIELD(f32, "fHighJumpBootImpulseY", offsetof(CCharClassSamusMovement, fHighJumpBootImpulseY), (DefaultValue, 2107.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMinImpulseY", offsetof(CCharClassSamusMovement, fMinImpulseY), (DefaultValue, -1800.0f));
+    DREAD_REFLECTED_FIELD(f32, "fMaxImpulseY", offsetof(CCharClassSamusMovement, fMaxImpulseY), (DefaultValue, 2085.0f));
+    DREAD_REFLECTED_FIELD(f32, "fChangeDirectionOnAirBrakeFactor", offsetof(CCharClassSamusMovement, fChangeDirectionOnAirBrakeFactor), (DefaultValue, 0.5f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeOnAirAllowingJump", offsetof(CCharClassSamusMovement, fTimeOnAirAllowingJump), (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fNoJumpingDefaultGravityFactor", offsetof(CCharClassSamusMovement, fNoJumpingDefaultGravityFactor), (DefaultValue, 2.5f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToAimUpAfterRaise", offsetof(CCharClassSamusMovement, fTimeToAimUpAfterRaise), (DefaultValue, 0.33f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToHangClimb", offsetof(CCharClassSamusMovement, fTimeToHangClimb), (DefaultValue, 0.3f));
+    DREAD_REFLECTED_FIELD(f32, "fRunningFallInitImpulse", offsetof(CCharClassSamusMovement, fRunningFallInitImpulse), (DefaultValue, 550.0f));
+    DREAD_REFLECTED_FIELD(f32, "fWalkingFallInitImpulse", offsetof(CCharClassSamusMovement, fWalkingFallInitImpulse), (DefaultValue, 385.0f));
+    DREAD_REFLECTED_FIELD(f32, "fTimeToAbortSpinJump", offsetof(CCharClassSamusMovement, fTimeToAbortSpinJump), (DefaultValue, 0.1f));
+    DREAD_REFLECTED_FIELD(f32, "fSpinJumpVelocityX", offsetof(CCharClassSamusMovement, fSpinJumpVelocityX), (DefaultValue, 600.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAirRunningVelocityX", offsetof(CCharClassSamusMovement, fAirRunningVelocityX), (DefaultValue, 400.0f));
+    DREAD_REFLECTED_FIELD(f32, "fAirWalkingVelocityX", offsetof(CCharClassSamusMovement, fAirWalkingVelocityX), (DefaultValue, 285.0f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0xe8;
+bool CCharClassSamusMovement::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassSamusMovement::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassSamusMovement::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSamusMovement*>(obj)->refl_GetDynamicClass(); }
+void CCharClassSamusMovement::refl_CopyConstruct(void*, const void*) {}
+void CCharClassSamusMovement::refl_MoveConstruct(void*, const void*) {}
+void CCharClassSamusMovement::refl_Destroy(void* obj) { static_cast<CCharClassSamusMovement*>(obj)->~CCharClassSamusMovement(); }
+void* CCharClassSamusMovement::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassSamusMovement::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassSamusMovement::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassSamusMovement);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -62,5 +59,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassSamusMovement
-DREAD_REFLECTED_CLASS(CCharClassSamusMovement, CCharClassPlayerMovement);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassSamusMovement, CCharClassPlayerMovement);
+#pragma GCC diagnostic pop

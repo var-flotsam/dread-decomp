@@ -12,11 +12,8 @@ using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/PrimitiveType.h"
+#include "reflected/CCharClassBillboardComponent.h"
 namespace base::math { class CVector3D; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
@@ -45,9 +42,10 @@ void fn_71007311e0();
 void fn_710072eeac(CFunction* fn, const char* name);
 void fn_7100731270();
 void fn_710072f028(CFunction* fn, const char* name);
-namespace CCharClassBillboardComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassBillboardComponent::refl_AddAttributes(CClass*) {}
+void CCharClassBillboardComponent::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_fGroupRadius_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_7100730cc0);
     DREAD_REFLECTED_FUNCTION("_m_fGroupRadius_SetterFunction")
         fn_710072e150(fn, "_m_fGroupRadius_SetterFunction");
@@ -56,8 +54,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_fBillboardRadius_SetterFunction")
         fn_710072e2cc(fn, "_m_fBillboardRadius_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fBillboardRadius", (DefaultValue, 10.0f));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x68, (DefaultValue, ""));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sBgPath", 0x70, (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", offsetof(CCharClassBillboardComponent, sPath), (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sBgPath", offsetof(CCharClassBillboardComponent, sBgPath), (DefaultValue, ""));
     DREAD_REFLECTED_FUNCTION_OF("_m_iTextureWidth_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_7100730de0);
     DREAD_REFLECTED_FUNCTION("_m_iTextureWidth_SetterFunction")
         fn_710072e448(fn, "_m_iTextureWidth_SetterFunction");
@@ -86,10 +84,10 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_fAlphaOffset_SetterFunction")
         fn_710072ed30(fn, "_m_fAlphaOffset_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAlphaOffset", (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sBillboardDefaultLoop", 0xa8, (DefaultValue, "relax"));
-    DREAD_REFLECTED_FIELD(CStrId, "sBillboardMotionDefaultLoop", 0xb0, (DefaultValue, ""));
-    DREAD_REFLECTED_FIELD(CStrId, "sGroupMotionDefaultLoop", 0xc0, (DefaultValue, ""));
-    DREAD_REFLECTED_FIELD(bool, "bUseRotation", 0xcc, (DefaultValue, false));
+    DREAD_REFLECTED_FIELD(CStrId, "sBillboardDefaultLoop", offsetof(CCharClassBillboardComponent, sBillboardDefaultLoop), (DefaultValue, "relax"));
+    DREAD_REFLECTED_FIELD(CStrId, "sBillboardMotionDefaultLoop", offsetof(CCharClassBillboardComponent, sBillboardMotionDefaultLoop), (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(CStrId, "sGroupMotionDefaultLoop", offsetof(CCharClassBillboardComponent, sGroupMotionDefaultLoop), (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(bool, "bUseRotation", offsetof(CCharClassBillboardComponent, bUseRotation), (DefaultValue, false));
     DREAD_REFLECTED_FUNCTION_OF("_m_fBillboardMotionDefaultScale_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71007311e0);
     DREAD_REFLECTED_FUNCTION("_m_fBillboardMotionDefaultScale_SetterFunction")
         fn_710072eeac(fn, "_m_fBillboardMotionDefaultScale_SetterFunction");
@@ -98,28 +96,27 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_fGroupMotionDefaultScale_SetterFunction")
         fn_710072f028(fn, "_m_fGroupMotionDefaultScale_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fGroupMotionDefaultScale", (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sSoundLoopLot", 0x130, (DefaultValue, ""));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sSoundLoopLit", 0x140, (DefaultValue, ""));
-    DREAD_REFLECTED_FIELD(f32, "fSoundLoopLotAmountPct", 0x138, (DefaultValue, 0.2f));
-    DREAD_REFLECTED_FIELD(f32, "fSoundLoopAttMinDist", 0x148, (DefaultValue, 500.0f));
-    DREAD_REFLECTED_FIELD(f32, "fSoundLoopAttMaxDist", 0x14c, (DefaultValue, 1500.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sSoundImpactBase", 0x150, (DefaultValue, ""));
-    DREAD_REFLECTED_FIELD(s32, "iSoundImpactCount", 0x158, (DefaultValue, 4));
-    DREAD_REFLECTED_FIELD(f32, "fSoundImpactRadiusMinAtt", 0x15c, (DefaultValue, 500.0f));
-    DREAD_REFLECTED_FIELD(f32, "fSoundImpactRadiusMaxAtt", 0x160, (DefaultValue, 2000.0f));
-    DREAD_REFLECTED_FIELD(u32, "iPoolSize", 0x58, (DefaultValue, 0));
+    DREAD_REFLECTED_FIELD(CStrId, "sSoundLoopLot", offsetof(CCharClassBillboardComponent, sSoundLoopLot), (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sSoundLoopLit", offsetof(CCharClassBillboardComponent, sSoundLoopLit), (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(f32, "fSoundLoopLotAmountPct", offsetof(CCharClassBillboardComponent, fSoundLoopLotAmountPct), (DefaultValue, 0.2f));
+    DREAD_REFLECTED_FIELD(f32, "fSoundLoopAttMinDist", offsetof(CCharClassBillboardComponent, fSoundLoopAttMinDist), (DefaultValue, 500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSoundLoopAttMaxDist", offsetof(CCharClassBillboardComponent, fSoundLoopAttMaxDist), (DefaultValue, 1500.0f));
+    DREAD_REFLECTED_FIELD(CStrId, "sSoundImpactBase", offsetof(CCharClassBillboardComponent, sSoundImpactBase), (DefaultValue, ""));
+    DREAD_REFLECTED_FIELD(s32, "iSoundImpactCount", offsetof(CCharClassBillboardComponent, iSoundImpactCount), (DefaultValue, 4));
+    DREAD_REFLECTED_FIELD(f32, "fSoundImpactRadiusMinAtt", offsetof(CCharClassBillboardComponent, fSoundImpactRadiusMinAtt), (DefaultValue, 500.0f));
+    DREAD_REFLECTED_FIELD(f32, "fSoundImpactRadiusMaxAtt", offsetof(CCharClassBillboardComponent, fSoundImpactRadiusMaxAtt), (DefaultValue, 2000.0f));
+    DREAD_REFLECTED_FIELD(u32, "iPoolSize", offsetof(CCharClassBillboardComponent, iPoolSize), (DefaultValue, 0));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x168;
+bool CCharClassBillboardComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassBillboardComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassBillboardComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBillboardComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassBillboardComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassBillboardComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassBillboardComponent::refl_Destroy(void* obj) { static_cast<CCharClassBillboardComponent*>(obj)->~CCharClassBillboardComponent(); }
+void* CCharClassBillboardComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassBillboardComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassBillboardComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassBillboardComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -130,5 +127,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassBillboardComponent
-DREAD_REFLECTED_CLASS(CCharClassBillboardComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassBillboardComponent, CCharClassComponent);
+#pragma GCC diagnostic pop

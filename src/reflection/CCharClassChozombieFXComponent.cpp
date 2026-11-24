@@ -7,36 +7,33 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassChozombieFXComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozombieFXComponent
-namespace CCharClassChozombieFXComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sModelResPath", 0x58, (DefaultValue, base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "", true)));
-    DREAD_REFLECTED_FIELD(f32, "fScale", 0x60, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vRotation", 0x64, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
-    DREAD_REFLECTED_FIELD(f32, "fInstanceLifeTime", 0x70, (DefaultValue, 4.0f));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassChozombieFXComponent::refl_AddAttributes(CClass*) {}
+void CCharClassChozombieFXComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sModelResPath", offsetof(CCharClassChozombieFXComponent, sModelResPath), (DefaultValue, base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "", true)));
+    DREAD_REFLECTED_FIELD(f32, "fScale", offsetof(CCharClassChozombieFXComponent, fScale), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vRotation", offsetof(CCharClassChozombieFXComponent, vRotation), (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
+    DREAD_REFLECTED_FIELD(f32, "fInstanceLifeTime", offsetof(CCharClassChozombieFXComponent, fInstanceLifeTime), (DefaultValue, 4.0f));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x78;
+bool CCharClassChozombieFXComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassChozombieFXComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassChozombieFXComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChozombieFXComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassChozombieFXComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassChozombieFXComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassChozombieFXComponent::refl_Destroy(void* obj) { static_cast<CCharClassChozombieFXComponent*>(obj)->~CCharClassChozombieFXComponent(); }
+void* CCharClassChozombieFXComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassChozombieFXComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassChozombieFXComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassChozombieFXComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -47,5 +44,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassChozombieFXComponent
-DREAD_REFLECTED_CLASS(CCharClassChozombieFXComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassChozombieFXComponent, CCharClassComponent);
+#pragma GCC diagnostic pop

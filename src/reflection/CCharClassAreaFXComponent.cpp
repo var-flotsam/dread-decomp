@@ -7,39 +7,36 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/ReflectedAttributes.h"
+#include "reflected/CCharClassAreaFXComponent.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CVariable;
 using base::reflection::CFunction;
 using base::reflection::ClassDescription;
-using base::reflection::ClassOf;
-using base::reflection::ClassOfDestructorFirst;
-using base::reflection::Destroy;
-using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAreaFXComponent
-namespace CCharClassAreaFXComponent {
-void refl_AddAttributes(CClass*) {}
-void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sModelResPath", 0x58, (DefaultValue, base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "", true)));
-    DREAD_REFLECTED_FIELD(f32, "fScale", 0x60, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(f32, "fScaleRandom", 0x64, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vRotation", 0x68, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
-    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vRotationRandom", 0x74, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
-    DREAD_REFLECTED_FIELD(f32, "fFXAttackLenght", 0x80, (DefaultValue, 35.0f));
-    DREAD_REFLECTED_FIELD(bool, "bUseInstances", 0x84, (DefaultValue, true));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+void CCharClassAreaFXComponent::refl_AddAttributes(CClass*) {}
+void CCharClassAreaFXComponent::refl_AddFields(CClass* cls) {
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sModelResPath", offsetof(CCharClassAreaFXComponent, sModelResPath), (DefaultValue, base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "", true)));
+    DREAD_REFLECTED_FIELD(f32, "fScale", offsetof(CCharClassAreaFXComponent, fScale), (DefaultValue, 1.0f));
+    DREAD_REFLECTED_FIELD(f32, "fScaleRandom", offsetof(CCharClassAreaFXComponent, fScaleRandom), (DefaultValue, 0.0f));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vRotation", offsetof(CCharClassAreaFXComponent, vRotation), (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
+    DREAD_REFLECTED_FIELD(base::math::CVector3D, "vRotationRandom", offsetof(CCharClassAreaFXComponent, vRotationRandom), (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
+    DREAD_REFLECTED_FIELD(f32, "fFXAttackLenght", offsetof(CCharClassAreaFXComponent, fFXAttackLenght), (DefaultValue, 35.0f));
+    DREAD_REFLECTED_FIELD(bool, "bUseInstances", offsetof(CCharClassAreaFXComponent, bUseInstances), (DefaultValue, true));
 }
-bool refl_Equals(const void*, const void*) { return false; }
-s32 refl_Hash() { return -1; }
-const base::reflection::CType& refl_TypeOf(const void* obj) { return ClassOf(obj); }
-void refl_Construct(void* obj);
-void refl_CopyConstruct(void*, const void*) {}
-void refl_MoveConstruct(void*, const void*) {}
-void refl_Destroy(void* obj) { Destroy(obj); }
-void* refl_CopyAssign(void*, const void*) { return nullptr; }
-void* refl_MoveAssign(void*, const void*) { return nullptr; }
-struct refl_Description : ClassDescription {
-    static constexpr u64 size = 0x88;
+bool CCharClassAreaFXComponent::refl_Equals(const void*, const void*) { return false; }
+s32 CCharClassAreaFXComponent::refl_Hash() { return -1; }
+const base::reflection::CType& CCharClassAreaFXComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAreaFXComponent*>(obj)->refl_GetDynamicClass(); }
+void CCharClassAreaFXComponent::refl_CopyConstruct(void*, const void*) {}
+void CCharClassAreaFXComponent::refl_MoveConstruct(void*, const void*) {}
+void CCharClassAreaFXComponent::refl_Destroy(void* obj) { static_cast<CCharClassAreaFXComponent*>(obj)->~CCharClassAreaFXComponent(); }
+void* CCharClassAreaFXComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
+void* CCharClassAreaFXComponent::refl_MoveAssign(void*, const void*) { return nullptr; }
+struct CCharClassAreaFXComponent::refl_Description : ClassDescription {
+    static constexpr u64 size = sizeof(CCharClassAreaFXComponent);
     static constexpr auto equals = &refl_Equals;
     static constexpr auto hash = &refl_Hash;
     static constexpr auto type_of = &refl_TypeOf;
@@ -50,5 +47,5 @@ struct refl_Description : ClassDescription {
     static constexpr auto copy_assign = &refl_CopyAssign;
     static constexpr auto move_assign = &refl_MoveAssign;
 };
-}  // namespace CCharClassAreaFXComponent
-DREAD_REFLECTED_CLASS(CCharClassAreaFXComponent, CCharClassComponent);
+DREAD_REFLECTED_DECLARED_CLASS(CCharClassAreaFXComponent, CCharClassComponent);
+#pragma GCC diagnostic pop
