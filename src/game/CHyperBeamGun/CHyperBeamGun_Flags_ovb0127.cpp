@@ -24,7 +24,7 @@ struct UnkPlayer;
 struct UnkFlagged;
 bool fn_71009e85b4(UnkFlagged*);
 bool fn_71009ebf5c(UnkFlagged*);
-bool fn_71009e6940(UnkFlagged*);
+bool CSamusMovement_IsGhostAuraInState3To6(UnkFlagged*);
 bool fn_71009ebf7c(UnkFlagged*);
 
 struct UnkHyperBeamPlayer_ovb0127 {
@@ -63,7 +63,7 @@ u32 fn_71008434b8(CHyperBeamGun_ovb0127* self) {
             flags |= 4;
         if (fn_71009ebf5c(gun))
             flags |= 8;
-        if (fn_71009e6940(gun))
+        if (CSamusMovement_IsGhostAuraInState3To6(gun))
             flags |= 0x20;
         if (fn_71009ebf7c(gun))
             flags |= 0x200;

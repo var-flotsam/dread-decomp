@@ -22,8 +22,8 @@ struct UnkCollisionClassDef;
 struct UnkEntry_b0129;
 
 bool fn_71011aced4(UnkCollisionClassDef* self, CRntFile* file);  // the base read
-void fn_71009f24c0(base::global::CRntVector<UnkEntry_b0129>* self, u32 n);
-void fn_71009f2814(UnkEntry_b0129* self);
+void CCharClassSceneModelAnimationComponent_ReserveEntryArray(base::global::CRntVector<UnkEntry_b0129>* self, u32 n);
+void CCharClassSceneModelAnimationComponent_ConstructEntry(UnkEntry_b0129* self);
 std::unique_ptr<void, std::function<void(void*)>> fn_7100013484(const CFilePathStrId& path);
 
 // An entry's members: the group name, a second id and the loaded resource with its deleter.
@@ -36,8 +36,8 @@ static_assert(sizeof(UnkAnimEntryBody_l9f1f60) == 0x50, "entry size");
 
 // Entries are built and destroyed out of line (fn_71009f2814, fn_71009f26a0).
 struct UnkAnimEntryLifetime_l9f1f60 {
-    UnkAnimEntryLifetime_l9f1f60() { fn_71009f2814(reinterpret_cast<UnkEntry_b0129*>(this)); }
-    ~UnkAnimEntryLifetime_l9f1f60() { fn_71009f26a0(reinterpret_cast<UnkEntry_b50a5*>(this)); }
+    UnkAnimEntryLifetime_l9f1f60() { CCharClassSceneModelAnimationComponent_ConstructEntry(reinterpret_cast<UnkEntry_b0129*>(this)); }
+    ~UnkAnimEntryLifetime_l9f1f60() { CCharClassSceneModelAnimationComponent_DestroyEntry(reinterpret_cast<UnkEntry_b50a5*>(this)); }
 };
 
 struct UnkAnimEntry_l9f1f60 : UnkAnimEntryLifetime_l9f1f60 {
@@ -48,7 +48,7 @@ struct UnkAnimEntry_l9f1f60 : UnkAnimEntryLifetime_l9f1f60 {
 static_assert(sizeof(UnkAnimEntry_l9f1f60) == 0x50, "entry size");
 
 struct UnkAnimEntries_l9f1f60 : base::global::CRntVector<UnkAnimEntry_l9f1f60> {
-    void Reserve(u32 n) { fn_71009f24c0(reinterpret_cast<base::global::CRntVector<UnkEntry_b0129>*>(this), n); }
+    void Reserve(u32 n) { CCharClassSceneModelAnimationComponent_ReserveEntryArray(reinterpret_cast<base::global::CRntVector<UnkEntry_b0129>*>(this), n); }
 
     // Appends a value-initialised entry and returns it.
     UnkAnimEntry_l9f1f60& Add() {

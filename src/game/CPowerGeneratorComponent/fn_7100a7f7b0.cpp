@@ -34,7 +34,7 @@ extern char g_unk_71727354b0[];
 void fn_7100a7f500(UnkProperty* p);
 void fn_710090ffb4(UnkProperty* p);
 void fn_7100953d64(UnkProperty* p);
-void fn_7100a7f7b0() {
+void CPowerGeneratorComponent_InitStatics() {
     InitHeaderIds(&g_unk_7172750368.ids);
     InitId(&g_unk_71727502f0, "POWERGENERATOR");
     InitProperty(&g_unk_71727502f8, g_unk_7101a91118, g_unk_71726db788, "Used", TypeOf<fn_710000d228>(),

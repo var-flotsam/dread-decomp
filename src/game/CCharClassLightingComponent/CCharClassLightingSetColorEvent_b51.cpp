@@ -37,5 +37,5 @@ void fn_7100bbd750(UnkLightingSetColorEvent_b51* self, void** target) {
     color.rg = rg;
     color.b = b;
     color.a = a;
-    fn_71008e7e98(reinterpret_cast<UnkLightingComponent2*>(lighting), &id, &color, self->value);
+    CCharClassLightingComponent_SetLightColorById(reinterpret_cast<UnkLightingComponent2*>(lighting), &id, &color, self->value);
 }

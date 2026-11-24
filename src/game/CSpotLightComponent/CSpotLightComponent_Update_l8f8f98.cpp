@@ -60,7 +60,7 @@ static inline UnkVec3f Rotate(const UnkMatrix44& m, const UnkVec3f& v) {
     return fn_7100078170(reinterpret_cast<const UnkMat4f*>(&m), &v);
 }
 
-void fn_71008f8f98(UnkSpotLightComponent_l8f8f98* self) {
+void CSpotLightComponent_SyncChangedPositionAndDirectionFromOwner(UnkSpotLightComponent_l8f8f98* self) {
     fn_71010c424c(reinterpret_cast<UnkParent*>(self));
     UnkVec3f position = self->owner->xform.GetTranslation();
     if (UNK_CHANGED(position.x, self->position.x) || UNK_CHANGED(position.y, self->position.y) ||

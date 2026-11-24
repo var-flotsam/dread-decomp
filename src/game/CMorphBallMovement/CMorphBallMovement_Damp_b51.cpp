@@ -25,7 +25,7 @@ static inline bool IsNearZero(f32 v) {
 }
 
 // Takes the share `dt` x rate of the velocity along `dir` away, without changing its sign.
-void fn_7100945238(UnkMorphBallDamp* self, const CVector3D* dir, f32 dt) {
+void CMorphBallMovement_DampVectorComponentAlongDir(UnkMorphBallDamp* self, const CVector3D* dir, f32 dt) {
     if (!self->field_0x23d6)
         return;
     if (!IsNearZero(self->field_0x7c) && !fn_71009438e8(self))

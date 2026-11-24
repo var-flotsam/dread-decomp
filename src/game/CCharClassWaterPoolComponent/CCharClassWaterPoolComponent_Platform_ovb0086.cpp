@@ -118,7 +118,7 @@ struct UnkWaterPoolComponent_b0086 {
 };
 
 void fn_7100909368(UnkWaterPoolComponent_b0086* self) {
-    fn_7100900c44(self);
+    CCharClassLiquidPoolComponent_ResetLevelAndSurfaceBox(self);
     UnkWaterPoolPlatform_b0086* platform = fn_71008fbfc0(self->field_0x30);
     if (!platform)
         return;
@@ -202,5 +202,5 @@ void fn_7100908424(UnkWaterPoolComponent2_b0086* self) {
         self->callbacks.allocator->vf_0x48(self->callbacks.data);
         self->callbacks.capacity = 0;
     }
-    fn_7100900414(self);
+    CCharClassLiquidPoolComponent_Destroy(self);
 }

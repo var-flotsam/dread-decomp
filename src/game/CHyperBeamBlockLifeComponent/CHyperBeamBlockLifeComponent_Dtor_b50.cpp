@@ -62,7 +62,7 @@ static inline __attribute__((always_inline)) void Destroy(UnkHyperBeamBlockLife*
     fn_71008e05e8(self);
 }
 
-void fn_71008dfacc(UnkHyperBeamBlockLife* self) {
+void CHyperBeamBlockLifeComponent_Destroy(UnkHyperBeamBlockLife* self) {
     Destroy(self);
 }
 
@@ -71,7 +71,7 @@ void fn_71008dfd40(UnkHyperBeamBlockLife* self) {
 }
 
 // The deleting form of fn_71008dfacc.
-void fn_71008dfb78(UnkHyperBeamBlockLife* self) {
+void CHyperBeamBlockLifeComponent_DestroyAndDelete(UnkHyperBeamBlockLife* self) {
     Destroy(self);
     operator delete(self);
 }

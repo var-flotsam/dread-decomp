@@ -29,13 +29,13 @@ using base::global::UnkStringData;
 
 using UnkLogicShapeFlagMap_ovb0037 = base::global::CRntSmallDictionary<CStrId, bool>;
 
-bool* fn_7100916c9c(UnkLogicShapeFlagMap_ovb0037* self, bool* it);
+bool* CLogicShapeComponent_FlagMapEraseAt(UnkLogicShapeFlagMap_ovb0037* self, bool* it);
 void fn_71007531f8(UnkLogicShapeFlagMap_ovb0037* self, u32 capacity);
 
 void fn_7100916418(UnkLogicShapeFlagMap_ovb0037* self, const CStrId* key) {
     bool* it = self->Find(*key);
     if (it != self->End())
-        fn_7100916c9c(self, it);
+        CLogicShapeComponent_FlagMapEraseAt(self, it);
 }
 
 bool* fn_7100916488(UnkLogicShapeFlagMap_ovb0037* self, const CStrId* key) {
@@ -43,7 +43,7 @@ bool* fn_7100916488(UnkLogicShapeFlagMap_ovb0037* self, const CStrId* key) {
     return it != self->End() ? it : nullptr;
 }
 
-bool* fn_7100916c9c(UnkLogicShapeFlagMap_ovb0037* self, bool* it) {
+bool* CLogicShapeComponent_FlagMapEraseAt(UnkLogicShapeFlagMap_ovb0037* self, bool* it) {
     u32 index = it - self->values;
     self->keys[index].Reset();
     u32 last = self->count - 1;
@@ -60,7 +60,7 @@ bool* fn_7100916c9c(UnkLogicShapeFlagMap_ovb0037* self, bool* it) {
     return self->values + index;
 }
 
-void fn_7100916b40(UnkLogicShapeFlagMap_ovb0037* self) {
+void CLogicShapeComponent_ShrinkStrIdBoolDictToFit(UnkLogicShapeFlagMap_ovb0037* self) {
     if (self->count == self->capacity)
         return;
     bool* values = static_cast<bool*>(self->allocator->vf_0x40(self->count, 8, self->flags));
@@ -92,7 +92,7 @@ UnkLogicShapeFlagMap_ovb0037* fn_71009169dc(UnkLogicShapeFlagMap_ovb0037* self, 
     self->count = 0;
     u32 count = other->count;
     if (count != self->capacity) {
-        fn_7100916b40(self);
+        CLogicShapeComponent_ShrinkStrIdBoolDictToFit(self);
         fn_71007531f8(self, other->count);
         count = other->count;
     }
@@ -146,7 +146,7 @@ struct UnkLogicShapeComponent_ovb0037 {
     UnkLogicShape_ovb0037* shape;  // 0x30
 };
 
-void fn_7100914284(UnkLogicShapeComponent_ovb0037* self, CRntFile* file) {
+void CLogicShapeComponent_ReadLogicShapeFromFile(UnkLogicShapeComponent_ovb0037* self, CRntFile* file) {
     fn_710024fc0c(reinterpret_cast<UnkPickableItem_A4_b76*>(self), file);
     if (file->position < file->size) {
         alignas(8) u8 reader_storage[0x18];

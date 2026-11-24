@@ -131,7 +131,7 @@ static inline void SetSectionBool(CBlackboard* blackboard, const CStrId& section
     }
 }
 
-void fn_7100a09cd4(UnkWeightPlatform_b49a4* platform) {
+void CWeightActivatedPlatformSmartObjectComponent_RequestState5AndClearFinished(UnkWeightPlatform_b49a4* platform) {
     UnkWap_la09cd4* self = reinterpret_cast<UnkWap_la09cd4*>(platform);
     self->machine.Request(5);
 

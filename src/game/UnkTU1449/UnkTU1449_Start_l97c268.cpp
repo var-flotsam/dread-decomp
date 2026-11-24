@@ -11,7 +11,7 @@
 #include "types.h"
 
 struct UnkGrappleState_b65a6;
-void fn_710099c920(UnkGrappleState_b65a6* self, const UnkGrappleParams_b65a6* params);
+void CSamusGrappleMovementState_SetParams(UnkGrappleState_b65a6* self, const UnkGrappleParams_b65a6* params);
 
 // The grapple movement tunable (g_unk_717273ba88).
 struct UnkGrappleTunable_l97c268 {
@@ -177,7 +177,7 @@ void fn_710097c268(UnkGrappleStart_l97c268* self) {
         setup.field_0x8 = tunable.field_0x24;
         setup.field_0x10 = tunable.field_0x34;
         setup.field_0x0 = tunable.field_0x40;
-        fn_710099c920(grapple, reinterpret_cast<const UnkGrappleParams_b65a6*>(&setup));
+        CSamusGrappleMovementState_SetParams(grapple, reinterpret_cast<const UnkGrappleParams_b65a6*>(&setup));
     }
 
     f32 side;

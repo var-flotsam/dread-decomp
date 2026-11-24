@@ -99,7 +99,7 @@ void fn_7100900b40(UnkLiquidPoolSelf_ovb0075* self) {
     owner->field_0x388 = reinterpret_cast<UnkVec3f (*)(UnkLiquidPoolSelf_ovb0075*)>(self->vtable[0x178 / 8])(self);
 }
 
-void fn_7100900c44(UnkLiquidPoolSelf_ovb0075* self) {
+void CCharClassLiquidPoolComponent_ResetLevelAndSurfaceBox(UnkLiquidPoolSelf_ovb0075* self) {
     fn_7100a46e78(reinterpret_cast<CFreezeRoomComponent*>(self));
     self->target = 1.0f;
     self->level = 1.0f;
@@ -189,7 +189,7 @@ struct UnkLiquidValueMap_ovb0075 {
     }
 };
 
-UnkLiquidValue_ovb0075* fn_7100901264(UnkLiquidValueMap_ovb0075* self, UnkLiquidValue_ovb0075* it) {
+UnkLiquidValue_ovb0075* CCharClassLiquidPoolComponent_SwapEraseDictionaryEntry(UnkLiquidValueMap_ovb0075* self, UnkLiquidValue_ovb0075* it) {
     return self->Erase(it);
 }
 
@@ -197,7 +197,7 @@ using base::global::CStrId;
 
 using UnkLiquidValueArray_ovb0075 = base::global::CRntSmallDictionary<CStrId, UnkLiquidValue_ovb0075>;
 
-void fn_7100904f7c(UnkLiquidValueArray_ovb0075* self) {
+void CCharClassLiquidPoolComponent_ShrinkSmallDictionaryToFit(UnkLiquidValueArray_ovb0075* self) {
     if (self->count == self->capacity)
         return;
     auto* values = static_cast<UnkLiquidValue_ovb0075*>(
@@ -231,7 +231,7 @@ UnkLiquidValueArray_ovb0075* fn_7100904ddc(UnkLiquidValueArray_ovb0075* self, co
     }
     self->count = 0;
     if (other->count != self->capacity) {
-        fn_7100904f7c(self);
+        CCharClassLiquidPoolComponent_ShrinkSmallDictionaryToFit(self);
         fn_7100904c48(reinterpret_cast<UnkPropertyArrays*>(self), other->count);
     }
     self->count = other->count;
@@ -333,7 +333,7 @@ struct UnkLiquidPoolDtor_ovb0075 {
 };
 static_assert(__builtin_offsetof(UnkLiquidPoolDtor_ovb0075, shared) == 0xc88, "layout");
 
-void fn_7100900414(UnkLiquidPoolDtor_ovb0075* self) {
+void CCharClassLiquidPoolComponent_Destroy(UnkLiquidPoolDtor_ovb0075* self) {
     self->vtable = &g_unk_7101a80ae8[2];
     if (self->owned) {
         self->owned->Release();

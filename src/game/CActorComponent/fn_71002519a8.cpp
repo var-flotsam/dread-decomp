@@ -128,7 +128,7 @@ UnkValue_0x80* fn_7100e6095c(UnkValues80ByKey* a, const u64* key) { return FindO
 void fn_7100904644(UnkValues10ByKey* a, const u64* key) {
     UnkValue_0x10* p = a->Find(*key);
     if (p != a->End())
-        fn_7100901264(a, p);
+        CCharClassLiquidPoolComponent_SwapEraseDictionaryEntry(a, p);
 }
 
 void fn_7100e608e0(UnkValues80ByKey* a, const u64* key) {

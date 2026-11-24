@@ -17,7 +17,7 @@ void fn_71008e2d60(void* p);
 extern CStrId g_unk_7172732638 __attribute__((visibility("hidden")));
 extern char g_unk_71727325d8;
 
-void fn_71008e4430() {
+void CPowerBombBlockLifeComponent_InitStatics() {
     InitHeader(g_unk_7172732620);
     new (&g_unk_71727325a8) CStrId("POWERBOMBBLOCKLIFE", true);
     fn_7100000250(CStrId_Destroy, &g_unk_71727325a8, &g_unk_7101a19000);

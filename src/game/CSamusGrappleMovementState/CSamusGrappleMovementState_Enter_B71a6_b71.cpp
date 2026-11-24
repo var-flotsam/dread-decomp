@@ -63,7 +63,7 @@ static inline UnkGrappleMoveState_B71a6* FindState(UnkGrappleMove_B71a6* self, s
     return nullptr;
 }
 
-void fn_710099adcc(UnkGrappleState_B71a6* self, s32 kind) {
+void CSamusGrappleMovementState_ResetDirectionAndFlagsForKind(UnkGrappleState_B71a6* self, s32 kind) {
     self->dir_x = 0;
     self->dir_y = 0;
     self->flag_0xbac = false;

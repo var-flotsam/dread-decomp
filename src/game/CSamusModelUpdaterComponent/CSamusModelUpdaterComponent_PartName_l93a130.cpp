@@ -61,7 +61,7 @@ static inline bool IsModel_l93a130(const CStrId& model, const UnkModelName_l93a1
     return model.data == name.data;
 }
 
-void fn_710093a130(char* self, char* entry, CRntString* out) {
+void CSamusModelUpdaterComponent_RemapMeshNameToCurrentSuit(char* self, char* entry, CRntString* out) {
     UnkSamusModelUpdater_l93a130* updater = reinterpret_cast<UnkSamusModelUpdater_l93a130*>(self);
     const CStrId& name = *reinterpret_cast<const CStrId*>(entry);
     CRntString_Assign(out, Str_l93a130(name));

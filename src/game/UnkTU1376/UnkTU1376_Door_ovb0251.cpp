@@ -497,7 +497,7 @@ bool fn_71008d564c(UnkDoorLock* door, u32 value, const CStrId* id) {
         self->field_0x708 = g_unk_71727313a4.colours[2];
         if (UnkLightingComponent2* light = reinterpret_cast<UnkLightingComponent2*>(fn_71008d5d2c(self->owner))) {
             base::math::UnkVector4D v = fn_7100030878(&colour);
-            fn_71008e7e98(light, &g_unk_710164b098, &v, 0.0f);
+            CCharClassLightingComponent_SetLightColorById(light, &g_unk_710164b098, &v, 0.0f);
         }
     }
     if (value & 1) {

@@ -79,7 +79,7 @@ static inline UnkModelName_l93a82c SuitModel_l93a82c(UnkInventory* inventory) {
     return UnkModelName_l93a82c("Default", 7, kDefaultHash, true);
 }
 
-void fn_710093a82c(UnkSamusModelUpdater_l93a82c* self) {
+void CSamusModelUpdaterComponent_SelectSuitModelFromInventory(UnkSamusModelUpdater_l93a82c* self) {
     if (self->suit_pending) {
         UnkInventory* inventory = self->owner->inventory;
         if (!inventory)

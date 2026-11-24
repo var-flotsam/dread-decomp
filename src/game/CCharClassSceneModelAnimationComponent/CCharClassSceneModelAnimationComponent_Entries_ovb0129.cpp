@@ -47,7 +47,7 @@ struct UnkEntry_b0129 {
 };
 static_assert(sizeof(UnkEntry_b0129) == 0x50, "entry size");
 
-void fn_71009f24c0(base::global::CRntVector<UnkEntry_b0129>* self, u32 n) {
+void CCharClassSceneModelAnimationComponent_ReserveEntryArray(base::global::CRntVector<UnkEntry_b0129>* self, u32 n) {
     if (self->capacity < n) {
         UnkEntry_b0129* p =
             static_cast<UnkEntry_b0129*>(self->allocator->vf_0x40((u64)n * sizeof(UnkEntry_b0129), 8, self->flags));
@@ -55,7 +55,7 @@ void fn_71009f24c0(base::global::CRntVector<UnkEntry_b0129>* self, u32 n) {
             u64 j = 0;
             for (u32 i = 0; i < self->count; ++i, ++j) {
                 new (&p[j]) UnkEntry_b0129(static_cast<UnkEntry_b0129&&>(old[j]));
-                fn_71009f26a0(reinterpret_cast<UnkEntry_b50a5*>(&old[j]));
+                CCharClassSceneModelAnimationComponent_DestroyEntry(reinterpret_cast<UnkEntry_b50a5*>(&old[j]));
             }
             self->allocator->vf_0x48(self->data);
         }
@@ -64,6 +64,6 @@ void fn_71009f24c0(base::global::CRntVector<UnkEntry_b0129>* self, u32 n) {
     }
 }
 
-__attribute__((flatten)) void fn_71009f2814(UnkEntry_b0129* self) {
+__attribute__((flatten)) void CCharClassSceneModelAnimationComponent_ConstructEntry(UnkEntry_b0129* self) {
     new (self) UnkEntry_b0129;
 }

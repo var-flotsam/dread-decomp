@@ -18,7 +18,7 @@ struct UnkSamusModelUpdater_l939fd4 {
     bool field_0x219;
 };
 
-u32 fn_7100939fd4(UnkSamusModelUpdater_l939fd4* self, UnkProp* p) {
+u32 CSamusModelUpdaterComponent_ReadProperty(UnkSamusModelUpdater_l939fd4* self, UnkProp* p) {
     if (!Is(p, Key(0x1ff8)))
         return fn_710093881c(reinterpret_cast<UnkMultiModelUpdater_l93881c*>(self), p);
     {

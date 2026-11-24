@@ -61,7 +61,7 @@ struct UnkAnimId_ov110 {
     }
 };
 
-UnkAnimId_ov110 fn_71009b7c9c(UnkAnimationNavMeshItem_ov110* self);
+UnkAnimId_ov110 CAnimationNavMeshItemComponent_GetAnimationId(UnkAnimationNavMeshItem_ov110* self);
 UnkAnimationNavMeshItem_ov110* fn_71009b8c78(UnkActor* owner);
 
 struct UnkMotionTracks;
@@ -152,7 +152,7 @@ UnkNavMeshPoint_l9b8910 fn_71009b8910(UnkNavMeshItemStage_l9b8910* self) {
     if (self->object && self->object->owner) {
         CStrId name(g_unk_7101d470e0);
         if (UnkAnimationNavMeshItem_ov110* item = fn_71009b8c78(self->object->owner)) {
-            UnkAnimId_ov110 id = fn_71009b7c9c(item);
+            UnkAnimId_ov110 id = CAnimationNavMeshItemComponent_GetAnimationId(item);
             name.ReleaseAndTake(reinterpret_cast<CStrId&>(id));
         }
         if (UnkWeakTarget* target = fn_71007e4924(self->object->owner)) {

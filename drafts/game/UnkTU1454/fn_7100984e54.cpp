@@ -22,7 +22,7 @@ struct UnkGrappleState_b65a6 {
     UnkGrappleParams_b65a6 params;
 };
 
-void fn_710099c920(UnkGrappleState_b65a6* self, const UnkGrappleParams_b65a6* params);
+void CSamusGrappleMovementState_SetParams(UnkGrappleState_b65a6* self, const UnkGrappleParams_b65a6* params);
 
 // The grapple state's parameters, as floats.
 struct UnkGrappleParams_l984e54 {
@@ -146,7 +146,7 @@ void fn_7100984e54(Unk_l984e54* self, UnkSwingInfo_l984e54* info, f32 value, s32
         UnkGrappleStateParams_l984e54* state = self->link ? self->link->state : nullptr;
         UnkGrappleParams_l984e54 params = state->params;
         params.friction = GrappleTunable().fSwingLongPerpendicularFrictionInImpulseBraking;
-        fn_710099c920(reinterpret_cast<UnkGrappleState_b65a6*>(state),
+        CSamusGrappleMovementState_SetParams(reinterpret_cast<UnkGrappleState_b65a6*>(state),
                       reinterpret_cast<const UnkGrappleParams_b65a6*>(&params));
         break;
     }
