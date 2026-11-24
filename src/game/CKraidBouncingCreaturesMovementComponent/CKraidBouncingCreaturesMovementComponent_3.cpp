@@ -35,7 +35,7 @@ struct UnkKraidCreatureMovement {
     UnkKraidCreatureDef* def;
 };
 
-void fn_71006052a4(UnkKraidCreatureMovement* self) {
+void CKraidBouncingCreaturesMovementComponent_BeginPlay(UnkKraidCreatureMovement* self) {
     fn_7100ac3880(reinterpret_cast<UnkSelf*>(self));
     fn_7100de9540(g_unk_7101d47310, &g_unk_71726f41d0, reinterpret_cast<UnkWeakTarget*>(self));
     UnkKraidCreatureHeld* held = self->held;

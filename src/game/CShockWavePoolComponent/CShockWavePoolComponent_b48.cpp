@@ -40,7 +40,7 @@ struct UnkShockWavePoolResetB48 {
     u32 field_0x320;
 };
 
-void fn_71009f5cc0(UnkShockWavePoolResetB48* self) {
+void CShockWavePoolComponent_Reset(UnkShockWavePoolResetB48* self) {
     fn_71010c4228(reinterpret_cast<UnkParent*>(self));
     {
         UnkShockWavePoolFreshB48 fresh;

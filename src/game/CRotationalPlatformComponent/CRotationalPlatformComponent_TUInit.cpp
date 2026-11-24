@@ -29,7 +29,7 @@ static inline UnkReflType* AsUnk(base::reflection::CType* t) {
     return reinterpret_cast<UnkReflType*>(t);
 }
 
-void fn_71009d9650() {
+void CRotationalPlatformComponent_InitStatics() {
     UnkRotationalPlatformTU& tu = g_unk_7172740970;
     InitHeader(tu.header);
     InitEnum(AsUnk(&base::reflection::TypeObject<ERotationDirection>::object), "ERotationDirection", fn_71009d7c0c, reinterpret_cast<void (*)()>(fn_71009d7ac0));

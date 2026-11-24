@@ -27,7 +27,7 @@ struct UnkRumbleDesc_l9dae9c {
 
 struct UnkSoundDef;
 
-void fn_71009dae9c(void* self, UnkSoundDef* def, f32* scales, u32 index, UnkRumbleDesc_l9dae9c* out) {
+void CRumbleComponent_MakeRumbleDescFromSoundDef(void* self, UnkSoundDef* def, f32* scales, u32 index, UnkRumbleDesc_l9dae9c* out) {
     if (!def)
         return;
     UnkInlineSoundDesc sound;
