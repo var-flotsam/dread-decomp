@@ -1862,11 +1862,11 @@ address,size,name,name_source,subsystem,status
 0x7101052c6c,224,fn_7101052c6c,unknown,unknown,O
 0x7101052d4c,224,fn_7101052d4c,unknown,unknown,O
 0x7101052e2c,80,fn_7101052e2c,unknown,unknown,O
-0x7101052e7c,236,fn_7101052e7c,unknown,engine/reflection?,O
+0x7101052e7c,236,fn_7101052e7c,unknown,engine/reflection?,U
 0x7101052f68,108,fn_7101052f68,unknown,unknown,O
 0x7101052fd4,252,fn_7101052fd4,unknown,unknown,O
 0x71010530d0,92,fn_71010530d0,unknown,unknown,O
-0x710105312c,412,fn_710105312c,unknown,game?,O
+0x710105312c,412,fn_710105312c,unknown,game?,U
 0x71010532c8,20,fn_71010532c8,unknown,unknown,O
 0x71010532e0,880,fn_71010532e0,unknown,engine/reflection?,O
 0x7101053650,464,fn_7101053650,unknown,engine/reflection?,O
@@ -2396,7 +2396,7 @@ address,size,name,name_source,subsystem,status
 0x7101069a6c,2832,fn_7101069a6c,unknown,game/components?,U
 0x710106a57c,668,fn_710106a57c,unknown,unknown,O
 0x710106a818,120,fn_710106a818,unknown,unknown,M
-0x710106a890,316,fn_710106a890,unknown,unknown,O
+0x710106a890,316,fn_710106a890,unknown,unknown,U
 0x710106a9cc,2232,fn_710106a9cc,unknown,unknown,U
 0x710106b284,56,fn_710106b284,unknown,game/components?,O
 0x710106b2bc,468,fn_710106b2bc,unknown,game?,m
@@ -4091,12 +4091,12 @@ address,size,name,name_source,subsystem,status
 0x71010c6914,252,fn_71010c6914,unknown,unknown,O
 0x71010c6a10,360,fn_71010c6a10,unknown,unknown,O
 0x71010c6b78,356,fn_71010c6b78,unknown,unknown,O
-0x71010c6cdc,308,fn_71010c6cdc,unknown,unknown,O
+0x71010c6cdc,308,CComponent_SwapEraseStrIdKeyedEntry,inferred,unknown,O
 0x71010c6e10,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::Begin",reflection,engine/reflection,O
 0x71010c6e1c,20,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::End",reflection,engine/reflection,O
 0x71010c6e30,152,fn_71010c6e30,unknown,unknown,O
 0x71010c6ec8,168,fn_71010c6ec8,unknown,unknown,O
-0x71010c6f70,788,fn_71010c6f70,unknown,engine/reflection?,O
+0x71010c6f70,788,CComponent_InitStatics,inferred,engine/reflection?,O
 0x71010c7284,164,fn_71010c7284,unknown,script/bindings?,O
 0x71010c7328,296,fn_71010c7328,unknown,script/bindings?,O
 0x71010c7450,140,fn_71010c7450,unknown,unknown,O
@@ -4606,7 +4606,7 @@ address,size,name,name_source,subsystem,status
 0x71010e81e8,980,fn_71010e81e8,unknown,game?,U
 0x71010e85bc,472,fn_71010e85bc,unknown,game?,O
 0x71010e8794,36,fn_71010e8794,unknown,game?,O
-0x71010e87b8,480,fn_71010e87b8,unknown,game?,O
+0x71010e87b8,480,CAnimatedCameraCtrl_InitFromArgNodeAndDef,inferred,game?,O
 0x71010e8998,716,fn_71010e8998,unknown,game?,U
 0x71010e8c64,916,fn_71010e8c64,unknown,game?,U
 0x71010e8ff8,388,fn_71010e8ff8,unknown,game?,O
@@ -4619,7 +4619,7 @@ address,size,name,name_source,subsystem,status
 0x71010ea518,36,fn_71010ea518,unknown,game?,O
 0x71010ea53c,656,fn_71010ea53c,unknown,game?,U
 0x71010ea7cc,8348,fn_71010ea7cc,unknown,game?,U
-0x71010ec868,216,fn_71010ec868,unknown,game?,O
+0x71010ec868,216,CAnimatedCameraCtrl_GetInterpolationKindFromName,inferred,game?,O
 0x71010ec940,8,fn_71010ec940,unknown,game?,O
 0x71010ec948,8,fn_71010ec948,unknown,game?,O
 0x71010ec950,28,fn_71010ec950,unknown,game?,O

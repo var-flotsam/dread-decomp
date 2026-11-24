@@ -59,7 +59,7 @@ void fn_7100c9cb50() __attribute__((visibility("hidden")));
 void fn_7100c9cd60(void*) __attribute__((visibility("hidden")));
 void fn_7100c9d070(void*) __attribute__((visibility("hidden")));
 struct UnkTileLists;
-void fn_7100c9da0c(UnkTileLists*);
+void CBreakableTileGroup_DestroyCallbackLists(UnkTileLists*);
 
 static void InitPath(PathId* id, const char* path) { new (id) CFilePathStrId(path, true); }
 
@@ -139,5 +139,5 @@ void fn_7100c9d380() {
     new (&events->pending_add) Callbacks(0xf);
     new (&events->pending_remove) Callbacks(0xf);
     events->locked = false;
-    fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_7100c9da0c), events, g_unk_7101a19000);
+    fn_7100000250(reinterpret_cast<void (*)(void*)>(CBreakableTileGroup_DestroyCallbackLists), events, g_unk_7101a19000);
 }

@@ -13,7 +13,7 @@ struct CSPBTutoLogicAction {
 };
 
 // Marks the action done and releases its handle.
-bool fn_7100a52ebc(CSPBTutoLogicAction* self) {
+bool CSPBTutoLogicAction_EnableSPRTutoAndReleaseHandle(CSPBTutoLogicAction* self) {
     self->field_0x190 = true;
     self->field_0x11 = false;
     UnkTutoHandle** slot = &self->handle;

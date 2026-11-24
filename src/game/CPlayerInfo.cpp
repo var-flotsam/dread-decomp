@@ -12,7 +12,7 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 // The base class's constructor (stores its vtable and clears the word at +8).
-void fn_7100f10c4c(void* self);
+void CReserveTankInfo_ConstructLifeTank(void* self);
 void fn_7100f10e18(void* self);
 void fn_7100f10f20(void* self);
 void fn_7100f0f4d0();
@@ -138,7 +138,7 @@ void fn_7100f086c8(UnkPlayerInfo* self) {
     self->field_0x140 = false;
     self->field_0x144[0] = 0.0f;
     self->field_0x144[1] = 0.0f;
-    fn_7100f10c4c(self->field_0x150);
+    CReserveTankInfo_ConstructLifeTank(self->field_0x150);
     fn_7100f10e18(self->field_0x180);
     fn_7100f10f20(self->field_0x1b8);
     self->field_0x1e8.field_0x0 = nullptr;

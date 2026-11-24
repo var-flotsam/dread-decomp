@@ -75,7 +75,7 @@ void fn_71011815a8(UnkAreaSoundHandles_ovb0062* self, UnkSound* sound) {
 }
 
 // Through the listener base at +0xad0.
-void fn_7101181664(u8* listener, UnkSound* sound) {
+void CAreaSoundComponent_ListenerThunk_ClearHandleForSound(u8* listener, UnkSound* sound) {
     Forget_ovb0062(reinterpret_cast<UnkAreaSoundHandles_ovb0062*>(reinterpret_cast<u64>(listener) - 0xad0), sound);
 }
 

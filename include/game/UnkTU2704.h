@@ -27,7 +27,7 @@ bool fn_7101126af4(CSpawnPointComponent* self);
 extern UnkProperty g_unk_7172a06908;
 void fn_710112e7e0(void* self);  // Re-points `current` at (index, element).
 extern UnkStruct_7172a0768c g_unk_7172a0768c;  // The id list's count, its ids after it.
-const base::global::CStrId* fn_710112bf20(void* link);
+const base::global::CStrId* CSpawnPointComponent_GetField0x60TargetId(void* link);
 base::reflection::UnkReflObject* fn_7101126814(const base::global::CStrId* id);
 void fn_7101131b98(base::global::CRntVector<UnkSpawnHolder>* self, const UnkSpawnHolder* value);
 extern void* g_unk_7101cb2880[];

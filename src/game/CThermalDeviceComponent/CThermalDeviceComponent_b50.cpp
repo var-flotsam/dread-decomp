@@ -17,7 +17,7 @@ struct UnkThermalDevice_b50a5 {
     f32 timer;  // 0x598
 };
 
-void fn_7100a93208(UnkThermalDevice_b50a5* self, f32 dt) {
+void CThermalDeviceComponent_TickTimerAndSetRenderParamW(UnkThermalDevice_b50a5* self, f32 dt) {
     fn_7100a9fad8(self, dt);
     if (self->timer > 0.0f) {
         CVector4D v = {0.0f, 0.0f, 0.0f, 0.0f};

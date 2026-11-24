@@ -15,7 +15,7 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 struct UnkModelUpdater_ovb0032;
-bool fn_71011743bc(UnkModelUpdater_ovb0032* self, const s64* id);
+bool CModelUpdaterComponent_ModelHasPartWithId(UnkModelUpdater_ovb0032* self, const s64* id);
 
 struct UnkSamusModelUpdater_l93a130 {
     u8 pad_0x0[0x210];
@@ -67,7 +67,7 @@ void fn_710093a130(char* self, char* entry, CRntString* out) {
     CRntString_Assign(out, Str_l93a130(name));
     {
         s64 key = name.data->Key();
-        if (fn_71011743bc(reinterpret_cast<UnkModelUpdater_ovb0032*>(self), &key))
+        if (CModelUpdaterComponent_ModelHasPartWithId(reinterpret_cast<UnkModelUpdater_ovb0032*>(self), &key))
             return;
     }
 

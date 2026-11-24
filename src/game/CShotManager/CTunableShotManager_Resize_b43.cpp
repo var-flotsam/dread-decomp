@@ -11,14 +11,14 @@ static_assert(sizeof(UnkObj290_b43a3) == 0x290, "UnkObj290_b43a3 layout");
 
 void fn_7100ecbddc(UnkObj290_b43a3* self);  // constructor
 
-void fn_7100ede9e4(base::global::CRntVector<UnkObj290_b43a3>* self, u32 n) {
+void CShotManager_ResizeObj290Vector(base::global::CRntVector<UnkObj290_b43a3>* self, u32 n) {
     if (self->capacity < n) {
         UnkObj290_b43a3* p =
             static_cast<UnkObj290_b43a3*>(self->allocator->vf_0x40((u64)n * sizeof(UnkObj290_b43a3), 8, self->flags));
         if (UnkObj290_b43a3* old = self->data) {
             UnkObj290_b43a3* dst = p;
             for (u32 i = 0; i < self->count; ++i) {
-                fn_7100eddc68(dst, old);
+                CShotManager_CopyConstructElement290(dst, old);
                 old->vf_0x0();
                 ++dst;
                 ++old;

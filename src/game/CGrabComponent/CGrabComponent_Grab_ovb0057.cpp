@@ -329,7 +329,7 @@ static inline u64 SingletonHash(u32 offset) {
     return id->data->Key();
 }
 
-__attribute__((noinline)) void fn_710113af2c(UnkGrabParams_ovb0057* self) {
+__attribute__((noinline)) void CGrabComponent_ConstructGrabState(UnkGrabParams_ovb0057* self) {
     UnkGrabInfo_ovb0057& info = self->info;
     self->state = 0;
     self->grabbed = nullptr;
@@ -381,7 +381,7 @@ void fn_710113adb4(UnkGrabComponent_ovb0057* self) {
     self->field_0xd0 = nullptr;
     self->target = nullptr;
     self->target_set = false;
-    fn_710113af2c(&self->params);
+    CGrabComponent_ConstructGrabState(&self->params);
     self->field_0x190 = 0;
     self->field_0x198 = 0;
     self->field_0x1a0 = 0;
@@ -513,7 +513,7 @@ bool fn_710113d25c(UnkGrabComponent_ovb0057* self, UnkGrabRequest_ovb0057& req, 
     return fn_710113d4f4(self, &req, req.field_0x5c, other);
 }
 
-UnkGrabRequest_ovb0057* fn_710113d378(UnkGrabComponent_ovb0057* self, UnkGrabActor_ovb0057* other) {
+UnkGrabRequest_ovb0057* CGrabComponent_FindRequestAcceptingActor(UnkGrabComponent_ovb0057* self, UnkGrabActor_ovb0057* other) {
     if (!CanBeGrabbed(other))
         return nullptr;
     for (UnkGrabRequest_ovb0057* req = self->requests->first; req; req = req->next)
@@ -541,7 +541,7 @@ void fn_710113d940(void* grabber, UnkKraidGrab_b57a4* grab, void* owner) {
         fn_710113c060(self);
 }
 
-void fn_710113ee18(UnkGrabComponent_ovb0057* self) {
+void CGrabComponent_RequestAnimAndClearTarget(UnkGrabComponent_ovb0057* self) {
     if (UnkAnimationComponent* anim = self->owner->field_0x220) {
         if (fn_710117ae38(anim, SingletonHash(0x848), false)) {
             u64 hash = SingletonHash(0x850);

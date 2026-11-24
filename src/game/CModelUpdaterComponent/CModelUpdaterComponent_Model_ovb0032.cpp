@@ -101,7 +101,7 @@ static inline f32 RandSign_ovb0032() { return (rand() & 1) ? 1.0f : -1.0f; }
 
 // Restarts the wobble: copies the ranges' bases and spreads, then picks each axis's offset within
 // half its base around it and a random direction.
-void fn_7101172de0(UnkWobble_ovb0032* self, f32 speed) {
+void CModelUpdaterComponent_RestartWithRandomAxisOffsets(UnkWobble_ovb0032* self, f32 speed) {
     self->speed = speed;
     self->time = 0.0f;
     for (int i = 0; i < 3; ++i) {
@@ -129,7 +129,7 @@ void fn_7101172cec(UnkWobbleOwner_ovb0032* self, f32 speed, f32 base_x, f32 spre
     w.name = name;
     w.field_0x20 = a;
     w.field_0x2c = b;
-    fn_7101172de0(&w, speed);
+    CModelUpdaterComponent_RestartWithRandomAxisOffsets(&w, speed);
 }
 
 // --- The model ---
@@ -175,7 +175,7 @@ struct UnkShowNodeComponentB;
 struct UnkShowNodeEvent;
 
 // Shows one part of the model's slot table picked at random and hides the others.
-void fn_7101173a04(UnkShowNodeComponentB* component, UnkShowNodeEvent*) {
+void CModelUpdaterComponent_ShowRandomNode(UnkShowNodeComponentB* component, UnkShowNodeEvent*) {
     auto* self = reinterpret_cast<UnkModelUpdater_ovb0032*>(component);
     s32 count = self->model->slots->parts->count;
     if (count == 0)
@@ -189,7 +189,7 @@ void fn_7101173a04(UnkShowNodeComponentB* component, UnkShowNodeEvent*) {
 }
 
 // Whether the model's slot table has a part with the key `*id`.
-bool fn_71011743bc(UnkModelUpdater_ovb0032* self, const s64* id) {
+bool CModelUpdaterComponent_ModelHasPartWithId(UnkModelUpdater_ovb0032* self, const s64* id) {
     if (self->model) {
         UnkModelParts_ovb0032* parts = self->model->slots->parts;
         for (u64 i = 0; i < parts->count; ++i) {
@@ -236,7 +236,7 @@ static inline void ResetPath_ovb0032(CFilePathStrId& path) {
 
 // Drops the loaded model (takes it off the render manager's layer and forgets its path), then loads
 // the next one (fn_7101171a08).
-void fn_7101174314(void* object, const void* path, const CRntString* extra) {
+void CModelUpdaterComponent_ReleaseModelAndApplyPath(void* object, const void* path, const CRntString* extra) {
     auto* self = static_cast<UnkModelUpdater_ovb0032*>(object);
     if (self->model) {
         fn_71002199d8(g_unk_7101d47300, reinterpret_cast<UnkItemBase_71011a91c4*>(self->model->item),

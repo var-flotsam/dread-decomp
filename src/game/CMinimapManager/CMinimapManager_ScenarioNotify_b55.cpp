@@ -25,5 +25,5 @@ static inline void NotifyIfCurrent_b55(UnkMinimapScenarioOwner_b55* self, void* 
     fn_7100e791a4(self->field_0x118, arg, Kind, false, nullptr);
 }
 
-void fn_7100e95038(UnkMinimapScenarioOwner_b55* self, void* arg) { NotifyIfCurrent_b55<6>(self, arg); }
-void fn_7100e950b4(UnkMinimapScenarioOwner_b55* self, void* arg) { NotifyIfCurrent_b55<4>(self, arg); }
+void CMinimapManager_SetRegionVisited(UnkMinimapScenarioOwner_b55* self, void* arg) { NotifyIfCurrent_b55<6>(self, arg); }
+void CMinimapManager_SetRegionVisible(UnkMinimapScenarioOwner_b55* self, void* arg) { NotifyIfCurrent_b55<4>(self, arg); }

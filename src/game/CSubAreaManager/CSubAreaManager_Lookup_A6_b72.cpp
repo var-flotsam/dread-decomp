@@ -16,7 +16,7 @@ struct UnkPairTable_A6_b72 {
     u32 count;
 };
 
-bool fn_7100eeb670(UnkPairTable_A6_b72* self, const u64* key0, const u64* key1, f32* second, f32* first) {
+bool CSubAreaManager_GetPositiveValuesByKeyPair(UnkPairTable_A6_b72* self, const u64* key0, const u64* key1, f32* second, f32* first) {
     u64 k0 = *key0;
     u64 k1 = *key1;
     for (UnkPairEntry_A6_b72 *e = self->entries, *end = e + self->count; e != end; ++e) {

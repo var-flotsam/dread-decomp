@@ -52,6 +52,6 @@ void fn_7100d9ee70(UnkLightsDefObj_b52* self) {
 }
 
 // By reference: the object is known to exist, so the delete has no null check.
-void fn_7100d9ef14(UnkLightsDefObj_b52& self) {
+void CLightsDef_DestroyAndDelete(UnkLightsDefObj_b52& self) {
     delete &self;
 }

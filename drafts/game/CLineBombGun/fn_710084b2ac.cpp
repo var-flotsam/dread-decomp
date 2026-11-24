@@ -22,7 +22,7 @@ using base::reflection::UnkReflObject;
 
 struct UnkBombAimMovement_ovb0078;
 struct UnkWeakTarget;
-void fn_7100aac004(UnkBombAimMovement_ovb0078* self, UnkWeakTarget* target);
+void CBombMovement_SetTargetAndCacheAngle(UnkBombAimMovement_ovb0078* self, UnkWeakTarget* target);
 
 struct UnkRefl_fn_710084b690;
 template <>
@@ -199,7 +199,7 @@ bool fn_710084b2ac(UnkLineBombGun_l84b2ac* self) {
     if (pair.first.ptr) {
         UnkReflObject* target = pair.first.ptr->target;
         if (target && (TargetFlags(target) & 0x8000))
-            fn_7100aac004(reinterpret_cast<UnkBombAimMovement_ovb0078*>(movement),
+            CBombMovement_SetTargetAndCacheAngle(reinterpret_cast<UnkBombAimMovement_ovb0078*>(movement),
                           reinterpret_cast<UnkWeakTarget*>(target));
     }
 

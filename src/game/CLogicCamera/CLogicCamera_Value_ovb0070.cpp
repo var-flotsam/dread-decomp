@@ -40,7 +40,7 @@ struct UnkCameraHolder_ovb0070 {
     base::UnkRefHandle handle;
 };
 
-UnkReflValue fn_7101052e7c(UnkCameraHolder_ovb0070* holder) {
+UnkReflValue CLogicCamera_ResolveHandleAsReflValue(UnkCameraHolder_ovb0070* holder) {
     if (holder->state == 1) {
         {
             UnkCameraRef_ovb0070 fresh = fn_7101052a30(holder->source);
@@ -104,7 +104,7 @@ struct UnkCameraCallbackSet_ovb0070_ovb0070 : UnkCameraCallbackBase_ovb0070 {
 };
 
 // The copy assignment: through a resolved copy of `other`, moved in.
-UnkCameraCallbackSet_ovb0070_ovb0070* fn_710105312c(UnkCameraCallbackSet_ovb0070_ovb0070* self,
+UnkCameraCallbackSet_ovb0070_ovb0070* CLogicCamera_CopyAssignGameLink(UnkCameraCallbackSet_ovb0070_ovb0070* self,
                                             const UnkCameraCallbackSet_ovb0070_ovb0070* other) {
     if (self != other) {
         UnkCameraCallbackSet_ovb0070_ovb0070 copy(*other);

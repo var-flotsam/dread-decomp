@@ -97,7 +97,7 @@ static inline UnkNavMeshManager* NavManager() {
 
 // Inserts a node for `pos` (and the navigation mesh cell under it) at `index`, telling the
 // listeners about the last node.
-void* fn_7100acc2f0(UnkWorldGraph_b0101* self, u32 index, const base::math::CVector3D* pos, void* arg) {
+void* CWorldGraph_InsertNodeAt(UnkWorldGraph_b0101* self, u32 index, const base::math::CVector3D* pos, void* arg) {
     base::math::CVector2D point;
     fn_710007b430(&point, pos);
     UnkNavMesh* mesh = NavManager()->navmesh;

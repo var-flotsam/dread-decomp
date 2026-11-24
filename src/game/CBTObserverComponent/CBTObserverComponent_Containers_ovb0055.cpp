@@ -65,7 +65,7 @@ static_assert(sizeof(UnkBTObserverEntry_ovb0055) == 0x80, "UnkBTObserverEntry_ov
 
 using UnkBTObserverEntries_ovb0055 = base::global::CRntSmallDictionary<u32, UnkBTObserverEntry_ovb0055>;
 
-__attribute__((noinline)) void fn_7100ca720c(UnkBTObserverEntries_ovb0055* self) {
+__attribute__((noinline)) void CBTObserverComponent_ClearKeyedEntries(UnkBTObserverEntries_ovb0055* self) {
     if (self->values) {
         for (u64 i = 0; i < self->count; ++i)
             self->values[i].~UnkBTObserverEntry_ovb0055();
@@ -74,7 +74,7 @@ __attribute__((noinline)) void fn_7100ca720c(UnkBTObserverEntries_ovb0055* self)
 }
 
 // Constructs `self` from `other`, pointing other's back-pointing slots at `self`.
-__attribute__((noinline)) void fn_7100ca9380(UnkBTObserverEntry_ovb0055* self, UnkBTObserverEntry_ovb0055* other) {
+__attribute__((noinline)) void CBTObserverComponent_MoveConstructEntry(UnkBTObserverEntry_ovb0055* self, UnkBTObserverEntry_ovb0055* other) {
     new (&self->links) base::global::CRntVector<void**>(0xf);
     new (&self->field_0x28) base::global::CRntVector<void*>(0xf);
     new (&self->field_0x50) base::global::CRntVector<void*>(0xf);
@@ -90,7 +90,7 @@ __attribute__((noinline)) void fn_7100ca9380(UnkBTObserverEntry_ovb0055* self, U
     other->field_0x50.count = 0;
 }
 
-void fn_7100ca9158(base::UnkPairArrays* pairs, u32 capacity) {
+void CBTObserverComponent_ReserveEntries(base::UnkPairArrays* pairs, u32 capacity) {
     auto* self = reinterpret_cast<UnkBTObserverEntries_ovb0055*>(pairs);
     if (self->capacity >= capacity)
         return;
@@ -101,7 +101,7 @@ void fn_7100ca9158(base::UnkPairArrays* pairs, u32 capacity) {
         UnkBTObserverEntry_ovb0055* src = self->values;
         UnkBTObserverEntry_ovb0055* dst = values;
         for (u32 i = 0; i < self->count; ++i, ++dst, ++src) {
-            fn_7100ca9380(dst, src);
+            CBTObserverComponent_MoveConstructEntry(dst, src);
             src->~UnkBTObserverEntry_ovb0055();
         }
         self->allocator->vf_0x48(self->values);
@@ -333,7 +333,7 @@ struct UnkObserverGroupOwner_ovb0055 {
     UnkObserverGroupMap_ovb0055 map;  // 0x8
 };
 
-UnkObserverGroupItems_ovb0055* fn_7100ca7510(UnkObserverGroupOwner_ovb0055* self, const CStrId* key) {
+UnkObserverGroupItems_ovb0055* CBTObserverComponent_InsertEmptyVectorByStrId(UnkObserverGroupOwner_ovb0055* self, const CStrId* key) {
     UnkObserverGroupMap_ovb0055& map = self->map;
     base::UnkAllocator* allocator = GetDefaultAllocator();
     UnkObserverGroupNode_ovb0055** slot = nullptr;
@@ -487,7 +487,7 @@ struct UnkObserverById_ovb0055 {
 };
 
 // Creates an observer under `id`, or under the next free id when it is 0; returns the id.
-u32 fn_7100ca6f00(UnkObserverById_ovb0055* self, u32 id) {
+u32 CBTObserverComponent_CreateObserverUnderId(UnkObserverById_ovb0055* self, u32 id) {
     u32 next = id + 1;
     if (self->next_id > next)
         next = self->next_id;
@@ -537,7 +537,7 @@ struct UnkObserverPlayer_ovb0055 {
 struct UnkPlayer;
 
 // While the player is in a state other than 2, updates the enabled observers and resets the others.
-void fn_7100ca6e64(UnkObserverById_ovb0055* self, f32 dt) {
+void CBTObserverComponent_UpdateObservers(UnkObserverById_ovb0055* self, f32 dt) {
     auto* player = reinterpret_cast<UnkObserverPlayer_ovb0055*>(fn_7100dec788(g_unk_7101d47310));
     if (!player || !player->state || player->state->state == 2)
         return;
@@ -577,7 +577,7 @@ struct UnkObserverNotify_ovb0055 {
 };
 
 // Tells the listener, then the observer `id` names; a hit it reports is passed on to the map.
-void fn_7100ca7388(UnkGameManagerSub_0x1af8* manager, u32 id, u32 a, u32 b) {
+void CBTObserverComponent_NotifyListenerAndObserverById(UnkGameManagerSub_0x1af8* manager, u32 id, u32 a, u32 b) {
     auto* self = reinterpret_cast<UnkObserverNotify_ovb0055*>(manager);
     if (self->listener)
         self->listener->vf_0x0(id, a, b);
@@ -612,7 +612,7 @@ void fn_7100ca6dd0(UnkObserverReset_ovb0055* self) {
     }
     self->observer_count = 0;
     self->next_id = 1;
-    fn_7100ca720c(&self->entries);
+    CBTObserverComponent_ClearKeyedEntries(&self->entries);
 }
 
 // ---- Destruction and set-up ----
@@ -670,7 +670,7 @@ struct UnkObserverPairs_ovb0055 : base::UnkPairArrays {
 
 struct UnkObserverEntryPairs_ovb0055 : base::UnkPairArrays {
     __attribute__((always_inline)) ~UnkObserverEntryPairs_ovb0055() {
-        fn_7100ca720c(reinterpret_cast<UnkBTObserverEntries_ovb0055*>(this));
+        CBTObserverComponent_ClearKeyedEntries(reinterpret_cast<UnkBTObserverEntries_ovb0055*>(this));
         if (values)
             allocator->vf_0x48(values);
         if (keys)

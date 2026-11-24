@@ -12,7 +12,7 @@ struct UnkSpawnTarget {
     CStrId id;
 };
 
-const CStrId* fn_710112bf20(CSpawnPointComponent* self) {
+const CStrId* CSpawnPointComponent_GetField0x60TargetId(CSpawnPointComponent* self) {
     self->ResolveField0x60();
     // The linked actor, through this function's view of it.
     auto* handle = static_cast<CGameLinkHandle<UnkSpawnTarget>*>(self->field_0x60.handle.ptr);

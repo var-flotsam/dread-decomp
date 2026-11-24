@@ -95,6 +95,6 @@ struct UnkSwapMap_ovb0062 {
 };
 
 // Declared with a void return in src/game/CPlaythrough/fn_71002eef6c.cpp; it answers the slot.
-u64* fn_71010c6cdc(UnkValuesByKey* a, u64* value) {
+u64* CComponent_SwapEraseStrIdKeyedEntry(UnkValuesByKey* a, u64* value) {
     return reinterpret_cast<UnkSwapMap_ovb0062*>(a)->Erase(value);
 }

@@ -24,8 +24,8 @@ UnkMapData* fn_7100e8d8b0();
 UnkRecord_e9bf60** fn_7100eb3814(UnkRecordBuckets* set, u32 bucket);
 void fn_7100e94054(UnkMapTimersView_b43a3* self, f32 zoom);
 UnkMinimapRect fn_7100e948b4(UnkMinimapOwner* self, bool flag);
-void fn_7100e95038(void* world, void* object);
-void fn_7100e950b4(void* world, void* object);
+void CMinimapManager_SetRegionVisited(void* world, void* object);
+void CMinimapManager_SetRegionVisible(void* world, void* object);
 void fn_7100e951d4(UnkMinimapOwner* self, u32 count, void* items, u32 field_0x3);
 void fn_7100e957a8(UnkMinimapOwner* self);
 // Grows the cell list (the 0x90-byte cells and their ids) to `capacity`.

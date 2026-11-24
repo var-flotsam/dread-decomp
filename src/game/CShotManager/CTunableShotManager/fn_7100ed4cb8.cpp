@@ -60,7 +60,7 @@ __attribute__((always_inline)) static inline void* NewBuffer() {
     return data;
 }
 
-void fn_7100ed4cb8(UnkProjectiles* self) {
+void CShotManager_LoadProjectileModels(UnkProjectiles* self) {
     LoadModel(self->field_0x100[0], "actors/weapons/powerbeam/models/powerbeam_projectile.bcmdl");
     fn_7100ecf978(&self->field_0x88[0], 1);
     self->field_0x1a0[0].data = NewBuffer();

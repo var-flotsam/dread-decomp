@@ -12,7 +12,7 @@ struct UnkObserverEntryMap_7100ca79f0 {
 
 bool fn_7100ca3518(void* entry, bool flag);
 
-void fn_7100ca79f0(UnkObserverEntryMap_7100ca79f0* manager, u32 id, bool flag) {
+void CBTObserverComponent_ResetTileGroupById(UnkObserverEntryMap_7100ca79f0* manager, u32 id, bool flag) {
     void** slot = UnkParallelFindSlotByValue(manager, id);
     if (slot != &manager->values[manager->count])
         fn_7100ca3518(*slot, flag);

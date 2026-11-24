@@ -76,7 +76,7 @@ void fn_7100aaa914(UnkBombHitHandler_ovb0078* self, u32 mask, const void* source
     if (fn_7100d5b484(tree, mask, reinterpret_cast<UnkShape*>(&shape),
                       reinterpret_cast<const UnkMtx44*>(&g_unk_7101a1a680), &hits, 0)) {
         for (UnkBombHitRecord_laaa914* it = hits.items(); it != hits.items() + hits.count; ++it)
-            fn_7100aaaaf4(self, kinds, const_cast<void*>(source), reinterpret_cast<UnkBombHitInfo_ovb0078*>(it),
+            CBombMovement_DispatchHitByClass(self, kinds, const_cast<void*>(source), reinterpret_cast<UnkBombHitInfo_ovb0078*>(it),
                           size, on_actor, on_tiles);
     }
 }

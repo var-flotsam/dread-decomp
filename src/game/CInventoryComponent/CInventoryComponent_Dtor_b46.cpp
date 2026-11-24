@@ -25,7 +25,7 @@ struct UnkCalledAt_71011412e4 {
 };
 
 static void Cleanup_71011412e4(char* self) {
-    fn_7101141378(reinterpret_cast<UnkObject_7101141558*>(self));
+    CInventoryComponent_DeleteAndClearItemAmounts(reinterpret_cast<UnkObject_7101141558*>(self));
 }
 
 void fn_71011412e4(char* self) {

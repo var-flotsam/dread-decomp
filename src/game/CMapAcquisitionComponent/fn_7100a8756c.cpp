@@ -72,7 +72,7 @@ static inline void* MusicManager() {
     return music;
 }
 
-void fn_7100a8756c(UnkMapAcquisition_la8756c* self) {
+void CMapAcquisitionComponent_StartFadeInAndMainMenuLevelMusic(UnkMapAcquisition_la8756c* self) {
     UnkGameManager* manager = g_unk_7101d47310;
     UnkMapAcquisitionClass_la8756c* fade = self->char_class;
     f32 delay = fade->fade_delay;

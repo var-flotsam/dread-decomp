@@ -30,7 +30,7 @@
 using base::global::CStrId;
 
 // The interpolation kind a name gives.
-s32 fn_71010ec868(const char* name) {
+s32 CAnimatedCameraCtrl_GetInterpolationKindFromName(const char* name) {
     if (strcmp(name, "Smooth") == 0)
         return 0;
     if (strcmp(name, "Linear") == 0)
@@ -336,7 +336,7 @@ static_assert(__builtin_offsetof(UnkAnimatedCameraStart_b0101, field_0x658) == 0
 
 void fn_71010e8998(UnkAnimatedCameraStart_b0101* self);
 
-void fn_71010e87b8(UnkAnimatedCameraStart_b0101* self, UnkCamArg_b0101* arg) {
+void CAnimatedCameraCtrl_InitFromArgNodeAndDef(UnkAnimatedCameraStart_b0101* self, UnkCamArg_b0101* arg) {
     if (self->vf_0x60()) {
         self->field_0x518 = false;
         self->field_0x54c = false;

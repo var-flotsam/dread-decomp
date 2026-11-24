@@ -26,7 +26,7 @@ struct UnkProfileStore {
 
 void* fn_7100ea6120(UnkProfileStore* self, const CStrId* id);
 void* fn_7100ea6164(UnkProfileStore* self, const CStrId* id, u32 index);
-void* fn_7100ea61c4(UnkProfileStore* self);
+void* CMinimapManager_FindEntryNearRectCentre(UnkProfileStore* self);
 
 static inline UnkProfileStore* GetProfileStore(UnkGameManager* manager) {
     return static_cast<UnkProfileStore*>(manager->field_0x2228);
@@ -41,7 +41,7 @@ void* fn_7100afd628() {
     if (!entry && id.data != &g_unk_7101d47108->empty) {
         entry = fn_7100ea6164(store, &id, profile->field_0x4b0);
         if (!entry)
-            entry = fn_7100ea61c4(store);
+            entry = CMinimapManager_FindEntryNearRectCentre(store);
     }
     return entry;
 }

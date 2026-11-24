@@ -105,7 +105,7 @@ struct UnkSPBTutoAction_b53 {
     }
 };
 
-void fn_7100a5264c(UnkSPBTutoAction_b53* self, void* arg) {
+void CSPBTutoLogicAction_ResolveCentralUnitLinksAndRunSPRTuto(UnkSPBTutoAction_b53* self, void* arg) {
     fn_7100a55ac0(self, arg);
     base::UnkRefCounted* target = self->first.Resolve();
     if (target && Actor(target)) {

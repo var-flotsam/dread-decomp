@@ -166,7 +166,7 @@ static inline void* MusicManager() {
     return music;
 }
 
-void fn_7100a8a438(UnkSaveStation2_ovb0118* self, f32 dt) {
+void CSaveStationUsableComponent_TickStartLevelMusicWait(UnkSaveStation2_ovb0118* self, f32 dt) {
     self->time += dt;
     base::reflection::UnkReflObject* object = self->char_class;
     UnkSaveStationClass2_ovb0118* char_class =

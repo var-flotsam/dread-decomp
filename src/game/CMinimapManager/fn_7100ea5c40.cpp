@@ -17,7 +17,7 @@ static inline char** Bucket(char* set, u32 bucket) {
 }
 void fn_7100eb3d9c(char* value);              // the node's destructor (its value is at 0; the link at 0x15f8)
 
-void fn_7100ea5c40(char* set, UnkPoolIter* it) {
+void CMinimapManager_EraseHashSetNodeAtIterator(char* set, UnkPoolIter* it) {
     u32 bucket;
     if (it->ref.set && *reinterpret_cast<u32*>(it->ref.set + 0x48) == it->ref.version) {
         bucket = it->ref.bucket;

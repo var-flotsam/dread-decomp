@@ -90,7 +90,7 @@ struct UnkShipRechargeDialog_A5_b73 {
     bool shown;
 };
 
-bool fn_7100a8bb78(UnkShipRechargeDialog_A5_b73* self) {
+bool CShipRechargeComponent_ShowDialogChoiceOnce(UnkShipRechargeDialog_A5_b73* self) {
     if (!self->shown) {
         self->shown = true;
         base::global::CRntString text = self->vf_0x220();

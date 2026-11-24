@@ -15,7 +15,7 @@ template <> base::reflection::CType base::reflection::TypeObject<void>::object a
 extern const base::reflection::CType g_unk_71727586d0 __attribute__((visibility("hidden")));
 void fn_7100adeaf4();
 void fn_7100add688(CFunction* fn, const char* name);
-base::reflection::UnkReflValue fn_7100adec94(void*, char* obj, base::reflection::UnkReflValue* const* args);
+base::reflection::UnkReflValue CTunableMenuHelperClass_InvokeSetInfo(void*, char* obj, base::reflection::UnkReflValue* const* args);
 void fn_7100500260(CFunction* fn);
 
 void fn_7100add284(CClass* cls) {
@@ -33,7 +33,7 @@ void fn_7100add284(CClass* cls) {
         fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100adec94);
+        fn->invoker = reinterpret_cast<void*>(&CTunableMenuHelperClass_InvokeSetInfo);
         fn_7100500260(fn);
     }
 }

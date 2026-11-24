@@ -60,7 +60,7 @@ UnkTimedEntry_ovb0071* fn_7100f0ca9c(UnkTimedMap_ovb0071* self, UnkTimedEntry_ov
     return &self->values[index];
 }
 
-void fn_7100f0f7b4(UnkTimedMap_ovb0071* self, u32 capacity) {
+void CPlayerInfo_ReserveTimedEntryMap(UnkTimedMap_ovb0071* self, u32 capacity) {
     if (self->capacity < capacity) {
         UnkTimedEntry_ovb0071* values = static_cast<UnkTimedEntry_ovb0071*>(
             self->allocator->vf_0x40((u64)capacity * sizeof(UnkTimedEntry_ovb0071), 8, self->flags));

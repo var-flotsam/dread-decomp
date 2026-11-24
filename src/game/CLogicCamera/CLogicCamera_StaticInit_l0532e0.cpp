@@ -37,7 +37,7 @@ void fn_7101051230(UnkEnumType* type, const CStrId& name, const base::reflection
 void fn_7101051190(base::reflection::CClass* cls);
 extern UnkConversion g_unk_71729fde50;
 struct UnkCameraCallbackSet_ovb0070_ovb0070;
-UnkCameraCallbackSet_ovb0070_ovb0070* fn_710105312c(UnkCameraCallbackSet_ovb0070_ovb0070* self,
+UnkCameraCallbackSet_ovb0070_ovb0070* CLogicCamera_CopyAssignGameLink(UnkCameraCallbackSet_ovb0070_ovb0070* self,
                                             const UnkCameraCallbackSet_ovb0070_ovb0070* other);
 extern UnkConversion g_unk_71729fde70;
 UnkEnumType* fn_7100231b40();
@@ -68,7 +68,7 @@ void fn_71010532e0() {
     fn_7100000250(fn_7100096604, &g_unk_71729fdd10, g_unk_7101a19000);
     fn_710009ec00(g_unk_71729fde48, &g_unk_71729fdd10);
     InitConversion(&g_unk_71729fde50, TypeOf<fn_7100009658>, &g_unk_71729fdd10,
-                   reinterpret_cast<void (*)()>(&fn_710105312c));
+                   reinterpret_cast<void (*)()>(&CLogicCamera_CopyAssignGameLink));
     InitConversion(&g_unk_71729fde70, fn_7100231b40, TypeOf<fn_71009112ac>, fn_71010532c8);
     InitConversion(&g_unk_71729fde90, fn_7100231c1c, &g_unk_71729fdd10, fn_7101052448);
 }
