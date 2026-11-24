@@ -7,7 +7,9 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/snd/CSoundSystem.h"
+#include "base/snd/UnkSound.h"
 #include "game/CComponent.h"
+#include "game/UnkSoundRef.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU23.h"
 #include "game/sound/UnkSoundHandle.h"
@@ -17,18 +19,8 @@ using base::reflection::UnkReflObject;
 
 struct UnkSoundMgr;
 
-struct UnkSoundObject_b50 {
-    u8 pad_0x0[0x124];
-    bool field_0x124;
-};
-
-struct UnkSoundRef {
-    UnkSoundObject_b50* object;
-    s64 serial;
-};
-
 // The object a handle names while it is still the one the handle was made for.
-inline UnkSoundObject_b50* GetSoundObject_b50(const UnkSoundHandle* handle) {
+inline UnkSound* GetSoundObject_b50(const UnkSoundHandle* handle) {
     if (handle->ref && handle->serial != -1 && handle->ref->serial == handle->serial)
         return handle->ref->object;
     return nullptr;
@@ -117,7 +109,7 @@ UnkSoundHandle CAudioComponent_PlaySoundWithLimitCheck(UnkAudio_b50* self, const
             return g_unk_7108b6c460;
     }
     UnkSoundHandle handle = fn_71001080b0(g_unk_7101d4d820, request);
-    if (UnkSoundObject_b50* object = GetSoundObject_b50(&handle)) {
+    if (UnkSound* object = GetSoundObject_b50(&handle)) {
         if (object->field_0x124)
             fn_7100106024(object, self->field_0x40);
     }

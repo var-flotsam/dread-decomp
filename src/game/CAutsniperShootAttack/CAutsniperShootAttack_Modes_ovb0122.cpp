@@ -14,16 +14,11 @@
 #include "game/sound/UnkSoundHandle.h"
 #include "game_s2/UnkSpitAttack.h"
 #include "types.h"
+#include "game/UnkSoundRef.h"
 
 using base::reflection::UnkReflObject;
 
 // As src/game/CHeatableShieldComponent/CHeatableShieldEntry_Reset_A5_b71.cpp spells the handle.
-struct UnkSound;
-struct UnkSoundRef {
-    UnkSound* sound;
-    s64 serial;
-};
-
 // As src/game/CEntity_2.cpp, src/game/CShipRechargeComponent/CShipRechargeComponent_StopSound_b49a4.cpp,
 // src/game/CAutsniperShootAttack/fn_71003d5a14.cpp and src/game/CAreaFXComponent/CAreaFXComponent_b41.cpp
 // declare them.
@@ -123,7 +118,7 @@ void fn_71003d57dc(UnkAutsniperShootAttack_ovb0122* self) {
         self->mode = 2;
         fn_710117abfc(self->owner->anim, 1, g_unk_71726bf838.anim, 0xf4061ff25a2163d6);
         UnkSoundHandle h = fn_7100d7c590(reinterpret_cast<UnkEntityWithSound*>(self->owner), &g_unk_71726bf838);
-        if (h.ref && h.serial != -1 && h.ref->serial == h.serial && h.ref->sound)
+        if (h.ref && h.serial != -1 && h.ref->serial == h.serial && h.ref->object)
             fn_7100d7c510(reinterpret_cast<UnkShipRechargeEntity_b49a4*>(self->owner), &h, 0.0f, 0.0f);
     }
 }

@@ -6,15 +6,11 @@
 #include "game/CAnimationComponent.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkStruct_71007142e8.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-struct UnkStruct_71007142e8 {
-    f32 m[12];
-    u8 pad_0x30[0x40];
-};
 
 bool fn_7101179808(UnkAnimationComponent* self);
 
@@ -87,7 +83,7 @@ void fn_71007cf4d0(UnkDummyMovement_l7cf4d0* self, f32 dt) {
             UnkStruct_71007142e8 motion;
             fn_71007142e8(&motion);
             fn_7101179d08(self->owner->animation, &motion, &g_unk_717270ec18);
-            root = self->owner->ToWorld(UnkVec3f(motion.m[3], motion.m[7], motion.m[11]));
+            root = self->owner->ToWorld(UnkVec3f(motion.xform.m[0][3], motion.xform.m[1][3], motion.xform.m[2][3]));
         }
     }
 

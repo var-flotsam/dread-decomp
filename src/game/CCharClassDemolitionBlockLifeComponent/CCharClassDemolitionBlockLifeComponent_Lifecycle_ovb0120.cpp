@@ -25,9 +25,9 @@ struct UnkDemolitionBlockLifeComponent_ovb0120 {
     u32 eDemolitionPhase;
     bool bHuskInitiallyRemoved;
     u8 pad_0x131[7];
-    UnkStringData* field_0x138;
-    UnkStringData* field_0x140;
-    UnkStringData* field_0x148;
+    base::global::CStrId field_0x138;
+    base::global::CStrId field_0x140;
+    base::global::CStrId field_0x148;
 };
 
 static inline void InitEmptyId(UnkStringData** id) {
@@ -48,9 +48,9 @@ void fn_71008af84c(UnkDemolitionBlockLifeComponent_ovb0120* self) {
     self->fTimeAfterDiffuseHuskDestroyed = 0.5f;
     self->eDemolitionPhase = 0;
     self->bHuskInitiallyRemoved = false;
-    InitEmptyId(&self->field_0x138);
-    InitEmptyId(&self->field_0x140);
-    InitEmptyId(&self->field_0x148);
+    InitEmptyId(&self->field_0x138.data);
+    InitEmptyId(&self->field_0x140.data);
+    InitEmptyId(&self->field_0x148.data);
 }
 
 using base::UnkStrIdMember;
