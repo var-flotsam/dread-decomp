@@ -14,7 +14,7 @@
 u16* fn_71000d1d24(void* vec, u32 index);
 void fn_710027daa4(void* mesh, const void* arg, bool first);
 
-struct UnkOwner;
+struct UnkOwner_71002b3828;
 
 struct UnkKeyedOwner_b0246 {
     UnkNavMesh* mesh;  // 0x0
@@ -25,7 +25,7 @@ struct UnkKeyedOwner_b0246 {
     u32 cell_count;  // 0xd0
 };
 
-void fn_71002b3aa0(UnkOwner* owner, bool flag, void* arg) {
+void fn_71002b3aa0(UnkOwner_71002b3828* owner, bool flag, void* arg) {
     UnkKeyedOwner_b0246* self = reinterpret_cast<UnkKeyedOwner_b0246*>(owner);
     UnkGuiKeyList* list = reinterpret_cast<UnkGuiKeyList*>(self->keys);
     bool before = fn_710002fb70(list);

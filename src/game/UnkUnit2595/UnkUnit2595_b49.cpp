@@ -17,7 +17,7 @@ struct UnkSingleton2595_b49a6 {
 };
 
 // As src/game/CChozoWarriorXUltimateGrabAttack/fn_710048a194.cpp declares it.
-struct UnkVec;
+struct UnkVec_710048a194;
 void fn_7100ec9640(UnkSingleton2595_b49a6* self);
 
 struct UnkVec3_b49a6 {
@@ -41,7 +41,7 @@ static inline bool PlayEffect2595(f32 scale) {
     UnkVec3_b49a6 origin;
     origin.xy = 0;
     origin.z = 0;
-    fn_7101053850(effects, reinterpret_cast<UnkVec*>(&origin), 1, 0.3f, scale);
+    fn_7101053850(effects, reinterpret_cast<UnkVec_710048a194*>(&origin), 1, 0.3f, scale);
     return true;
 }
 

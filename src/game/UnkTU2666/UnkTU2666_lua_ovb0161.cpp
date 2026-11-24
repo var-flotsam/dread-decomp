@@ -145,7 +145,7 @@ s32 fn_7101093740(lua_State* L) {
 // ---- sound and music with a file-path id ----
 struct UnkSoundMgr;
 struct UnkMgr;
-struct UnkHandle;
+struct UnkHandle_7100fdd2b4;
 void fn_7100fdc598(void* manager, f32 value, const CFilePathStrId* id);
 
 namespace lua_bind {
@@ -155,7 +155,7 @@ s32 DebugSetStreamVol(lua_State* L) {
     bool flag = false;
     if (fn_71010c0270(L, "sf|b", &name, &value, &flag)) {
         CFilePathStrId id(name, true);
-        fn_7100108abc(reinterpret_cast<UnkMgr*>(g_unk_7101d4d820), reinterpret_cast<UnkHandle*>(&id), 0.0f, value);
+        fn_7100108abc(reinterpret_cast<UnkMgr*>(g_unk_7101d4d820), reinterpret_cast<UnkHandle_7100fdd2b4*>(&id), 0.0f, value);
         if (flag)
             fn_7100fdc598(MusicManager_b0161(), value, &id);
     }

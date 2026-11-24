@@ -8,7 +8,7 @@
 #include "game/UnkTU437.h"
 #include "types.h"
 
-struct UnkSelf;
+struct UnkSelf_710035131c;
 
 struct UnkAimTunable_b49 {
     u8 pad_0x0[0x7c];
@@ -60,13 +60,13 @@ void fn_7100350c5c(UnkAimUpdate_b49* self, f32 dt) {
             !fn_710117ae38(self->owner->animation, 0xf335a18d7b2cf40full, false) &&
             !fn_710117ae38(self->owner->animation, 0xaafccaf5fb3e9a4cull, false)) {
             self->state = 6;
-            fn_7100350da0(reinterpret_cast<UnkSelf*>(self));
+            fn_7100350da0(reinterpret_cast<UnkSelf_710035131c*>(self));
             fn_7100347540(self);
             return;
         }
         state = self->state;
     }
     if (state == 6)
-        fn_7100350da0(reinterpret_cast<UnkSelf*>(self));
+        fn_7100350da0(reinterpret_cast<UnkSelf_710035131c*>(self));
     fn_7100347540(self);
 }

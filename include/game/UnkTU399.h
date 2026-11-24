@@ -6,4 +6,5 @@
 #include "types.h"
 
 struct UnkEntry;
-UnkEntry* fn_71002d57ac(void* registry, const void* key);
+struct UnkEntry_7100403a18;
+UnkEntry_7100403a18* fn_71002d57ac(void* registry, const void* key);

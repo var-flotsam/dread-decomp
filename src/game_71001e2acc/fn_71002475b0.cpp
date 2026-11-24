@@ -1,6 +1,6 @@
 // A copy of fn_7101114f80 (src/game_s7/fn_7101114f80.cpp) with its own sync function: Begin of a
 // reflected array of callback sets without the value after each set (fn_71002475b0). Its sets are
-// UnkCallbackSet_7101a20950 (vtable 0x7101a20950, as in include/game/UnkCallbackSetVector.h). The
+// UnkCallbackSet_7101a20950 (vtable 0x7101a20950, as in include/game/UnkCallbackSetVector_71002475b0.h). The
 // two other copies that were here use other set classes: fn_7100d88e14 is in
 // src/game_aca57c/fn_7100d88e14.cpp, fn_7101132350 in src/game_s7/fn_7101132350.cpp.
 #include "base/UnkErasedVector.h"
@@ -83,9 +83,9 @@ inline UnkIter<Sync>::UnkIter(u32 index, UnkCallbackSetElem* element) : index(in
 }
 
 // Reserve (one copy per array type).
-struct UnkCallbackSetVector;
+struct UnkCallbackSetVector_71002475b0;
 // PushBack of a copy (one per array type)
-struct UnkCallbackSetVector {
+struct UnkCallbackSetVector_71002475b0 {
     UnkCallbackSetElem* data;
     u32 count;
     u32 capacity;
@@ -94,9 +94,9 @@ struct UnkCallbackSetVector {
     u32 flags;
     base::UnkAllocator* allocator;
 
-    template <void (*Reserve)(UnkCallbackSetVector*, u32),
-              void (*PushBack)(UnkCallbackSetVector*, const UnkCallbackSetElem*)>
-    __attribute__((always_inline)) void CopyConstruct(const UnkCallbackSetVector& other) {
+    template <void (*Reserve)(UnkCallbackSetVector_71002475b0*, u32),
+              void (*PushBack)(UnkCallbackSetVector_71002475b0*, const UnkCallbackSetElem*)>
+    __attribute__((always_inline)) void CopyConstruct(const UnkCallbackSetVector_71002475b0& other) {
         data = nullptr;
         count = 0;
         capacity = 0;
@@ -147,7 +147,7 @@ struct UnkCallbackSetVector {
     }
 
     // Reserve is this array type's out-of-line copy of Reserve.
-    template <void (*Reserve)(UnkCallbackSetVector*, u32)>
+    template <void (*Reserve)(UnkCallbackSetVector_71002475b0*, u32)>
     __attribute__((always_inline)) void Insert(UnkCallbackSetElem&& value, u32 index) {
         if (index == count) {
             u32 n = count;
@@ -181,10 +181,10 @@ struct UnkCallbackSetVector {
 };
 
 template <void (*Sync)(void*)>
-static inline __attribute__((always_inline)) void Begin(const UnkCallbackSetVector* v, UnkIter<Sync>* out) {
+static inline __attribute__((always_inline)) void Begin(const UnkCallbackSetVector_71002475b0* v, UnkIter<Sync>* out) {
     *out = UnkIter<Sync>(0, v->data);
 }
 
-void fn_71002475b0(const UnkCallbackSetVector* v, UnkIter<fn_710023ac4c>* out) {
+void fn_71002475b0(const UnkCallbackSetVector_71002475b0* v, UnkIter<fn_710023ac4c>* out) {
     Begin(v, out);
 }

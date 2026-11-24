@@ -80,7 +80,7 @@ struct UnkList {
 
 struct UnkListener_9bfda8;
 
-struct UnkEntry {
+struct UnkEntry_71009bfda8 {
     char pad_0x0[0x130];
     UnkList<UnkListener_9bfda8*> field_0x130;
 };
@@ -90,7 +90,7 @@ struct UnkSource {
     virtual void vf8();
     virtual void vf10();
     virtual void vf18();
-    virtual UnkEntry* vf20(u32 index);
+    virtual UnkEntry_71009bfda8* vf20(u32 index);
     char pad_0x8[0x30];
     u32 field_0x38;
     char pad_0x3c[0x10];
@@ -120,7 +120,7 @@ void fn_71009bfda8(UnkOwner* self, UnkSource* src) {
     if (old) {
         fn_71009c6220(old);
         for (u32 i = 0; i < old->field_0x4c; ++i) {
-            UnkEntry* e = old->vf20(i);
+            UnkEntry_71009bfda8* e = old->vf20(i);
             if (e)
                 e->field_0x130.Remove(&self->field_0x40);
         }
@@ -128,7 +128,7 @@ void fn_71009bfda8(UnkOwner* self, UnkSource* src) {
     if (self->field_0x180) {
         fn_71009c5d6c(self->field_0x180);
         for (u32 i = 0; i < self->field_0x180->field_0x4c; ++i) {
-            UnkEntry* e = self->field_0x180->vf20(i);
+            UnkEntry_71009bfda8* e = self->field_0x180->vf20(i);
             if (e && !e->field_0x130.Contains(&self->field_0x40))
                 e->field_0x130.PushBack(&self->field_0x40);
         }

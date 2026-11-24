@@ -36,7 +36,7 @@ struct UnkOwner_46514c {
     u32 field_0x64;
 };
 
-struct UnkSelf {
+struct UnkSelf_710046514c {
     u8 pad_0x0[0x8];
     UnkOwner_46514c* field_0x8;
 };
@@ -58,7 +58,7 @@ static inline u32 AsU32(f32 value) {
     return bits;
 }
 
-bool fn_710046514c(UnkSelf* self, UnkVec3_46514c* out) {
+bool fn_710046514c(UnkSelf_710046514c* self, UnkVec3_46514c* out) {
     UnkTarget_46514c* target = reinterpret_cast<UnkTarget_46514c*>(fn_7100d7c990(reinterpret_cast<UnkActor*>(self->field_0x8)));
     if (!target)
         return false;

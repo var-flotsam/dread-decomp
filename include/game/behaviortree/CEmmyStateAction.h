@@ -6,5 +6,7 @@
 #include "types.h"
 
 struct UnkComponent;
-void fn_710051dab0(UnkComponent* self);
-void fn_710051db44(UnkComponent* self, u32 arg);
+struct UnkComponent_710051d360;
+struct UnkComponent_71005174e0;
+void fn_710051dab0(UnkComponent_710051d360* self);
+void fn_710051db44(UnkComponent_71005174e0* self, u32 arg);

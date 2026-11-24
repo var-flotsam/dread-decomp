@@ -208,7 +208,7 @@ bool fn_710085aa5c(void* gun, void* tile, UnkHitInfo_b152* hit);
 struct UnkQueryObj;
 // Out of line: fn_71009e73cc calls it.
 
-struct UnkComponent;
+struct UnkComponent_710035131c;
 struct UnkGunComponent;
 struct UnkGun_ovb0091;
 void fn_7100846e64(void* beam, u32 mode);
@@ -510,7 +510,7 @@ bool fn_71009e8218(UnkMove_b152* self, const UnkRequest_7101176ea8* request, boo
         const base::global::CStrId* current = fn_71008407fc(static_cast<UnkGunComponent*>(gun));
         if (SameId_b152(*current, GameManagerIdTable().field_0x1848)) {
             UnkReflObject* beam =
-                static_cast<UnkReflObject*>(fn_710083cd30(static_cast<UnkComponent*>(gun)));
+                static_cast<UnkReflObject*>(fn_710083cd30(static_cast<UnkComponent_710035131c*>(gun)));
             if (beam && !fn_710009d50c(beam->vf_0x0(), fn_71008424e8()))
                 beam = nullptr;
             if (fn_7100845fac(beam))

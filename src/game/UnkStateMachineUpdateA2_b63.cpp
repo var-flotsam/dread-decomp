@@ -473,10 +473,10 @@ void fn_710043e9f4(UnkSmLinked_A2_b63<0x88>* self) {
     StartLinked_A2_b63(self);
 }
 
-struct UnkSelf;
+struct UnkSelf_7100480928;
 
 void fn_710048758c(UnkSmLinked_A2_b63<0x80>* self) {
-    fn_71004936a0(reinterpret_cast<UnkSelf*>(self));
+    fn_71004936a0(reinterpret_cast<UnkSelf_7100480928*>(self));
     StartLinked_A2_b63(self);
 }
 

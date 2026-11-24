@@ -8,7 +8,7 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-struct UnkSelf;
+struct UnkSelf_71004cb554;
 bool fn_71004c31f8(void*, void*);
 
 struct UnkLaserBiteTrackLink_A2_b72 {
@@ -29,7 +29,7 @@ struct UnkLaserBiteStart_A2_b72 {
 };
 
 void fn_71004c274c(UnkLaserBiteStart_A2_b72* self) {
-    fn_71004c1944(reinterpret_cast<UnkSelf*>(self));
+    fn_71004c1944(reinterpret_cast<UnkSelf_71004cb554*>(self));
     self->field_0x70 = -1.0f;
     self->field_0x74 = false;
     UnkLaserBiteTrackLink_A2_b72* link = &self->link;

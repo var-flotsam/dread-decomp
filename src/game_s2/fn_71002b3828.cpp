@@ -33,7 +33,7 @@ struct UnkEntryInfo {
     s32 field_0x38;
 };
 
-struct UnkOwner {
+struct UnkOwner_71002b3828 {
     u8 pad_0x0[0x1e8];
     u8 field_0x1e8;
     u8 field_0x1e9;
@@ -48,14 +48,14 @@ struct UnkOwner {
 extern char g_unk_71726a4bc0[] __attribute__((visibility("hidden")));
 
 void* fn_7100ca719c(void* manager, u32 id);
-void fn_71002b3aa0(UnkOwner* self, bool flag, void* arg);
+void fn_71002b3aa0(UnkOwner_71002b3828* self, bool flag, void* arg);
 UnkLinkList* fn_7100ca7a64(void* manager, u32 id);
 void fn_71009c1130(void* component, u32 value, void* owner);
 s32 fn_71009c0b8c(void* component);
 
 // NON_MATCHING(minor): the entry loop is strength-reduced to a pointer induction here; the original keeps
 // a byte offset (and spills the weak handle vtable address). Same behaviour.
-void fn_71002b3828(UnkOwner* self) {
+void fn_71002b3828(UnkOwner_71002b3828* self) {
     if (self->field_0x1ec) {
         void* entries = g_unk_7101d47310->field_0x1af8;
         if (void* entry = fn_7100ca719c(entries, self->field_0x1ec)) {

@@ -8,7 +8,8 @@
 #include "types.h"
 
 struct UnkVec;
-void fn_7101053850(void* effects, UnkVec* position, u32 flag, f32 duration, f32 scale);
+struct UnkVec_710048a194;
+void fn_7101053850(void* effects, UnkVec_710048a194* position, u32 flag, f32 duration, f32 scale);
 bool fn_7101053a0c(void* effects);
 bool fn_7101053a7c(void* effects);
 bool fn_7101053a98(void* state);

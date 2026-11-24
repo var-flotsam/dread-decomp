@@ -171,7 +171,7 @@ void fn_71004c5820(UnkLavaAttack_ovb0059* self, const UnkLavaAttack_ovb0059* oth
     __builtin_memcpy(self->field_0x77c, other->field_0x77c, 11);
 }
 
-struct UnkVec3;
+struct UnkVec3_71003e6530;
 struct UnkTileOutlines;
 struct UnkTileOutline;
 
@@ -204,10 +204,10 @@ void fn_71004c51e4(UnkLavaAttackOutlines_ovb0059* self, const base::math::CVecto
     base::math::CVector2D flat_from;
     fn_710007b430(&flat_from, from);
     CVector3D point_from = {flat_from.x, flat_from.y, 0.0f};
-    fn_7100118b94(&outline, reinterpret_cast<UnkVec3*>(&point_from));
+    fn_7100118b94(&outline, reinterpret_cast<UnkVec3_71003e6530*>(&point_from));
     base::math::CVector2D flat_to;
     fn_710007b430(&flat_to, to);
     CVector3D point_to = {flat_to.x, flat_to.y, 0.0f};
-    fn_7100118b94(&outline, reinterpret_cast<UnkVec3*>(&point_to));
+    fn_7100118b94(&outline, reinterpret_cast<UnkVec3_71003e6530*>(&point_to));
     fn_7100d62d40(reinterpret_cast<UnkTileOutlines*>(self->outlines), reinterpret_cast<UnkTileOutline*>(&outline));
 }

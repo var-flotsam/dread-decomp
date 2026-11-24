@@ -347,8 +347,8 @@ void fn_7101047b2c(UnkBlackboardUser_b0026* self, CRntString* out) {
     ToLower(out);
 }
 
-struct UnkStrIdTable;
-void fn_710104b27c(UnkStrIdTable* self);
+struct UnkStrIdTable_7100251f78;
+void fn_710104b27c(UnkStrIdTable_7100251f78* self);
 
 // Copy-assigns the sections' arrays: the old ids are released, the arrays resized to the other's
 // count when their capacity differs, the values copied and the ids copied in.
@@ -356,7 +356,7 @@ UnkSectionArray_b0026* fn_710104b114(UnkSectionArray_b0026* self, const UnkSecti
     if (self != other) {
         self->Clear();
         if (other->count != self->capacity) {
-            fn_710104b27c(reinterpret_cast<UnkStrIdTable*>(self));
+            fn_710104b27c(reinterpret_cast<UnkStrIdTable_7100251f78*>(self));
             reinterpret_cast<base::UnkCloneKeyedArray<UnkClone_fn_710104afb4>*>(self)->Reserve(other->count);
         }
         __builtin_memcpy(self->values, other->values, (u64)other->count * sizeof(*self->values));

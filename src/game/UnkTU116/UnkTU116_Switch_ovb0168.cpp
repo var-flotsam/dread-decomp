@@ -65,9 +65,9 @@ void fn_71001417b0(UnkSwitchObject116_ovb0168* self, UnkLinkSource116_ovb0168* s
 // ---- the constructor (the tagged header of src/base/UnkTaggedObjectSubCtors.cpp, a second base at +0x20) ----
 
 struct UnkCreatedSceneObj116_ovb0168;
-struct UnkWidget;
+struct UnkWidget_71001f4dcc;
 struct UnkWidgetArg;
-void fn_71001f4dcc(UnkWidget* self, UnkWidgetArg* a);
+void fn_71001f4dcc(UnkWidget_71001f4dcc* self, UnkWidgetArg* a);
 
 struct UnkTaggedPart116_ovb0168 {
     u8 pad_0x0[0x139];
@@ -99,7 +99,7 @@ void fn_7100140bbc(UnkTaggedObject116_ovb0168* self, const CStrId* name) {
     self->resource = nullptr;
     self->vtable = g_unk_7101a1be28 + 0x10;
     self->vtable2 = g_unk_7101a1be28 + 0x1d0;
-    fn_71001f4dcc((UnkWidget*)self->sub, (UnkWidgetArg*)name);
+    fn_71001f4dcc((UnkWidget_71001f4dcc*)self->sub, (UnkWidgetArg*)name);
     self->field_0x1b8 = nullptr;
     fn_71000255c4(self->member);
     u32 flags = self->flags;

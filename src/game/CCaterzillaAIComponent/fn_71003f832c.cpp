@@ -8,7 +8,7 @@
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
-struct UnkOwner {
+struct UnkOwner_71003f832c {
     u8 pad_0x0[0x38];
     u8 field_0x38[0x1e0];
     void* field_0x218;
@@ -43,9 +43,9 @@ struct UnkState_3f832c {
     u8 field_0x4;
 };
 
-struct UnkComponent {
+struct UnkComponent_71003f832c {
     u8 pad_0x0[0x30];
-    UnkOwner* field_0x30;
+    UnkOwner_71003f832c* field_0x30;
     u8 pad_0x38[0x146a8];
     u8 field_0x146e0[4];
     UnkState_3f832c field_0x146e4;
@@ -58,7 +58,7 @@ static inline u32 AsU32(const f32& value) {
     return bits;
 }
 
-void fn_71003f832c(UnkComponent* self, u32 old_state, u32 new_state) {
+void fn_71003f832c(UnkComponent_71003f832c* self, u32 old_state, u32 new_state) {
     if (old_state == new_state)
         return;
     UnkState_3f832c* state = &self->field_0x146e4;
@@ -68,7 +68,7 @@ void fn_71003f832c(UnkComponent* self, u32 old_state, u32 new_state) {
         return;
     }
     if (old_state == 2 && new_state == 1) {
-        UnkOwner* owner = self->field_0x30;
+        UnkOwner_71003f832c* owner = self->field_0x30;
         if (owner->field_0x218) {
             UnkParams6 params;
             __builtin_memset(params.field_0x8, 0, 13);

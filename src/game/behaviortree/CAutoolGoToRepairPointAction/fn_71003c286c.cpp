@@ -7,12 +7,12 @@ struct UnkOwner_3c286c {
     void* field_0x298;
 };
 
-struct UnkComponent {
+struct UnkComponent_71003c286c {
     u8 pad_0x0[0x18];
     UnkOwner_3c286c* field_0x18;
 };
 
-void fn_71003c286c(UnkComponent* self) {
+void fn_71003c286c(UnkComponent_71003c286c* self) {
     UnkParams params;
     params.field_0x1c = 0;
     __builtin_memset(params.field_0x8, 0, 13);

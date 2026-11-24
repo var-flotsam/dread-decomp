@@ -6,4 +6,5 @@
 #include "types.h"
 
 struct UnkTunable;
-extern UnkTunable g_unk_71726c32a0;
+struct UnkTunable_71003fd0b0;
+extern UnkTunable_71003fd0b0 g_unk_71726c32a0;

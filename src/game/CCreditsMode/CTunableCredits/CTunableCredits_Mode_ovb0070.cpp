@@ -37,7 +37,7 @@ static inline void* MusicManager() {
 
 using base::global::CRntString;
 
-struct UnkVec;
+struct UnkVec_710048a194;
 
 struct UnkCreditsPosition_ovb0070 {
     u64 xy;
@@ -45,7 +45,7 @@ struct UnkCreditsPosition_ovb0070 {
 };
 
 // A credits line: its text and shadow objects and the text it shows.
-struct UnkCreditsLine_ovb0070 {
+struct UnkCreditsLine_ovb0070_ovb0070 {
     UnkGuiDisplayObject* text;
     UnkGuiDisplayObject* shadow;
     u32 kind;
@@ -82,7 +82,7 @@ void fn_7101184028(UnkCreditsMode_ovb0070* self) {
     UnkCreditsPosition_ovb0070 position;
     position.xy = 0;
     position.z = 0;
-    fn_7101053850(effects, reinterpret_cast<UnkVec*>(&position), 1, time, 1.0f);
+    fn_7101053850(effects, reinterpret_cast<UnkVec_710048a194*>(&position), 1, time, 1.0f);
     self->field_0x5c = 2.5f;
 }
 

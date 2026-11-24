@@ -14,10 +14,10 @@ inline void* operator new(u64, void* p) { return p; }
 extern void* g_unk_7101a1f800[];
 
 struct UnkWidgetArg;
-struct UnkWidgetMember {
+struct UnkWidgetMember_710020a18c {
     u8 data[8];
-    UnkWidgetMember() {}
-    UnkWidgetMember(const UnkWidgetMember&) {}
+    UnkWidgetMember_710020a18c() {}
+    UnkWidgetMember_710020a18c(const UnkWidgetMember_710020a18c&) {}
 };
 
 struct UnkWidget {
@@ -36,7 +36,7 @@ struct UnkWidget {
     u8 pad_0xfe[2];
     u32 field_0x100;
     u8 pad_0x104[4];
-    UnkWidgetMember member_0x108;
+    UnkWidgetMember_710020a18c member_0x108;
     s32 field_0x110, field_0x114, field_0x118, field_0x11c, field_0x120, field_0x124, field_0x128,
         field_0x12c, field_0x130, field_0x134;
     u8 flag_0x138;
@@ -73,7 +73,7 @@ void fn_71002094dc(UnkWidget* self, UnkWidgetArg* a) {
     self->flag_0xfd = 1;
     self->field_0x100 = 0x600d600d;
     self->vtable_0x0 = g_unk_7101a1f800 + 2;
-    new (&self->member_0x108) UnkWidgetMember(fn_71001512a0(a));
+    new (&self->member_0x108) UnkWidgetMember_710020a18c(fn_71001512a0(a));
     self->field_0x110 = 0;
     self->field_0x114 = 0;
     self->field_0x118 = 0;

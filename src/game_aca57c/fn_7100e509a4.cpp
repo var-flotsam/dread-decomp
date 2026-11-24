@@ -85,7 +85,7 @@ static_assert(sizeof(UnkRecordA8_e509a4) == 0xa8, "UnkRecordA8_e509a4 layout");
 
 void fn_7100e509a4(UnkRecordA8_e509a4* self, const UnkRecordA8_e509a4& other) { new (self) UnkRecordA8_e509a4(other); }
 
-struct UnkRecord80 {
+struct UnkRecord80_7100e509a4 {
     u32 field_0x0;
     u32 field_0x4;
     u32 field_0x8;
@@ -99,15 +99,15 @@ struct UnkRecord80 {
     u32 field_0x74;
     u32 field_0x78;
 
-    __attribute__((always_inline)) UnkRecord80(const UnkRecord80& other)
+    __attribute__((always_inline)) UnkRecord80_7100e509a4(const UnkRecord80_7100e509a4& other)
         : field_0x0(other.field_0x0), field_0x4(other.field_0x4), field_0x8(other.field_0x8),
           field_0xc(other.field_0xc), field_0x10(other.field_0x10), field_0x18(other.field_0x18),
           field_0x40(other.field_0x40), field_0x68(other.field_0x68), field_0x6c(other.field_0x6c),
           field_0x70(other.field_0x70), field_0x74(other.field_0x74), field_0x78(other.field_0x78) {}
 };
-static_assert(sizeof(UnkRecord80) == 0x80, "UnkRecord80 layout");
+static_assert(sizeof(UnkRecord80_7100e509a4) == 0x80, "UnkRecord80_7100e509a4 layout");
 
-void fn_7100e5190c(UnkRecord80* self, const UnkRecord80& other) { new (self) UnkRecord80(other); }
+void fn_7100e5190c(UnkRecord80_7100e509a4* self, const UnkRecord80_7100e509a4& other) { new (self) UnkRecord80_7100e509a4(other); }
 
 // Move-assignment of an array of plain values: unless assigning to itself, takes over the other's
 // array and settings (the old storage is not freed) and leaves the other empty.
@@ -130,7 +130,7 @@ __attribute__((always_inline)) static inline void MoveAssign(A* self, A* other) 
 
 // The 0x80-byte record's move-assignment: copies the words, releases and takes over the id
 // (leaving the pool's empty string), then moves the arrays.
-UnkRecord80* fn_7100e51a60(UnkRecord80* self, UnkRecord80* other) {
+UnkRecord80_7100e509a4* fn_7100e51a60(UnkRecord80_7100e509a4* self, UnkRecord80_7100e509a4* other) {
     self->field_0x0 = other->field_0x0;
     self->field_0x4 = other->field_0x4;
     self->field_0x8 = other->field_0x8;

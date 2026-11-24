@@ -47,7 +47,7 @@ struct UnkMediaObject_b0217 {
 static_assert(__builtin_offsetof(UnkMediaObject_b0217, list_0x6d0) == 0x6d0, "layout");
 static_assert(__builtin_offsetof(UnkMediaObject_b0217, commands) == 0x9b0, "layout");
 
-void fn_710021e874(UnkRefObj* obj) {
+void fn_710021e874(UnkRefObj_7100f00f4c* obj) {
     UnkMediaObject_b0217* self = reinterpret_cast<UnkMediaObject_b0217*>(obj);
     self->vtable = g_unk_7101a20498 + 2;
     fn_710021ea60(obj);

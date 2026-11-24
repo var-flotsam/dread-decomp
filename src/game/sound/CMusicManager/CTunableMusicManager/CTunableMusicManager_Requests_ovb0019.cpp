@@ -26,15 +26,15 @@
 
 struct UnkSoundMgr;
 struct UnkMgr;
-struct UnkHandle;
+struct UnkHandle_7100fdd2b4;
 struct UnkArray_fdd2b4;
-struct UnkRequest;
+struct UnkRequest_7100fd16ec;
 struct UnkMgr_0xf18;
 struct UnkTunable;
 
 // The kind is passed by address and not kept (the unit defines it, so the original can tail-call
 // after passing it).
-void fn_7100fd4544(UnkMgr_0xf18*, u32, UnkRequest*, __attribute__((noescape)) const UnkMask* kind);
+void fn_7100fd4544(UnkMgr_0xf18*, u32, UnkRequest_7100fd16ec*, __attribute__((noescape)) const UnkMask* kind);
 
 static inline const UnkMask* AddressOf(const UnkMask& kind) { return &kind; }
 
@@ -185,8 +185,8 @@ struct UnkTuneStr_b0019 {
 };
 
 
-static inline UnkRequest* Request(UnkMusicMgr_b0019* self, u64 i) {
-    return reinterpret_cast<UnkRequest*>(&self->entries[i]);
+static inline UnkRequest_7100fd16ec* Request(UnkMusicMgr_b0019* self, u64 i) {
+    return reinterpret_cast<UnkRequest_7100fd16ec*>(&self->entries[i]);
 }
 
 void fn_7100fd7b44(UnkMusicMgr_b0019* self, UnkMask kind, UnkMask mask, f32 time) {
@@ -212,7 +212,7 @@ void fn_7100fd82dc(UnkMusicMgr_b0019* self, const base::global::CRntString* name
         UnkMusicEntry_b0019& e = self->entries[i];
         ++e.name->uses;
         if (e.name->id == static_cast<u64>(name->key))
-            fn_7100fd7c3c(reinterpret_cast<UnkMgr_0xf18*>(self), i, reinterpret_cast<UnkRequest*>(&e), time, kind, mask);
+            fn_7100fd7c3c(reinterpret_cast<UnkMgr_0xf18*>(self), i, reinterpret_cast<UnkRequest_7100fd16ec*>(&e), time, kind, mask);
     }
 }
 
@@ -348,7 +348,7 @@ __attribute__((noinline)) void fn_7100fd5a90(UnkMusicSlots_b0019* self, u32 inde
         u32 bit = 1 << reinterpret_cast<UnkNodeKind_b0019*>(n)->kind;
         if (mask.bits & bit) {
             if (n->paths.count)
-                fn_7100108a84(reinterpret_cast<UnkMgr*>(g_unk_7101d4d820), reinterpret_cast<UnkHandle*>(n->paths.data), 0.0f);
+                fn_7100108a84(reinterpret_cast<UnkMgr*>(g_unk_7101d4d820), reinterpret_cast<UnkHandle_7100fdd2b4*>(n->paths.data), 0.0f);
             next = fn_7100fd8f98(list, n);
         } else {
             next = n->next;
@@ -376,7 +376,7 @@ void fn_7100fd613c(UnkMusicSlots_b0019* self, u32 index, bool immediate) {
     if (last) {
         {
             UnkMask kind(immediate ? 1 : 0x100);
-            fn_7100fd4544(reinterpret_cast<UnkMgr_0xf18*>(self), index, reinterpret_cast<UnkRequest*>(last), &kind);
+            fn_7100fd4544(reinterpret_cast<UnkMgr_0xf18*>(self), index, reinterpret_cast<UnkRequest_7100fd16ec*>(last), &kind);
         }
         fn_7100fd8f98(reinterpret_cast<UnkNodeList_b0019*>(&self->slots[index]), last);
     } else if (index == 0 && immediate) {

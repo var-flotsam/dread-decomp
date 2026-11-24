@@ -502,7 +502,7 @@ struct UnkTileSeeds {
 };
 
 struct UnkEntry;
-struct UnkVec3;
+struct UnkVec3_71003e6530;
 #include "game/UnkBroadphaseObject.h"
 bool fn_7100ca2f9c(UnkTileGroup* self, bool* region, bool* visited, u32 x, u32 y, bool solid);
 void fn_7100d62e04(UnkTileOutlines* self, UnkTileOutline* outline);
@@ -547,7 +547,7 @@ static inline void CellCorner(const UnkTileGrid* g, f32 x, f32 y, s32 k, f32* px
 
 static inline void AddCorner(UnkTileOutline* outline, f32 x, f32 y) {
     UnkTilePoint point = {x, y, 0.0f};
-    fn_7100118b94(outline, reinterpret_cast<UnkVec3*>(&point));
+    fn_7100118b94(outline, reinterpret_cast<UnkVec3_71003e6530*>(&point));
 }
 
 static inline bool IsBack(f32 x, f32 y, f32 sx, f32 sy) {

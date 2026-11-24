@@ -68,7 +68,7 @@ struct UnkCopyOwner {
 
 // Resets the bounds to empty, then grows them by each point of each list (projected by
 // fn_710007b430).
-struct UnkVec2 {
+struct UnkVec2_710105d328 {
     f32 x, y;
 };
 struct UnkVec3 {
@@ -81,23 +81,23 @@ struct UnkPointList {
     u8 unk_0xc[0x54];
 };
 
-struct UnkBoundsOwner {
+struct UnkBoundsOwner_710105d328 {
     u8 unk_0x0[0x6028];
     UnkPointList* lists;
     u8 unk_0x6030[0x8];
     u32 count;
     u8 unk_0x603c[0x30c];
-    UnkVec2 min, max;
+    UnkVec2_710105d328 min, max;
 };
 
-static inline UnkVec2 Min(UnkVec2 a, UnkVec2 b) {
-    UnkVec2 r;
+static inline UnkVec2_710105d328 Min(UnkVec2_710105d328 a, UnkVec2_710105d328 b) {
+    UnkVec2_710105d328 r;
     r.x = a.x < b.x ? a.x : b.x;
     r.y = a.y < b.y ? a.y : b.y;
     return r;
 }
-static inline UnkVec2 Max(UnkVec2 a, UnkVec2 b) {
-    UnkVec2 r;
+static inline UnkVec2_710105d328 Max(UnkVec2_710105d328 a, UnkVec2_710105d328 b) {
+    UnkVec2_710105d328 r;
     r.x = a.x > b.x ? a.x : b.x;
     r.y = a.y > b.y ? a.y : b.y;
     return r;
@@ -113,31 +113,31 @@ struct UnkCallbackSet_7101a20950_0105d328 {
     UnkCallbackSet_7101a20950_0105d328(UnkCallbackSet_7101a20950_0105d328&& other);  // fn_71002458a4
 };
 
-struct UnkRecord58 {
+struct UnkRecord58_710105d328 {
     virtual void vf_0x0();
-    virtual ~UnkRecord58();
+    virtual ~UnkRecord58_710105d328();
     u64 field_0x8;
     u32 field_0x10;
     UnkCallbackSet_7101a20950_0105d328 field_0x18;
 
-    UnkRecord58(UnkRecord58&& other)
+    UnkRecord58_710105d328(UnkRecord58_710105d328&& other)
         : field_0x8(other.field_0x8), field_0x10(other.field_0x10), field_0x18(std::move(other.field_0x18)) {}
 };
 
-struct UnkRecordArray {
+struct UnkRecordArray_710105d328 {
     u8 unk_0x0[0x8];
-    UnkRecord58* data;
+    UnkRecord58_710105d328* data;
     u32 count;
 };
 
 __attribute__((always_inline)) static inline UnkSetStatus EraseAt(UnkValueHolder* holder, UnkValueArg* const* arg) {
-    UnkRecordArray* a = reinterpret_cast<UnkRecordArray*>(holder->owner);
+    UnkRecordArray_710105d328* a = reinterpret_cast<UnkRecordArray_710105d328*>(holder->owner);
     u32 index = (*arg)->Get<u32>();
     if (a->count > index) {
-        a->data[index].~UnkRecord58();
+        a->data[index].~UnkRecord58_710105d328();
         for (u64 i = index; i < a->count - 1; ++i) {
-            new (&a->data[i]) UnkRecord58(std::move(a->data[i + 1]));
-            a->data[i + 1].~UnkRecord58();
+            new (&a->data[i]) UnkRecord58_710105d328(std::move(a->data[i + 1]));
+            a->data[i + 1].~UnkRecord58_710105d328();
         }
         --a->count;
     }

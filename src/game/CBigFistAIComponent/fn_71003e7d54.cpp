@@ -14,7 +14,7 @@
 using base::math::CVector2D;
 
 struct UnkVec2;
-struct UnkVec3;
+struct UnkVec3_71003e6530;
 struct UnkPointSet_b61;
 void* fn_71003e6530(void* owner, const UnkVec2* origin, const UnkVec2* dir, void* sink, f32 radius, f32 limit);
 
@@ -70,7 +70,7 @@ static inline CVector2D Neg(const CVector2D& v) {
 }
 
 static inline void AddPoint(UnkTileOutline* outline, UnkTilePoint* point) {
-    fn_7100118b94(outline, reinterpret_cast<UnkVec3*>(point));
+    fn_7100118b94(outline, reinterpret_cast<UnkVec3_71003e6530*>(point));
 }
 
 // Appends the arc's point `i` to `outline`.

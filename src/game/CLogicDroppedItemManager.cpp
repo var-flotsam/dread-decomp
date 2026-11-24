@@ -45,7 +45,7 @@ struct UnkDroppedItems {
     UnkDroppedItem* end() { return data + count; }
 };
 
-struct UnkDroppedItemManager {
+struct UnkDroppedItemManager_71010247e4 {
     u8 pad_0x0[0xa010];
     base::math::CVector3D field_0xa010;  // the sum of this frame's positions
     u32 field_0xa01c;                    // how many there were
@@ -53,8 +53,8 @@ struct UnkDroppedItemManager {
     u8 pad_0xa068[0x60];
     UnkDroppedItems field_0xa0c8;
 };
-static_assert(__builtin_offsetof(UnkDroppedItemManager, field_0xa0c8) == 0xa0c8,
-              "UnkDroppedItemManager placeholder layout");
+static_assert(__builtin_offsetof(UnkDroppedItemManager_71010247e4, field_0xa0c8) == 0xa0c8,
+              "UnkDroppedItemManager_71010247e4 placeholder layout");
 
 struct UnkPlayer;
 void fn_71010247e4(UnkDropTarget* self, UnkDropEntry* entry, UnkPlayer* player, const base::math::CVector3D* pos,
@@ -65,7 +65,7 @@ UnkDroppedItem* fn_7100e2f398(UnkDroppedItems* self, UnkDroppedItem* item);
 // NON_MATCHING(minor): scheduling at the item loop's entry: the original loads the items' data
 // pointer (through a pre-indexed load from the manager) before testing the count; ours tests the
 // count first.
-void fn_7100e2d39c(UnkDroppedItemManager* self) {
+void fn_7100e2d39c(UnkDroppedItemManager_71010247e4* self) {
     base::math::CVector3D& sum = self->field_0xa010;
     if (self->field_0xa01c != 0) {
         u64 tier;

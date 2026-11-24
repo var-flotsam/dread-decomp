@@ -5,9 +5,9 @@
 #include "game/UnkTU132.h"
 #include "types.h"
 
-struct UnkWidget;
+struct UnkWidget_710020694c;
 struct UnkWidgetArg;
-void fn_710020694c(UnkWidget* self, UnkWidgetArg* a);
+void fn_710020694c(UnkWidget_710020694c* self, UnkWidgetArg* a);
 
 struct UnkTaggedModel_l14569c {
     void* vtable;
@@ -31,7 +31,7 @@ void fn_710014569c(void* object, base::global::CStrId* name) {
     self->flags = 0xff09f000;
     self->tag = 0x600d600d;
     self->vtable = g_unk_7101a1c630 + 0x10;
-    fn_710020694c(reinterpret_cast<UnkWidget*>(self->sub), reinterpret_cast<UnkWidgetArg*>(name));
+    fn_710020694c(reinterpret_cast<UnkWidget_710020694c*>(self->sub), reinterpret_cast<UnkWidgetArg*>(name));
     self->field_0x158 = false;
     self->field_0x15c = 1;
     self->self = self;

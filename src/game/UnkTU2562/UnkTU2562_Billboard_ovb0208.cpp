@@ -132,8 +132,8 @@ struct UnkDropManagerE_ovb0208 {
 
 struct UnkPlayer;
 void fn_7100e2c5b0(void* self, UnkDropSlot_ovb0208* slot, f32 dt);
-struct UnkDroppedItemManager;
-void fn_7100e2d39c(UnkDroppedItemManager* self);
+struct UnkDroppedItemManager_71010247e4;
+void fn_7100e2d39c(UnkDroppedItemManager_71010247e4* self);
 
 void fn_7100e2c28c(void* self_) {
     UnkDropManagerE_ovb0208* self = static_cast<UnkDropManagerE_ovb0208*>(self_);
@@ -210,7 +210,7 @@ void fn_7100e2c4e4(void* self_, f32 dt) {
     for (u32 i = 0; i < 128; ++i)
         if (self->elems[i].bytes[0x7d])
             fn_7100e2c5b0(self, reinterpret_cast<UnkDropSlot_ovb0208*>(&self->elems[i].bytes[8]), dt);
-    fn_7100e2d39c(reinterpret_cast<UnkDroppedItemManager*>(self));
+    fn_7100e2d39c(reinterpret_cast<UnkDroppedItemManager_71010247e4*>(self));
 }
 
 void fn_7100e2e78c(void* self_, bool flag) {

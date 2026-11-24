@@ -122,7 +122,7 @@ struct UnkPairRef_8947b8 {
 };
 
 // Untyped storage for either form.
-struct UnkHolder {
+struct UnkHolder_71008947b8 {
     alignas(8) u8 storage[0x50];
     u32 kind;
 
@@ -135,7 +135,7 @@ struct UnkHolder {
     const UnkEntry& Entry() const { return kind == 2 ? *Ref().entry : Pair().entry; }
 };
 
-static inline __attribute__((always_inline)) void CopyHolder(UnkHolder* self, const UnkHolder* other) {
+static inline __attribute__((always_inline)) void CopyHolder(UnkHolder_71008947b8* self, const UnkHolder_71008947b8* other) {
     self->kind = 0;
     if (other->kind == 1) {
         self->kind = 1;
@@ -149,11 +149,11 @@ static inline __attribute__((always_inline)) void CopyHolder(UnkHolder* self, co
     }
 }
 
-void fn_71008947b8(UnkHolder* self, const UnkHolder* other) {
+void fn_71008947b8(UnkHolder_71008947b8* self, const UnkHolder_71008947b8* other) {
     CopyHolder(self, other);
 }
 
-void fn_71008aa61c(UnkHolder* self, const UnkHolder* other) {
+void fn_71008aa61c(UnkHolder_71008947b8* self, const UnkHolder_71008947b8* other) {
     CopyHolder(self, other);
 }
 
@@ -295,7 +295,7 @@ struct UnkMovedPairRef {
 };
 
 // Moves either form into an owned pair.
-static inline __attribute__((always_inline)) void MoveHolder(UnkHolder* self, UnkHolder* other) {
+static inline __attribute__((always_inline)) void MoveHolder(UnkHolder_71008947b8* self, UnkHolder_71008947b8* other) {
     self->kind = 0;
     UnkMovedPair* pair = reinterpret_cast<UnkMovedPair*>(self->storage);
     if (other->kind == 1) {
@@ -312,11 +312,11 @@ static inline __attribute__((always_inline)) void MoveHolder(UnkHolder* self, Un
     }
 }
 
-void fn_71008942f4(UnkHolder* self, UnkHolder* other) {
+void fn_71008942f4(UnkHolder_71008947b8* self, UnkHolder_71008947b8* other) {
     MoveHolder(self, other);
 }
 
-void fn_71008aa158(UnkHolder* self, UnkHolder* other) {
+void fn_71008aa158(UnkHolder_71008947b8* self, UnkHolder_71008947b8* other) {
     MoveHolder(self, other);
 }
 
@@ -347,7 +347,7 @@ UnkEntry* fn_71008aa03c(UnkEntry* self, UnkEntry* other) {
     return MoveAssign(self, other);
 }
 
-static inline __attribute__((always_inline)) UnkHolder* AssignHolder(UnkHolder* self, const UnkHolder* other) {
+static inline __attribute__((always_inline)) UnkHolder_71008947b8* AssignHolder(UnkHolder_71008947b8* self, const UnkHolder_71008947b8* other) {
     if (self != other) {
         self->Value() = other->Value();
         self->Entry() = other->Entry();
@@ -355,10 +355,10 @@ static inline __attribute__((always_inline)) UnkHolder* AssignHolder(UnkHolder* 
     return self;
 }
 
-UnkHolder* fn_71008943c4(UnkHolder* self, const UnkHolder* other) {
+UnkHolder_71008947b8* fn_71008943c4(UnkHolder_71008947b8* self, const UnkHolder_71008947b8* other) {
     return AssignHolder(self, other);
 }
 
-UnkHolder* fn_71008aa228(UnkHolder* self, const UnkHolder* other) {
+UnkHolder_71008947b8* fn_71008aa228(UnkHolder_71008947b8* self, const UnkHolder_71008947b8* other) {
     return AssignHolder(self, other);
 }

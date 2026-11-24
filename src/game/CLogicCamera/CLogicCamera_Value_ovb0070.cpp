@@ -63,11 +63,11 @@ UnkReflValue fn_7101052e7c(UnkCameraHolder_ovb0070* holder) {
     return value;
 }
 
-struct UnkCameraCallbackSet_ovb0070 : UnkCameraCallbackBase_ovb0070 {
+struct UnkCameraCallbackSet_ovb0070_ovb0070 : UnkCameraCallbackBase_ovb0070 {
     base::UnkRefHandle handle;
 
     // The copy resolves its own handle from the source.
-    UnkCameraCallbackSet_ovb0070(const UnkCameraCallbackSet_ovb0070& other)
+    UnkCameraCallbackSet_ovb0070_ovb0070(const UnkCameraCallbackSet_ovb0070_ovb0070& other)
         : UnkCameraCallbackBase_ovb0070(other) {
         vtable = &g_unk_7101cac850[2];
         handle.ptr = nullptr;
@@ -80,14 +80,14 @@ struct UnkCameraCallbackSet_ovb0070 : UnkCameraCallbackBase_ovb0070 {
                 state = 2;
         }
     }
-    ~UnkCameraCallbackSet_ovb0070() {
+    ~UnkCameraCallbackSet_ovb0070_ovb0070() {
         vtable = &g_unk_7101cac850[2];
         if (base::UnkRefCounted* p = handle.ptr) {
             if (--p->ref_count == 0)
                 delete p;
         }
     }
-    UnkCameraCallbackSet_ovb0070& operator=(UnkCameraCallbackSet_ovb0070&& other) {
+    UnkCameraCallbackSet_ovb0070_ovb0070& operator=(UnkCameraCallbackSet_ovb0070_ovb0070&& other) {
         fn_7101052314(&handle, &other.handle);
         state = other.state;
         UnkErasedVector* from = &other.callbacks;
@@ -104,11 +104,11 @@ struct UnkCameraCallbackSet_ovb0070 : UnkCameraCallbackBase_ovb0070 {
 };
 
 // The copy assignment: through a resolved copy of `other`, moved in.
-UnkCameraCallbackSet_ovb0070* fn_710105312c(UnkCameraCallbackSet_ovb0070* self,
-                                            const UnkCameraCallbackSet_ovb0070* other) {
+UnkCameraCallbackSet_ovb0070_ovb0070* fn_710105312c(UnkCameraCallbackSet_ovb0070_ovb0070* self,
+                                            const UnkCameraCallbackSet_ovb0070_ovb0070* other) {
     if (self != other) {
-        UnkCameraCallbackSet_ovb0070 copy(*other);
-        *self = static_cast<UnkCameraCallbackSet_ovb0070&&>(copy);
+        UnkCameraCallbackSet_ovb0070_ovb0070 copy(*other);
+        *self = static_cast<UnkCameraCallbackSet_ovb0070_ovb0070&&>(copy);
     }
     return self;
 }

@@ -6,7 +6,7 @@
 #include "game/UnkTU357.h"
 #include "game_s2/UnkWeakHandle.h"
 
-struct UnkHolder {
+struct UnkHolder_71008397f4 {
     UnkWeakHandle* field_0x0;
 };
 
@@ -14,7 +14,7 @@ UnkWeakTarget* fn_7100726598(void* owner);
 UnkWeakTarget* fn_710072bca8(void* owner);
 UnkWeakTarget* fn_71007bb354(void* owner);
 UnkWeakTarget* fn_71006f4a30(void* owner);
-void fn_71008397f4(void* owner, UnkHolder* holder) {
+void fn_71008397f4(void* owner, UnkHolder_71008397f4* holder) {
     if (!holder->field_0x0 || !holder->field_0x0->target) {
         UnkWeakTarget* target = fn_7100302014(owner);
         UnkWeakHandle* handle = target ? GetWeakHandle(target) : nullptr;
@@ -22,7 +22,7 @@ void fn_71008397f4(void* owner, UnkHolder* holder) {
     }
 }
 
-void fn_7100723cf0(void* owner, UnkHolder* holder) {
+void fn_7100723cf0(void* owner, UnkHolder_71008397f4* holder) {
     if (!holder->field_0x0 || !holder->field_0x0->target) {
         UnkWeakTarget* target = fn_7100726598(owner);
         UnkWeakHandle* handle = target ? GetWeakHandle(target) : nullptr;
@@ -30,7 +30,7 @@ void fn_7100723cf0(void* owner, UnkHolder* holder) {
     }
 }
 
-void fn_7100723e20(void* owner, UnkHolder* holder) {
+void fn_7100723e20(void* owner, UnkHolder_71008397f4* holder) {
     if (!holder->field_0x0 || !holder->field_0x0->target) {
         UnkWeakTarget* target = fn_7100286ad4(owner);
         UnkWeakHandle* handle = target ? GetWeakHandle(target) : nullptr;
@@ -38,7 +38,7 @@ void fn_7100723e20(void* owner, UnkHolder* holder) {
     }
 }
 
-void fn_710072b9e0(void* owner, UnkHolder* holder) {
+void fn_710072b9e0(void* owner, UnkHolder_71008397f4* holder) {
     if (!holder->field_0x0 || !holder->field_0x0->target) {
         UnkWeakTarget* target = fn_710072bca8(owner);
         UnkWeakHandle* handle = target ? GetWeakHandle(target) : nullptr;
@@ -46,7 +46,7 @@ void fn_710072b9e0(void* owner, UnkHolder* holder) {
     }
 }
 
-void fn_71007ba354(void* owner, UnkHolder* holder) {
+void fn_71007ba354(void* owner, UnkHolder_71008397f4* holder) {
     if (!holder->field_0x0 || !holder->field_0x0->target) {
         UnkWeakTarget* target = fn_71007bb354(owner);
         UnkWeakHandle* handle = target ? GetWeakHandle(target) : nullptr;
@@ -54,7 +54,7 @@ void fn_71007ba354(void* owner, UnkHolder* holder) {
     }
 }
 
-void fn_710115a9e8(void* owner, UnkHolder* holder) {
+void fn_710115a9e8(void* owner, UnkHolder_71008397f4* holder) {
     if (!holder->field_0x0 || !holder->field_0x0->target) {
         UnkWeakTarget* target = fn_71006f4a30(owner);
         UnkWeakHandle* handle = target ? GetWeakHandle(target) : nullptr;

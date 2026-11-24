@@ -8,6 +8,7 @@
 #include "types.h"
 
 struct UnkFilePathList;
+struct UnkFilePathList_71000839a0;
 // Lists the files under `path` into `out`.
-bool fn_710008c3bc(void* base_object, const base::global::CFilePathStrId& path, UnkFilePathList* out);
+bool fn_710008c3bc(void* base_object, const base::global::CFilePathStrId& path, UnkFilePathList_71000839a0* out);
 u32* fn_710008c504(base::global::CRntVector<u32>* self, u32 index);  // The set's index array element accessor, out of line.

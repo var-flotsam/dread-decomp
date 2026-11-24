@@ -27,7 +27,7 @@ struct UnkWidgetBuffer {
     u8 pad_0x1c[4];
 };
 
-struct UnkWidget {
+struct UnkWidget_71001f4dcc {
     void** vtable_0x0;
     void* field_0x8;
     u8 id_0x10[8];
@@ -58,9 +58,9 @@ struct UnkWidget {
     s32 field_0x188;
 };
 
-typedef void (*UnkVf50)(UnkWidget*, int);
+typedef void (*UnkVf50)(UnkWidget_71001f4dcc*, int);
 
-void fn_71001f4dcc(UnkWidget* self, UnkWidgetArg* a) {
+void fn_71001f4dcc(UnkWidget_71001f4dcc* self, UnkWidgetArg* a) {
     self->field_0x8 = nullptr;
     self->vtable_0x0 = g_unk_7101a1f000 + 2;
     CStrId_Construct(self->id_0x10, "", true);

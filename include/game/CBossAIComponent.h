@@ -8,29 +8,31 @@
 struct UnkQuetzoaAI_l64a058;
 struct UnkCameraOwner;
 struct UnkSelf;
+struct UnkSelf_71003ad45c;
 struct UnkStruct_71003ae428;
 struct UnkModeFlags;
 struct UnkMgr_0xf18;
 struct UnkSettings_b0158;
 struct UnkCoreXAI_A2_b73;
 struct UnkNode;
+struct UnkNode_710046f678;
 struct UnkQuetzoaXAI_b58;
 struct UnkQuetzoaXMessage_b58;
 struct UnkZiplineLinkTarget_b49;
 struct UnkZiplineLink_b49;
 UnkZiplineLinkTarget_b49** fn_71003b0c4c(UnkZiplineLink_b49*);
-void fn_71003ace0c(UnkNode*);
+void fn_71003ace0c(UnkNode_710046f678*);
 struct UnkBossAI_l3ac388;
 void fn_71003ac388(UnkBossAI_l3ac388* self);  // The destructor; derived classes call it as their base's.
 void fn_71003ad414(void* self);  // An empty base step (a lone return) that derived classes call first.
-void fn_71003ad45c(UnkSelf* self, const void* event);  // The base event handler (it reads only the object).
+void fn_71003ad45c(UnkSelf_71003ad45c* self, const void* event);  // The base event handler (it reads only the object).
 void fn_71003acb5c(UnkCoreXAI_A2_b73*);
 u32 fn_71003adaf8(UnkQuetzoaXAI_b58*, UnkQuetzoaXMessage_b58*);
 extern u8* g_unk_71726bc558;
 extern UnkSettings_b0158* g_unk_71726bc568;
 extern UnkMgr_0xf18* g_unk_71726bc560;  // The music manager singleton.
 extern UnkModeFlags* g_unk_71726bc570;
-bool fn_71003ad4dc(UnkSelf* self, f32 value, s32 index);
+bool fn_71003ad4dc(UnkSelf_71003ad45c* self, f32 value, s32 index);
 void fn_71003ae428(UnkStruct_71003ae428*, bool, bool, bool);
 void fn_71003ad174(UnkCameraOwner* owner, u32 arg);
 void fn_71003aff64(UnkCoreXAI_A2_b73* self, u32 a, u32 b);

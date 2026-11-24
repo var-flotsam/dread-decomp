@@ -14,22 +14,22 @@
 #include "game/UnkTU254.h"
 #include "game/UnkTU322.h"
 
-struct UnkRefObj {
+struct UnkRefObj_ovb0246 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
     s32 ref_count;
 };
 
-static inline void RefAdd(UnkRefObj* o) { __atomic_fetch_add(&o->ref_count, 1, __ATOMIC_SEQ_CST); }
-static inline void RefRelease(UnkRefObj* o) {
+static inline void RefAdd(UnkRefObj_ovb0246* o) { __atomic_fetch_add(&o->ref_count, 1, __ATOMIC_SEQ_CST); }
+static inline void RefRelease(UnkRefObj_ovb0246* o) {
     __atomic_fetch_sub(&o->ref_count, 1, __ATOMIC_SEQ_CST);
     if (__atomic_load_n(&o->ref_count, __ATOMIC_SEQ_CST) == 0)
         o->vf_0x10();
 }
 
 struct UnkRef {
-    UnkRefObj* ptr;
+    UnkRefObj_ovb0246* ptr;
     UnkRef() : ptr(nullptr) {}
     UnkRef(const UnkRef& o) : ptr(o.ptr) {
         if (ptr)
@@ -40,7 +40,7 @@ struct UnkRef {
             RefRelease(ptr);
     }
     UnkRef& operator=(const UnkRef& o) {
-        UnkRefObj* p = o.ptr;
+        UnkRefObj_ovb0246* p = o.ptr;
         if (p)
             RefAdd(p);
         if (ptr)
@@ -66,7 +66,7 @@ void fn_710021ff8c(void* obj, void* pair);
 void fn_710021ecb4(void* obj, const UnkPathKey& path, u32 a, bool b);
 void fn_710021d238(base::global::CRntVector<UnkRef>* vec, u32 n);
 
-struct UnkCab8Obj_b0246 : UnkRefObj {
+struct UnkCab8Obj_b0246 : UnkRefObj_ovb0246 {
     u8 pad_0xc[0xacc];
     u64 field_0xad8;
     u8 field_0xae0[0x40];

@@ -71,7 +71,7 @@ void fn_710022037c(UnkMovieSmartPtrVector_b0217* self, u32 n) {
     }
 }
 
-struct UnkRefObj;
+struct UnkRefObj_7100f00f4c;
 struct UnkMedia324_b0217;
 
 struct UnkMediaListener_b0217 {
@@ -134,7 +134,7 @@ static inline void SetState(UnkMedia324_b0217* self, s32 state) {
     fn_7100066920(&self->listener_lock);
 }
 
-void fn_710021ea60(UnkRefObj* obj) {
+void fn_710021ea60(UnkRefObj_7100f00f4c* obj) {
     UnkMedia324_b0217* self = reinterpret_cast<UnkMedia324_b0217*>(obj);
     fn_710006691c(&self->lock);
     if (self->state == 13 || self->state == 10) {

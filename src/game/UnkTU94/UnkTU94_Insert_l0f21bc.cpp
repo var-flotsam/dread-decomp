@@ -16,7 +16,7 @@ using base::reflection::UnkReflValue;
 
 static_assert(sizeof(UnkTypedRefEntry_f29a0) == 0xd8, "entry layout");
 
-struct UnkTypedRefWriter {
+struct UnkTypedRefWriter_l0f21bc {
     u32 field_0x0;
     u32 count;
     alignas(8) u8 storage[sizeof(UnkTypedRefEntry_f29a0)];
@@ -48,7 +48,7 @@ using UnkCollectionInsertFn_f21bc = void (*)(void* collection, void* key, void* 
 
 // Sets the number of contexts: the ones dropped have their held storage destroyed, the ones added
 // start empty.
-static inline void SetCount(UnkTypedRefWriter* self, u32 count) {
+static inline void SetCount(UnkTypedRefWriter_l0f21bc* self, u32 count) {
     if (count < self->count) {
         for (u64 i = count; i < self->count; ++i) {
             UnkTypedRefEntry_f29a0& entry = self->entries()[i];
@@ -67,7 +67,7 @@ static inline void SetCount(UnkTypedRefWriter* self, u32 count) {
 }
 
 // The context at `index`, growing the stack to reach it.
-static inline UnkWriterContext_f21bc* ContextAt(UnkTypedRefWriter* self, u32 index) {
+static inline UnkWriterContext_f21bc* ContextAt(UnkTypedRefWriter_l0f21bc* self, u32 index) {
     if (self->count < index + 1)
         SetCount(self, index + 1);
     return static_cast<UnkWriterContext_f21bc*>(self->entries()[index].context);
@@ -82,7 +82,7 @@ static inline void* ValueAddress(UnkReflValue& value) {
     return &value;
 }
 
-bool fn_71000f21bc(UnkTypedRefWriter* self) {
+bool fn_71000f21bc(UnkTypedRefWriter_l0f21bc* self) {
     UnkWriterContext_f21bc* parent = ContextAt(self, self->count - 2);
     if (!parent->field_0xb8 && !parent->field_0x98) {
         const CType* type = reinterpret_cast<const CType*>(parent->value.type);

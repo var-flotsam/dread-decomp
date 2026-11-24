@@ -10,7 +10,7 @@
 #include "game/UnkTU341.h"
 #include "types.h"
 
-struct UnkNode;
+struct UnkNode_710046f678;
 
 struct UnkCooldownTarget_A2_b70 {
     u8 pad_0x0[0x10];
@@ -35,7 +35,7 @@ struct UnkCooldownXBossAI_A2_b70 {
 };
 
 void fn_71004d14ac(UnkCooldownXBossAI_A2_b70* self) {
-    fn_71003ace0c(reinterpret_cast<UnkNode*>(self));
+    fn_71003ace0c(reinterpret_cast<UnkNode_710046f678*>(self));
     UnkCooldownEntry_A2_b70* end = self->list.data + self->list.count;
     for (UnkCooldownEntry_A2_b70* it = self->list.data; it != end; ++it) {
         if (it->target && it->target->field_0x10)

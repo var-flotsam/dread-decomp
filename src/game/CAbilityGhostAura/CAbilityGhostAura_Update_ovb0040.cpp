@@ -17,7 +17,7 @@
 
 struct UnkGroundPlayer_b52;
 struct UnkGhostAura_A2_b70;
-struct UnkSelf;
+struct UnkSelf_710030c0c0;
 
 extern u64 g_unk_7101648d80;
 
@@ -153,7 +153,7 @@ void fn_710030d260(UnkGhostAura_b0040* self) {
             self->field_0x46c = 0.0f;
             self->field_0x4a1 = 0;
             self->field_0x49b = 0;
-            fn_71002f9460(reinterpret_cast<UnkSelf*>(self), 0);
+            fn_71002f9460(reinterpret_cast<UnkSelf_710030c0c0*>(self), 0);
         }
     } else {
         fn_710030b448(self, state, active);
@@ -173,7 +173,7 @@ void fn_7100314288(UnkGhostAura_b0040* self) {
     pos.z = z;
     UnkAnimationComponent* animation = actor->animation;
     if (animation && fn_710117b348(animation, fn_7100cfd938()))
-        fn_710030b448(self, 5, fn_710030b8b4(reinterpret_cast<UnkSelf*>(self), &pos, nullptr));
+        fn_710030b448(self, 5, fn_710030b8b4(reinterpret_cast<UnkSelf_710030c0c0*>(self), &pos, nullptr));
 }
 
 static inline void Stop_b0040(UnkGhostAura_b0040* self) {
@@ -186,7 +186,7 @@ static inline void Stop_b0040(UnkGhostAura_b0040* self) {
     self->field_0x46c = 0.0f;
     self->field_0x4a1 = 0;
     self->field_0x49b = 0;
-    fn_71002f9460(reinterpret_cast<UnkSelf*>(self), 0);
+    fn_71002f9460(reinterpret_cast<UnkSelf_710030c0c0*>(self), 0);
 }
 
 void fn_7100309570(UnkGhostAura_b0040* self, f32 dt) {

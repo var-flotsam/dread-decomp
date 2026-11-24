@@ -8,7 +8,7 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-struct UnkSelf;
+struct UnkSelf_71004cb554;
 bool fn_71004cb0e8(void*, void*);
 
 struct UnkWhipTrackLink_A2_b72 {
@@ -28,7 +28,7 @@ struct UnkWhipStart_A2_b72 {
 };
 
 void fn_71004ca700(UnkWhipStart_A2_b72* self) {
-    fn_71004c1944(reinterpret_cast<UnkSelf*>(self));
+    fn_71004c1944(reinterpret_cast<UnkSelf_71004cb554*>(self));
     self->field_0x70 = -1.0f;
     UnkWhipTrackLink_A2_b72* link = &self->link;
     link->context = self;

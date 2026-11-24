@@ -22,7 +22,7 @@ struct UnkRefObject_a9e6bc {
     s32 ref_count;
 };
 
-struct UnkHandle {
+struct UnkHandle_7100a9e6bc {
     u8 unk_0x0[0x10];
     void* target;
 };
@@ -87,7 +87,7 @@ void fn_7100a9e6bc(UnkStateObject_a9e6bc* self) {
     self->vtable = &g_unk_7101a94220[2];
     self->listener_vtable = &g_unk_7101a77000[2];
     if (UnkRefObject_a9e6bc* handle = self->field_0x530) {
-        if (void* target = reinterpret_cast<UnkHandle*>(handle)->target)
+        if (void* target = reinterpret_cast<UnkHandle_7100a9e6bc*>(handle)->target)
             fn_7100a2d4d0(target, &self->listener_vtable);
     }
     Release(self->field_0x530);

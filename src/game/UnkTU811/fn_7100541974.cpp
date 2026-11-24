@@ -199,7 +199,7 @@ void fn_7100541974(UnkEmmyAI_l541974* self) {
     self->SetAlerted(false);
     if (UnkAnimationComponent* animation = self->owner->animation)
         fn_710117ab64(animation, false, &g_unk_71726e1fa0);
-    fn_71003695fc(reinterpret_cast<UnkNode*>(self));
+    fn_71003695fc(reinterpret_cast<UnkNode_71006ef540*>(self));
     fn_7100541e64(reinterpret_cast<UnkHandleAI_b0193*>(self));
     self->SetAlerted(true);
     fn_7100df5cec(g_unk_7101d47310, &g_unk_7101d470e0);

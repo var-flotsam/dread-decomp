@@ -752,7 +752,7 @@ void fn_710048997c(UnkSmGrab_A2_b63<0x80>* self);
 void fn_7100489588(UnkSmGrab_A1_b64<0x80>*, UnkSmGrabMsg_A1_b64* msg);
 void fn_7100489850(UnkSmGrab_A1_b64<0x80>*, UnkSmGrabMsg_A1_b64* msg);
 struct UnkAIComponent_7100489ea0;
-struct UnkSelf;
+struct UnkSelf_7100489ea0;
 
 struct UnkSmWarriorAI_A1_b64 {
     virtual const base::reflection::CClass* vf_0x0();
@@ -766,7 +766,7 @@ struct UnkSmWarriorOwner_A1_b64 {
 };
 
 static inline void WarriorStep_A1_b64(UnkSmGrab_A1_b64<0x80>* self) {
-    fn_7100489f3c(reinterpret_cast<UnkSelf*>(self));
+    fn_7100489f3c(reinterpret_cast<UnkSelf_7100489ea0*>(self));
     UnkSmWarriorOwner_A1_b64** owner = reinterpret_cast<UnkSmWarriorOwner_A1_b64**>(reinterpret_cast<char*>(self) + 8);
     if (reinterpret_cast<u8*>(self)[0x132]) {
         UnkSmWarriorAI_A1_b64* component = (*owner)->component;
@@ -848,7 +848,7 @@ bool fn_7100489130(UnkSmGrab_A1_b64<0x80>* self, UnkSmGrabMsg_A1_b64* msg) {
 // the flags cleared, the gun component's current gun name kept, the lock-on gun selected (the hidden id
 // g_unk_71726af978), the gun told when it is of its class, then the owner's object at +0x208 stepped.
 struct UnkSamusGunComponent_b50;
-struct UnkComponent;
+struct UnkComponent_710035131c;
 struct UnkSamusGun_b58;
 const base::global::CStrId& fn_7100840844(UnkSamusGunComponent_b50*);
 using base::global::CStrId;
@@ -930,7 +930,7 @@ void fn_710031c530(UnkSmLockon_A1_b64* self) {
         return;
     }
     UnkSmGunClass_A1_b64* ctrl =
-        static_cast<UnkSmGunClass_A1_b64*>(fn_710083cd30(reinterpret_cast<UnkComponent*>(gun)));
+        static_cast<UnkSmGunClass_A1_b64*>(fn_710083cd30(reinterpret_cast<UnkComponent_710035131c*>(gun)));
     if (ctrl && fn_710009d50c(ctrl->vf_0x0(), fn_710084bb24())) {
         typedef bool (*BusyFn)(UnkSmGunClass_A1_b64*);
         if (!(*reinterpret_cast<BusyFn**>(ctrl))[0x60 / 8](ctrl))

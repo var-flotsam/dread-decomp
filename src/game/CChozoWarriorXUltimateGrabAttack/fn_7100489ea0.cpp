@@ -14,24 +14,24 @@ using base::reflection::CClass;
 struct UnkAIComponent_7100489ea0 {
     virtual const CClass* vf_0x0();
 };
-struct UnkOwner {
+struct UnkOwner_7100489ea0 {
     u8 unk_0x0[0x1d0];
     void* field_0x1d0;
     u8 unk_0x1d8[0x68];
     UnkAIComponent_7100489ea0* component;
 };
-struct UnkSelf {
+struct UnkSelf_7100489ea0 {
     u8 unk_0x0[8];
-    UnkOwner* owner;
+    UnkOwner_7100489ea0* owner;
     u8 unk_0x10[0x122];
     u8 field_0x132;
 };
-struct UnkTunable {
+struct UnkTunable_7100489ea0 {
     u8 unk_0x0[0x2c];
     f32 field_0x2c;
 };
 
-void fn_7100489ea0(UnkSelf* self) {
+void fn_7100489ea0(UnkSelf_7100489ea0* self) {
     fn_7100489f3c(self);
     if (self->field_0x132) {
         UnkAIComponent_7100489ea0* component = self->owner->component;

@@ -6,7 +6,7 @@
 #include "types.h"
 
 // Declared as src/game/CEmmyProtoAIComponent/fn_71004faad4.cpp does.
-struct UnkComponent;
+struct UnkComponent_71004faad4;
 void fn_71004f112c(void* self);
 
 struct UnkEmmyCaveDef {
@@ -17,7 +17,7 @@ struct UnkEmmyCaveDef {
 };
 
 void fn_71004f14c0(UnkEmmyCaveDef* self) {
-    fn_710053e5c0(reinterpret_cast<UnkComponent*>(self));
+    fn_710053e5c0(reinterpret_cast<UnkComponent_71004faad4*>(self));
     self->vtable = g_unk_7101a43038 + 2;
     self->field_0x2a6f8 = 0;
     fn_71004f112c(self->field_0x2a700);

@@ -21,9 +21,9 @@ struct UnkShape {
     void vf_0x98() { reinterpret_cast<void (*)(UnkShape*)>(vtable[19])(this); }
 };
 
-struct UnkTarget {
+struct UnkTarget_710043c084 {
     u8 pad_0x0[0x1f8];
-    UnkTarget* field_0x1f8;
+    UnkTarget_710043c084* field_0x1f8;
     u8 pad_0x200[0x0];
 };
 
@@ -34,7 +34,7 @@ struct UnkFlagged {
 
 struct UnkEntity;
 
-struct UnkSelf {
+struct UnkSelf_710043c084 {
     u8 pad_0x0[8];
     UnkActor* field_0x8;
     u8 pad_0x10[0x48];
@@ -50,7 +50,7 @@ struct UnkOutput {
 
 extern char g_unk_7101649570[];
 
-void fn_710043c084(UnkSelf* self, UnkOutput* out) {
+void fn_710043c084(UnkSelf_710043c084* self, UnkOutput* out) {
     UnkActor* target = fn_7100d7c990(self->field_0x8);
     if (!target)
         return;
