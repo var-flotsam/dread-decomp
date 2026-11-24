@@ -27,7 +27,7 @@ struct UnkStruct_71001436f4;
 extern const base::math::CVector4D g_unk_710164ab98 __attribute__((visibility("hidden")));
 
 struct UnkSlotOwner_b0025;
-void fn_7100da8f00(UnkSlotOwner_b0025* self, UnkSwitchObject* object);
+void CTunableAIManager_FreeObjectSlot(UnkSlotOwner_b0025* self, UnkSwitchObject* object);
 
 using base::reflection::UnkReflObject;
 
@@ -111,7 +111,7 @@ void CFrozenAsFrostbiteComponent_ResetFrostbiteAndReleaseIceObjects(UnkFrozenAsF
     fn_71001436f4(owner->slots, 2, &g_unk_710164ab98, 1);
     for (UnkSwitchObject** it = self->objects.data, **end = it + self->objects.count; it != end; ++it) {
         if (UnkSwitchObject* object = *it)
-            fn_7100da8f00(reinterpret_cast<UnkSlotOwner_b0025*>(Manager()), object);
+            CTunableAIManager_FreeObjectSlot(reinterpret_cast<UnkSlotOwner_b0025*>(Manager()), object);
     }
     self->objects.count = 0;
 }
@@ -158,7 +158,7 @@ static inline f32 NonNegative(f32 v) {
 static inline void ReleaseObjects(UnkFrozenAsFrostbite_ovb0114* self) {
     for (UnkSwitchObject** it = self->objects.data, **end = it + self->objects.count; it != end; ++it) {
         if (UnkSwitchObject* object = *it)
-            fn_7100da8f00(reinterpret_cast<UnkSlotOwner_b0025*>(Manager()), object);
+            CTunableAIManager_FreeObjectSlot(reinterpret_cast<UnkSlotOwner_b0025*>(Manager()), object);
     }
     self->objects.count = 0;
 }

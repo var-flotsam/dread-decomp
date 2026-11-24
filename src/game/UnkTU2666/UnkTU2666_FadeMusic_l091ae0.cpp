@@ -29,7 +29,7 @@ s32 StopMusicWithFade(lua_State* L) {
             g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(manager);
         }
         f32 duration = time;
-        fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(manager), channels, UnkMaskOf<UnkMusicMaskTag>::All(), duration);
+        CTunableMusicManager_StopMusicOnAllSlots(static_cast<UnkMusicMgr_b0019*>(manager), channels, UnkMaskOf<UnkMusicMaskTag>::All(), duration);
     }
     return 0;
 }

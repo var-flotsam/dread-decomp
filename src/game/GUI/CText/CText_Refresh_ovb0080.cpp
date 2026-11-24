@@ -50,7 +50,7 @@ static inline void SetSize(UnkText_b0080* self, UnkGuiRoot* root, s32 frame, con
     self->height = scaled.y;
 }
 
-void fn_7100b86de8(UnkText_b0080* self, void* font, const UnkTextValue_b0080* value) {
+void CText_RecreateTextObject(UnkText_b0080* self, void* font, const UnkTextValue_b0080* value) {
     UnkGuiRoot** root = &g_unk_717271e8f8;
     if (UnkLabelTextObject* old = self->object) {
         fn_71011baba0(*root, old, (old->bits >> 12) & 0xf);
@@ -77,7 +77,7 @@ void fn_7100b86de8(UnkText_b0080* self, void* font, const UnkTextValue_b0080* va
 
 void fn_7100b86b84(UnkText_b0080* self);
 
-void fn_7100b86f00(UnkText_b0080* self) {
+void CText_ResolveFontAndRebuildIfDirty(UnkText_b0080* self) {
     UnkGuiRoot** root = &g_unk_717271e8f8;
     UnkGuiDisplayObject* display = reinterpret_cast<UnkGuiDisplayObject*>(self);
     fn_71011cee10(display);
@@ -98,7 +98,7 @@ void fn_7100b86f00(UnkText_b0080* self) {
             return;
         }
     }
-    fn_7100b86de8(self, font, &self->value);
+    CText_RecreateTextObject(self, font, &self->value);
     fn_7100b86b84(self);
     self->dirty = false;
 }

@@ -26,7 +26,7 @@ void fn_7100da684c();
 void fn_7100da6ab8();
 void fn_7100da6e50(void*) __attribute__((visibility("hidden")));  // Destroys an array.
 void fn_7100da6f50(void*) __attribute__((visibility("hidden")));  // Destroys an array.
-void fn_7100da9194(UnkTimedRef* self);
+void CTunableAIManager_ExpireTimedTarget(UnkTimedRef* self);
 void fn_7100da9bd4(UnkAIManager_da92b0* self, UnkAITarget_da92b0* object);
 void fn_7100dab9bc() __attribute__((visibility("hidden")));
 void fn_7100dab9c8() __attribute__((visibility("hidden")));
@@ -54,5 +54,5 @@ extern UnkConverter g_unk_71727bc530;
 void fn_7100da6938(UnkReflType* self, const base::global::CStrId& name, void (*init)(), void* extra);
 void fn_7100da6cc4(UnkReflType* self, const base::global::CStrId& name, void (*init)(), void* extra);
 extern void* g_unk_7101aa9328[];
-void fn_7100dae8a4(UnkDoorKeyOwner_dae8a4* self, bool add, base::global::CStrId* key);
+void CTunableAIManager_AddOrRemoveDoorCollisionFlagKey(UnkDoorKeyOwner_dae8a4* self, bool add, base::global::CStrId* key);
 bool fn_7100da9018(UnkTimedRef* self, UnkWeakTarget* target, f32 time);

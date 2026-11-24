@@ -26,7 +26,7 @@ UnkReflValue fn_7100aa41d0(void*, char* obj, UnkReflValue* const* args) {
     bool* flag = reinterpret_cast<bool*>(target + 0xfa);
     if (*flag != v) {
         *flag = v;
-        fn_7100a9f7f0(target);
+        CUsableComponent_StoreDisabledFlagInBlackboard(target);
         void** vtable = *reinterpret_cast<void***>(target);
         if (v)
             reinterpret_cast<void (*)(char*)>(vtable[0x2c0 / 8])(target);

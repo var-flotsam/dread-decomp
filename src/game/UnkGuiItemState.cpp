@@ -34,7 +34,7 @@ UnkGuiPos fn_71011f6044(const UnkGuiAnchor* self, const UnkGuiArea* area);
 // A position scaled and rotated by a state's scale and angle.
 UnkGuiPos fn_71011f61bc(const UnkGuiItemState* state, const UnkGuiPos* pos);
 // The component-wise product of two colours.
-UnkGuiColor fn_71011c1740(const UnkGuiColor* a, const UnkGuiColor* b);
+UnkGuiColor GUI_MultiplyColors(const UnkGuiColor* a, const UnkGuiColor* b);
 
 // A flag set in both, as a byte.
 static inline u8 UnkBothSet(u8 a, u8 b) { return a ? b : 0; }
@@ -59,7 +59,7 @@ void fn_7100b1c56c(const UnkGuiItemState* parent, UnkGuiItemState* out, const Un
     out->field_0x38 = child->field_0x38 == 0x7fffffff ? parent->field_0x38 : child->field_0x38;
     out->angle = child->angle + parent->angle;
     out->depth = child->depth + parent->depth;
-    out->color = fn_71011c1740(&child->color, &parent->color);
+    out->color = GUI_MultiplyColors(&child->color, &parent->color);
     out->width = child->width;
     out->height = child->height;
     out->scale = child->scale * parent->scale;

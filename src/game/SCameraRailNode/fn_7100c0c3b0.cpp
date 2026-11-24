@@ -84,7 +84,7 @@ extern UnkEnumType g_unk_717277bd00;
 void fn_7100c0366c(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_717277be70[];
 
-void fn_7100c0c3b0() {
+void SCameraRailNode_InitStatics() {
     InitHeaderIds(&g_unk_717277cb38.ids);
     {
         CStrId n("CEditorRailSegment", true);

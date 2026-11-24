@@ -320,7 +320,7 @@ address,size,name,name_source,subsystem,status
 0x710070cc10,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CTentacle, std::__1::default_delete<CTentacle>>>>::End",reflection,engine/reflection,O
 0x710070cc24,260,fn_710070cc24,unknown,unknown,O
 0x710070cd28,268,fn_710070cd28,unknown,unknown,O
-0x710070ce40,840,fn_710070ce40,unknown,engine/reflection?,O
+0x710070ce40,840,CTentacle_InitStatics,inferred,engine/reflection?,O
 0x710070d188,516,fn_710070d188,unknown,unknown,O
 0x710070d38c,168,fn_710070d38c,unknown,unknown,O
 0x710070d434,180,fn_710070d434,unknown,unknown,O
@@ -1210,7 +1210,7 @@ address,size,name,name_source,subsystem,status
 0x7100747f74,240,fn_7100747f74,unknown,game/components?,O
 0x7100748064,456,fn_7100748064,unknown,game/components?,O
 0x710074822c,8,fn_710074822c,unknown,game/components?,O
-0x7100748234,316,fn_7100748234,unknown,game/components?,O
+0x7100748234,316,CSwarmControllerComponent_DeactivateGroup,inferred,game/components?,O
 0x7100748370,180,fn_7100748370,unknown,game/components?,O
 0x7100748424,740,fn_7100748424,unknown,game/components?,U
 0x7100748708,5064,fn_7100748708,unknown,game/components?,U
@@ -1218,9 +1218,9 @@ address,size,name,name_source,subsystem,status
 0x7100749e44,120,fn_7100749e44,unknown,game/components?,O
 0x7100749ebc,536,fn_7100749ebc,unknown,game/components?,U
 0x710074a0d4,300,fn_710074a0d4,unknown,game/components?,O
-0x710074a200,352,fn_710074a200,unknown,game/components?,O
+0x710074a200,352,CSwarmControllerComponent_UpdateGroups,inferred,game/components?,O
 0x710074a360,520,fn_710074a360,unknown,game/components?,U
-0x710074a568,336,fn_710074a568,unknown,game/components?,O
+0x710074a568,336,CSwarmControllerComponent_EraseSlotBySwappingLast,inferred,game/components?,O
 0x710074a6b8,1140,fn_710074a6b8,unknown,game/components?,U
 0x710074ab2c,1728,fn_710074ab2c,unknown,game/components?,U
 0x710074b1ec,560,fn_710074b1ec,unknown,game/components?,U
@@ -1230,7 +1230,7 @@ address,size,name,name_source,subsystem,status
 0x710074bc40,404,fn_710074bc40,unknown,game/components?,U
 0x710074bdd4,324,fn_710074bdd4,unknown,game/components?,U
 0x710074bf18,616,fn_710074bf18,unknown,game/components?,U
-0x710074c180,388,fn_710074c180,unknown,game/components?,O
+0x710074c180,388,CSwarmControllerComponent_UpdatePendingGroupMerge,inferred,game/components?,O
 0x710074c304,140,fn_710074c304,unknown,game/components?,O
 0x710074c390,752,fn_710074c390,unknown,game/components?,U
 0x710074c680,4,fn_710074c680,unknown,game/components?,O
@@ -1245,7 +1245,7 @@ address,size,name,name_source,subsystem,status
 0x710074dfd0,88,fn_710074dfd0,unknown,game/components?,O
 0x710074e028,360,fn_710074e028,unknown,game/components?,U
 0x710074e190,304,fn_710074e190,unknown,game/components?,O
-0x710074e2c0,152,fn_710074e2c0,unknown,game/components?,O
+0x710074e2c0,152,CSwarmControllerComponent_GetCharClassEntry,inferred,game/components?,O
 0x710074e358,28,fn_710074e358,unknown,game/components?,O
 0x710074e374,28,fn_710074e374,unknown,game/components?,O
 0x710074e390,28,fn_710074e390,unknown,game/components?,O
@@ -3989,8 +3989,8 @@ address,size,name,name_source,subsystem,status
 0x71007c6784,240,SDropProbabilities::refl_GetClass,reflection,game,O
 0x71007c6874,5092,SDropProbabilities::refl_AddFields,reflection,game,O
 0x71007c7c58,388,SDropProbabilities::refl_InitClass,reflection,game,O
-0x71007c7ddc,112,fn_71007c7ddc,unknown,game?,O
-0x71007c7e4c,36,fn_71007c7e4c,unknown,game?,O
+0x71007c7ddc,112,SDropProbabilities_Construct,inferred,game?,O
+0x71007c7e4c,36,SDropProbabilities_GetTimeSpawning,inferred,game?,O
 0x71007c7e70,12,fn_71007c7e70,unknown,game?,O
 0x71007c7e7c,12,fn_71007c7e7c,unknown,game?,O
 0x71007c7e88,12,fn_71007c7e88,unknown,game?,O
@@ -4022,7 +4022,7 @@ address,size,name,name_source,subsystem,status
 0x71007c8168,104,SDropProbabilities::refl_Destroy,reflection,game,O
 0x71007c81d0,268,SDropProbabilities::refl_CopyAssign,reflection,game,O
 0x71007c82dc,264,SDropProbabilities::refl_MoveAssign,reflection,game,O
-0x71007c83f0,688,fn_71007c83f0,unknown,engine/reflection?,O
+0x71007c83f0,688,SDropProbabilities_InitStatics,inferred,engine/reflection?,O
 0x71007c86a0,4,CCharClassXParasiteDropComponent::refl_AddAttributes,reflection,game/characters,O
 0x71007c86a4,244,CCharClassXParasiteDropComponent::refl_GetClass,reflection,game/characters,O
 0x71007c8798,4,CCharClassXParasiteDropComponent::refl_AddFields,reflection,game/characters,O
@@ -4189,7 +4189,7 @@ address,size,name,name_source,subsystem,status
 0x71007cc2e4,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CXParasiteBehavior, std::__1::default_delete<CXParasiteBehavior>>>>::End",reflection,engine/reflection,O
 0x71007cc2f8,260,fn_71007cc2f8,unknown,unknown,O
 0x71007cc3fc,268,fn_71007cc3fc,unknown,unknown,O
-0x71007cc510,840,fn_71007cc510,unknown,engine/reflection?,O
+0x71007cc510,840,CXParasiteBehavior_InitStatics,inferred,engine/reflection?,O
 0x71007cc858,4,CXParasiteGoSpawnBehavior::refl_AddAttributes,reflection,game,O
 0x71007cc85c,244,CXParasiteGoSpawnBehavior::refl_GetClass,reflection,game,O
 0x71007cc950,256,CXParasiteGoSpawnBehavior::refl_AddFields,reflection,game,O
@@ -4223,8 +4223,8 @@ address,size,name,name_source,subsystem,status
 0x71007cd790,104,CXParasiteGoTransformBehavior::refl_CopyAssign,reflection,game,O
 0x71007cd7f8,104,CXParasiteGoTransformBehavior::refl_MoveAssign,reflection,game,O
 0x71007cd860,28,fn_71007cd860,unknown,game?,O
-0x71007cd87c,176,fn_71007cd87c,unknown,game?,O
-0x71007cd92c,360,fn_71007cd92c,unknown,game?,O
+0x71007cd87c,176,CXParasiteGoTransformBehavior_Destroy,inferred,game?,O
+0x71007cd92c,360,CXParasiteGoTransformBehavior_DestroyAndDelete,inferred,game?,O
 0x71007cda94,8,fn_71007cda94,unknown,game?,O
 0x71007cdaa0,160,fn_71007cdaa0,unknown,game?,O
 0x71007cdb40,4,CXParasiteStayOnPlaceBehavior::refl_AddAttributes,reflection,game,O
@@ -4241,8 +4241,8 @@ address,size,name,name_source,subsystem,status
 0x71007ce128,92,CXParasiteStayOnPlaceBehavior::refl_CopyAssign,reflection,game,O
 0x71007ce184,92,CXParasiteStayOnPlaceBehavior::refl_MoveAssign,reflection,game,O
 0x71007ce1e0,28,fn_71007ce1e0,unknown,game?,O
-0x71007ce1fc,240,fn_71007ce1fc,unknown,game?,O
-0x71007ce2ec,240,fn_71007ce2ec,unknown,game?,O
+0x71007ce1fc,240,CXParasiteStayOnPlaceBehavior_Destroy,inferred,game?,O
+0x71007ce2ec,240,CXParasiteStayOnPlaceBehavior_DestroyAndDelete,inferred,game?,O
 0x71007ce3dc,8,fn_71007ce3dc,unknown,game?,O
 0x71007ce3f0,160,fn_71007ce3f0,unknown,game?,O
 0x71007ce490,4,CXParasiteWanderThenFleeBehavior::refl_AddAttributes,reflection,game,O
@@ -4266,8 +4266,8 @@ address,size,name,name_source,subsystem,status
 0x71007ce8c4,244,CXParasiteDropComponent::refl_GetClass,reflection,game/components,O
 0x71007ce9b8,216,CXParasiteDropComponent::refl_AddFields,reflection,game/components,O
 0x71007cea90,352,CXParasiteDropComponent::refl_InitClass,reflection,game/components,O
-0x71007cebf0,164,fn_71007cebf0,unknown,game/components?,O
-0x71007cec94,172,fn_71007cec94,unknown,game/components?,O
+0x71007cebf0,164,CXParasiteDropComponent_Destroy,inferred,game/components?,O
+0x71007cec94,172,CXParasiteDropComponent_DestroyAndDelete,inferred,game/components?,O
 0x71007ced40,112,fn_71007ced40,unknown,game/components?,O
 0x71007cedb0,28,fn_71007cedb0,unknown,game/components?,O
 0x71007cedcc,132,fn_71007cedcc,unknown,game/components?,O

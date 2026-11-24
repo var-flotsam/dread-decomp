@@ -102,11 +102,11 @@ static inline void RequestState_b61(UnkSmMachine_b61* self, u32 id) {
 }
 
 // Constant-id requests followed by the unit's own call.
-void fn_7100aca57c(UnkSmOwner_b61<0x130>*);
+void CWeightActivablePropComponent_SaveOpenedToBlackboard(UnkSmOwner_b61<0x130>*);
 
 void fn_7100aca484(UnkSmOwner_b61<0x130>* self) {
     RequestState_b61<2, 3>(&self->machine, 1);
-    fn_7100aca57c(self);
+    CWeightActivablePropComponent_SaveOpenedToBlackboard(self);
 }
 
 void fn_7100dd905c(UnkSmOwner_b61<0>* self) {
@@ -404,7 +404,7 @@ void fn_7100a0a08c(UnkPlatformSm_b61* self) {
     StoreTrue_b61(self);
     if (UnkPlatformLink_b61* link = self->link) {
         if (void* object = link->object)
-            fn_7100aa0034(object);
+            CUsableComponent_SetCompletedBlackboardFlag(object);
     }
 }
 

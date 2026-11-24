@@ -247,7 +247,7 @@ static inline s32 IndexOf(UnkNavOwner_b0025* self, void* item) {
 }
 
 // Registers `item` (once) and hands it to the members that track items.
-void fn_7100da9e88(UnkNavOwner_b0025* self, void* item) {
+void CTunableAIManager_RegisterActor(UnkNavOwner_b0025* self, void* item) {
     if (IndexOf(self, item) < 0) {
         auto* link = static_cast<UnkItemLink_b0025*>(self->allocator->vf_0x40(0x10, 8, self->flags));
         if (link) {
@@ -281,7 +281,7 @@ struct UnkAIManagerRef_b0025 {
 };
 
 // Drops the reference at +0xbf0 when it refers to `target`.
-void fn_7100daaee4(UnkAIManagerRef_b0025* self, UnkWeakTarget* target) {
+void CTunableAIManager_ClearWeakRefIfTargetMatches(UnkAIManagerRef_b0025* self, UnkWeakTarget* target) {
     if (!target)
         return;
     UnkWeakHandle* handle = self->field_0xbf0;
@@ -310,7 +310,7 @@ static inline UnkWeakTarget* RefTarget(UnkWeakHandle* handle) {
 
 // Fires the timed reference: when its target has the component fn_71004067a4 looks for, the target
 // goes through the lists at +0x2428 and +0x24a8 around fn_71007aa604; then the reference is dropped.
-void fn_7100da9194(UnkTimedRef* ref) {
+void CTunableAIManager_ExpireTimedTarget(UnkTimedRef* ref) {
     auto* self = reinterpret_cast<UnkTimedRefOwner_b0025*>(ref);
     if (void* component = fn_71004067a4(RefTarget(self->field_0x2410))) {
         UnkWeakTarget* target = RefTarget(self->field_0x2410);
@@ -355,7 +355,7 @@ static inline UnkSlot_b0025* FindSlot(UnkSlotArray_b0025* array, UnkSwitchObject
 }
 
 // Gives `object` back: marks its slot free and switches it off.
-void fn_7100da8f00(UnkSlotOwner_b0025* self, UnkSwitchObject* object) {
+void CTunableAIManager_FreeObjectSlot(UnkSlotOwner_b0025* self, UnkSwitchObject* object) {
     for (u32 kind = 0; kind < 3; ++kind) {
         for (u32 side = 0; side < 2; ++side) {
             if (UnkSlot_b0025* slot = FindSlot(&self->groups[side][kind], object)) {

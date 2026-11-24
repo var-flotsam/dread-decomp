@@ -37,7 +37,7 @@ struct UnkTimelineComponentB47 {
     UnkCharClassTimeline* def;
 };
 
-bool fn_7100a2babc(UnkTimelineComponentB47* self, void* arg) {
+bool CTimelineComponent_CopyCharClassTimelineSettings(UnkTimelineComponentB47* self, void* arg) {
     bool result = fn_71010c41bc(reinterpret_cast<UnkBaseComponent*>(self), arg);
     UnkCharClassTimeline* object = self->object;
     if (object && fn_710009d50c(object->vf_0x0(), fn_7100796bc4())) {

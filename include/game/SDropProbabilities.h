@@ -4,4 +4,4 @@
 // 0x71007c5e88-0x71007c86a0). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
-void fn_71007c7ddc(void*);
+void SDropProbabilities_Construct(void*);

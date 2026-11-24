@@ -18,7 +18,7 @@ struct UnkTimelinePlayer_ovb0089;
 void fn_7100a2b564(UnkTimelinePlayer_ovb0089* self);
 
 struct UnkTimelineRandom_ovb0089;
-void fn_7100a2b9a8(UnkTimelineRandom_ovb0089* self, const u32* value);
+void CTimelineComponent_PickRandomEntryAvoidingLast(UnkTimelineRandom_ovb0089* self, const u32* value);
 
 struct UnkUnit1134Upd_b68a4;
 void fn_710070d970(UnkUnit1134Upd_b68a4* self, f32 dt);
@@ -76,7 +76,7 @@ void fn_7100a2b110(UnkTimelineUpdate_la2b110* self, f32 dt) {
                 if (fn_7100d7bea0(self->owner, 1))
                     event_mask.id = self->def->mask | 1;
             }
-            fn_7100a2b9a8(reinterpret_cast<UnkTimelineRandom_ovb0089*>(self), &event_mask.id);
+            CTimelineComponent_PickRandomEntryAvoidingLast(reinterpret_cast<UnkTimelineRandom_ovb0089*>(self), &event_mask.id);
         }
     }
 }

@@ -10,7 +10,7 @@
 using base::global::CStrId;
 
 struct UnkGuiRenderLayer;
-void fn_71011f5eb4(UnkGuiRenderLayer* self);
+void GUI_DestroyLayerSlot(UnkGuiRenderLayer* self);
 
 // A render layer as the array holds it (game/GUI/UnkGuiRenderLayer.cpp releases it).
 struct UnkGuiLayerSlot {
@@ -37,7 +37,7 @@ void fn_71011bbb24(UnkGuiLayerSlotArrays* self, u32 capacity) {
         UnkGuiLayerSlot* dst = values;
         for (u32 i = 0; i < self->count; ++i, ++dst, ++src) {
             new (dst) UnkGuiLayerSlot(*src);
-            fn_71011f5eb4(reinterpret_cast<UnkGuiRenderLayer*>(src));
+            GUI_DestroyLayerSlot(reinterpret_cast<UnkGuiRenderLayer*>(src));
         }
         self->allocator->vf_0x48(self->values);
     }

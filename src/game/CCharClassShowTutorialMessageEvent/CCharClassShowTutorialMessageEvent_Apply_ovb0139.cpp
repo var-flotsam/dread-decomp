@@ -39,7 +39,7 @@ void CCharClassShowTutorialMessageEvent_ShowTextAndLogMissionTuto(UnkShowTutoria
     UnkGameManager* manager = g_unk_7101d47310;
     UnkTutorialHolder_ovb0139* holder = static_cast<UnkTutorialHolder_ovb0139*>(manager->field_0x2270);
     if (holder && holder->composition && self->tutorial.data != &g_unk_7101d47108->empty)
-        fn_7100b88f10(holder->composition, &self->tutorial);
+        CTutorialComposition_ShowWithText(holder->composition, &self->tutorial);
     if (self->message.data == &g_unk_7101d47108->empty)
         return;
     UnkMlogMessage_ovb0139 message(2, CStrId(self->message));

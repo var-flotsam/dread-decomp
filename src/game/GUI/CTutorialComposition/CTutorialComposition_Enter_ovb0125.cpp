@@ -61,7 +61,7 @@ struct UnkTutorialComposition_ovb0125 {
     }
 };
 
-bool fn_7100b88f10(UnkTutorialComposition_ovb0125* self, const char32_t* text) {
+bool CTutorialComposition_ShowWithText(UnkTutorialComposition_ovb0125* self, const char32_t* text) {
     UnkGuiObj* label = FindLabel(self, g_unk_7172768b08);
     auto* obj = reinterpret_cast<UnkGuiDisplayObject*>(self);
     fn_71011cdce8(obj, true);

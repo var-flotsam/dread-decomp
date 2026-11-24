@@ -33,5 +33,5 @@ void fn_7100a9f764(UnkUsableComponent* self, bool on) {
         if (self->field_0xe0 && self->field_0xe0->field_0x10)
             fn_7100d7c828(self->field_0xe0->field_0x10, &g_unk_710164b640, false);
     }
-    fn_7100a9f7f0(reinterpret_cast<char*>(self));
+    CUsableComponent_StoreDisabledFlagInBlackboard(reinterpret_cast<char*>(self));
 }

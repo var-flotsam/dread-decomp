@@ -173,7 +173,7 @@ struct UnkSwarmGroupList_ovb6 {
 
 // Removes a group from its list (handing an emptied list to fn_710074bdd4 with 1.5), clears it and,
 // when it was the last active one, stops the owner.
-void fn_7100748234(UnkSwarmController_ovb6* self, UnkSwarmGroup_ovb6* group) {
+void CSwarmControllerComponent_DeactivateGroup(UnkSwarmController_ovb6* self, UnkSwarmGroup_ovb6* group) {
     if (!group || !group->active)
         return;
     u32 index = group->index;
@@ -219,7 +219,7 @@ static inline UnkVec3Result Center_ovb6(UnkSwarmGroup_ovb6* group) {
 
 // A pending merge (from +0x1d4 into +0x1d8, for at most 3 time units): once both groups are active
 // and closer than 50, fn_7100729654 merges them and an emptied source group is removed.
-void fn_710074c180(UnkSwarmController_ovb6* self, f32 dt) {
+void CSwarmControllerComponent_UpdatePendingGroupMerge(UnkSwarmController_ovb6* self, f32 dt) {
     if (!self->merging)
         return;
     self->merge_time += dt;
@@ -236,7 +236,7 @@ void fn_710074c180(UnkSwarmController_ovb6* self, f32 dt) {
         if (!(dx * dx + dy * dy + dz * dz < 2500.0f))
             return;
         if (fn_7100729654(self->Groups(), from, into) && from->field_0xe0 == 0)
-            fn_7100748234(self, from);
+            CSwarmControllerComponent_DeactivateGroup(self, from);
     }
     self->merging = false;
 }
@@ -246,10 +246,10 @@ void fn_710074bf18(UnkSwarmController_ovb6* self, s32 index, f32 dt);
 // The per-frame steps: the merge, vf_0x1f0 and vf_0x180, then for every active group vf_0x168,
 // vf_0x170, fn_710074bf18 (when the tunables' +0xd4 is set) and vf_0x178 unless its +0x68 is set,
 // and vf_0x1e8.
-void fn_710074a200(UnkSwarmController_ovb6* self, f32 dt) {
+void CSwarmControllerComponent_UpdateGroups(UnkSwarmController_ovb6* self, f32 dt) {
     if (!self->def || !self->def->groups)
         return;
-    fn_710074c180(self, dt);
+    CSwarmControllerComponent_UpdatePendingGroupMerge(self, dt);
     self->Step(0x1f0, dt);
     self->Step(0x180, dt);
     for (s32 i = 0; i < self->def->groups->count; ++i) {
@@ -284,7 +284,7 @@ void fn_710074a0d4(UnkSwarmController_ovb6* self, f32 dt) {
         if (!fn_710117b348(animation, fn_7100d1ab58()))  // CCharClassMeleeTrack
             self->field_0x1fc = true;
     }
-    fn_710074a200(self, dt);
+    CSwarmControllerComponent_UpdateGroups(self, dt);
     {
         UnkSwarmTargets_ovb6 targets = fn_710074ab2c(self);
         self->Slot<UnkSwarmController_ovb6::TargetsFn>(0x230)(self, dt, &targets);
@@ -295,7 +295,7 @@ void fn_710074a0d4(UnkSwarmController_ovb6* self, f32 dt) {
         UnkSwarmSlot* it = self->slots.values;
         while (self->slots.values + self->slots.count != it) {
             if (it->field_0x10)
-                it = fn_710074a568(&self->slots, it);
+                it = CSwarmControllerComponent_EraseSlotBySwappingLast(&self->slots, it);
             else
                 ++it;
         }

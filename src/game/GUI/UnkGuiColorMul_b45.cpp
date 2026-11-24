@@ -3,6 +3,6 @@
 #include "game/UnkGuiColor.h"
 #include "types.h"
 
-UnkGuiColor fn_71011c1740(const UnkGuiColor* a, const UnkGuiColor* b) {
+UnkGuiColor GUI_MultiplyColors(const UnkGuiColor* a, const UnkGuiColor* b) {
     return {a->r * b->r, a->g * b->g, a->b * b->b, a->a * b->a};
 }

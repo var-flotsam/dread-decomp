@@ -95,7 +95,7 @@ void CShelmitPlasmaRayAttack_RemovePlasmaRayColliderAndEffects(UnkPlasmaRayAttac
         owner->collision, reinterpret_cast<const base::global::CStrId*>(g_unk_7172706938));
     if (!collider)
         return;
-    if (timeline && !fn_7100a2cfe8(timeline, reinterpret_cast<const u64*>(&g_unk_710164a700))) {
+    if (timeline && !CTimelineComponent_HasTrack(timeline, reinterpret_cast<const u64*>(&g_unk_710164a700))) {
         base::reflection::UnkReflTypeIdArg mask;
         mask.id = UnkAll_SpitSend().value;
         fn_7100a2cb7c(timeline, reinterpret_cast<const u64*>(&g_unk_710164a700), &mask.id, false, -1.0f);

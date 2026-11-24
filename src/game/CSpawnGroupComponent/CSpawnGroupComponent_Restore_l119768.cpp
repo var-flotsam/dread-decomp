@@ -79,7 +79,7 @@ static inline bool GetSectionInt(CBlackboard* blackboard, const CStrId& section,
     return s && fn_7100395a30(s, name, out);
 }
 
-void fn_7101119768(UnkSpawnGroup_l119768* self, CBlackboard* blackboard) {
+void CSpawnGroupComponent_RestoreEnabledAndNumDeathsFromBlackboard(UnkSpawnGroup_l119768* self, CBlackboard* blackboard) {
     if (!self->bAutomanaged)
         return;
     bool flag = self->bAutoenabled;

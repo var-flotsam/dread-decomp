@@ -108,7 +108,7 @@ void fn_71011fd39c(UnkSpriteGrid_l1fd39c* self) {
         f32 y = source->y;
         f32 source_w = source->width;
         f32 source_h = source->height;
-        UnkLabelVec2 texture = fn_7100b82b18(reinterpret_cast<const UnkLabelSource*>(source), state->frame);
+        UnkLabelVec2 texture = GUI_GetImageRegionSizeInFrame(reinterpret_cast<const UnkLabelSource*>(source), state->frame);
         CVector2D cell = {source_w * (1.0f / 3.0f), source_h * (1.0f / 3.0f)};
 
         f32 width = state->width * state->scale_x;

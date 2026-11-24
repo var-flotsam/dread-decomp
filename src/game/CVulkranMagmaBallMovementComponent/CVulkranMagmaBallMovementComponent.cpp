@@ -34,7 +34,7 @@ struct UnkVulkranBuiltId {
     ~UnkVulkranBuiltId() { id.~CStrId(); }
 };
 
-bool fn_71006df684(UnkVulkranMagmaBallMovement* self, UnkKraidCreatureArg* arg) {
+bool CVulkranMagmaBallMovementComponent_CacheCharClassAndStrId(UnkVulkranMagmaBallMovement* self, UnkKraidCreatureArg* arg) {
     bool result = fn_7100ac3108(reinterpret_cast<UnkKraidBouncingCreaturesMovement2*>(self), arg);
     UnkReflObject* obj = self->field_0x10;
     if (!obj || !fn_710009d50c(obj->vf_0x0(), fn_71006defd8())) {

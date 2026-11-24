@@ -29,7 +29,7 @@ static inline void SetAll_A5_b61(UnkTimelineComponent* timeline, const u64* key)
 
 void fn_71008d2c28(UnkTimelineUserA5_b61* self, const u64* key) {
     UnkTimelineComponent* timeline = self->owner->timeline;
-    if (timeline && !fn_7100a2cfe8(timeline, key))
+    if (timeline && !CTimelineComponent_HasTrack(timeline, key))
         SetAll_A5_b61(timeline, key);
 }
 
@@ -41,7 +41,7 @@ static inline void SetPicked_A5_b61(UnkTimelineUserA5_b61* self, bool on, u64 ke
     if (!timeline)
         return;
     u64 key = on ? key_on : key_off;
-    if (!fn_7100a2cfe8(timeline, &key))
+    if (!CTimelineComponent_HasTrack(timeline, &key))
         SetAll_A5_b61(timeline, &key);
 }
 

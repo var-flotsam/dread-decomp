@@ -90,7 +90,7 @@ static inline void StoreTrue(UnkUsable_b0101* self, u8* property) {
     }
 }
 
-void fn_7100aa0034(UnkUsable_b0101* self) {
+void CUsableComponent_SetCompletedBlackboardFlag(UnkUsable_b0101* self) {
     StoreTrue(self, g_unk_7172753170);
 }
 
@@ -101,7 +101,7 @@ void fn_7100aa01a4(UnkUsable_b0101* self) {
 
 // Stores under g_unk_71727531c0 whether the usable is usable: the negation of +0xfb when +0xfa is
 // set, true otherwise.
-void fn_7100a9f7f0(UnkUsable_b0101* self) {
+void CUsableComponent_StoreDisabledFlagInBlackboard(UnkUsable_b0101* self) {
     CStrId section_id = self->SectionId();
     if (section_id.data != &g_unk_7101d47108->empty) {
         UnkGameManager* manager = g_unk_7101d47310;
@@ -172,7 +172,7 @@ static inline const char* Text(const CRntString& s) {
 }
 
 // Keeps a weak handle to `user` and shows the choice dialog, or the "can not use" one.
-bool fn_7100aa19cc(UnkUsableDialog_b0101* self, UnkWeakTarget* user) {
+bool CUsableComponent_ShowChoiceOrCanNotUseDialog(UnkUsableDialog_b0101* self, UnkWeakTarget* user) {
     if (!user)
         return false;
     AssignRef(&self->user, fn_7100d78378(user));

@@ -71,7 +71,7 @@ struct UnkWeightPlatform_b0266 {
 };
 static_assert(__builtin_offsetof(UnkWeightPlatform_b0266, count) == 0x2a0, "layout");
 
-void fn_71009533fc(UnkWeightPlatform_b0266* self) {
+void CWeightActivableMovablePlatformComponent_LoadActivatedStateFromBlackboard(UnkWeightPlatform_b0266* self) {
     UnkGameManager* manager = g_unk_7101d47310;
     CBlackboard* blackboard = &manager->field_0x968;
     CStrId section_id = fn_71011a2fbc(manager->field_0x608);

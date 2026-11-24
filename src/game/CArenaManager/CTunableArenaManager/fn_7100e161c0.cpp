@@ -23,7 +23,7 @@ inline void* FindByName_le161c0(UnkGameManager* manager, u32 kind, const CRntStr
     return fn_7100deba8c(manager, &id, &flags);
 }
 
-void* fn_7100e161c0(void* self, const base::global::CStrId& id) {
+void* CTunableArenaManager_FindByTGPrefixedName(void* self, const base::global::CStrId& id) {
     UnkNameBuffer_le161c0 text("TG");
     {
         ++id.data->reads;

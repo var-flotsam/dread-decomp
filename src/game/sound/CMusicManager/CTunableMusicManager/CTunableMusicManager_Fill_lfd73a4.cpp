@@ -119,7 +119,7 @@ static inline UnkPathRecord_b0019& AddPath(UnkPathVec_b0019& v) {
     return n ? end[-1] : *end;
 }
 
-void fn_7100fd73a4(UnkMusicManager* self, const CStrId* id, UnkMusicRequest* first, UnkMusicRequest* second) {
+void CTunableMusicManager_FillRequestsFromDefinition(UnkMusicManager* self, const CStrId* id, UnkMusicRequest* first, UnkMusicRequest* second) {
     UnkMusicDef_fd73a4* def;
     if (UnkMusicDefRefNode_fd73a4* node = FindNode<UnkMusicDefRefNode_fd73a4>(self->map_0, *id)) {
         def = node->value;

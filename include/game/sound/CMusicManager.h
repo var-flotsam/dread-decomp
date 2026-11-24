@@ -103,7 +103,7 @@ static_assert(sizeof(UnkMusicManager) == 0xf18, "UnkMusicManager layout");
 void fn_7100fd3804(void* block);
 
 // Grow the request and slot arrays to hold n elements (out-of-line reserves).
-void fn_7100fddcb4(base::global::CRntVector<UnkMusicEntry_0x60>* v, u32 n);
+void CTunableMusicManager_ReserveRequestArray(base::global::CRntVector<UnkMusicEntry_0x60>* v, u32 n);
 void fn_7100fde040(base::global::CRntVector<UnkMusicSlot_0x38>* v, u32 n);
 
 // The channel constructor (also the base of the bank at +0x2b8): the kind is its index.

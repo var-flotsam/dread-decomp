@@ -82,7 +82,7 @@ s32 GetStat(lua_State* L) {
 // ---- the music manager ----
 struct UnkMgr_0xf18;
 struct UnkTuneMgrView_b0019;
-f32 fn_7100fdc500(UnkTuneMgrView_b0019* self, const u64* id);
+f32 CTunableMusicManager_GetEnvironmentMultiplierForFile(UnkTuneMgrView_b0019* self, const u64* id);
 
 static inline void* MusicManager_b0161() {
     void* manager = reinterpret_cast<void*&>(g_unk_71726bc560);
@@ -101,7 +101,7 @@ s32 DebugGetStreamVolumeFromData(lua_State* L) {
         return -1;
     void* manager = MusicManager_b0161();
     CFilePathStrId id(name, true);
-    f32 value = fn_7100fdc468(static_cast<UnkTuneMgrView_b0019*>(manager), reinterpret_cast<const u64*>(&id));
+    f32 value = CTunableMusicManager_GetStreamVolume(static_cast<UnkTuneMgrView_b0019*>(manager), reinterpret_cast<const u64*>(&id));
     return fn_71010c0b40(L, "f", (f64)value);
 }
 
@@ -111,7 +111,7 @@ s32 DebugGetEnvironmentMultiplier(lua_State* L) {
         return -1;
     void* manager = MusicManager_b0161();
     CFilePathStrId id(name, true);
-    f32 value = fn_7100fdc500(static_cast<UnkTuneMgrView_b0019*>(manager), reinterpret_cast<const u64*>(&id));
+    f32 value = CTunableMusicManager_GetEnvironmentMultiplierForFile(static_cast<UnkTuneMgrView_b0019*>(manager), reinterpret_cast<const u64*>(&id));
     return fn_71010c0b40(L, "f", (f64)value);
 }
 }  // namespace lua_bind
@@ -254,7 +254,7 @@ s32 SetScenarioBlackboardSectionID(lua_State* L) {
 }  // namespace lua_bind
 
 struct UnkArenaEntries_ovb0108;
-void fn_7100e1593c(UnkArenaEntries_ovb0108* self, const CStrId& key, const CStrId& value);
+void CTunableArenaManager_SetEntryStrIdByName(UnkArenaEntries_ovb0108* self, const CStrId& key, const CStrId& value);
 void fn_7100e15a84(UnkArenaEntries_ovb0108* self, const CStrId& key, const CStrId& item_name);
 
 s32 fn_7101084070(lua_State* L) {
@@ -266,7 +266,7 @@ s32 fn_7101084070(lua_State* L) {
                 reinterpret_cast<UnkArenaEntries_ovb0108*>(reinterpret_cast<char*>(arena) + 0x858);
             CStrId a(first, true);
             CStrId b(second, true);
-            fn_7100e1593c(entries, a, b);
+            CTunableArenaManager_SetEntryStrIdByName(entries, a, b);
         }
     }
     return 0;

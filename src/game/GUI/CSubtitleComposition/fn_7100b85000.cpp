@@ -43,7 +43,7 @@ __attribute__((always_inline)) static inline void Destroy(UnkLinkOwner<Vtable, A
 extern void* g_unk_7101a9f820[];
 extern void* g_unk_7101a9fd08[];
 
-void fn_7100b85000(UnkLinkOwner<g_unk_7101a9f820>* self) { Destroy(self); }
+void CSubtitleComposition_Destroy(UnkLinkOwner<g_unk_7101a9f820>* self) { Destroy(self); }
 void fn_7100b85120(UnkLinkOwner<g_unk_7101a9f820>* self) {
     Destroy(self);
     operator delete(self);

@@ -98,7 +98,7 @@ static inline void Bind(UnkMapAcquisition_la854fc* self, UnkMapState_la854fc* st
 }
 
 void CMapAcquisitionComponent_InitStates(UnkMapAcquisition_la854fc* self) {
-    fn_7100a9ea64(reinterpret_cast<UnkStateObject*>(self));
+    CUsableComponent_InitStates(reinterpret_cast<UnkStateObject*>(self));
     self->machine.owner = self;
     Bind(self, &self->states[0], fn_7100a884c8, fn_7100a884cc, fn_7100a884d0);
     Bind(self, &self->states[1], fn_7100a884d4, fn_7100a884d8, fn_7100a884dc);

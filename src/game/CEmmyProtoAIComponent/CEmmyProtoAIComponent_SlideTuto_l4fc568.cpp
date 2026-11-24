@@ -43,7 +43,7 @@ void CEmmyProtoAIComponent_ShowFloorSlideTutorial(UnkEmmyProto_l4fc568* self, bo
         return;
     self->slideTutoShown = true;
     static CStrId s_tutorial("#CAVE_EMMY_PROTO_FLOOR_SLIDE_TUTO", true);
-    fn_7100b88f10(composition, &s_tutorial);
+    CTutorialComposition_ShowWithText(composition, &s_tutorial);
     UnkMlogMessage_l4fc568 message(2, CStrId("#MLOG_TUTO_EMMY_SLIDE", true));
     fn_7100456b7c(reinterpret_cast<u8*>(g_unk_7101d47310) + 0x2128,
                   reinterpret_cast<const UnkMlogMessage_b42a1*>(&message));

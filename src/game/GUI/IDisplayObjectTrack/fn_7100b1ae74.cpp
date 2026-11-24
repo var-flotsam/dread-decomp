@@ -109,7 +109,7 @@ void fn_7100b1b030(UnkWordStringArray* self, const u32* index) {
 // the source's capacity and pushes each record).
 using UnkWordStringVector = base::global::CRntVector<UnkWordMovedString>;
 
-void fn_7100b1a860(UnkWordStringVector* self, const UnkWordMovedString* value) { self->PushBackCopy(*value); }
+void IDisplayObjectTrack_WordStringVectorPushBackCopy(UnkWordStringVector* self, const UnkWordMovedString* value) { self->PushBackCopy(*value); }
 
 void fn_7100b1a74c(UnkWordStringVector* self, const UnkWordStringVector* other) {
     self->data = nullptr;
@@ -121,7 +121,7 @@ void fn_7100b1a74c(UnkWordStringVector* self, const UnkWordStringVector* other) 
     self->allocator = other->allocator;
     self->Reserve(other->capacity);
     for (const UnkWordMovedString *p = other->data, *end = p + other->count; p != end; ++p)
-        fn_7100b1a860(self, p);
+        IDisplayObjectTrack_WordStringVectorPushBackCopy(self, p);
 }
 
 // Copy assignment: the records are destroyed, the source's capacity reserved and each record
@@ -133,7 +133,7 @@ UnkWordStringVector* fn_7100b1a98c(UnkWordStringVector* self, const UnkWordStrin
         self->count = 0;
         self->Reserve(other->capacity);
         for (const UnkWordMovedString *p = other->data, *end = p + other->count; p != end; ++p)
-            fn_7100b1a860(self, p);
+            IDisplayObjectTrack_WordStringVectorPushBackCopy(self, p);
     }
     return self;
 }
@@ -166,7 +166,7 @@ __attribute__((always_inline)) static inline void Reallocate(UnkWordStringVector
 void fn_7100b1b39c(UnkWordStringVector* self, const UnkWordMovedString* value, u32 index) {
     u32 n = self->count;
     if (n == index) {
-        fn_7100b1a860(self, value);
+        IDisplayObjectTrack_WordStringVectorPushBackCopy(self, value);
         return;
     }
     u32 cap = self->capacity;

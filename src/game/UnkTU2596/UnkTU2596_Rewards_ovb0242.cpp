@@ -259,7 +259,7 @@ found:
     if (self->field_0x60 <= 2 && self->field_0x68[self->field_0x60])
         return;
     void* music = MusicManager();
-    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(music), UnkMask(0xc),
+    CTunableMusicManager_StopMusicOnAllSlots(static_cast<UnkMusicMgr_b0019*>(music), UnkMask(0xc),
                   UnkMaskOf<UnkMusicMaskTag>::All(), 1.0f);
 }
 

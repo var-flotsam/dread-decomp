@@ -37,7 +37,7 @@ __attribute__((always_inline)) inline UnkCameraRailCallbackOwner_b52::~UnkCamera
     // The array at +0x28 is destroyed as a member, after this.
 }
 
-void fn_7100c03ce0(UnkCameraRailCallbackOwner_b52* self) {
+void SCameraRailNode_Destroy(UnkCameraRailCallbackOwner_b52* self) {
     self->~UnkCameraRailCallbackOwner_b52();
 }
 

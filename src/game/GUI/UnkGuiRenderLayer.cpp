@@ -14,7 +14,7 @@ struct UnkGuiRenderLayer {
 };
 
 // Takes the item off the layer (when it was attached), drops the layer and releases the id.
-void fn_71011f5eb4(UnkGuiRenderLayer* self) {
+void GUI_DestroyLayerSlot(UnkGuiRenderLayer* self) {
     if (self->item) {
         if (self->attached)
             fn_71002199d8(g_unk_7101d47300, reinterpret_cast<UnkItemBase_71011a91c4*>(self->item + 8), self->layer);

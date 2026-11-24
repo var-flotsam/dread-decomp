@@ -31,7 +31,7 @@ inline const CStrId& SpawnGroupId() {
     return s_id;
 }
 
-void fn_7101120730() {
+void CSpawnGroupComponent_InitStatics() {
     UnkSpawnGroupTU& tu = g_unk_7172a06798;
     InitHeader(tu.header);
     new (&g_unk_7172a065d8) CStrId("SPAWNGROUP", true);

@@ -83,7 +83,7 @@ static inline void Notify(UnkTimelineComp_ovb0089* self, UnkTimelineEvent_ovb008
                 fn_7100a2e30c(&self->listeners, l);
         }
     }
-    fn_7100a2e4a0(&walk);
+    CTimelineComponent_EndListenerWalk(&walk);
 }
 
 void fn_7100a2c520(UnkTimelineComp_ovb0089* self, UnkTimelineMessage_ovb0089* msg) {

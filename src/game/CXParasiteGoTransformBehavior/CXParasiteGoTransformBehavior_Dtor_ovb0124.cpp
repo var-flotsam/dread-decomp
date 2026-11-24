@@ -48,7 +48,7 @@ struct UnkGoBehavior_ovb0124 {
 };
 static_assert(sizeof(UnkGoBehavior_ovb0124) == 0x88, "layout");
 
-void fn_71007cd92c(UnkGoBehavior_ovb0124* self) {
+void CXParasiteGoTransformBehavior_DestroyAndDelete(UnkGoBehavior_ovb0124* self) {
     self->vtable = g_unk_7101a71818 + 2;
     self->elements.Free();
     self->set.Destroy();

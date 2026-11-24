@@ -118,7 +118,7 @@ struct UnkMusicRequest {
 static_assert(sizeof(UnkMusicRequest) == 0x60, "UnkMusicRequest placeholder layout");
 
 // Fills the two requests a music id stands for.
-void fn_7100fd73a4(UnkMusicManager* self, const CStrId* id, UnkMusicRequest* first, UnkMusicRequest* second);
+void CTunableMusicManager_FillRequestsFromDefinition(UnkMusicManager* self, const CStrId* id, UnkMusicRequest* first, UnkMusicRequest* second);
 
 // Whether the music `name` stands for is already what plays (on the channels in `mask`).
 // NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
@@ -132,7 +132,7 @@ bool fn_7100fd6f74(UnkMusicManager* self, const base::global::CRntString* name, 
             ~UnkBuiltId() { id.~CStrId(); }
         } built;
         CStrId_ConstructFromRntString(&built.id, *name, true);
-        fn_7100fd73a4(self, &built.id, &first, &second);
+        CTunableMusicManager_FillRequestsFromDefinition(self, &built.id, &first, &second);
     }
     if (first.files.count == 0 && second.files.count == 0)
         return false;

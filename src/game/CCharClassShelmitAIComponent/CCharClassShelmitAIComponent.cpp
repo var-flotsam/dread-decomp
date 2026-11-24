@@ -26,6 +26,6 @@ void fn_71006b94c8(UnkShelmitDef* self) {
     CCharClassShelmitPlasmaRayAttack_Construct(self->oShelmitPlasmaRayAttackDef);
     for (u32 i = 0; i < 11; ++i)
         self->field_0x618[i] = -1.0f;
-    fn_71007c7ddc(self->field_0x648);
+    SDropProbabilities_Construct(self->field_0x648);
     reinterpret_cast<void (*)(UnkShelmitDef*)>(self->vtable[3])(self);
 }

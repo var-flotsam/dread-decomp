@@ -175,7 +175,7 @@ struct UnkSelectedIds_ovb56 {
 };
 
 struct UnkSoundEventsSelector_ovb56;
-UnkSelectedIds_ovb56 fn_7100fc9e58(UnkSoundEventsSelector_ovb56* selector, void* event,
+UnkSelectedIds_ovb56 SGUISoundEventsSelector_SelectHighestScoringSoundEvent(UnkSoundEventsSelector_ovb56* selector, void* event,
                                    const UnkTypedObject_ovb56& source);
 
 // The owner the callers pass (game/sound/SGUISoundEventsSelector.h declares it).
@@ -189,7 +189,7 @@ struct UnkStateSink {
 UnkSoundHandle fn_7100fc9d78(UnkStateSink* self, UnkStateKey* event, void* state) {
     UnkSelectorSource_ovb56* source = static_cast<UnkSelectorSource_ovb56*>(state);
     UnkSoundEventsSelector_ovb56* selector = self->selector;
-    UnkSelectedIds_ovb56 ids = fn_7100fc9e58(selector, event, UnkTypedObject_ovb56(source));
+    UnkSelectedIds_ovb56 ids = SGUISoundEventsSelector_SelectHighestScoringSoundEvent(selector, event, UnkTypedObject_ovb56(source));
     UnkSoundHandle handle;
     if (ids.id != &g_unk_7101d47108->empty && ids.path != &g_unk_7101d47200->empty)
         handle = fn_7101024e28(g_unk_7101d47318, reinterpret_cast<const UnkStrIdPathPair*>(&ids), nullptr, false);
@@ -229,7 +229,7 @@ struct UnkSoundEventsSelector2_ovb56 {
 };
 
 // Takes the id and adds the selector to the registry.
-void fn_7100fc9084(UnkSoundEventsSelector2_ovb56* self, const CStrId* id) {
+void SGUISoundEventsSelector_RegisterEventId(UnkSoundEventsSelector2_ovb56* self, const CStrId* id) {
     new (&self->id) CStrId(*id);
     UnkSelectorRegistry_ovb56& registry = SelectorRegistry_ovb56();
     if (registry.count == registry.capacity)

@@ -104,5 +104,5 @@ void fn_71010d7d0c(UnkPlayerMovementD_b0204* self, u32 kind) {
             playTimeline(self->ids->release_b);
         break;
     }
-    fn_7100dae8a4(reinterpret_cast<UnkDoorKeyOwner_dae8a4*>(g_unk_71726af0a8), false, &g_unk_7172a03e38);
+    CTunableAIManager_AddOrRemoveDoorCollisionFlagKey(reinterpret_cast<UnkDoorKeyOwner_dae8a4*>(g_unk_71726af0a8), false, &g_unk_7172a03e38);
 }

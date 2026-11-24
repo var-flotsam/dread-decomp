@@ -98,7 +98,7 @@ void fn_710118cdfc(UnkIngameMenu_l18cdfc* self) {
         fn_7100fd3804(music);
         g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(music);
     }
-    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(music), UnkMask(2), UnkMaskOf<UnkMusicMaskTag>::All(), 0.4f);
+    CTunableMusicManager_StopMusicOnAllSlots(static_cast<UnkMusicMgr_b0019*>(music), UnkMask(2), UnkMaskOf<UnkMusicMaskTag>::All(), 0.4f);
 
     fn_7100108b1c(g_unk_7101d4d820);
     alignas(8) u32 sound = 0xef;

@@ -29,5 +29,5 @@ struct UnkRntStringAt_b46a3 {
 using UnkTextMembers_b46a3 = base::UnkMembers<UnkWideStringAt_b46a3<0x218>, UnkWideStringAt_b46a3<0x1f8>,
                                               UnkRntStringAt_b46a3<0x1c0>, base::UnkStrIdAt<0x1a8>>;
 
-void fn_7100b86668(char* self) { base::refl_Dtor<UnkTag_7100b86668, UnkTextMembers_b46a3>(self); }
-__attribute__((flatten)) void fn_7100b866fc(char* self) { base::refl_DeletingDtor<UnkTag_7100b86668, UnkTextMembers_b46a3>(self); }
+void CText_Destroy(char* self) { base::refl_Dtor<UnkTag_7100b86668, UnkTextMembers_b46a3>(self); }
+__attribute__((flatten)) void CText_DestroyAndDelete(char* self) { base::refl_DeletingDtor<UnkTag_7100b86668, UnkTextMembers_b46a3>(self); }

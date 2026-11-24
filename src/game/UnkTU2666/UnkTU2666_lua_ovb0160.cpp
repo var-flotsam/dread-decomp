@@ -126,7 +126,7 @@ s32 GetEntityFromSpawnPoint(lua_State* L) {
 struct UnkSpawnGroupEach_ovb0065;
 using UnkSpawnEachFn_ovb0065 = void (UnkSpawnGroupEach_ovb0065::*)(void*);
 void fn_710111c3d8(UnkSpawnGroupEach_ovb0065* self, UnkSpawnEachFn_ovb0065 fn);
-void fn_710111c470(UnkSpawnGroupEach_ovb0065* self, UnkSpawnEachFn_ovb0065 fn);
+void CSpawnGroupComponent_ForEachSpawnedEntity(UnkSpawnGroupEach_ovb0065* self, UnkSpawnEachFn_ovb0065 fn);
 void fn_710111c508(UnkSpawnGroupEach_ovb0065* self, void* object);
 
 // A pointer to a member function from its two words (the function, or a virtual slot's offset with the flag).
@@ -154,7 +154,7 @@ s32 KillSpawnGroupEnemies(lua_State* L) {
         if (void* spawner = fn_71007c04f0(object)) {
             UnkSpawnGroupEach_ovb0065* each = static_cast<UnkSpawnGroupEach_ovb0065*>(spawner);
             fn_710111c3d8(each, MemberPointer(reinterpret_cast<u64>(&fn_710111c508), 0));
-            fn_710111c470(each, MemberPointer(reinterpret_cast<u64>(&fn_710111c508), 0));
+            CSpawnGroupComponent_ForEachSpawnedEntity(each, MemberPointer(reinterpret_cast<u64>(&fn_710111c508), 0));
             return 0;
         }
     }

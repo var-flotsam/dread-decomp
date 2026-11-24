@@ -471,9 +471,9 @@ void fn_7100ca6150() {
     new (&g_unk_7172796388) CStrId("BLEAKABLE", true);
     fn_7100000250(CStrId_Destroy, &g_unk_7172796388, &g_unk_7101a19000);
     InitPropertyExVtableFirst(&g_unk_7172796390, g_unk_7101a889c8, g_unk_71726db788, g_unk_7101aa52d0, fn_7100ae9cc8,
-                   "PB_AND_SM", refl_TypeOf<fn_7100005178>(), fn_7100ca9504, fn_7100ca3be4);
+                   "PB_AND_SM", refl_TypeOf<fn_7100005178>(), fn_7100ca9504, CTunableBreakableTileManager_DestroyIdProperty);
     InitPropertyExVtableFirst(&g_unk_7172796518, g_unk_7101a889c8, g_unk_71726db788, g_unk_7101aa52d0, fn_7100ae9cc8,
-                   "VIGNETTE", refl_TypeOf<fn_7100005178>(), fn_7100ca9504, fn_7100ca3be4);
+                   "VIGNETTE", refl_TypeOf<fn_7100005178>(), fn_7100ca9504, CTunableBreakableTileManager_DestroyIdProperty);
     InitClass(&g_unk_71727966a0, "CBreakableTileManager", fn_7100ca3e50, fn_7100ca3c84);
     fn_710009ec00(&g_unk_71727967d8, &g_unk_71727966a0);
     fn_710009ec00(&g_unk_71727967d9, fn_7100ca3fb0());

@@ -46,7 +46,7 @@ static inline UnkLanguage* Language() {
 }
 
 using UnkGuiObj = UnkGuiDisplayObject;
-bool fn_7100b8524c(UnkGuiObj* self, const UnkGuiText& text);
+bool CSubtitleComposition_ShowText(UnkGuiObj* self, const UnkGuiText& text);
 struct UnkUnit2728Target;
 
 __attribute__((noinline)) void fn_7101192664(UnkUnit2728* self, const CStrId* key) {
@@ -65,7 +65,7 @@ __attribute__((noinline)) void fn_7101192664(UnkUnit2728* self, const CStrId* ke
         return;
     if (flag) {
         UnkDialogText text = fn_710119d040(Language(), *key);
-        fn_7100b8524c(reinterpret_cast<UnkGuiObj*>(target), text);
+        CSubtitleComposition_ShowText(reinterpret_cast<UnkGuiObj*>(target), text);
     } else {
         fn_7100b8538c(target);
     }

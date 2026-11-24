@@ -84,7 +84,7 @@ static inline __attribute__((always_inline)) void Move_A5_b74(UnkGallery_A5_b74*
     self->entries[selected].item->vf_0x1e8("OnMemorySelected", false);
 }
 
-void fn_7100af8784(UnkGallery_A5_b74* self, UnkSmArg_A6_b62* arg) {
+void GUI_ChozoGalleryDeselectSelectedEntry(UnkGallery_A5_b74* self, UnkSmArg_A6_b62* arg) {
     fn_71011d9a44(reinterpret_cast<UnkSmBase_A6_b62*>(self), arg);
     Deselect_A5_b74(self);
 }
@@ -134,7 +134,7 @@ void fn_7100af8bd8(UnkGallery_A5_b74* self) {
     self->entries[selected].item->vf_0x1e8("OnMemorySelected", false);
 }
 
-void fn_7100af8648(UnkGallery_A5_b74* self) {
+void GUI_RevealGalleryEntryAtQueueFront(UnkGallery_A5_b74* self) {
     u32 index = *self->revealed;
     UnkGalleryEntry_A5_b74& entry = self->entries[index];
     entry.hidden = false;

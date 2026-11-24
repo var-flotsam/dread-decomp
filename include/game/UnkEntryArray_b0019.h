@@ -19,8 +19,8 @@ struct UnkEntryArray_b0019 {
             u32 n = capacity;
             if (i >= capacity && step != 0)
                 n = ((u32)i / step + 1) * step;
-            fn_7100fddcb4(reinterpret_cast<base::global::CRntVector<UnkMusicEntry_0x60>*>(this), n);
-            fn_7100fde4d8(reinterpret_cast<UnkArray_fdd2b4*>(this), i + 1);
+            CTunableMusicManager_ReserveRequestArray(reinterpret_cast<base::global::CRntVector<UnkMusicEntry_0x60>*>(this), n);
+            CTunableMusicManager_ResizeRequestArray(reinterpret_cast<UnkArray_fdd2b4*>(this), i + 1);
         }
         return data[i];
     }

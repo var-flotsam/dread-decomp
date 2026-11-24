@@ -87,7 +87,7 @@ inline UnkSoundEventRecord* FindRecord(UnkSoundCandidate* candidate, const u64& 
 }
 
 
-UnkSoundEventRecord fn_7100fc9e58(UnkSelector* self, const u64& key, const UnkSoundContext& context) {
+UnkSoundEventRecord SGUISoundEventsSelector_SelectHighestScoringSoundEvent(UnkSelector* self, const u64& key, const UnkSoundContext& context) {
     UnkSoundContext copy;
     UnkBest best = {0.0f, UnkSoundEventRecord(base::global::CStrId::Empty(), g_unk_7101d470e8)};
     UnkCandidateList* list = FindList(self, key);

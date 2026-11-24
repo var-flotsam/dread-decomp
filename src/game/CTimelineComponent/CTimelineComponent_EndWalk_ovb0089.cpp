@@ -11,7 +11,7 @@ using UnkTimelineListeners = base::UnkCountedDeferredSet<void>;
 
 void** fn_7100a2e664(base::global::CRntVector<void*>* self, u32 index);
 
-void fn_7100a2e4a0(base::UnkCountedDeferredWalk<void>* walk) {
+void CTimelineComponent_EndListenerWalk(base::UnkCountedDeferredWalk<void>* walk) {
     --walk->set->lock;
     UnkTimelineListeners* lists = walk->set;
     if (lists->lock > 0)

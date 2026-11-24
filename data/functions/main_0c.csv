@@ -35,9 +35,9 @@ address,size,name,name_source,subsystem,status
 0x7100c03860,8,fn_7100c03860,unknown,unknown,O
 0x7100c03868,40,fn_7100c03868,unknown,unknown,O
 0x7100c03890,40,fn_7100c03890,unknown,unknown,O
-0x7100c038b8,372,fn_7100c038b8,unknown,game?,O
+0x7100c038b8,372,SCameraRailNode_InsertNodeAtIndex,inferred,game?,O
 0x7100c03a2c,692,fn_7100c03a2c,unknown,engine/reflection?,U
-0x7100c03ce0,240,fn_7100c03ce0,unknown,unknown,O
+0x7100c03ce0,240,SCameraRailNode_Destroy,inferred,unknown,O
 0x7100c03dd0,540,fn_7100c03dd0,unknown,game?,U
 0x7100c03fec,100,fn_7100c03fec,unknown,unknown,O
 0x7100c04050,228,fn_7100c04050,unknown,game/components?,O
@@ -408,7 +408,7 @@ address,size,name,name_source,subsystem,status
 0x7100c0bfb4,168,fn_7100c0bfb4,unknown,unknown,O
 0x7100c0c05c,176,fn_7100c0c05c,unknown,unknown,O
 0x7100c0c10c,668,fn_7100c0c10c,unknown,unknown,U
-0x7100c0c3b0,2096,fn_7100c0c3b0,unknown,engine/reflection?,O
+0x7100c0c3b0,2096,SCameraRailNode_InitStatics,inferred,engine/reflection?,O
 0x7100c0cbe0,232,CCharClassAttackCanBeAbortedTrack::refl_AddAttributes,reflection,game/characters,O
 0x7100c0ccc8,244,CCharClassAttackCanBeAbortedTrack::refl_GetClass,reflection,game/characters,O
 0x7100c0cdbc,4,CCharClassAttackCanBeAbortedTrack::refl_AddFields,reflection,game/characters,O
@@ -4929,7 +4929,7 @@ address,size,name,name_source,subsystem,status
 0x7100ca3a98,4,CBreakableTileLoader::refl_CopyAssign,reflection,game,O
 0x7100ca3a9c,4,CBreakableTileLoader::refl_MoveAssign,reflection,game,O
 0x7100ca3aa0,324,fn_7100ca3aa0,unknown,game?,O
-0x7100ca3be4,160,fn_7100ca3be4,unknown,game?,O
+0x7100ca3be4,160,CTunableBreakableTileManager_DestroyIdProperty,inferred,game?,O
 0x7100ca3c84,460,fn_7100ca3c84,unknown,game?,O
 0x7100ca3e50,352,CBreakableTileManager::refl_InitClass,reflection,game,O
 0x7100ca3fb0,220,fn_7100ca3fb0,unknown,game?,O

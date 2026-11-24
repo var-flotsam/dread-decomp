@@ -64,7 +64,7 @@ bool CShipRechargeComponent_LevelChangeUse(UnkShipRecharge_A5_b73* self, UnkShip
     }
     AssignRef(&self->user, fn_7100d78378(reinterpret_cast<UnkWeakTarget*>(user)));
     if (*level && **level) {
-        u64 a = fn_7100aa1f50(self, 6);
+        u64 a = CUsableComponent_GetUserAnimationIdForKind(self, 6);
         u64 b = fn_7100aa1888(self, 6);
         fn_7100aa0b04(reinterpret_cast<UnkUsableVirt_A6_b62*>(self), a, b, g_unk_710164b5d8);
     } else {

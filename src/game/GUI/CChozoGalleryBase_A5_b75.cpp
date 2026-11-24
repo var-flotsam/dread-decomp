@@ -105,7 +105,7 @@ struct UnkRewards_A5_b75 {
 };
 
 struct UnkGallery_A5_b74;  // the layout in CChozoGalleryBase_Selection_A5_b74.cpp
-void fn_7100af8648(UnkGallery_A5_b74* self);
+void GUI_RevealGalleryEntryAtQueueFront(UnkGallery_A5_b74* self);
 extern CStrId g_unk_717275ce20 __attribute__((visibility("hidden")));
 
 bool fn_7100af999c(UnkGallery_A5_b75* self) {
@@ -114,7 +114,7 @@ bool fn_7100af999c(UnkGallery_A5_b75* self) {
     if (self->revealed.count != 0) {
         __builtin_memcpy(self->revealed.data, self->revealed.data + 1, (u64)(self->revealed.count - 1) * 4);
         if (--self->revealed.count != 0) {
-            fn_7100af8648(reinterpret_cast<UnkGallery_A5_b74*>(self));
+            GUI_RevealGalleryEntryAtQueueFront(reinterpret_cast<UnkGallery_A5_b74*>(self));
             return true;
         }
     }
@@ -176,7 +176,7 @@ void fn_7100af8450(UnkGallery_A5_b75* self, UnkGuiEvent_b49* event) {
     }
     if (self->revealed.count != 0) {
         fn_710002fd10(&g_unk_717271e8f8->field_0xca8, &g_unk_717275ce20);
-        fn_7100af8648(reinterpret_cast<UnkGallery_A5_b74*>(self));
+        GUI_RevealGalleryEntryAtQueueFront(reinterpret_cast<UnkGallery_A5_b74*>(self));
     } else {
         self->entries.data[0].item->vf_0x1e8("OnMemorySelected", false);
     }

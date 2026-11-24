@@ -183,7 +183,7 @@ struct UnkSpawnWeakHandle_ovb0065 {
 
 // Appends to `out` every registered group (the game manager's list under the class id, of the class)
 // that has a holder whose object's key id (+0x48, its +0x30) is `id`.
-void fn_710111952c(const u64* id, base::global::CRntVector<UnkSpawnGroupHolders_ovb0065*>* out) {
+void CSpawnGroupComponent_CollectGroupsWithSpawnPointId(const u64* id, base::global::CRntVector<UnkSpawnGroupHolders_ovb0065*>* out) {
     UnkGameManagerIdList* list = fn_7100de94cc(g_unk_7101d47310, reinterpret_cast<const u64*>(&g_unk_7172a067c0));
     for (void **it = list->data, **end = it + list->count; it != end; ++it) {
         auto* handle = static_cast<UnkSpawnWeakHandle_ovb0065*>(*it);
@@ -378,7 +378,7 @@ static inline void SetSectionInt(CBlackboard* blackboard, const CStrId& section,
     }
 }
 
-void fn_7101119a5c(UnkSpawnGroupCount_ovb0065* self, CBlackboard* blackboard) {
+void CSpawnGroupComponent_IncrementAndStoreNumDeaths(UnkSpawnGroupCount_ovb0065* self, CBlackboard* blackboard) {
     CStrId section_id = fn_71011a2fbc(g_unk_7101d47310->field_0x608);
     u64 index = 0;
     u32 n = self->key_count;
@@ -424,7 +424,7 @@ static inline const char* IdText(UnkSpawnActor_ovb0065* actor) {
     return text ? text : g_unk_710162e2ed;
 }
 
-void fn_710111bb74(UnkSpawnGroupNotify_ovb0065* self, const char* event, UnkSpawnActor_ovb0065* spawned) {
+void CSpawnGroupComponent_NotifyEntityDead(UnkSpawnGroupNotify_ovb0065* self, const char* event, UnkSpawnActor_ovb0065* spawned) {
     UnkSpawnActor_ovb0065* owner = self->owner;
     if (void* script = owner->script) {
         const char* function = self->script_function;
@@ -432,7 +432,7 @@ void fn_710111bb74(UnkSpawnGroupNotify_ovb0065* self, const char* event, UnkSpaw
             fn_71009cde54(script, function, "sss", IdText(owner), event, IdText(spawned));
     }
     if (self->count_spawns)
-        fn_7101119a5c(reinterpret_cast<UnkSpawnGroupCount_ovb0065*>(self), &g_unk_7101d47310->field_0x968);
+        CSpawnGroupComponent_IncrementAndStoreNumDeaths(reinterpret_cast<UnkSpawnGroupCount_ovb0065*>(self), &g_unk_7101d47310->field_0x968);
     if (reinterpret_cast<bool (*)(UnkSpawnGroupNotify_ovb0065*)>(self->vtable[0x190 / 8])(self))
         fn_710111bc50(self);
 }
@@ -532,7 +532,7 @@ void fn_710111c3d8(UnkSpawnGroupEach_ovb0065* self, UnkSpawnEachFn_ovb0065 fn) {
     ForEach(self, self->field_0x90, fn);
 }
 
-void fn_710111c470(UnkSpawnGroupEach_ovb0065* self, UnkSpawnEachFn_ovb0065 fn) {
+void CSpawnGroupComponent_ForEachSpawnedEntity(UnkSpawnGroupEach_ovb0065* self, UnkSpawnEachFn_ovb0065 fn) {
     ForEach(self, self->field_0x40, fn);
 }
 

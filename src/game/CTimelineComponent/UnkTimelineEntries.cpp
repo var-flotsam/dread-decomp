@@ -18,7 +18,7 @@ struct UnkTimelineOwner {
     base::UnkKeyedArray<UnkTimelineEntries_7100a2cfe8, u64, UnkTimelineEntry> entries;
 };
 
-bool fn_7100a2cfe8(UnkTimelineOwner* self, const u64* key) {
+bool CTimelineComponent_HasTrack(UnkTimelineOwner* self, const u64* key) {
     return self->entries.Find(*key) != self->entries.End();
 }
 

@@ -105,7 +105,7 @@ void fn_7100fd0998(UnkMusicState_lfd0998* self, s32 mode) {
     }
     if (mode == 2) {
         void* music = self->owner ? self->owner->music : nullptr;
-        fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(music), MaskAll4_lfd0998(), MaskAll9_lfd0998(), 0.0f);
+        CTunableMusicManager_StopMusicOnAllSlots(static_cast<UnkMusicMgr_b0019*>(music), MaskAll4_lfd0998(), MaskAll9_lfd0998(), 0.0f);
         self->field_0xb60 = 0;
     }
 }

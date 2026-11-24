@@ -28,6 +28,6 @@ struct UnkFadeOutMusicEvent_fom {
 void CCharClassFadeOutMusicEvent_FadeOutMusicOverTime(UnkFadeOutMusicEvent_fom* self) {
     void* manager = MusicManager();
     f32 time = self->time;
-    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(manager), UnkMask(2),
+    CTunableMusicManager_StopMusicOnAllSlots(static_cast<UnkMusicMgr_b0019*>(manager), UnkMask(2),
                   UnkMaskOf<UnkMusicMaskTag>::All(), time);
 }

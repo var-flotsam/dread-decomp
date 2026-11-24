@@ -9,7 +9,7 @@ struct UnkMusicManager_b49 {
     bool flag;  // 0xf08
 };
 
-void fn_7100fd613c(UnkMusicManager_b49* self, u32 track, bool value);
+void CTunableMusicManager_PopSlotLastRequest(UnkMusicManager_b49* self, u32 track, bool value);
 
 void fn_7100fdca28(UnkMusicManager_b49* self, bool flag) {
     if (self->flag == flag)
@@ -17,6 +17,6 @@ void fn_7100fdca28(UnkMusicManager_b49* self, bool flag) {
     self->flag = flag;
     if (!flag) {
         for (u32 i = 0; i < self->track_count; ++i)
-            fn_7100fd613c(self, i, true);
+            CTunableMusicManager_PopSlotLastRequest(self, i, true);
     }
 }

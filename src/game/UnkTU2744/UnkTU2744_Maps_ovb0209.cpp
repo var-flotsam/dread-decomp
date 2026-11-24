@@ -202,7 +202,7 @@ struct UnkEntry_0x30;
 struct UnkStrPair_0x10;
 UnkTextTemp_b0209 fn_71011b8a80(void* unused, const char* const* name);
 UnkTextTemp_b0209 fn_71011b965c(void* unused, const char* const* name);
-void fn_71011b8dc4(UnkGuiRoot* root, const UnkStrPair_0x10* path);
+void GUI_LoadVectorFileAndAppendToRoot(UnkGuiRoot* root, const UnkStrPair_0x10* path);
 void fn_71011b9ce4(UnkGuiRoot* root, const UnkStrPair_0x10* path);
 
 // The registry, created on first use.
@@ -232,7 +232,7 @@ static inline UnkRegistry_0x70* Registry() {
     }
 
 __attribute__((noinline)) void fn_71011b8d10(void* self, const char* const* name) {
-    REG_BODY(fn_71011b8a80, fn_71011b8dc4)
+    REG_BODY(fn_71011b8a80, GUI_LoadVectorFileAndAppendToRoot)
 }
 
 void fn_71011b9968(void* self, const char* const* name) {

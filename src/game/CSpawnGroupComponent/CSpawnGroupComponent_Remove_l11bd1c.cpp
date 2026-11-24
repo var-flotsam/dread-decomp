@@ -10,7 +10,7 @@ using base::global::CRntVector;
 
 struct UnkSpawnActor_ovb0065;
 struct UnkSpawnGroupNotify_ovb0065;
-void fn_710111bb74(UnkSpawnGroupNotify_ovb0065* self, const char* event, UnkSpawnActor_ovb0065* spawned);
+void CSpawnGroupComponent_NotifyEntityDead(UnkSpawnGroupNotify_ovb0065* self, const char* event, UnkSpawnActor_ovb0065* spawned);
 
 template <class Tag>
 struct UnkSlotArray;
@@ -85,5 +85,5 @@ void fn_710111bd1c(UnkSwifterSpawnGroup_b49a4* group, void* event_name, void* re
         --self->target_count;
     else if (Remove(self->objects, actor))
         return;
-    fn_710111bb74(reinterpret_cast<UnkSpawnGroupNotify_ovb0065*>(self), event, actor);
+    CSpawnGroupComponent_NotifyEntityDead(reinterpret_cast<UnkSpawnGroupNotify_ovb0065*>(self), event, actor);
 }

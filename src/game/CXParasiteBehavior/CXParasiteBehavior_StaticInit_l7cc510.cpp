@@ -42,7 +42,7 @@ extern UnkEnumType g_unk_717271c1a0;
 void fn_71007ca03c(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_717271c310[];
 
-void fn_71007cc510() {
+void CXParasiteBehavior_InitStatics() {
     InitHeaderIds(&g_unk_717271c978.ids);
     fn_71007c8a94();
     fn_710009ec00(g_unk_717271bef0, g_unk_717271c978.field_0x20);

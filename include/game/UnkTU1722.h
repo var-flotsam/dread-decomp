@@ -29,7 +29,7 @@ UnkReflType* fn_7100b81b40();
 UnkReflType* fn_7100b81c1c();
 UnkReflType* fn_7100b82200();
 UnkReflType* fn_7100b827e4();
-UnkLabelVec2 fn_7100b82b18(const UnkLabelSource* source, s32 frame);
+UnkLabelVec2 GUI_GetImageRegionSizeInFrame(const UnkLabelSource* source, s32 frame);
 extern UnkReflType g_unk_7172767bb0;
 extern UnkReflType g_unk_7172767cf0;
 extern UnkReflType g_unk_7172767e30;

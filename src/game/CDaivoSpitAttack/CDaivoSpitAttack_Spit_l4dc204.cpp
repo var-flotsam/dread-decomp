@@ -42,7 +42,7 @@ void CDaivoSpitAttack_SetAIComponentSpitRef(UnkSelf_71004dc590* self, UnkWeakTar
 void fn_71004e092c(UnkDaivoController_b46a1* controller, const CVector3D* position, const CVector3D* forward,
                    const CVector3D* side);
 struct UnkPathNodeOwnerA;
-void fn_7101059f8c(UnkPathNodeOwnerA* nodes);
+void SLogicPathNode_ClearPointLists(UnkPathNodeOwnerA* nodes);
 
 struct UnkSpitName_l4dc204 {
     u8 unk_0x0[0x10];
@@ -169,7 +169,7 @@ void fn_71004dc204(UnkDaivoSpitAttack_l4dc204* self) {
     movement->field_0x118 = 4;
     movement->field_0x110 = 10;
     movement->field_0x114 = 5;
-    fn_7101059f8c(reinterpret_cast<UnkPathNodeOwnerA*>(self->nodes));
+    SLogicPathNode_ClearPointLists(reinterpret_cast<UnkPathNodeOwnerA*>(self->nodes));
     auto* daivo = reinterpret_cast<UnkDaivoAI_l4dc204*>(ai);
     auto* holder = reinterpret_cast<UnkPathHolder_l4dc204*>(
         fn_7100382150(static_cast<UnkActor*>(LinkedObject(daivo->part_0x1350))));

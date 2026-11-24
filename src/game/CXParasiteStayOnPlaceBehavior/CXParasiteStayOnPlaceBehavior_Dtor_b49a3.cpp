@@ -38,11 +38,11 @@ __attribute__((always_inline)) inline UnkXParasiteStayOnPlaceBehavior_b49a3::~Un
     // The array at +0x28 is destroyed as a member, after this.
 }
 
-void fn_71007ce1fc(UnkXParasiteStayOnPlaceBehavior_b49a3* self) {
+void CXParasiteStayOnPlaceBehavior_Destroy(UnkXParasiteStayOnPlaceBehavior_b49a3* self) {
     self->~UnkXParasiteStayOnPlaceBehavior_b49a3();
 }
 
 // By reference: the object is known to exist, so the delete has no null check.
-void fn_71007ce2ec(UnkXParasiteStayOnPlaceBehavior_b49a3& self) {
+void CXParasiteStayOnPlaceBehavior_DestroyAndDelete(UnkXParasiteStayOnPlaceBehavior_b49a3& self) {
     delete &self;
 }

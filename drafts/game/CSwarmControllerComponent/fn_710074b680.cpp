@@ -27,7 +27,7 @@ struct UnkStruct_71007455dc;
 struct UnkSwarmController_ovb6;
 struct UnkSwarmGroup_ovb6;
 UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self);
-void fn_7100748234(UnkSwarmController_ovb6* self, UnkSwarmGroup_ovb6* group);
+void CSwarmControllerComponent_DeactivateGroup(UnkSwarmController_ovb6* self, UnkSwarmGroup_ovb6* group);
 
 extern u8 g_unk_710164a9e8[];
 
@@ -242,5 +242,5 @@ void fn_710074b680(UnkSwarmController_l74b680* self, UnkSwarmUnit_l74b680* membe
     member->active = false;
     member->field_0x25 = false;
     if (group->Release() && group->active)
-        fn_7100748234(reinterpret_cast<UnkSwarmController_ovb6*>(self), reinterpret_cast<UnkSwarmGroup_ovb6*>(group));
+        CSwarmControllerComponent_DeactivateGroup(reinterpret_cast<UnkSwarmController_ovb6*>(self), reinterpret_cast<UnkSwarmGroup_ovb6*>(group));
 }

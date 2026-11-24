@@ -76,7 +76,7 @@ void fn_7101184028(UnkCreditsMode_ovb0070* self) {
     fn_71011cdce8(self->field_0xa70 ? reinterpret_cast<UnkGuiDisplayObject*>(self->field_0xa70->target) : nullptr, false);
     self->flags = (self->flags & ~0x10u) | 4;
     f32 time = 2.0f;
-    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(MusicManager()), UnkMask(0xc),
+    CTunableMusicManager_StopMusicOnAllSlots(static_cast<UnkMusicMgr_b0019*>(MusicManager()), UnkMask(0xc),
                   UnkMaskOf<UnkMusicMaskTag>::All(), time);
     void* effects = g_unk_7101d47310->field_0x1040;
     UnkCreditsPosition_ovb0070 position;
@@ -99,7 +99,7 @@ struct UnkCreditsMenu_ovb0070_ovb0070 {
 // The credits' update: the clock, the end (back to the main menu or on to the rewards once its
 // time runs out), the wait before the end, the scrolling (fn_71011843d0), unit 2727's object, and
 // once past 0.25 s the "StaffRoll" music.
-void fn_71011841b4(UnkCreditsMode_ovb0070* self, f32 dt) {
+void CTunableCredits_UpdateCreditsMode(UnkCreditsMode_ovb0070* self, f32 dt) {
     self->time += dt;
     u32 flags = self->flags;
     if (flags & 4) {

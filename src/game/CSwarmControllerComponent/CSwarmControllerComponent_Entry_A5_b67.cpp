@@ -26,6 +26,6 @@ struct UnkSwarmController_A5_b67 {
     UnkSwarmTable_A5_b67* table;
 };
 
-UnkSwarmEntry_A5_b67 fn_710074e2c0(UnkSwarmController_A5_b67* self, s32 index) {
+UnkSwarmEntry_A5_b67 CSwarmControllerComponent_GetCharClassEntry(UnkSwarmController_A5_b67* self, s32 index) {
     return self->table->entries[index];
 }

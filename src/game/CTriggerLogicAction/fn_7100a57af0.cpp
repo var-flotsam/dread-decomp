@@ -50,7 +50,7 @@ UnkEnumType* fn_7100a55204();
 void fn_7100a55664(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 UnkEnumType* fn_7100a557e8();
 void fn_7100a558c4(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_7100a57af0() {
+void CTriggerLogicAction_InitStatics() {
     InitHeaderIds(&g_unk_717274d298.ids);
     fn_7100a54724();
     fn_710009ec00(g_unk_717274c818, g_unk_717274d298.field_0x20);

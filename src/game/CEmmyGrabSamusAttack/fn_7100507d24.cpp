@@ -50,7 +50,7 @@ struct UnkMusicTracks_l507d24 {
 void fn_7100507d24(UnkGrabAttack_b58a3* self) {
     self->state_machine.Request(1);
     static CStrId s_key("EmmyGrab", true);
-    fn_7100dae8a4(reinterpret_cast<UnkDoorKeyOwner_dae8a4*>(g_unk_71726af0a8), false, &s_key);
+    CTunableAIManager_AddOrRemoveDoorCollisionFlagKey(reinterpret_cast<UnkDoorKeyOwner_dae8a4*>(g_unk_71726af0a8), false, &s_key);
     fn_7101178e08(static_cast<UnkActorTarget*>(self->owner->field_0x220), 0xe, false, false, -1.0f);
     fn_7101178e08(static_cast<UnkActorTarget*>(fn_7100d7c990(self->owner)->field_0x220), 0xe, false, false,
                   -1.0f);
@@ -66,5 +66,5 @@ void fn_7100507d24(UnkGrabAttack_b58a3* self) {
         fn_71010e4a80(game, &s_water);
     }
     for (s32 i = 0; i < reinterpret_cast<UnkMusicTracks_l507d24*>(MusicManager())->count; ++i)
-        fn_7100fd8720(reinterpret_cast<UnkMusicSlotOwner_fd8720*>(MusicManager()), i);
+        CTunableMusicManager_StopAndClearSlotNodes(reinterpret_cast<UnkMusicSlotOwner_fd8720*>(MusicManager()), i);
 }

@@ -95,14 +95,14 @@ void fn_7100e10aac(UnkLoadingScreen* self) {
         fn_7100f011c4(SceneState(), self->field_0x28);
         fn_7100f00714(SceneState());
         self->field_0x28 = 0x50;
-        fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(MusicManager()), UnkMask(4),
+        CTunableMusicManager_StopMusicOnAllSlots(static_cast<UnkMusicMgr_b0019*>(MusicManager()), UnkMask(4),
                       UnkMaskOf<UnkMusicMaskTag>::All(), 0.2f);
     }
     if (self->field_0x18) {
         fn_71002199d8(g_unk_7101d47300, static_cast<UnkItemBase_71011a91c4*>(self->field_0x18), 3);
         self->field_0x18 = nullptr;
     }
-    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(MusicManager()), UnkMask(10), UnkMask(0x100), 0.2f);
+    CTunableMusicManager_StopMusicOnAllSlots(static_cast<UnkMusicMgr_b0019*>(MusicManager()), UnkMask(10), UnkMask(0x100), 0.2f);
     self->field_0x0 = 0;
     fn_7100fdca28(MusicManager(), 0);
     fn_71011b6b5c(g_unk_717271e8f8, 0);

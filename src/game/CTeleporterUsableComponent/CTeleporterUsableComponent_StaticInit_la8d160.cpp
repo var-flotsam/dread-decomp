@@ -38,7 +38,7 @@ void fn_7100a8cc60(void*) __attribute__((visibility("hidden")));
 void fn_7100a8cee0(void*) __attribute__((visibility("hidden")));
 extern char g_unk_71727519a0[];
 
-void fn_7100a8d160() {
+void CTeleporterUsableComponent_InitStatics() {
     UnkStatics_7100a8d160& s = g_unk_71727519a8;
     InitHeaderIds(&s.ids);
     s.field_0x68[0] = -1.0f;

@@ -118,7 +118,7 @@ extern UnkEnumType g_unk_7172760b10;
 void fn_7100b12d00(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_7172760c80[];
 
-void fn_7100b1b990() {
+void IDisplayObjectTrack_InitStatics() {
     InitHeaderIds(&g_unk_7172761e98.ids);
     fn_7100b0da54();
     fn_710009ec00(g_unk_717275f8e0, g_unk_7172761e98.field_0x38);

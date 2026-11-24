@@ -54,7 +54,7 @@ static inline __attribute__((always_inline)) bool Send_b56a3(UnkAnimationCompone
 
 // When the sub-object has the entry 0x11d3e6cd2e9cb1a1 and the tunable is set, sends it; when that
 // was taken, the timer starts from the entry's +0x28 with the tunable's +0x62c and scale one.
-void fn_71006d5bf8(UnkTakumakuAI_b56a3* self) {
+void CTakumakuAIComponent_StartSpikeShake(UnkTakumakuAI_b56a3* self) {
     if (!self->owner)
         return;
     UnkAnimationComponent* target = self->owner->field_0x220;

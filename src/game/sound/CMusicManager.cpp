@@ -34,7 +34,7 @@ void fn_7100fd3804(void* block) {
     self->field_0xa8 = 0;
     u32 n = fn_7100108b7c(g_unk_7101d4d820, 1) >> 1;
     new (&self->entries) base::global::CRntVector<UnkMusicEntry_0x60>(0xb);
-    fn_7100fddcb4(&self->entries, n);
+    CTunableMusicManager_ReserveRequestArray(&self->entries, n);
     n = fn_7100108b7c(g_unk_7101d4d820, 1) >> 1;
     new (&self->slots) base::global::CRntVector<UnkMusicSlot_0x38>(0xb);
     fn_7100fde040(&self->slots, n);

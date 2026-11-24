@@ -245,9 +245,9 @@ void CShipRechargeComponent_UpdateLevelChangeUse(UnkShipRecharge_A5_b76* self, f
         if (fn_7100aa2948(reinterpret_cast<UnkUsableComponent_A6_b62*>(self))) {
             if (UnkShipRechargeUser_A5_b76* user = User_A5_b76(self)) {
                 UnkAnimationComponent* animation = user->animation;
-                u64 key = fn_7100aa1f50(Cast_A5_b76(self), 6);
+                u64 key = CUsableComponent_GetUserAnimationIdForKind(Cast_A5_b76(self), 6);
                 if (fn_710117ae38(animation, (*reinterpret_cast<UnkShipRechargeKey_A5_b76**>(key))->hash, false)) {
-                    u64 a = fn_7100aa1f50(Cast_A5_b76(self), 1);
+                    u64 a = CUsableComponent_GetUserAnimationIdForKind(Cast_A5_b76(self), 1);
                     u64 b = fn_7100aa1888(Cast_A5_b76(self), 1);
                     if (fn_7100aa0b04(reinterpret_cast<UnkUsableVirt_A6_b62*>(self), a, b, g_unk_710164b5d8)) {
                         if (UnkInputComponent* input = self->link->user->input)

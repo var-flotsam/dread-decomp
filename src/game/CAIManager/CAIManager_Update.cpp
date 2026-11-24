@@ -226,7 +226,7 @@ void fn_7100da92b0(UnkAIManager_da92b0* self, f32 dt) {
     if (self->field_0x2410 && self->field_0x2410->target) {
         self->field_0x2418 -= dt;
         if (self->field_0x2418 <= 0.0f)
-            fn_7100da9194(reinterpret_cast<UnkTimedRef*>(self));
+            CTunableAIManager_ExpireTimedTarget(reinterpret_cast<UnkTimedRef*>(self));
     }
     if (self->field_0x241c) {
         self->field_0x2420 -= dt;

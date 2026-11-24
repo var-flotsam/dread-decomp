@@ -51,7 +51,7 @@ void fn_7100323b60(UnkAbility_b62a2o* self, bool on) {
             start:
                 {
                     u64 id = self->vtbl->vf_0xd0(self);
-                    if (fn_7100a2cfe8(timeline, &id)) {
+                    if (CTimelineComponent_HasTrack(timeline, &id)) {
                         id = self->vtbl->vf_0xd0(self);
                         fn_7100a2b7b8(timeline, &id);
                     }

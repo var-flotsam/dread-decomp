@@ -25,7 +25,7 @@ struct lua_State;
 using UnkPathMember_l092720 = base::UnkStrIdMemberOf<g_unk_7101d47200>;
 
 struct UnkTuneMgrView_b0019;
-void fn_7100fdc3c4(UnkTuneMgrView_b0019* manager, const u64* path, s32* first, s32* second);
+void CTunableMusicManager_GetStreamItemIntPair(UnkTuneMgrView_b0019* manager, const u64* path, s32* first, s32* second);
 
 // The file path of a string id's text (its use count at +0x44 goes up first).
 struct UnkStreamPath_l092720 {
@@ -97,8 +97,8 @@ s32 DebugPlayStream(lua_State* L) {
         CFilePathStrId path(name, true);
         fn_7100108b0c(g_unk_7101d4d820, 1, 0.2f);
         UnkMusicDesc_l092720 desc;
-        desc.volume = fn_7100fdc468(MusicManager_l092720(), reinterpret_cast<const u64*>(&path));
-        fn_7100fdc3c4(MusicManager_l092720(), reinterpret_cast<const u64*>(&path), &desc.field_0x1c, &desc.field_0x20);
+        desc.volume = CTunableMusicManager_GetStreamVolume(MusicManager_l092720(), reinterpret_cast<const u64*>(&path));
+        CTunableMusicManager_GetStreamItemIntPair(MusicManager_l092720(), reinterpret_cast<const u64*>(&path), &desc.field_0x1c, &desc.field_0x20);
         desc.direction = 1;
         desc.path = path;
         desc.group = 1;

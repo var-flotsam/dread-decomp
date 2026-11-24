@@ -44,8 +44,8 @@ void fn_71007bf01c(UnkDropDef_b44a2* self) {
     self->fXCellDropTime = 0.1f;
     self->fXCellDropRotationAngSpeed = 0.0f;
     new (&self->sXParasiteTypeMask) base::global::CStrId("ALL", true);
-    fn_71007c7ddc(self->oDropProbabilities);
-    fn_71007c7ddc(self->oMeleeChargeShotDropProbabilities);
+    SDropProbabilities_Construct(self->oDropProbabilities);
+    SDropProbabilities_Construct(self->oMeleeChargeShotDropProbabilities);
     self->field_0x18 = 0;
     self->field_0x1c = -1;
     self->bSkipUsefulItemsRule = false;

@@ -122,7 +122,7 @@ void CSPBTutoLogicAction_UpdateCentralUnitTutoPrompts(char* self_, void* arg) {
             return;
         if (self->step == -1 && !self->shown) {
             static CStrId s_camera("#CAVE_CENTRALUNIT_TUTO_CAMERA", true);
-            fn_7100b88f10(tuto, &s_camera);
+            CTutorialComposition_ShowWithText(tuto, &s_camera);
             g_unk_71726e1ee8 = 2;
             self->shown = true;
         }
@@ -135,7 +135,7 @@ void CSPBTutoLogicAction_UpdateCentralUnitTutoPrompts(char* self_, void* arg) {
                 self->step == -1) {
                 fn_7100b8903c(tuto, nullptr);
                 static CStrId s_heating("#CAVE_CENTRALUNIT_TUTO_HEATING", true);
-                fn_7100b88f10(tuto, &s_heating);
+                CTutorialComposition_ShowWithText(tuto, &s_heating);
                 UnkMlogMessage_b55 message(2, CStrId("#MLOG_TUTO_OMEGA_STREAM", true));
                 fn_7100456b7c(reinterpret_cast<u8*>(g_unk_7101d47310) + 0x2128,
                               reinterpret_cast<const UnkMlogMessage_b42a1*>(&message));

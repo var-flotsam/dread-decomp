@@ -19,7 +19,7 @@ using base::global::UnkStringData;
 // The base constructor, as src/game/CChangeSetupLogicAction/CChangeSetupLogicAction_b35.cpp declares it.
 struct UnkChangeSetupLogicActionDef;
 struct UnkTutoEnterAction_b48;
-u32 fn_7100a59074(UnkTutoEnterAction_b48* self);
+u32 CTutoEnterLogicAction_CallLuaCallbackOnMessageClosed(UnkTutoEnterAction_b48* self);
 
 struct UnkTutoEnterCallable_b52;
 
@@ -66,6 +66,6 @@ void fn_7100a585a8(UnkTutoEnterLogicAction_b52* self) {
     InitEmpty_te52(&self->name.data);
     self->field_0x68 = nullptr;
     self->target = self;
-    self->method = &fn_7100a59074;
+    self->method = &CTutoEnterLogicAction_CallLuaCallbackOnMessageClosed;
     InitEmpty_te52(&self->field_0x80.data);
 }

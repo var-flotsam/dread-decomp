@@ -1763,7 +1763,7 @@ address,size,name,name_source,subsystem,status
 0x7100953180,152,fn_7100953180,unknown,game/components?,O
 0x7100953218,456,fn_7100953218,unknown,game/components?,O
 0x71009533e0,28,fn_71009533e0,unknown,game/components?,O
-0x71009533fc,572,fn_71009533fc,unknown,game/components?,O
+0x71009533fc,572,CWeightActivableMovablePlatformComponent_LoadActivatedStateFromBlackboard,inferred,game/components?,O
 0x7100953638,776,fn_7100953638,unknown,game/components?,U
 0x7100953940,28,fn_7100953940,unknown,game/components?,O
 0x710095395c,132,fn_710095395c,unknown,game/components?,O

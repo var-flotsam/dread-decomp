@@ -17,7 +17,7 @@ using base::global::CStrId;
 extern "C" int rand();
 
 struct UnkTimelineRandom_ovb0089;
-void fn_7100a2b9a8(UnkTimelineRandom_ovb0089* self, const u32* value);
+void CTimelineComponent_PickRandomEntryAvoidingLast(UnkTimelineRandom_ovb0089* self, const u32* value);
 
 // A string id whose release decrements and tests in two steps.
 struct UnkEventName_la2c798 {
@@ -88,7 +88,7 @@ static inline void Notify(UnkTimelineComp_la2c798* self, UnkTimelineEvent_la2c79
                 fn_7100a2e30c(&self->listeners, l);
         }
     }
-    fn_7100a2e4a0(&walk);
+    CTimelineComponent_EndListenerWalk(&walk);
 }
 
 static inline f32 RandomBetween(f32 lo, f32 hi) {
@@ -118,7 +118,7 @@ void fn_7100a2c798(UnkTimelineComp_la2c798* self, UnkTimelineMessage_la2c798* ms
     case 1:
         base::reflection::UnkReflTypeIdArg value;
         value.id = UnkAll_SpitSend().value;
-        fn_7100a2b9a8(reinterpret_cast<UnkTimelineRandom_ovb0089*>(self), &value.id);
+        CTimelineComponent_PickRandomEntryAvoidingLast(reinterpret_cast<UnkTimelineRandom_ovb0089*>(self), &value.id);
         break;
     case 2:
         self->time = RandomBetween(self->time_min, self->time_max);

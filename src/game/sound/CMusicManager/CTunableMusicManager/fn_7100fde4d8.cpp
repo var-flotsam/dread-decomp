@@ -26,8 +26,8 @@ struct UnkNewEntry_0x60 {
     base::global::CStrId field_0x58{"", true};
 };
 
-void fn_7100fde4d8(base::global::CRntVector<UnkNewEntry_0x60>* v, u32 n) {
-    fn_7100fddcb4(reinterpret_cast<base::global::CRntVector<UnkMusicEntry_0x60>*>(v), n);  // reserve
+void CTunableMusicManager_ResizeRequestArray(base::global::CRntVector<UnkNewEntry_0x60>* v, u32 n) {
+    CTunableMusicManager_ReserveRequestArray(reinterpret_cast<base::global::CRntVector<UnkMusicEntry_0x60>*>(v), n);  // reserve
     for (u32 i = v->count; i < n; ++i)
         new (&v->data[i]) UnkNewEntry_0x60;
     v->count = n;

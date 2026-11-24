@@ -42,7 +42,7 @@ void fn_7100d7c828(UnkActor* self, const u64* key, bool flag) {
         return;
     if (flag)
         fn_7100a2b7b8(Timeline(self), key);
-    if (fn_7100a2cfe8(Timeline(self), key))
+    if (CTimelineComponent_HasTrack(Timeline(self), key))
         return;
     AddDefault(Timeline(self), key);
 }

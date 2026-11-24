@@ -75,7 +75,7 @@ void fn_7100403c5c(UnkSelf_l403c5c* self) {
     UnkGameManager* manager = g_unk_7101d47310;
     if (manager->field_0x2238.data != g_unk_71726c40e8.data) {
         fn_7100df5cec(manager, &g_unk_71726c40e8);
-        fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(MusicManager()), UnkMask(4),
+        CTunableMusicManager_StopMusicOnAllSlots(static_cast<UnkMusicMgr_b0019*>(MusicManager()), UnkMask(4),
                       UnkMaskOf<UnkMusicMaskTag>::All(), 0.2f);
     }
     fn_7100fdb9e0(static_cast<UnkMgr_0xf18*>(MusicManager()), 7, 0, -1.0f, 0.0f);

@@ -184,7 +184,7 @@ bool fn_7100a9ad48(UnkTrain_la9ad48* self, UnkTrainUser_la9ad48* user, const cha
         UnkTrainParams_la9ad48 params;
         RequestMovement_la9ad48(movement, &params);
     }
-    u64 a = fn_7100aa1f50(reinterpret_cast<UnkShipRecharge_A5_b73*>(self), 6);
+    u64 a = CUsableComponent_GetUserAnimationIdForKind(reinterpret_cast<UnkShipRecharge_A5_b73*>(self), 6);
     u64 b = fn_7100aa1888(reinterpret_cast<UnkShipRecharge_A5_b73*>(self), 6);
     if (fn_7100aa0b04(reinterpret_cast<UnkUsableVirt_A6_b62*>(self), a, b, g_unk_710164b600))
         RequestState_A5_b73<15, 8>(&self->machine, 6);

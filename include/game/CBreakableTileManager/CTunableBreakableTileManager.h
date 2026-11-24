@@ -11,7 +11,7 @@
 struct UnkReflType;
 struct UnkTUHeader;
 
-void fn_7100ca3be4(void* p);
+void CTunableBreakableTileManager_DestroyIdProperty(void* p);
 void fn_7100ca3c84();
 void fn_7100ca408c();
 void fn_7100ca50bc();

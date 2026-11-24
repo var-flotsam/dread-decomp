@@ -35,7 +35,7 @@ extern const u8 g_unk_7172720e48[] __attribute__((visibility("hidden")));
 
 void fn_71007f5db4(void* object, void* slot);
 void fn_71007f5f44(void* object, void* slot);
-void fn_7100da8f00(UnkSlotOwner_b0025* self, UnkSwitchObject* object);
+void CTunableAIManager_FreeObjectSlot(UnkSlotOwner_b0025* self, UnkSwitchObject* object);
 UnkSwitchObject* fn_7100daaf3c(UnkManager_71726af468* self, const u64* key, bool flag);
 void fn_7100146380(UnkSwitchObject* self);
 void fn_71001463b0(UnkSwitchObject* self);
@@ -150,7 +150,7 @@ static inline UnkModelManager* ModelManager() {
 static inline void ReleaseObjects(UnkFrozenAsFrostbite_l7f48d8* self) {
     for (UnkSwitchObject** it = self->objects.data, **end = it + self->objects.count; it != end; ++it) {
         if (UnkSwitchObject* object = *it)
-            fn_7100da8f00(reinterpret_cast<UnkSlotOwner_b0025*>(Manager()), object);
+            CTunableAIManager_FreeObjectSlot(reinterpret_cast<UnkSlotOwner_b0025*>(Manager()), object);
     }
     self->objects.count = 0;
 }

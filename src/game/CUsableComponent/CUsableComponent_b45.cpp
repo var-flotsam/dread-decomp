@@ -14,7 +14,7 @@ struct UnkUsableComponent_b45a2 {
     }
 };
 
-const CStrId& fn_7100aa1f50(UnkUsableComponent_b45a2* self, u32 kind) {
+const CStrId& CUsableComponent_GetUserAnimationIdForKind(UnkUsableComponent_b45a2* self, u32 kind) {
     switch (kind) {
     case 1:
         return self->Call(0x1b8);

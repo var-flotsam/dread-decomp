@@ -37,7 +37,7 @@ struct UnkAIManager_ldaaba0 {
 
 static inline bool SameId(CStrId id, const CStrId& other) { return other.data == id.data; }
 
-bool fn_7100daaba0(UnkManager_71726af468* manager, u32 key, CStrId name) {
+bool CTunableAIManager_KeyedListHasName(UnkManager_71726af468* manager, u32 key, CStrId name) {
     UnkPointMap_ldaaba0& points = reinterpret_cast<UnkAIManager_ldaaba0*>(manager)->points;
     if (!points.Contains(key) || points[key].count == 0)
         return false;

@@ -31,7 +31,7 @@ void fn_71007c7e88() __attribute__((visibility("hidden")));
 void fn_71007c7e94() __attribute__((visibility("hidden")));
 extern char g_unk_717271bc30[];
 
-void fn_71007c83f0() {
+void SDropProbabilities_InitStatics() {
     InitHeaderIds(&g_unk_717271bc38.ids);
     InitEnum(&base::reflection::TypeObject<SDropProbabilities::SDir, UnkEnumType>::object, "SDropProbabilities::SDir", fn_71007c62d4, fn_71007c5e88,
              g_unk_717271ba88, &g_unk_717271ba90, fn_71007c7e70, &g_unk_717271bab0, fn_71007c7e7c);

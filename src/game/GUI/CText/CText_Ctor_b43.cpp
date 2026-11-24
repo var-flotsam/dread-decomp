@@ -33,7 +33,7 @@ struct UnkText_b43a3 {
 };
 static_assert(__builtin_offsetof(UnkText_b43a3, field_0x238) == 0x238, "UnkText_b43a3 layout");
 
-void fn_7100b86798(UnkText_b43a3* self) {
+void CText_Construct(UnkText_b43a3* self) {
     fn_71011cd4b4(self);
     self->field_0x198 = 0;
     self->field_0x1a0 = 0;

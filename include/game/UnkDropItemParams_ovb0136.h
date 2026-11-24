@@ -29,5 +29,5 @@ struct UnkDropItemParams_ovb0136 {
     u8 field_0x89;
     u8 field_0x8a;
 
-    UnkDropItemParams_ovb0136() { fn_71007c7ddc(this); }
+    UnkDropItemParams_ovb0136() { SDropProbabilities_Construct(this); }
 };

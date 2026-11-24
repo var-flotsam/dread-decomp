@@ -13,7 +13,7 @@ struct UnkTakumakuAI {
     UnkTakumakuOwner* owner;
 };
 
-void fn_71006d5bf8(UnkTakumakuAI* self);
+void CTakumakuAIComponent_StartSpikeShake(UnkTakumakuAI* self);
 
 void fn_71006d5ba8(UnkTakumakuAI* self, u32 event) {
     UnkTakumakuOwner* owner = self->owner;
@@ -23,5 +23,5 @@ void fn_71006d5ba8(UnkTakumakuAI* self, u32 event) {
     if (event != 6)
         return;
     if (component != nullptr && fn_7101178e6c(component, 11))
-        fn_71006d5bf8(self);
+        CTakumakuAIComponent_StartSpikeShake(self);
 }

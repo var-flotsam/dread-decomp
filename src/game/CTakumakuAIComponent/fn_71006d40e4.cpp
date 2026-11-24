@@ -31,11 +31,11 @@ struct UnkOwner_71006d40e4 {
     }
 };
 
-void fn_71006d40e4(UnkOwner_71006d40e4* self) {
+void CTakumakuAIComponent_Destroy(UnkOwner_71006d40e4* self) {
     self->Destroy();
 }
 
-void fn_71006d4188(UnkOwner_71006d40e4* self) {
+void CTakumakuAIComponent_DestroyAndDelete(UnkOwner_71006d40e4* self) {
     self->Destroy();
     operator delete(self);
 }

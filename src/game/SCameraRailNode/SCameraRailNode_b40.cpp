@@ -9,7 +9,7 @@ using base::reflection::CType;
 using base::reflection::UnkReflObject;
 using base::reflection::UnkReflValue;
 
-UnkReflObject* fn_7100c038b8(char* self, u32 index, void* arg);
+UnkReflObject* SCameraRailNode_InsertNodeAtIndex(char* self, u32 index, void* arg);
 
 static inline __attribute__((always_inline)) void* ArgPtr_b40a3(UnkReflValue* arg) {
     if (!arg->type)
@@ -24,7 +24,7 @@ UnkReflValue fn_7100c07c58(void*, char* obj, UnkReflValue* const* args) {
     char* target = *reinterpret_cast<char**>(obj + 8);
     u32 index = *base::reflection::refl_ArgValue<u32>(&a[0]);
     void* p1 = ArgPtr_b40a3(&a[1]);
-    UnkReflObject* o = fn_7100c038b8(target, index, p1);
+    UnkReflObject* o = SCameraRailNode_InsertNodeAtIndex(target, index, p1);
     const CType* type = reinterpret_cast<const CType*>(o->vf_0x0());
     UnkReflValue r;
     r.field_0x0 = nullptr;

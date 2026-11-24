@@ -95,7 +95,7 @@ static inline void RequestState_P5_b72(UnkSmMachine_P5_b72* self, u32 id) {
 
 template <u32 Offset>
 struct UnkSmOwner_b61;
-void fn_7100aca57c(UnkSmOwner_b61<0x130>*);
+void CWeightActivablePropComponent_SaveOpenedToBlackboard(UnkSmOwner_b61<0x130>*);
 
 struct UnkPropFlags_P5_b72 {
     u8 pad_0x0[0x3a8];
@@ -125,7 +125,7 @@ void fn_7100aca6e0(UnkWeightProp_P5_b72* self, UnkPropArg_P5_b72* arg) {
         auto* owner = *reinterpret_cast<UnkPropOwner_P5_b72**>(reinterpret_cast<char*>(component) + 0x30);
         if (owner && owner->flags && owner->flags->active) {
             RequestState_P5_b72<2, 3>(&self->machine, 2);
-            fn_7100aca57c(reinterpret_cast<UnkSmOwner_b61<0x130>*>(self));
+            CWeightActivablePropComponent_SaveOpenedToBlackboard(reinterpret_cast<UnkSmOwner_b61<0x130>*>(self));
         }
     }
 }

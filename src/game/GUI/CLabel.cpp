@@ -126,7 +126,7 @@ static inline void SetViewSize(UnkLabelViewport* viewport, const CVector2D& size
 // viewport from the GUI root, placed, sized and scaled; then each viewport is shown at the label's
 // depth (field_0x140, else field_0x13c) less one. The current frame is the label's derived state's
 // (fn_71011cde14, with the label seen as the display object it is).
-void fn_71011ee5a8(UnkLabel_CLabel* self) {
+void GUI_RefreshLabelGlyphViewports(UnkLabel_CLabel* self) {
     UnkGuiObjectState* composition = fn_71011cde14(reinterpret_cast<UnkGuiDisplayObject*>(self));
     if (composition->frame == 0x7fffffff)
         return;
@@ -147,7 +147,7 @@ void fn_71011ee5a8(UnkLabel_CLabel* self) {
                             SetViewPos(e->viewport, source->pos);
                             SetViewSize(e->viewport, source->size);
                             s32 frame = composition->frame;
-                            UnkLabelVec2 scaled = fn_71011b8160(frame, fn_7100b82b18(source, frame));
+                            UnkLabelVec2 scaled = fn_71011b8160(frame, GUI_GetImageRegionSizeInFrame(source, frame));
                             UnkLabelVec2 scale = fn_71011b7f48(composition->frame, scaled);
                             // The scale is passed by value: a copy made after the viewport is read.
                             UnkLabelViewport* viewport = e->viewport;
@@ -742,7 +742,7 @@ void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown) {
                         if (!sprite)
                             sprite = CGUIManager_FindInEntryListByKey(*root, &g.id.id);
                         if (sprite) {
-                            UnkLabelVec2 sprite_size = fn_7100b82b18(sprite, state->frame);
+                            UnkLabelVec2 sprite_size = GUI_GetImageRegionSizeInFrame(sprite, state->frame);
                             UnkLabelVec2 scaled = fn_71011b800c(*root, state->frame, &sprite_size);
                             s32 w = (s32)scaled.x;
                             width = (u32)(w < 0xff ? w : 0xff);
@@ -803,7 +803,7 @@ void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown) {
         saved_glyphs.Free();
         run_start += advance_x;
     }
-    fn_71011ee5a8(reinterpret_cast<UnkLabel_CLabel*>(self));
+    GUI_RefreshLabelGlyphViewports(reinterpret_cast<UnkLabel_CLabel*>(self));
     if (self->field_0x185)
         self->vf_0xa8(state->frame);
     self->dirty = false;

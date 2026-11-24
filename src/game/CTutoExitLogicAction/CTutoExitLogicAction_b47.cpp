@@ -30,7 +30,7 @@ struct UnkTutoExitAction_b47 {
     base::UnkRefHandle handle;
 };
 
-void fn_7100a597f4(UnkTutoExitAction_b47* self) {
+void CTutoExitLogicAction_DisableEntityAndTriggerToDisable(UnkTutoExitAction_b47* self) {
     fn_7100a55ac8(self);
     fn_7100232864(self->field_0x8, false);
     if (self->state == 1) {

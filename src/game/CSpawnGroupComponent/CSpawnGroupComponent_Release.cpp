@@ -25,7 +25,7 @@ struct UnkSpawnGroupRelease {
     bool field_0x140;
 };
 
-void fn_7101119f4c(UnkSpawnGroupRelease* self) {
+void CSpawnGroupComponent_ClearSpawnPointsAndUnregister(UnkSpawnGroupRelease* self) {
     for (u32 i = 0; i < self->count; ++i)
         reinterpret_cast<void (*)(UnkSpawnGroupElem*)>(self->data[i].vtable[0])(&self->data[i]);
     self->count = 0;

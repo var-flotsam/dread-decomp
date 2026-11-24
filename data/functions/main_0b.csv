@@ -950,7 +950,7 @@ address,size,name,name_source,subsystem,status
 0x7100b1a340,552,fn_7100b1a340,unknown,gui?,U
 0x7100b1a568,484,fn_7100b1a568,unknown,gui?,m
 0x7100b1a74c,276,fn_7100b1a74c,unknown,gui?,O
-0x7100b1a860,300,fn_7100b1a860,unknown,gui?,O
+0x7100b1a860,300,IDisplayObjectTrack_WordStringVectorPushBackCopy,inferred,gui?,O
 0x7100b1a98c,320,fn_7100b1a98c,unknown,gui?,O
 0x7100b1aacc,12,GUI::CDisplayObjectTrackString::SKey::refl_Equals,reflection,gui,O
 0x7100b1aad8,8,GUI::CDisplayObjectTrackString::SKey::refl_Hash,reflection,gui,O
@@ -1007,7 +1007,7 @@ address,size,name,name_source,subsystem,status
 0x7100b1b7b8,24,fn_7100b1b7b8,unknown,unknown,O
 0x7100b1b7d0,216,fn_7100b1b7d0,unknown,unknown,O
 0x7100b1b8a8,228,fn_7100b1b8a8,unknown,unknown,O
-0x7100b1b990,3036,fn_7100b1b990,unknown,unknown,O
+0x7100b1b990,3036,IDisplayObjectTrack_InitStatics,inferred,unknown,O
 0x7100b1c56c,320,fn_7100b1c56c,unknown,gui?,O
 0x7100b1c6b0,140,fn_7100b1c6b0,unknown,unknown,O
 0x7100b1c73c,4,GUI::CEndingRewardsComposition::refl_AddAttributes,reflection,gui,O
@@ -2602,7 +2602,7 @@ address,size,name,name_source,subsystem,status
 0x7100b827e4,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TKeyElementConstIterator>,reflection,engine/reflection,O
 0x7100b828c0,496,base::reflection::refl_InitType<base::global::CRntVector<GUI::CSpriteSheetItem*>>,reflection,engine/reflection,O
 0x7100b82ab0,104,fn_7100b82ab0,unknown,engine/reflection?,O
-0x7100b82b18,116,fn_7100b82b18,unknown,gui?,O
+0x7100b82b18,116,GUI_GetImageRegionSizeInFrame,inferred,gui?,O
 0x7100b82b8c,360,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TElementIterator>,reflection,engine/reflection,O
 0x7100b82cf4,88,fn_7100b82cf4,unknown,engine/reflection?,O
 0x7100b82d4c,12,fn_7100b82d4c,unknown,unknown,O
@@ -2725,10 +2725,10 @@ address,size,name,name_source,subsystem,status
 0x7100b84da8,244,GUI::CSubtitleComposition::refl_GetClass,reflection,gui,O
 0x7100b84e9c,4,GUI::CSubtitleComposition::refl_AddFields,reflection,gui,O
 0x7100b84ea0,352,GUI::CSubtitleComposition::refl_InitClass,reflection,gui,O
-0x7100b85000,288,fn_7100b85000,unknown,gui?,O
+0x7100b85000,288,CSubtitleComposition_Destroy,inferred,gui?,O
 0x7100b85120,296,fn_7100b85120,unknown,gui?,O
 0x7100b85248,4,fn_7100b85248,unknown,gui?,O
-0x7100b8524c,256,fn_7100b8524c,unknown,gui?,O
+0x7100b8524c,256,CSubtitleComposition_ShowText,inferred,gui?,O
 0x7100b8534c,64,fn_7100b8534c,unknown,gui?,O
 0x7100b8538c,64,fn_7100b8538c,unknown,gui?,O
 0x7100b853cc,28,fn_7100b853cc,unknown,gui?,O
@@ -2747,9 +2747,9 @@ address,size,name,name_source,subsystem,status
 0x7100b86270,380,fn_7100b86270,unknown,gui?,O
 0x7100b863ec,380,fn_7100b863ec,unknown,gui?,O
 0x7100b86568,256,fn_7100b86568,unknown,gui?,O
-0x7100b86668,148,fn_7100b86668,unknown,gui?,O
-0x7100b866fc,156,fn_7100b866fc,unknown,gui?,O
-0x7100b86798,216,fn_7100b86798,unknown,gui?,O
+0x7100b86668,148,CText_Destroy,inferred,gui?,O
+0x7100b866fc,156,CText_DestroyAndDelete,inferred,gui?,O
+0x7100b86798,216,CText_Construct,inferred,gui?,O
 0x7100b86870,64,fn_7100b86870,unknown,gui?,O
 0x7100b868b0,388,fn_7100b868b0,unknown,gui?,U
 0x7100b86a34,52,fn_7100b86a34,unknown,gui?,O
@@ -2758,8 +2758,8 @@ address,size,name,name_source,subsystem,status
 0x7100b86b50,52,fn_7100b86b50,unknown,gui?,O
 0x7100b86b84,536,fn_7100b86b84,unknown,gui?,U
 0x7100b86d9c,76,fn_7100b86d9c,unknown,gui?,O
-0x7100b86de8,280,fn_7100b86de8,unknown,gui?,O
-0x7100b86f00,184,fn_7100b86f00,unknown,gui?,O
+0x7100b86de8,280,CText_RecreateTextObject,inferred,gui?,O
+0x7100b86f00,184,CText_ResolveFontAndRebuildIfDirty,inferred,gui?,O
 0x7100b86fb8,8,fn_7100b86fb8,unknown,gui?,O
 0x7100b86fc0,28,fn_7100b86fc0,unknown,gui?,O
 0x7100b86fdc,76,fn_7100b86fdc,unknown,gui?,O
@@ -2811,7 +2811,7 @@ address,size,name,name_source,subsystem,status
 0x7100b88cc4,288,fn_7100b88cc4,unknown,gui?,O
 0x7100b88de4,296,fn_7100b88de4,unknown,gui?,O
 0x7100b88f0c,4,fn_7100b88f0c,unknown,gui?,O
-0x7100b88f10,300,fn_7100b88f10,unknown,gui?,O
+0x7100b88f10,300,CTutorialComposition_ShowWithText,inferred,gui?,O
 0x7100b8903c,116,fn_7100b8903c,unknown,gui?,O
 0x7100b890b0,68,fn_7100b890b0,unknown,gui?,O
 0x7100b890f4,28,fn_7100b890f4,unknown,gui?,O

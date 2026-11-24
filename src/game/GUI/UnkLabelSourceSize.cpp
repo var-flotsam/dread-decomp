@@ -27,7 +27,7 @@ struct UnkLabelSource {
 
 // The source's size in pixels (its fraction of the image), scaled for the frame; zero when the image
 // is empty.
-UnkLabelVec2 fn_7100b82b18(const UnkLabelSource* source, s32 frame) {
+UnkLabelVec2 GUI_GetImageRegionSizeInFrame(const UnkLabelSource* source, s32 frame) {
     UnkLabelVec2 r(0.0f, 0.0f);
     const UnkLabelImage* image = source->field_0x18;
     u32 width = image->width;

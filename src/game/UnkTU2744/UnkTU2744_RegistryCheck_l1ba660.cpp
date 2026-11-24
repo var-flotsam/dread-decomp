@@ -24,7 +24,7 @@ struct UnkTextTemp_l1ba660 {
 struct UnkEntry_0x30;
 struct UnkStrPair_0x10;
 UnkTextTemp_l1ba660 fn_71011ba4fc(void* unused, const char* const* name);
-void fn_71011ba714(void* self, UnkKeyTemp_l1ba660* key);
+void GUI_ReadSkinContainerFile(void* self, UnkKeyTemp_l1ba660* key);
 
 void fn_71011ba660(void* self, const char* const* name) {
     UnkTextTemp_l1ba660 text = fn_71011ba4fc(self, name);
@@ -43,6 +43,6 @@ void fn_71011ba660(void* self, const char* const* name) {
     if (found) {
         UnkKeyTemp_l1ba660 key;
         fn_710008d4c0(reinterpret_cast<UnkStrPair_0x10*>(&key), reinterpret_cast<const UnkEntry_0x30*>(&text));
-        fn_71011ba714(self, &key);
+        GUI_ReadSkinContainerFile(self, &key);
     }
 }

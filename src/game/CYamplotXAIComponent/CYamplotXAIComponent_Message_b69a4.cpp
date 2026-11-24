@@ -26,7 +26,7 @@ struct UnkYamplotXMsg_b69a4 {
     bool field_0x20;
 };
 
-u32 fn_71006f2fdc(UnkYamplotXAI_b69a4* self, UnkYamplotXMsg_b69a4* msg) {
+u32 CYamplotXAIComponent_ClearBlackboardCombatIfFlagged(UnkYamplotXAI_b69a4* self, UnkYamplotXMsg_b69a4* msg) {
     u32 result =
         fn_7101111dc8(reinterpret_cast<UnkNailongAI_b46a2*>(self), reinterpret_cast<UnkNailongMsg_b46a2*>(msg));
     if (msg->field_0x20) {

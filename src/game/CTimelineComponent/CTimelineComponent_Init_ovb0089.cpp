@@ -31,9 +31,9 @@ extern char g_unk_7172746ef8;
 extern char g_unk_7172746f98 __attribute__((visibility("hidden")));
 extern UnkBlockArrayPool g_unk_7172746f00;
 void fn_7100a2ab14(void* pool);
-void fn_7100a2ddec(UnkBlockArrayPool* self, u64 n, u32 flags, base::UnkAllocator* allocator);
+void CTimelineComponent_CreateBlockArrayPool(UnkBlockArrayPool* self, u64 n, u32 flags, base::UnkAllocator* allocator);
 
-void fn_7100a2ea20() {
+void CTimelineComponent_InitStatics() {
     UnkTimelineTUData_ovb0089& data = g_unk_7172746f68;
     InitHeader(data.header);
     data.field_0x20 = -1.0f;
@@ -48,6 +48,6 @@ void fn_7100a2ea20() {
     pool->allocator = nullptr;
     fn_710008377c(&pool->list);
     new (&pool->entries) base::global::CRntVector<UnkBlockArrayEntry>(0xf);
-    fn_7100a2ddec(pool, 500, 0x1c, nullptr);
+    CTimelineComponent_CreateBlockArrayPool(pool, 500, 0x1c, nullptr);
     fn_7100000250(fn_7100a2ab14, pool, &g_unk_7101a19000);
 }

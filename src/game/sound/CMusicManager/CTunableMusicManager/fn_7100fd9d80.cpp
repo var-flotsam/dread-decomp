@@ -21,7 +21,7 @@ struct UnkMusicManager_lfd9d80 {
 };
 
 // Declared as src/game/sound/CMusicManager/CMusicManager_b41.cpp calls it.
-void fn_7100fd9d80(char* manager, char* object) {
+void CTunableMusicManager_AddObjectByLeadingIdIfAbsent(char* manager, char* object) {
     auto* self = reinterpret_cast<UnkMusicManager_lfd9d80*>(manager);
     if (!object)
         return;

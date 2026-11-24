@@ -69,7 +69,7 @@ struct UnkWaterPlatformUsable_b0105 {
 };
 static_assert(__builtin_offsetof(UnkWaterPlatformUsable_b0105, bounds) == 0x608, "layout");
 
-void fn_7100aa54c0(UnkWaterPlatformUsable_b0105* self) {
+void CWaterPlatformUsableComponent_InitFromCollisionObjects(UnkWaterPlatformUsable_b0105* self) {
     fn_710024facc(reinterpret_cast<UnkSmBase_b60*>(self));
     auto* body = reinterpret_cast<UnkWaterPlatformCollider_b0105*>(
         fn_71008640a4(self->owner->collision, &g_unk_71727537e8[0]));
@@ -140,7 +140,7 @@ static inline void Ease(UnkTimedCurve* curve, f32 start, f32 target, f32 duratio
 void fn_7100aa675c(UnkWaterPlatform2_b0105* self) {
     self->field_0x5bc = 0.0f;
     self->used = true;
-    fn_7100aa0034(self);
+    CUsableComponent_SetCompletedBlackboardFlag(self);
     Ease(&self->curve, self->level, 0.5f, 1.0f, base::global::CRntString(g_unk_710162e2ed));
     fn_7100aa6a2c(self, 1.0f);
     if (UnkScriptCaller* script = self->owner->script)

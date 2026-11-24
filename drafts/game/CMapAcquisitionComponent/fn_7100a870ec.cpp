@@ -161,7 +161,7 @@ bool fn_7100a870ec(UnkMap_la870ec* self, UnkMapUser_la870ec* user) {
         RequestMovement_la870ec(movement, &params);
     }
     self->field_0x7b9 = true;
-    u64 a = fn_7100aa1f50(reinterpret_cast<UnkShipRecharge_A5_b73*>(self), 6);
+    u64 a = CUsableComponent_GetUserAnimationIdForKind(reinterpret_cast<UnkShipRecharge_A5_b73*>(self), 6);
     u64 b = fn_7100aa1888(reinterpret_cast<UnkShipRecharge_A5_b73*>(self), 6);
     fn_7100aa0b04(reinterpret_cast<UnkUsableVirt_A6_b62*>(self), a, b, g_unk_710164b590);
     RequestState_A5_b73<15, 8>(&self->machine, 6);

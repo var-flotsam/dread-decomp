@@ -99,7 +99,7 @@ bool fn_71007c1d50(UnkDropSpawnComp_ovb0096* self);
 void fn_71007c47c0(UnkDropSpawnComp_ovb0096* self, const UnkVec3f* pos);
 void fn_71007c36a0(UnkDropSpawnComp_ovb0096* self, const UnkVec3f* pos);
 
-void fn_7100748234(UnkSelf* self, UnkSwarmHold_l74ddd8* hold);
+void CSwarmControllerComponent_DeactivateGroup(UnkSelf* self, UnkSwarmHold_l74ddd8* hold);
 
 extern char g_unk_710164aa18[];
 
@@ -131,7 +131,7 @@ bool fn_710074ddd8(UnkSelf* self, UnkTarget* target, UnkMessage* message) {
         UnkSwarmHold_l74ddd8* hold = target->hold;
         target->field_0x24 = 0;
         if (hold->Release() && hold->field_0x24)
-            fn_7100748234(self, hold);
+            CSwarmControllerComponent_DeactivateGroup(self, hold);
 
         UnkSwarmTuning_l74ddd8* tuning = self->field_0x1e0;
         if (!(tuning->field_0xf4 < 0.0f) && !(tuning->field_0xf0 < 0.0f) && !(target->field_0x154 > 0.0f))

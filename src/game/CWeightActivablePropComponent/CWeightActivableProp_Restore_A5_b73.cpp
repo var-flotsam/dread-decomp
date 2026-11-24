@@ -27,7 +27,7 @@ struct UnkPropRestore_A5_b73 {
 };
 static_assert(__builtin_offsetof(UnkPropRestore_A5_b73, values) == 0x210, "layout");
 
-void fn_7100ac9714(UnkPropRestore_A5_b73* self, CBlackboard* blackboard) {
+void CWeightActivablePropComponent_LoadOpenedFromBlackboard(UnkPropRestore_A5_b73* self, CBlackboard* blackboard) {
     CBlackboard::CSection* section = fn_71010472e0(blackboard, fn_7100de9c30(g_unk_7101d47310));
     if (!section)
         return;

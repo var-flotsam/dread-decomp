@@ -129,7 +129,7 @@ void fn_71011b9a1c(UnkGuiRoot* root, const CRntString* sheet);
 
 // Shows an image of a sheet, or none: then the sheet is let go (fn_71011b9a1c) and the render
 // object is handed back to the GUI root.
-void fn_71011f8f80(UnkSprite_ovb0076* self, UnkSpriteImage_ovb0076* image, CStrId sheet) {
+void CSprite_SetSheetImage(UnkSprite_ovb0076* self, UnkSpriteImage_ovb0076* image, CStrId sheet) {
     if (image) {
         self->sheet = sheet;
         CStrId name(image->name);
@@ -152,7 +152,7 @@ void fn_71011f918c(UnkSprite_ovb0076* self) {
         fn_71011bab80(g_unk_717271e8f8, render, (render->flags >> 12) & 0xf);
         self->render = nullptr;
     }
-    fn_71011f8f80(self, nullptr, base::global::CStrId::Empty());
+    CSprite_SetSheetImage(self, nullptr, base::global::CStrId::Empty());
 }
 
 // The image's size in a frame, and the sprite's size setter (as src/game/GUI/CLabel.cpp and
@@ -191,7 +191,7 @@ static inline __attribute__((always_inline)) void ImageSize_ovb0076(UnkSprite2_o
                                                                     base::math::CVector2D& size) {
     if (frame != 0x7fffffff) {
         if (self->image) {
-            UnkLabelVec2 v = fn_7100b82b18(self->image, frame);
+            UnkLabelVec2 v = GUI_GetImageRegionSizeInFrame(self->image, frame);
             size.x = v.x;
             size.y = v.y;
         } else if (self->render) {

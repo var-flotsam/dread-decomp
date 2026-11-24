@@ -11,7 +11,7 @@ struct UnkLogicPathPositioned {
 };
 
 // All three sums before the stores, in this order, as the original allocates its registers.
-void fn_7101059098(UnkLogicPathPositioned* self, const CVector3D* offset) {
+void SLogicPathNode_TranslatePos(UnkLogicPathPositioned* self, const CVector3D* offset) {
     f32 x = self->position.x + offset->x;
     f32 y = self->position.y + offset->y;
     f32 z = self->position.z + offset->z;

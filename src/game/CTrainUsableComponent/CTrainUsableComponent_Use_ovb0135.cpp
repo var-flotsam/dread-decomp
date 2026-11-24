@@ -63,7 +63,7 @@ void fn_7100a99ba4(UnkTrainUsable_ovb0135* self) {
     fn_7100aa23d4(reinterpret_cast<UnkUsableComponent2_A6_b62*>(self));
     UnkAnimationComponent* animation = self->owner->animation;
     if (animation && fn_710117ae38(animation, g_unk_7172752d38->animation, false)) {
-        fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(MusicManager()), UnkMask(0xc),
+        CTunableMusicManager_StopMusicOnAllSlots(static_cast<UnkMusicMgr_b0019*>(MusicManager()), UnkMask(0xc),
                       Flipped(UnkMaskOf<UnkMusicMaskTag>::All(), 0x100), 1.5f);
         fn_7100e015b8(g_unk_7101d47310);
     }

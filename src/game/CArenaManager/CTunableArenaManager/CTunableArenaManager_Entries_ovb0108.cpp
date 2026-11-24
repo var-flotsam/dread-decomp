@@ -185,7 +185,7 @@ UnkArenaItemDef_ovb0108* fn_7100e15bb0(UnkArenaEntry_ovb0108* self, const CStrId
 void fn_7100e15cec(UnkArenaEntry_ovb0108* entry, UnkGameManagerSub_0x608* owner, CBlackboard* blackboard,
                    UnkArenaItemDef_ovb0108* item);
 
-void fn_7100e1593c(UnkArenaEntries_ovb0108* self, const CStrId& key, const CStrId& value) {
+void CTunableArenaManager_SetEntryStrIdByName(UnkArenaEntries_ovb0108* self, const CStrId& key, const CStrId& value) {
     UnkArenaEntry_ovb0108* it = self->Find(key);
     if (__builtin_expect(!it || self->end() == it, 0))
         return;

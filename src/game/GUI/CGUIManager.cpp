@@ -279,7 +279,7 @@ struct UnkOwnedSource {
 
 // Reads the composition file `path` names into a new object and returns it (null when the file
 // gave none).
-UnkRefSource_71011b69d8* fn_71011b6208(UnkTag_71011b69d8, const UnkStrPair_0x10* path) {
+UnkRefSource_71011b69d8* GUI_ReadNewObjectFromFile(UnkTag_71011b69d8, const UnkStrPair_0x10* path) {
     UnkOwnedSource object;
     UnkFileReader reader;
     fn_710007be8c(&reader.file, 0x16, nullptr);
@@ -433,7 +433,7 @@ static inline UnkSkinMap*& Skins(UnkGuiRoot* root) {
 
 // Reads the skin file `path` names: the first one read becomes the root's container, later ones
 // add their entries to it (fn_71011b9ce4's twin).
-void fn_71011ba714(UnkGuiRoot* root, const UnkStrPair_0x10* path) {
+void GUI_ReadSkinContainerFile(UnkGuiRoot* root, const UnkStrPair_0x10* path) {
     UnkOwnedSkins loaded;
     UnkFileReader reader;
     fn_710007be8c(&reader.file, 0x16, nullptr);
@@ -506,7 +506,7 @@ static inline UnkWordArray*& Words(UnkGuiRoot* root) {
 
 // Reads the file `path` names into the third container: the first one read becomes the root's,
 // later ones are appended to it (fn_71011b9ce4's twin).
-void fn_71011b8dc4(UnkGuiRoot* root, const UnkStrPair_0x10* path) {
+void GUI_LoadVectorFileAndAppendToRoot(UnkGuiRoot* root, const UnkStrPair_0x10* path) {
     UnkOwnedWords loaded;
     UnkFileReader reader;
     fn_710007be8c(&reader.file, 0x16, nullptr);

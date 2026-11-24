@@ -40,7 +40,7 @@ extern char g_unk_717270d7d8[];
 extern UnkConversion g_unk_717270d7e0;
 void fn_710070ba20() __attribute__((visibility("hidden")));
 
-void fn_710070ce40() {
+void CTentacle_InitStatics() {
     InitHeaderIds(&g_unk_717270de60.ids);
     fn_7100708410();
     fn_710009ec00(g_unk_717270d3e0, g_unk_717270de60.field_0x20);

@@ -1929,7 +1929,7 @@ address,size,name,name_source,subsystem,status
 0x7101058dc0,220,fn_7101058dc0,unknown,unknown,O
 0x7101058e9c,500,base::reflection::refl_InitType<base::global::CRntVector<CEditorPathSegment>>,reflection,engine/reflection,O
 0x7101059090,8,fn_7101059090,unknown,game/components?,O
-0x7101059098,40,fn_7101059098,unknown,unknown,O
+0x7101059098,40,SLogicPathNode_TranslatePos,inferred,unknown,O
 0x71010590c0,28,fn_71010590c0,unknown,game/components?,O
 0x71010590dc,412,fn_71010590dc,unknown,game?,O
 0x7101059278,56,fn_7101059278,unknown,game/components?,O
@@ -1949,7 +1949,7 @@ address,size,name,name_source,subsystem,status
 0x7101059d40,248,fn_7101059d40,unknown,unknown,O
 0x7101059e38,36,fn_7101059e38,unknown,unknown,O
 0x7101059e5c,304,fn_7101059e5c,unknown,game/components?,O
-0x7101059f8c,96,fn_7101059f8c,unknown,game/ai?,O
+0x7101059f8c,96,SLogicPathNode_ClearPointLists,inferred,game/ai?,O
 0x7101059fec,248,fn_7101059fec,unknown,unknown,O
 0x710105a0e4,88,fn_710105a0e4,unknown,game/components?,O
 0x710105a13c,28,fn_710105a13c,unknown,game?,O
@@ -2313,10 +2313,10 @@ address,size,name,name_source,subsystem,status
 0x7101060fb0,20,fn_7101060fb0,unknown,unknown,O
 0x7101060fc4,168,fn_7101060fc4,unknown,unknown,O
 0x710106106c,176,fn_710106106c,unknown,unknown,O
-0x710106111c,332,fn_710106111c,unknown,engine/reflection?,O
+0x710106111c,332,SLogicPathNode_ResizePathPointArray,inferred,engine/reflection?,O
 0x7101061268,516,fn_7101061268,unknown,engine/reflection?,O
 0x710106146c,768,fn_710106146c,unknown,unknown,O
-0x7101061770,2096,fn_7101061770,unknown,engine/reflection?,O
+0x7101061770,2096,SLogicPathNode_InitStatics,inferred,engine/reflection?,O
 0x7101061fa0,16,fn_7101061fa0,unknown,unknown,O
 0x7101061fb0,4,fn_7101061fb0,unknown,unknown,O
 0x7101061fb4,80,fn_7101061fb4,unknown,script/bindings?,O

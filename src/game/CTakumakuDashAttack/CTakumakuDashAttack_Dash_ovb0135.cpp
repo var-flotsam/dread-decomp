@@ -239,7 +239,7 @@ struct UnkTakumakuMessage_ovb0135 {
 const CStrId* fn_71006d3e48(UnkTakumakuAI_ovb0135* ai);
 bool fn_71006d58b0(UnkTakumakuAI_ovb0135* ai, const CStrId* id);
 bool fn_71006d58f4(UnkTakumakuAI_ovb0135* ai, const CStrId* id);
-void fn_71006d56d0(UnkTakumakuAI_ovb0135* ai);
+void CTakumakuAIComponent_SyncAboveTargetFlag(UnkTakumakuAI_ovb0135* ai);
 
 static inline bool Same(const CStrId& a, const CStrId& b) {
     return a.data == b.data;
@@ -267,7 +267,7 @@ bool fn_71006d0494(UnkTakumakuDash_ovb0135* self, const UnkTakumakuMessage_ovb01
         }
         if (fn_71006d58b0(self->ai, id) || fn_71006d58f4(self->ai, id)) {
             self->next = 4;
-            fn_71006d56d0(self->ai);
+            CTakumakuAIComponent_SyncAboveTargetFlag(self->ai);
             return true;
         }
         if (Same(*id, *fn_71006d3e48(self->ai))) {

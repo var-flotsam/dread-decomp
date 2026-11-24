@@ -9,7 +9,7 @@
 struct UnkEmmyRegistry_b55;
 
 struct UnkForcedMovementArea_A5_b68e;
-void fn_7100daec80(UnkEmmyRegistry_b55* registry, void* actor, bool on);
+void CTunableAIManager_StartOrEndEmmyDoorWalkThrough(UnkEmmyRegistry_b55* registry, void* actor, bool on);
 
 struct UnkForcedMovementArea_A5_b68e {
     u8 pad_0x0[0x18];
@@ -21,10 +21,10 @@ bool fn_71007ecfe8(UnkForcedMovementArea_A5_b68e* self, bool on) {
     UnkEmmyRegistry_b55* registry = g_unk_71726af0a8;
     if (on) {
         u8 flag = reinterpret_cast<u8*>(registry)[0x124];
-        fn_7100daec80(registry, actor, true);
+        CTunableAIManager_StartOrEndEmmyDoorWalkThrough(registry, actor, true);
         fn_7100000790("CurrentScenario.OnWalkThroughEmmyDoor", "obb", actor, true, flag);
     } else {
-        fn_7100daec80(registry, actor, false);
+        CTunableAIManager_StartOrEndEmmyDoorWalkThrough(registry, actor, false);
         fn_7100000790("CurrentScenario.OnWalkThroughEmmyDoor", "obb", actor, false, false);
         fn_71007ea408(self);
     }

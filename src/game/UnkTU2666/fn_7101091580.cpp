@@ -46,7 +46,7 @@ s32 StopMusicPreset(lua_State* L) {
         u32 bits = 1u << mode;
         void* manager = MusicManager();
         CRntString key(name);
-        fn_7100fd82dc(static_cast<UnkMusicMgr_b0019*>(manager), &key, UnkMask(bits),
+        CTunableMusicManager_StopRequestsWithName(static_cast<UnkMusicMgr_b0019*>(manager), &key, UnkMask(bits),
                       UnkMaskOf<UnkMusicMaskTag>::All(), 0.0f);
     }
     return 0;

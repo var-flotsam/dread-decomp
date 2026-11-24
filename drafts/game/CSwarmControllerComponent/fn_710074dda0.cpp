@@ -27,7 +27,7 @@ struct UnkSwarmSlot_l74dda0 {
     u16 flags;  // 0x24
 };
 
-void fn_7100748234(UnkSwarmController_ovb6* self, UnkSwarmGroup_ovb6* group);
+void CSwarmControllerComponent_DeactivateGroup(UnkSwarmController_ovb6* self, UnkSwarmGroup_ovb6* group);
 
 void fn_710074dda0(UnkSwarmController_ovb6* self, UnkSwarmSlot_l74dda0* slot) {
     slot->flags = 0;
@@ -35,6 +35,6 @@ void fn_710074dda0(UnkSwarmController_ovb6* self, UnkSwarmSlot_l74dda0* slot) {
     bool done = group->Release();
     if (done) {
         if (group->active)
-            fn_7100748234(self, reinterpret_cast<UnkSwarmGroup_ovb6*>(group));
+            CSwarmControllerComponent_DeactivateGroup(self, reinterpret_cast<UnkSwarmGroup_ovb6*>(group));
     }
 }

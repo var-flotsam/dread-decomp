@@ -47,7 +47,7 @@ struct UnkRefHandle_71011b69d8 {
 };
 
 UnkScriptPath_0x148 fn_71011b66fc(void* registry, const base::global::CRntString& name);
-UnkRefSource_71011b69d8* fn_71011b6208(UnkTag_71011b69d8 tag, const UnkStrPair_0x10* s);
+UnkRefSource_71011b69d8* GUI_ReadNewObjectFromFile(UnkTag_71011b69d8 tag, const UnkStrPair_0x10* s);
 
 UnkGuiHandle fn_71011b69d8(UnkGuiRoot* registry, const base::global::CRntString& name) {
     UnkEntry_0x30 path;
@@ -78,7 +78,7 @@ UnkGuiHandle fn_71011b69d8(UnkGuiRoot* registry, const base::global::CRntString&
         {
             UnkStrPair_0x10 s;
             fn_710008d4c0(&s, &path);
-            src = fn_71011b6208(UnkTag_71011b69d8(), &s);
+            src = GUI_ReadNewObjectFromFile(UnkTag_71011b69d8(), &s);
             fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(&s));
         }
         if (src) {

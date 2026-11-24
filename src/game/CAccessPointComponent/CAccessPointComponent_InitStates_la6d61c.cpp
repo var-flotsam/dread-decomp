@@ -98,7 +98,7 @@ static inline void Bind(UnkAp_la6d61c* self, UnkApState_la6d61c* state, void (*a
 }
 
 void CAccessPointComponent_InitStates(UnkAp_la6d61c* self) {
-    fn_7100a9ea64(reinterpret_cast<UnkStateObject*>(self));
+    CUsableComponent_InitStates(reinterpret_cast<UnkStateObject*>(self));
     self->machine.owner = self;
     Bind(self, &self->states[0], fn_7100a74268, fn_7100a7426c, fn_7100a74270);
     Bind(self, &self->states[1], fn_7100a74274, fn_7100a74278, fn_7100a74330);

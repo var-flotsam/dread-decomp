@@ -10,6 +10,6 @@ struct UnkDropOwner_b45a2 {
     s32 state;
 };
 
-f32 fn_71007c7e4c(UnkDropOwner_b45a2* self) {
+f32 SDropProbabilities_GetTimeSpawning(UnkDropOwner_b45a2* self) {
     return self->state == 2 ? g_unk_71727c10c8.fTimeSpawningMelee : g_unk_71727c10c8.fTimeSpawning;
 }

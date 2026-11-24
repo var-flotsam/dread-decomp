@@ -83,7 +83,7 @@ struct UnkTuneMgrView_b0019 {
     UnkTuneNode* tunes;  // 0x170
 };
 
-f32 fn_7100fdc468(UnkTuneMgrView_b0019* self, const u64* id) {
+f32 CTunableMusicManager_GetStreamVolume(UnkTuneMgrView_b0019* self, const u64* id) {
     UnkTuneNode* n = self->tunes;
     if (n) {
         u64 key = *id;
@@ -101,7 +101,7 @@ f32 fn_7100fdc468(UnkTuneMgrView_b0019* self, const u64* id) {
     return 1.0f;
 }
 
-f32 fn_7100fdc500(UnkTuneMgrView_b0019* self, const u64* id) {
+f32 CTunableMusicManager_GetEnvironmentMultiplierForFile(UnkTuneMgrView_b0019* self, const u64* id) {
     u64 key;
     for (UnkTuneNode* n = self->tunes; n; n = n->next) {
         key = *id;
@@ -116,7 +116,7 @@ f32 fn_7100fdc500(UnkTuneMgrView_b0019* self, const u64* id) {
     return -1.0f;
 }
 
-void fn_7100fdc3c4(UnkTuneMgrView_b0019* self, const u64* id, s32* a_out, s32* b_out) {
+void CTunableMusicManager_GetStreamItemIntPair(UnkTuneMgrView_b0019* self, const u64* id, s32* a_out, s32* b_out) {
     *a_out = -1;
     *b_out = -1;
     UnkTuneNode* n = self->tunes;
@@ -189,7 +189,7 @@ static inline UnkRequest_7100fd16ec* Request(UnkMusicMgr_b0019* self, u64 i) {
     return reinterpret_cast<UnkRequest_7100fd16ec*>(&self->entries[i]);
 }
 
-void fn_7100fd7b44(UnkMusicMgr_b0019* self, UnkMask kind, UnkMask mask, f32 time) {
+void CTunableMusicManager_StopMusicOnAllSlots(UnkMusicMgr_b0019* self, UnkMask kind, UnkMask mask, f32 time) {
     for (u64 i = 0; i < self->slot_count; ++i)
         fn_7100fd7c3c(reinterpret_cast<UnkMgr_0xf18*>(self), i, Request(self, i), time, kind, mask);
 }
@@ -206,7 +206,7 @@ void fn_7100fd4430(UnkMusicMgr_b0019* self, bool enabled) {
         fn_7100fd4544(reinterpret_cast<UnkMgr_0xf18*>(self), i, Request(self, i), AddressOf(UnkMask(2)));
 }
 
-void fn_7100fd82dc(UnkMusicMgr_b0019* self, const base::global::CRntString* name, UnkMask kind, UnkMask mask,
+void CTunableMusicManager_StopRequestsWithName(UnkMusicMgr_b0019* self, const base::global::CRntString* name, UnkMask kind, UnkMask mask,
                    f32 time) {
     for (u64 i = 0; i < self->slot_count; ++i) {
         UnkMusicEntry_b0019& e = self->entries[i];
@@ -256,7 +256,7 @@ __attribute__((noinline)) void fn_7100fde6c4(UnkNode_0x68* node) {
 }
 
 // Unlinks and frees the node, returning the node after it.
-__attribute__((noinline)) UnkNode_0x68* fn_7100fd8f98(UnkNodeList_b0019* list, UnkNode_0x68* node) {
+__attribute__((noinline)) UnkNode_0x68* CTunableMusicManager_EraseSlotListNode(UnkNodeList_b0019* list, UnkNode_0x68* node) {
     if (list->head == node) {
         if (!node)
             return nullptr;
@@ -329,7 +329,7 @@ void fn_7100fd5d7c(UnkMusicSlots_b0019* self, u32 index, const u64* id) {
     UnkNode_0x68* next;
     for (UnkNode_0x68* n = list->head; n; n = next) {
         if ((u64)n->name.data == *id)
-            next = fn_7100fd8f98(list, n);
+            next = CTunableMusicManager_EraseSlotListNode(list, n);
         else
             next = n->next;
     }
@@ -341,7 +341,7 @@ struct UnkNodeKind_b0019 {
 };
 
 // Stops and erases every node of the slot whose kind is in the mask.
-__attribute__((noinline)) void fn_7100fd5a90(UnkMusicSlots_b0019* self, u32 index, UnkMask mask) {
+__attribute__((noinline)) void CTunableMusicManager_EraseSlotNodesOfKinds(UnkMusicSlots_b0019* self, u32 index, UnkMask mask) {
     UnkNodeList_b0019* list = reinterpret_cast<UnkNodeList_b0019*>(&self->slots[index]);
     UnkNode_0x68* next;
     for (UnkNode_0x68* n = list->head; n; n = next) {
@@ -349,27 +349,27 @@ __attribute__((noinline)) void fn_7100fd5a90(UnkMusicSlots_b0019* self, u32 inde
         if (mask.bits & bit) {
             if (n->paths.count)
                 fn_7100108a84(reinterpret_cast<UnkMgr*>(g_unk_7101d4d820), reinterpret_cast<UnkHandle_7100fdd2b4*>(n->paths.data), 0.0f);
-            next = fn_7100fd8f98(list, n);
+            next = CTunableMusicManager_EraseSlotListNode(list, n);
         } else {
             next = n->next;
         }
     }
 }
 
-void fn_7100fd8a60(UnkNodeList_b0019* list, UnkMusicRequest_b0019* request);
+void CTunableMusicManager_InsertRequestSorted(UnkNodeList_b0019* list, UnkMusicRequest_b0019* request);
 
 // Adds the request to the slot's list, first stopping the slot's nodes of the same kind when asked.
 void fn_7100fd5c10(UnkMusicSlots_b0019* self, u32 index, UnkMusicRequest_b0019* request, void* unused, bool replace) {
     if (request->active == 0)
         return;
     if (replace)
-        fn_7100fd5a90(self, index, UnkMask(1 << request->kind));
-    fn_7100fd8a60(reinterpret_cast<UnkNodeList_b0019*>(&self->slots[index]), request);
+        CTunableMusicManager_EraseSlotNodesOfKinds(self, index, UnkMask(1 << request->kind));
+    CTunableMusicManager_InsertRequestSorted(reinterpret_cast<UnkNodeList_b0019*>(&self->slots[index]), request);
 }
 
 
 // Stops the slot's last node and erases it; with no node in slot 0, fades the sound system instead.
-void fn_7100fd613c(UnkMusicSlots_b0019* self, u32 index, bool immediate) {
+void CTunableMusicManager_PopSlotLastRequest(UnkMusicSlots_b0019* self, u32 index, bool immediate) {
     if (index >= self->slots.count)
         return;
     UnkNode_0x68* last = reinterpret_cast<UnkNodeList_b0019*>(&self->slots.data[index])->tail;
@@ -378,7 +378,7 @@ void fn_7100fd613c(UnkMusicSlots_b0019* self, u32 index, bool immediate) {
             UnkMask kind(immediate ? 1 : 0x100);
             fn_7100fd4544(reinterpret_cast<UnkMgr_0xf18*>(self), index, reinterpret_cast<UnkRequest_7100fd16ec*>(last), &kind);
         }
-        fn_7100fd8f98(reinterpret_cast<UnkNodeList_b0019*>(&self->slots[index]), last);
+        CTunableMusicManager_EraseSlotListNode(reinterpret_cast<UnkNodeList_b0019*>(&self->slots[index]), last);
     } else if (index == 0 && immediate) {
         UnkSoundMgr* sound = g_unk_7101d4d820;
         f32 volume = *reinterpret_cast<f32*>(reinterpret_cast<char*>(&g_unk_7101d68580) + 0x3c);

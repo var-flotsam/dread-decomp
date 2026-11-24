@@ -12,7 +12,7 @@ using base::global::CStrId;
 
 struct UnkPlayerMovementD_b0204;
 struct UnkDoorKeyOwner_dae8a4;
-void fn_7100dae8a4(UnkDoorKeyOwner_dae8a4* self, bool add, CStrId* key);
+void CTunableAIManager_AddOrRemoveDoorCollisionFlagKey(UnkDoorKeyOwner_dae8a4* self, bool add, CStrId* key);
 extern const u64 g_unk_710164cef8;  // reached through the GOT
 extern const u64 g_unk_710164cf00;  // reached through the GOT
 extern CStrId g_unk_7172a03e18 __attribute__((visibility("hidden")));
@@ -102,5 +102,5 @@ void fn_71010d9f88(UnkPlayerMovementD_b0204* movement) {
     self->saved.field_0x4c = self->current.field_0x4c;
     self->saved.field_0x54 = self->current.field_0x54;
     self->saved.field_0x58 = self->current.field_0x58;
-    fn_7100dae8a4(reinterpret_cast<UnkDoorKeyOwner_dae8a4*>(g_unk_71726af0a8), true, &g_unk_7172a03e40);
+    CTunableAIManager_AddOrRemoveDoorCollisionFlagKey(reinterpret_cast<UnkDoorKeyOwner_dae8a4*>(g_unk_71726af0a8), true, &g_unk_7172a03e40);
 }

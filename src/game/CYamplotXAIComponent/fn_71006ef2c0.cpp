@@ -39,11 +39,11 @@ struct UnkOwner_71006ef2c0 {
     }
 };
 
-void fn_71006ef2c0(UnkOwner_71006ef2c0* self) {
+void CYamplotXAIComponent_Destroy(UnkOwner_71006ef2c0* self) {
     self->Destroy();
 }
 
-void fn_71006ef388(UnkOwner_71006ef2c0* self) {
+void CYamplotXAIComponent_DestroyAndDelete(UnkOwner_71006ef2c0* self) {
     self->Destroy();
     operator delete(self);
 }

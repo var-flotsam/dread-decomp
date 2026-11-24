@@ -385,7 +385,7 @@ void fn_71011ec768(UnkLabelLayout* layout) {
                                           reinterpret_cast<u64>(&glyph->id));
                         UnkLabelVec2 size(0.0f, 0.0f);
                         if (source) {
-                            size = fn_7100b82b18(static_cast<const UnkLabelSource*>(source), state->field_0x38);
+                            size = GUI_GetImageRegionSizeInFrame(static_cast<const UnkLabelSource*>(source), state->field_0x38);
                             if (glyph->scale >= 0.0f) {
                                 item.scale.x = glyph->scale * item.scale.x;
                                 item.scale.y = glyph->scale * item.scale.y;

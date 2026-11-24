@@ -37,7 +37,7 @@ static inline UnkProperty* AsProperty(u8* p) {
     return reinterpret_cast<UnkProperty*>(p);
 }
 
-void fn_7100aa4800() {
+void CUsableComponent_InitStatics() {
     UnkUsableComponentTU& tu = g_unk_7172753520;
     InitHeader(tu.header);
     new (&g_unk_7172753140) CStrId("USABLE", true);

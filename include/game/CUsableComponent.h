@@ -19,21 +19,21 @@ struct UnkUsableVirt_A6_b62;
 struct UnkUsable_b48;
 struct UnkUsableComponent_b49a4;
 void fn_7100a9e244(void*);  // Derived classes call it as their base's constructor.
-void fn_7100a9f7f0(char* self);
+void CUsableComponent_StoreDisabledFlagInBlackboard(char* self);
 bool fn_7100aa0b04(UnkUsableVirt_A6_b62* self, u64 a, u64 b, const u8* c);
 bool fn_7100aa2948(UnkUsableComponent_A6_b62*);
 void fn_7100a9e6bc(char*);
 void fn_7100a9fad8(UnkThermalDevice_b50a5* self, f32 dt);
 void fn_7100a9ffcc(UnkUsableComponent_b49a4* self, bool flag);
-void fn_7100aa0034(void*);
+void CUsableComponent_SetCompletedBlackboardFlag(void*);
 u64 fn_7100aa1888(UnkShipRecharge_A5_b73* self, u32 state);
-u64 fn_7100aa1f50(UnkShipRecharge_A5_b73* self, u32 state);
+u64 CUsableComponent_GetUserAnimationIdForKind(UnkShipRecharge_A5_b73* self, u32 state);
 void fn_7100aa2570(UnkUsableDialog_A6_b62* self, bool show);
 void fn_7100aa30bc(UnkUsable_b48* self, u32 arg);
 extern u8 g_unk_7172753148[];  // A UnkProperty.
 extern void* g_unk_7101a94220[];
 extern void* g_unk_7101a94718[];
-void fn_7100a9ea64(UnkStateObject* self);
+void CUsableComponent_InitStates(UnkStateObject* self);
 void fn_7100aa2850(UnkAmmoRecharge_la77790* self);
 extern UnkSaveStationTunables_ovb0118 g_unk_71727531f0;
 void fn_7100a9dbac(UnkLinkGroups* self);

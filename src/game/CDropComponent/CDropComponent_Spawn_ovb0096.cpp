@@ -299,7 +299,7 @@ struct UnkDropComp3_ovb0096 {
 void* fn_71007c4c94(UnkDropComp3_ovb0096* self, void* type, void* params, void* extra);
 void fn_71007c4a54(UnkDropComp3_ovb0096* self, void* params, CVector3D* dir, f32* speed, u32* slots);
 struct UnkDropOwner_b45a2;
-f32 fn_71007c7e4c(UnkDropOwner_b45a2* self);
+f32 SDropProbabilities_GetTimeSpawning(UnkDropOwner_b45a2* self);
 
 void fn_71007c3874(UnkDropComp3_ovb0096* self, const UnkDropVec3_b44a2* pos, void* type, void* params, u32* slots,
                    void* extra) {
@@ -317,7 +317,7 @@ void fn_71007c3874(UnkDropComp3_ovb0096* self, const UnkDropVec3_b44a2* pos, voi
     dir.z = 0;
     f32 speed;
     fn_71007c4a54(self, params, &dir, &speed, slots);
-    f32 time = fn_71007c7e4c(static_cast<UnkDropOwner_b45a2*>(params));
+    f32 time = SDropProbabilities_GetTimeSpawning(static_cast<UnkDropOwner_b45a2*>(params));
     f32 s = speed;
     bool flag = self->flags ? (self->flags->flags >> 2) & 1 : false;
     fn_71007c0284(drop, self, pos, &dir, false, flag, s, time);

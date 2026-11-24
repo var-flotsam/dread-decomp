@@ -48,7 +48,7 @@ struct UnkSlotArray_da8a10 {
 static_assert(sizeof(UnkSlotArray_da8a10) == 0x404, "UnkSlotArray_da8a10 layout");
 
 struct UnkSlotOwner_b0025;
-void fn_7100da8f00(UnkSlotOwner_b0025* self, UnkSwitchObject* object);
+void CTunableAIManager_FreeObjectSlot(UnkSlotOwner_b0025* self, UnkSwitchObject* object);
 
 // The paths of the models of each kind, two per kind.
 extern base::UnkStaticPathId g_unk_71727bc5e0[3] __attribute__((visibility("hidden")));
@@ -106,7 +106,7 @@ bool fn_7100da8a10(UnkAIManagerParts_da8a10* self) {
                 auto* overlay = reinterpret_cast<UnkOverlayModel*>(model);
                 fn_7100219ae0(render, overlay ? &overlay->node : nullptr, 0);
                 At(array, i).object = reinterpret_cast<UnkSwitchObject*>(model);
-                fn_7100da8f00(reinterpret_cast<UnkSlotOwner_b0025*>(self), At(array, i).object);
+                CTunableAIManager_FreeObjectSlot(reinterpret_cast<UnkSlotOwner_b0025*>(self), At(array, i).object);
             }
         }
     }

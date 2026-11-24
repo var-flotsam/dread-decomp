@@ -42,7 +42,7 @@ struct UnkRailOwner_lc038b8 {
 };
 
 
-void* fn_7100c038b8(UnkRailOwner_lc038b8* self, u32 value, const f32* pos) {
+void* SCameraRailNode_InsertNodeAtIndex(UnkRailOwner_lc038b8* self, u32 value, const f32* pos) {
     UnkPosArg_lc038b8 arg(pos);
     fn_7100c0c10c(reinterpret_cast<UnkInsertTarget*>(self->target), reinterpret_cast<const UnkArgObj*>(&arg), value);
     self->field_0x30 = true;

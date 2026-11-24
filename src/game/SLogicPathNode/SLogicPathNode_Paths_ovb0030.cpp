@@ -178,7 +178,7 @@ struct UnkPathPointV {
 struct UnkPathPointArray;
 
 // Resizes the array to `count` points, the new ones at (0, 0, 0) with a weight of 1.
-void fn_710106111c(UnkPathPointArray* array, u32 count) {
+void SLogicPathNode_ResizePathPointArray(UnkPathPointArray* array, u32 count) {
     auto* self = reinterpret_cast<base::global::CRntVector<UnkPathPointV>*>(array);
     self->Reserve(count);
     for (u32 i = self->count; i < count; ++i)
@@ -225,7 +225,7 @@ UnkReflObject* fn_71010590dc(char* self, u32 index, void* arg) {
             u32 grown = v->GrownCapacity(index);
             v->Reserve(grown);
         }
-        fn_710106111c(reinterpret_cast<UnkPathPointArray*>(v), index + 1);
+        SLogicPathNode_ResizePathPointArray(reinterpret_cast<UnkPathPointArray*>(v), index + 1);
     }
     return reinterpret_cast<UnkReflObject*>(&v->data[index]);
 }

@@ -37,7 +37,7 @@ static_assert(__builtin_offsetof(UnkTotalRecharge_la972d0, effect_0x540) == 0x54
 // declares it.
 struct UnkAmmoRecharge_la77790;
 
-void fn_7100a972d0(UnkTotalRecharge_la972d0* self) {
+void CTotalRechargeComponent_StartRechargeFXAndSound(UnkTotalRecharge_la972d0* self) {
     fn_7100aa2850(reinterpret_cast<UnkAmmoRecharge_la77790*>(self));
     UnkWorld* world = self->owner->world;
     fn_710114fe8c(world, self->effect_0x548.data->Key(), 1, 1);

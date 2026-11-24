@@ -15,5 +15,5 @@ void fn_7100fcf59c() {
         fn_7100fd3804(instance);
         g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(instance);
     }
-    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(instance), UnkMask(10), UnkMask(0x40), -1.0f);
+    CTunableMusicManager_StopMusicOnAllSlots(static_cast<UnkMusicMgr_b0019*>(instance), UnkMask(10), UnkMask(0x40), -1.0f);
 }

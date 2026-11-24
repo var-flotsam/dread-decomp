@@ -31,5 +31,5 @@ void CAreaMusicComponent_SendExitFadeOutToMusicManager(UnkAreaMusicComponent* se
         g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(instance);
     }
     f32 time = self->fExitFadeOut;
-    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(instance), UnkMask(10), UnkMask(8), time);
+    CTunableMusicManager_StopMusicOnAllSlots(static_cast<UnkMusicMgr_b0019*>(instance), UnkMask(10), UnkMask(8), time);
 }

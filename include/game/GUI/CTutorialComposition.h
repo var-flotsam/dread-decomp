@@ -9,4 +9,4 @@
 struct UnkTutorialComposition;
 struct UnkTutorialRequest;
 void fn_7100b8903c(UnkTutorialComposition* self, UnkTutorialRequest* request);
-bool fn_7100b88f10(UnkTutorialComposition* self, const base::global::CStrId* text);
+bool CTutorialComposition_ShowWithText(UnkTutorialComposition* self, const base::global::CStrId* text);

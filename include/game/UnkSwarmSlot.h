@@ -57,4 +57,4 @@ static_assert(sizeof(UnkSwarmSlot) == 0x40, "UnkSwarmSlot layout");
 using UnkSwarmSlots = base::global::CRntSmallDictionary<void*, UnkSwarmSlot>;
 
 // Erases `slot` by moving the last slot (and its key) into its place; returns the same position.
-UnkSwarmSlot* fn_710074a568(UnkSwarmSlots* self, UnkSwarmSlot* slot);
+UnkSwarmSlot* CSwarmControllerComponent_EraseSlotBySwappingLast(UnkSwarmSlots* self, UnkSwarmSlot* slot);

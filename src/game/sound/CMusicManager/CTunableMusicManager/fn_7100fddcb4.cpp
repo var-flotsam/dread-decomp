@@ -35,7 +35,7 @@ struct UnkEntry_0x60 {
           field_0x50(o.field_0x50), field_0x58(o.field_0x58) {}
 };
 
-void fn_7100fddcb4(base::global::CRntVector<UnkEntry_0x60>* v, u32 n) {
+void CTunableMusicManager_ReserveRequestArray(base::global::CRntVector<UnkEntry_0x60>* v, u32 n) {
     if (v->capacity < n) {
         UnkEntry_0x60* p =
             static_cast<UnkEntry_0x60*>(v->allocator->vf_0x40((u64)n * sizeof(UnkEntry_0x60), 8, v->flags));

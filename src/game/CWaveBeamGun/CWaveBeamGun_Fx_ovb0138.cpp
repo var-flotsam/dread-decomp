@@ -58,7 +58,7 @@ void fn_7100867b2c(UnkWaveBeamGun_ovb0138* self) {
     CPowerBeamGun_PreloadEffects(reinterpret_cast<UnkPlasmaBeamGun_ovb0135*>(self));
 }
 
-void fn_7100867d14(UnkWaveBeamGun_ovb0138* self) {
+void CWaveBeamGun_ReleaseEffects(UnkWaveBeamGun_ovb0138* self) {
     if (self->fx_registered) {
         ReleaseFx("actors/weapons/wavebeam/fx/explosion.bcptl");
         ReleaseFx("actors/weapons/wavebeam/fx/minor_explosion.bcptl");

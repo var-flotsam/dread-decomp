@@ -39,10 +39,10 @@ struct UnkIdArrayOwner_7100fcafec : UnkNamedBase_0x38 {
     }
 };
 
-void fn_7100fcaeec(UnkIdArrayOwner_7100fcafec& self) {
+void SGUISoundEventsSelector_Destroy(UnkIdArrayOwner_7100fcafec& self) {
     self.~UnkIdArrayOwner_7100fcafec();
 }
 
-void fn_7100fcafec(UnkIdArrayOwner_7100fcafec& self) {
+void SGUISoundEventsSelector_DestroyAndDelete(UnkIdArrayOwner_7100fcafec& self) {
     delete &self;
 }

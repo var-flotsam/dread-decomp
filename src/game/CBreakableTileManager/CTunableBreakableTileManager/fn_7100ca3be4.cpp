@@ -17,7 +17,7 @@ extern void* g_unk_7101ca9ea0[];
 
 using UnkIdProperty = UnkIdPropertyT<g_unk_7101aa52d0>;
 
-void fn_7100ca3be4(UnkIdProperty* self) { self->~UnkIdPropertyT(); }
+void CTunableBreakableTileManager_DestroyIdProperty(UnkIdProperty* self) { self->~UnkIdPropertyT(); }
 void fn_7100ca7c00(UnkIdProperty* self) {
     self->~UnkIdPropertyT();
     operator delete(self);

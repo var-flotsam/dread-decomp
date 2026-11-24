@@ -133,7 +133,7 @@ UnkSwifterActor_ovb0114** fn_71003df2d0(UnkSwifterMember_ovb0114* member);
 
 struct UnkComponent_71011199cc;
 void fn_71011199cc(UnkComponent_71011199cc* self);
-void* fn_7100e161c0(void* self, const base::global::CStrId& id);
+void* CTunableArenaManager_FindByTGPrefixedName(void* self, const base::global::CStrId& id);
 
 // A spawned member's entity, as far as its name goes.
 struct UnkArenaMemberEntity_le15cec {
@@ -210,7 +210,7 @@ void fn_7100e15cec(UnkArenaEntry_ovb0108* entry, UnkGameManagerSub_0x608* owner,
         for (UnkArenaRefPtr_ovb0108* it = entry->field_0x8.begin(); it != entry->field_0x8.end(); ++it) {
             if (it->ptr && it->ptr->def) {
                 UnkArenaItemDef_ovb0108* def = it->ptr->def;
-                if (void* component = fn_7100e161c0(def, def->name->name))
+                if (void* component = CTunableArenaManager_FindByTGPrefixedName(def, def->name->name))
                     fn_710024fa0c(static_cast<UnkStruct_710024fa0c*>(component), false);
             }
         }
@@ -243,7 +243,7 @@ void fn_7100e15cec(UnkArenaEntry_ovb0108* entry, UnkGameManagerSub_0x608* owner,
 
         UnkArenaGroup_le15cec* now = *current ? static_cast<UnkArenaGroup_le15cec*>((*current)->target) : nullptr;
         if (flag) {
-            if (void* component = fn_7100e161c0(now, now->name->name))
+            if (void* component = CTunableArenaManager_FindByTGPrefixedName(now, now->name->name))
                 fn_710024fa0c(static_cast<UnkStruct_710024fa0c*>(component), true);
         } else {
             fn_71011199cc(reinterpret_cast<UnkComponent_71011199cc*>(now));

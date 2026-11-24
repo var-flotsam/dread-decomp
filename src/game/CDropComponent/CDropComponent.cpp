@@ -21,8 +21,8 @@ struct UnkDropComponent {
 void fn_71007c5ccc(UnkDropComponent* self) {
     fn_71010c4148(reinterpret_cast<UnkStateObject*>(self));
     self->vtable = g_unk_7101a715c0 + 2;
-    fn_71007c7ddc(self->field_0x40);
-    fn_71007c7ddc(self->field_0xd0);
+    SDropProbabilities_Construct(self->field_0x40);
+    SDropProbabilities_Construct(self->field_0xd0);
     self->field_0x160 = 0;
     self->field_0x170 = 0;
     reinterpret_cast<void (*)(UnkDropComponent*)>(self->vtable[3])(self);

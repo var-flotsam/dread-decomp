@@ -330,7 +330,7 @@ bool fn_710054782c(UnkEmmyRelaxAI_b59* self_) {
 
 // ---- 7100545138
 
-bool fn_7100daaba0(UnkManager_71726af468* self, u32 value, CStrId name);
+bool CTunableAIManager_KeyedListHasName(UnkManager_71726af468* self, u32 value, CStrId name);
 extern CStrId g_unk_71726e2090 __attribute__((visibility("hidden")));
 struct UnkEmmyActor_b55;
 
@@ -351,7 +351,7 @@ static inline UnkManager_71726af468* AIManager_b0193() {
 
 void fn_7100545138(UnkEmmyActor_b55* actor) {
     UnkEmmyActor2_b0193* self = reinterpret_cast<UnkEmmyActor2_b0193*>(actor);
-    if (fn_7100daaba0(AIManager_b0193(), 0, CStrId(g_unk_71726e2090)))
+    if (CTunableAIManager_KeyedListHasName(AIManager_b0193(), 0, CStrId(g_unk_71726e2090)))
         fn_7100daa92c(AIManager_b0193(), CStrId(g_unk_71726e2090), 0);
     self->field_0x2a254 = 0;
 }

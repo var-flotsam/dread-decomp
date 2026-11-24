@@ -32,7 +32,7 @@ struct UnkGuiListOwner_b49;
 void* CGUIManager_FindInEntryListByKey(UnkGuiListOwner_b49* self, u64 key);
 void fn_71011b97bc(UnkGuiRoot* root, CRntString sheet);
 void* fn_71011ba000(UnkGuiRoot* root, const CStrId* sheet, const CStrId* image);
-void fn_71011f8f80(UnkGuiSprite_l1f8bdc* self, void* image, CStrId id);
+void CSprite_SetSheetImage(UnkGuiSprite_l1f8bdc* self, void* image, CStrId id);
 
 // A counted prefix of a C string, on 0x100 bytes of inline storage.
 struct UnkSpriteText_l1f8bdc : UnkBufferString<0x100, g_unk_7101a194b8> {
@@ -82,7 +82,7 @@ void fn_71011f8bdc(UnkGuiDisplayObject* self, CStrId id) {
     UnkSpriteStrId_l1f8bdc image(UnkSpriteText_l1f8bdc(rest.data + start, image_length));
 
     if (sprite->sheet.data != sheet.data || sprite->image.data != image.data)
-        fn_71011f8f80(sprite, nullptr, g_unk_7101d470e0);
+        CSprite_SetSheetImage(sprite, nullptr, g_unk_7101d470e0);
 
     if (sprite->field_0x1d8)
         return;
@@ -93,6 +93,6 @@ void fn_71011f8bdc(UnkGuiDisplayObject* self, CStrId id) {
     else
         found = CGUIManager_FindInEntryListByKey(reinterpret_cast<UnkGuiListOwner_b49*>(g_unk_717271e8f8),
                               reinterpret_cast<u64>(&image.Id()));
-    fn_71011f8f80(sprite, found, sheet.Id());
+    CSprite_SetSheetImage(sprite, found, sheet.Id());
     sprite->vf_0x60();
 }

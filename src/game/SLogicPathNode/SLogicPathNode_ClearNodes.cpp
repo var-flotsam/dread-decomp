@@ -31,7 +31,7 @@ struct UnkPathNodeOwnerB {
     UnkPathNodePolyArray<0x20> nodes;
 };
 
-void fn_7101059f8c(UnkPathNodeOwnerA* self) {
+void SLogicPathNode_ClearPointLists(UnkPathNodeOwnerA* self) {
     self->nodes.Clear();
 }
 

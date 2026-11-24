@@ -50,7 +50,7 @@ struct UnkPathPointArray {
     }
 };
 
-void fn_710106111c(UnkPathPointArray* self, u32 count);
+void SLogicPathNode_ResizePathPointArray(UnkPathPointArray* self, u32 count);
 
 static inline UnkPathPoint& GrowTo(UnkPathPointArray* self, u32 index) {
     if (self->field_0x14 && self->count <= index) {
@@ -59,7 +59,7 @@ static inline UnkPathPoint& GrowTo(UnkPathPointArray* self, u32 index) {
             if (self->capacity < grown)
                 self->Reallocate(grown);
         }
-        fn_710106111c(self, index + 1);
+        SLogicPathNode_ResizePathPointArray(self, index + 1);
     }
     return self->data[index];
 }

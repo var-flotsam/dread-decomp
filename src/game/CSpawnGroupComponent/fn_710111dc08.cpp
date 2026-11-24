@@ -34,7 +34,7 @@ struct UnkObj_710111dc08 {
 };
 
 
-u32 fn_710111dc08(UnkObj_710111dc08* self, UnkProp* p) {
+u32 CSpawnGroupComponent_ReadOrWriteProperty(UnkObj_710111dc08* self, UnkProp* p) {
     if (Is(p, Key(0xef0)) && p->set)
         return true;
     if (Is(p, Key(0xdf8)) && p->set)

@@ -44,12 +44,12 @@ static inline void DestroyRefs(UnkTriggerRefs_ovb0083* self) {
         Release(owner);
 }
 
-void fn_7100d70848(UnkTriggerRefs_ovb0083* self) {
+void CTrigger_Destroy(UnkTriggerRefs_ovb0083* self) {
     DestroyRefs(self);
     fn_7101043934(reinterpret_cast<UnkCameraCtrl_ovb0049*>(self));
 }
 
-void fn_7100d70904(UnkTriggerRefs_ovb0083* self) {
+void CTrigger_DestroyAndDelete(UnkTriggerRefs_ovb0083* self) {
     DestroyRefs(self);
     fn_7101043934(reinterpret_cast<UnkCameraCtrl_ovb0049*>(self));
     operator delete(self);

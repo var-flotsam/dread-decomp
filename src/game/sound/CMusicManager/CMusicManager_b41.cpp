@@ -145,7 +145,7 @@ UnkReflValue fn_7100fdd870(void*, char*, UnkReflValue* const* args) {
 // Two identical reflected functions (fn_7100f8abd8 in unit 2602, fn_7100fddb30 in unit 2637): take an
 // object and a bool; when the bool is set, pass the object to the music manager's fn_7100fd9d80.
 // Return an empty value.
-void fn_7100fd9d80(char* manager, char* object);
+void CTunableMusicManager_AddObjectByLeadingIdIfAbsent(char* manager, char* object);
 
 static inline __attribute__((always_inline)) UnkReflValue SendMusicObject_b41a3(UnkReflValue* const* args) {
     UnkReflValue* a = args[0];
@@ -157,7 +157,7 @@ static inline __attribute__((always_inline)) UnkReflValue SendMusicObject_b41a3(
     else
         object = reinterpret_cast<char*>(&a[0]);
     if (*base::reflection::refl_ArgValue<bool>(&a[1]))
-        fn_7100fd9d80(MusicManager_b41a3(), object);
+        CTunableMusicManager_AddObjectByLeadingIdIfAbsent(MusicManager_b41a3(), object);
     return base::reflection::refl_EmptyValue();
 }
 

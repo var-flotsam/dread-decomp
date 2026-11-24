@@ -47,7 +47,7 @@ struct UnkWeightSave_laca57c {
 template <u32 Offset>
 struct UnkSmOwner_b61;
 
-void fn_7100aca57c(UnkSmOwner_b61<0x130>* owner) {
+void CWeightActivablePropComponent_SaveOpenedToBlackboard(UnkSmOwner_b61<0x130>* owner) {
     UnkWeightSave_laca57c* self = reinterpret_cast<UnkWeightSave_laca57c*>(owner);
     UnkGameManager* manager = g_unk_7101d47310;
     CBlackboard* blackboard = &manager->field_0x968;

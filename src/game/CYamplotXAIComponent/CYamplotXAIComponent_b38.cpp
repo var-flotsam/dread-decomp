@@ -30,7 +30,7 @@ __attribute__((always_inline)) static inline void Register(char* self, char* ent
     *reinterpret_cast<u32*>(self + 0x1618) = index + 1;
 }
 
-u32 fn_71006ef458(char* self, void* arg) {
+u32 CYamplotXAIComponent_InitBiteAndStepAttacksFromCharClass(char* self, void* arg) {
     // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
     u32 result = fn_7100369490(reinterpret_cast<char*>(self), arg);
     UnkYamplotObject* object = *reinterpret_cast<UnkYamplotObject**>(self + 0x10);

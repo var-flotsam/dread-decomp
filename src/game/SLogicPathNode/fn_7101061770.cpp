@@ -84,7 +84,7 @@ extern UnkEnumType g_unk_71729fed28;
 void fn_7101058e9c(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71729fee98[];
 
-void fn_7101061770() {
+void SLogicPathNode_InitStatics() {
     InitHeaderIds(&g_unk_71729ffb60.ids);
     {
         CStrId n("CEditorPathSegment", true);

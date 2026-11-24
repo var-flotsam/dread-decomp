@@ -55,7 +55,7 @@ static inline UnkGuiObj* FindLabel(void* self, const UnkSubtitleId_ovb0114& id) 
     return obj;
 }
 
-bool fn_7100b8524c(UnkGuiObj* self, const UnkGuiText& text) {
+bool CSubtitleComposition_ShowText(UnkGuiObj* self, const UnkGuiText& text) {
     UnkGuiObj* label = FindLabel(self, g_unk_71727686a0);
     fn_71011cdce8(self, true);
     fn_71011cdc30(self, true);

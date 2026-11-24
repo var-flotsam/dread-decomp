@@ -161,7 +161,7 @@ static inline UnkSpawnGroupCollider_l119fec* CreateCollider(UnkStruct_71007e44b8
     return reinterpret_cast<UnkSpawnGroupCollider_l119fec*>(fn_71007e44b8(manager, owner, &name, 0));
 }
 
-void fn_7101119fec(UnkSpawnGroup_l119fec* self) {
+void CSpawnGroupComponent_LinkSpawnPointsAndCreateCollider(UnkSpawnGroup_l119fec* self) {
     for (u64 i = 0; i < self->link_count; ++i) {
         UnkSpawnLink_l119fec& link = self->links[i];
         if (!link.Get())

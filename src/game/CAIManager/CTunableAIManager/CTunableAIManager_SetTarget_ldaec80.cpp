@@ -45,7 +45,7 @@ static_assert(__builtin_offsetof(UnkAIRecord_daec80, final_time) == 0x138, "layo
 
 struct UnkEmmyRegistry_b55;
 
-void fn_7100daec80(UnkEmmyRegistry_b55* registry, void* actor, bool start) {
+void CTunableAIManager_StartOrEndEmmyDoorWalkThrough(UnkEmmyRegistry_b55* registry, void* actor, bool start) {
     auto* self = reinterpret_cast<UnkAIRecord_daec80*>(registry);
     auto* target = static_cast<UnkWeakTarget*>(actor);
     if (start) {

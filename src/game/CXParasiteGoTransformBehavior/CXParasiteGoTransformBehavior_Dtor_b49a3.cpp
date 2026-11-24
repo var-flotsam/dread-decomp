@@ -18,7 +18,7 @@ struct UnkXParasiteGoTransformBehavior_b49a3 {
     base::global::CRntVector<UnkGoTransformEntry_b49a3> entries;  // 0x60
 };
 
-void fn_71007cd87c(UnkXParasiteGoTransformBehavior_b49a3* self) {
+void CXParasiteGoTransformBehavior_Destroy(UnkXParasiteGoTransformBehavior_b49a3* self) {
     self->vtable = g_unk_7101a71818 + 2;
     self->entries.Free();
     fn_710023ae38(self->field_0x20);

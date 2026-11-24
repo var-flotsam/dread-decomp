@@ -91,7 +91,7 @@ static inline void Bind(UnkStateObject* self, UnkState_a9ea64* state, void (*a)(
     state->field_0x40 = {self, c};
 }
 
-void fn_7100a9ea64(UnkStateObject* self) {
+void CUsableComponent_InitStates(UnkStateObject* self) {
     self->machine.owner = self;
     Bind(self, &self->states[0], fn_7100aa457c, fn_7100aa4588, fn_7100aa4594);
     Bind(self, &self->states[1], fn_7100aa45a0, fn_7100aa45ac, fn_7100aa45b8);

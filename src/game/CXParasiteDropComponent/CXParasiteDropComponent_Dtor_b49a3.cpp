@@ -18,11 +18,11 @@ __attribute__((always_inline)) static inline void Destroy_b49a3(UnkXParasiteDrop
     fn_71010c4194(self);
 }
 
-void fn_71007cebf0(UnkXParasiteDropComponent_b49a3* self) {
+void CXParasiteDropComponent_Destroy(UnkXParasiteDropComponent_b49a3* self) {
     Destroy_b49a3(self);
 }
 
-void fn_71007cec94(UnkXParasiteDropComponent_b49a3* self) {
+void CXParasiteDropComponent_DestroyAndDelete(UnkXParasiteDropComponent_b49a3* self) {
     Destroy_b49a3(self);
     operator delete(self);
 }

@@ -69,7 +69,7 @@ struct UnkMusicRequestList_d8a60 {
 
 };
 
-void fn_7100fd8a60(UnkNodeList_b0019* list, UnkMusicRequest_b0019* request) {
+void CTunableMusicManager_InsertRequestSorted(UnkNodeList_b0019* list, UnkMusicRequest_b0019* request) {
     auto* self = reinterpret_cast<UnkMusicRequestList_d8a60*>(list);
     const auto& value = *reinterpret_cast<const UnkMusicRequestEntry_d8a60*>(request);
     auto* node = static_cast<UnkMusicRequestNode_d8a60*>(

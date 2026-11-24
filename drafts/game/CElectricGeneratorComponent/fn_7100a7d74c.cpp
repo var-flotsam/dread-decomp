@@ -159,7 +159,7 @@ bool fn_7100a7d74c(UnkElectricGenerator_la7d74c* self, UnkUser_la7d74c* user, co
         base::math::CVector3D color = {0.0f, 0.0f, 0.0f};
         fn_7101053c14(fade, &color, 0.033f, 1.0f, 1.0f);
         UnkShipRecharge_A5_b73* usable = reinterpret_cast<UnkShipRecharge_A5_b73*>(self);
-        u64 a = fn_7100aa1f50(usable, 1);
+        u64 a = CUsableComponent_GetUserAnimationIdForKind(usable, 1);
         u64 b = fn_7100aa1888(usable, 1);
         fn_7100aa0b04(reinterpret_cast<UnkUsableVirt_A6_b62*>(self), a, b, g_unk_710164b570);
         self->machine.Request(1, 8);

@@ -42,7 +42,7 @@ struct UnkTimelineRandom_ovb0089 {
     s32 last;  // 0x64
 };
 
-void fn_7100a2b9a8(UnkTimelineRandom_ovb0089* self, const u32* value) {
+void CTimelineComponent_PickRandomEntryAvoidingLast(UnkTimelineRandom_ovb0089* self, const u32* value) {
     UnkReflObject* def = self->owner->def;
     UnkTimelineCharClass_ovb0089* cc = fn_710009d50c(def->vf_0x0(), fn_71011abbd4())
                                            ? static_cast<UnkTimelineCharClass_ovb0089*>(def)

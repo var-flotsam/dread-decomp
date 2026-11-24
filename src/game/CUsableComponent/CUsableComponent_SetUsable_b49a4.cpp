@@ -16,7 +16,7 @@ void fn_7100a9ffcc(UnkUsableComponent_b49a4* self, bool flag) {
     if (self->flag == flag)
         return;
     self->flag = flag;
-    fn_7100a9f7f0(reinterpret_cast<char*>(self));
+    CUsableComponent_StoreDisabledFlagInBlackboard(reinterpret_cast<char*>(self));
     if (flag)
         self->vf_0x2c0();
     else

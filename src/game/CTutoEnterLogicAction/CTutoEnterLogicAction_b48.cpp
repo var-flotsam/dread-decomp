@@ -33,7 +33,7 @@ struct UnkTutoEnterAction_b48 {
     }
 };
 
-u32 fn_7100a59074(UnkTutoEnterAction_b48* self) {
+u32 CTutoEnterLogicAction_CallLuaCallbackOnMessageClosed(UnkTutoEnterAction_b48* self) {
     if (reinterpret_cast<void*>(self->name) != &g_unk_7101d47108->empty) {
         if (fn_71010c0bb0(g_unk_7172a01d18, self->NameStr())) {
             fn_7100fbc4e0(g_unk_7172a01d18, self->object);

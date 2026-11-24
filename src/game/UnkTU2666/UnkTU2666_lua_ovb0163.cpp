@@ -360,7 +360,7 @@ s32 StopMusic(lua_State* L) {
             fn_7100fd3804(manager);
             g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(manager);
         }
-        fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(manager), UnkMask(flag ? 4 : 2), UnkMask(bits), -1.0f);
+        CTunableMusicManager_StopMusicOnAllSlots(static_cast<UnkMusicMgr_b0019*>(manager), UnkMask(flag ? 4 : 2), UnkMask(bits), -1.0f);
     }
     return 0;
 }

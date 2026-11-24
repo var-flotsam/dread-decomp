@@ -42,7 +42,7 @@ void CCharClassStopMusicEvent_StopMusicWithFadeOut(UnkStopMusicEvent_b0141* self
     if (path == empty) {
         UnkMask kind(self->bClearStack ? 4 : 2);
         f32 time = self->time;
-        fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(manager), kind, UnkMaskOf<UnkMusicMaskTag>::All(), time);
+        CTunableMusicManager_StopMusicOnAllSlots(static_cast<UnkMusicMgr_b0019*>(manager), kind, UnkMaskOf<UnkMusicMaskTag>::All(), time);
         return;
     }
     char* data = reinterpret_cast<char*>(self->path.data);
@@ -53,6 +53,6 @@ void CCharClassStopMusicEvent_StopMusicWithFadeOut(UnkStopMusicEvent_b0141* self
     const base::global::CRntString* name = &reinterpret_cast<UnkPathString_b0141*>(self->path.data)->name;
     UnkMask kind(self->bClearStack ? 4 : 2);
     f32 time = self->time;
-    fn_7100fd82dc(static_cast<UnkMusicMgr_b0019*>(manager), name, kind,
+    CTunableMusicManager_StopRequestsWithName(static_cast<UnkMusicMgr_b0019*>(manager), name, kind,
                   UnkMaskOf<UnkMusicMaskTag>::All(), time);
 }

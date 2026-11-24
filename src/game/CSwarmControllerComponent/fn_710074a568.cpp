@@ -4,7 +4,7 @@
 #include "game/UnkSwarmSlot.h"
 #include "types.h"
 
-UnkSwarmSlot* fn_710074a568(UnkSwarmSlots* self, UnkSwarmSlot* slot) {
+UnkSwarmSlot* CSwarmControllerComponent_EraseSlotBySwappingLast(UnkSwarmSlots* self, UnkSwarmSlot* slot) {
     UnkSwarmSlot* first = self->values;
     u32 index = (u32)(((char*)slot - (char*)first) >> 6);
     first[index].Destroy();

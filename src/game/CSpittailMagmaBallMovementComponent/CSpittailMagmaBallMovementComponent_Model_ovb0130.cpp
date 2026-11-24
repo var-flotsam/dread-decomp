@@ -146,7 +146,7 @@ using base::reflection::UnkReflObject;
 // As src/game/CVulkranMagmaBallMovementComponent/CVulkranMagmaBallMovementComponent.cpp defines it.
 struct UnkVulkranMagmaBallMovement;
 struct UnkKraidCreatureArg;
-bool fn_71006df684(UnkVulkranMagmaBallMovement* self, UnkKraidCreatureArg* arg);
+bool CVulkranMagmaBallMovementComponent_CacheCharClassAndStrId(UnkVulkranMagmaBallMovement* self, UnkKraidCreatureArg* arg);
 
 extern CFilePathStrId g_unk_7172708918 __attribute__((visibility("hidden")));  // the magma ball's model
 
@@ -176,7 +176,7 @@ static inline UnkSceneNode* Node_ovb0130(UnkModel* model) {
 }
 
 bool CSpittailMagmaBallMovementComponent_CacheCharClassAndCreateModel(UnkSpittailBall_ovb0130* self, UnkKraidCreatureArg* arg) {
-    bool result = fn_71006df684(reinterpret_cast<UnkVulkranMagmaBallMovement*>(self), arg);
+    bool result = CVulkranMagmaBallMovementComponent_CacheCharClassAndStrId(reinterpret_cast<UnkVulkranMagmaBallMovement*>(self), arg);
     UnkReflObject* obj = self->field_0x10;
     if (!obj || !fn_710009d50c(obj->vf_0x0(), fn_71006c9848())) {
         self->field_0x5e0 = nullptr;

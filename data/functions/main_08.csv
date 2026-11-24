@@ -2181,7 +2181,7 @@ address,size,name,name_source,subsystem,status
 0x7100867b04,4,fn_7100867b04,unknown,game?,O
 0x7100867b08,36,fn_7100867b08,unknown,game?,O
 0x7100867b2c,488,fn_7100867b2c,unknown,game?,O
-0x7100867d14,460,fn_7100867d14,unknown,game?,O
+0x7100867d14,460,CWaveBeamGun_ReleaseEffects,inferred,game?,O
 0x7100867ee0,56,fn_7100867ee0,unknown,game?,O
 0x7100867f18,16,fn_7100867f18,unknown,game?,O
 0x7100867f28,16,fn_7100867f28,unknown,game?,O

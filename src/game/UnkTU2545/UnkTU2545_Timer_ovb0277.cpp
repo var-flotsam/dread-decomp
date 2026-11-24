@@ -141,7 +141,7 @@ void fn_7100dd60fc(UnkPanel_b0277* self) {
         fn_7100fd3804(music);
         g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(music);
     }
-    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(music), UnkMaskAll4(), UnkMaskOf<UnkMusicMaskTag>::All(), 0.0f);
+    CTunableMusicManager_StopMusicOnAllSlots(static_cast<UnkMusicMgr_b0019*>(music), UnkMaskAll4(), UnkMaskOf<UnkMusicMaskTag>::All(), 0.0f);
     if (self->field_0x269)
         return;
     auto* input = *reinterpret_cast<UnkInput_b0277**>(SoundHolder_b0277());

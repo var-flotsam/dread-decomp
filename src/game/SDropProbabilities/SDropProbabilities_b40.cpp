@@ -85,6 +85,6 @@ static inline __attribute__((always_inline)) void Init_dp(UnkDropDefaults_dp* se
     self->tail.field_0x8a = 0;
 }
 
-void fn_71007c7ddc(UnkDropDefaults_dp* self) { Init_dp(self); }
+void SDropProbabilities_Construct(UnkDropDefaults_dp* self) { Init_dp(self); }
 
 void fn_71007c7fb8(UnkDropDefaults_dp* self) { Init_dp(self); }

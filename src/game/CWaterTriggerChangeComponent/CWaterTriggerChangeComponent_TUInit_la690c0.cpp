@@ -33,7 +33,7 @@ extern char g_unk_7101a8f9d8[];
 void fn_7100a68d04(UnkProperty* p);
 void fn_7100a653b8(void* p);
 
-void fn_7100a690c0() {
+void CWaterTriggerChangeComponent_InitStatics() {
     UnkWaterTriggerChangeTU& tu = g_unk_717274e900;
     void** vtable = reinterpret_cast<void**>(g_unk_7101a8f9d8);
     InitHeader(tu.header);

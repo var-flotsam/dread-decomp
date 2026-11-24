@@ -27,7 +27,7 @@ struct UnkStartCentralUnitAction_b49a6 {
     base::UnkRefHandle handle;
 };
 
-void fn_7100f182c8(UnkStartCentralUnitAction_b49a6* self) {
+void CStartCentralUnitCombatLogicAction_ResolveCentralUnitAndStart(UnkStartCentralUnitAction_b49a6* self) {
     fn_7100a55ac8(reinterpret_cast<UnkTutoExitAction_b47*>(self));
     if (self->state == 1) {
         {

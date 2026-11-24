@@ -75,7 +75,7 @@ static inline void SetDoorFlag(UnkDoorEntries_dae8a4* doors, const base::reflect
     }
 }
 
-void fn_7100dae8a4(UnkDoorKeyOwner_dae8a4* self, bool add, CStrId* key) {
+void CTunableAIManager_AddOrRemoveDoorCollisionFlagKey(UnkDoorKeyOwner_dae8a4* self, bool add, CStrId* key) {
     bool was = fn_710002fb70(&self->keys);
     if (add)
         fn_710002fd10(&self->keys, key);

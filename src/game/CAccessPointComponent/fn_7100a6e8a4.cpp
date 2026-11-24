@@ -112,7 +112,7 @@ bool fn_7100a6e8a4(UnkAp_la6e8a4* self, UnkApUser_la6e8a4* user, const char* con
         UnkLeaveParams_l9968ec params(reinterpret_cast<char*>(&g_unk_7101a874c0[2]));  // the vtable, past its two header words
         fn_710031433c(reinterpret_cast<UnkAccessTarget_la70e48*>(movement), &params);
     }
-    u64 a = fn_7100aa1f50(reinterpret_cast<UnkShipRecharge_A5_b73*>(self), 6);
+    u64 a = CUsableComponent_GetUserAnimationIdForKind(reinterpret_cast<UnkShipRecharge_A5_b73*>(self), 6);
     u64 b = fn_7100aa1888(reinterpret_cast<UnkShipRecharge_A5_b73*>(self), 6);
     fn_7100aa0b04(reinterpret_cast<UnkUsableVirt_A6_b62*>(self), a, b, g_unk_710164b540);
     RequestState_A5_b73<15, 8>(&self->machine, 6);

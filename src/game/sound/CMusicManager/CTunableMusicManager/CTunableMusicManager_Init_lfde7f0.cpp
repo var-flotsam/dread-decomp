@@ -37,7 +37,7 @@ static inline void InitFilePath(CFilePathStrId* path, const char* str) {
     fn_7100000250(fn_7100000c7c, path, &g_unk_7101a19000);
 }
 
-void fn_7100fde7f0() {
+void CTunableMusicManager_InitStatics() {
     UnkTunableMusicManagerTU& tu = g_unk_71729f0888;
     InitHeaderFns(tu);
     InitClass(&g_unk_71729f0718, "sound::CMusicManager", fn_7100fd2a50, fn_7100fd1c7c);

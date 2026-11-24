@@ -226,7 +226,7 @@ s32 PlayMusicFromSecond(lua_State* L) {
 
 s32 GoToMainMenu(lua_State*) {
     void* music = MusicManager();
-    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(music), UnkMask(2), UnkMaskOf<UnkMusicMaskTag>::All(), 0.0f);
+    CTunableMusicManager_StopMusicOnAllSlots(static_cast<UnkMusicMgr_b0019*>(music), UnkMask(2), UnkMaskOf<UnkMusicMaskTag>::All(), 0.0f);
     UnkGameManager* manager = g_unk_7101d47310;
     fn_7100deac9c(manager, CRntString("MAINMENU"));
     return 0;

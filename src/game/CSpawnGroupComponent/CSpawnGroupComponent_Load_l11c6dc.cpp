@@ -85,7 +85,7 @@ struct UnkFieldId_l11c6dc : UnkStrIdBase {
     }
 };
 
-void fn_710111c6dc(UnkSpawnGroupObject_l11c6dc* self, CRntFile* file) {
+void CSpawnGroupComponent_ReadFieldsFromFile(UnkSpawnGroupObject_l11c6dc* self, CRntFile* file) {
     fn_710024fc0c(reinterpret_cast<UnkPickableItem_A4_b76*>(self), file);
 
     bool isGenerator;

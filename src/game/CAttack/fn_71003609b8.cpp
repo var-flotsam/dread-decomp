@@ -50,7 +50,7 @@ struct UnkStruct_71003609b8_Target {
     virtual void vf_0xa8();
 };
 
-void fn_7100daaee4(UnkManager_71726af468* self, UnkActor* actor);
+void CTunableAIManager_ClearWeakRefIfTargetMatches(UnkManager_71726af468* self, UnkActor* actor);
 
 UnkStruct_71003609b8_Target* fn_71010cc3bc(void* obj);
 
@@ -92,7 +92,7 @@ void fn_71003609b8(UnkAttackBase* self) {
             ai = static_cast<UnkStruct_71003609b8_Ai*>(c);
     }
     if (ai && ai->field_0x171)
-        fn_7100daaee4(GetManager(), self->field_0x8);
+        CTunableAIManager_ClearWeakRefIfTargetMatches(GetManager(), self->field_0x8);
     if (void* p = self->field_0x8->field_0x218) {
         if (fn_71010cc3bc(p) && ai->field_0x4d7)
             fn_71010cc3bc(p)->vf_0xa8();

@@ -20,7 +20,7 @@ struct UnkTeamList;
 struct UnkWeakTarget;
 struct UnkNavOwner_b0025;
 
-void fn_7100da9e88(UnkNavOwner_b0025* self, void* item);
+void CTunableAIManager_RegisterActor(UnkNavOwner_b0025* self, void* item);
 
 struct UnkNode_l0f97ec {
     u8 pad_0x0[0x20];
@@ -134,7 +134,7 @@ void fn_71010f97ec(UnkAIComponent_l0f97ec* self) {
                           reinterpret_cast<UnkWeakTarget*>(self->actor));
             fn_71011a710c(TeamManager());
         }
-        fn_7100da9e88(reinterpret_cast<UnkNavOwner_b0025*>(AIManager()), self->actor);
+        CTunableAIManager_RegisterActor(reinterpret_cast<UnkNavOwner_b0025*>(AIManager()), self->actor);
     }
 
     if (auto* timeline = static_cast<UnkTimelineComponent*>(self->actor->field_0x2e8)) {

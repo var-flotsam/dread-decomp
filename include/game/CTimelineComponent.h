@@ -16,4 +16,4 @@ extern char g_unk_7101a8dcc0[];
 extern char g_unk_7101a8de78[];
 extern char g_unk_7101a8de98[];
 void fn_7100a2e30c(base::UnkCountedDeferredSet<void>* self, void* value);
-void fn_7100a2e4a0(base::UnkCountedDeferredWalk<void>* walk);
+void CTimelineComponent_EndListenerWalk(base::UnkCountedDeferredWalk<void>* walk);

@@ -17,7 +17,7 @@ bool fn_7100da9018(UnkTimedRef* self, UnkWeakTarget* target, f32 time) {
         AssignRef(&self->field_0x2410, GetWeakHandle(target));
         self->field_0x2418 = time;
         if (time <= 0.0f)
-            fn_7100da9194(self);
+            CTunableAIManager_ExpireTimedTarget(self);
         return true;
     }
     ResetRef(&self->field_0x2410);

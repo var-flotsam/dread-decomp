@@ -100,7 +100,7 @@ void fn_7100717108(UnkChaseMusicTrigger_ovb0137* self, f32 dt) {
         }
         if (!playing)
             continue;
-        fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(MusicManager()), UnkMask(2), UnkMask(0x80), -1.0f);
+        CTunableMusicManager_StopMusicOnAllSlots(static_cast<UnkMusicMgr_b0019*>(MusicManager()), UnkMask(2), UnkMask(0x80), -1.0f);
         fn_710024fa0c(reinterpret_cast<UnkStruct_710024fa0c*>(self), false);
     }
 }

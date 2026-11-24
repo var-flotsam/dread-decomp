@@ -179,7 +179,7 @@ struct UnkSwarmEntry_A5_b67 {
 };
 
 struct UnkSwarmController_A5_b67;
-UnkSwarmEntry_A5_b67 fn_710074e2c0(UnkSwarmController_A5_b67* self, s32 index);
+UnkSwarmEntry_A5_b67 CSwarmControllerComponent_GetCharClassEntry(UnkSwarmController_A5_b67* self, s32 index);
 
 struct UnkRedenkiEntryTuning_ovb0084 {
     u8 pad_0x0[0x708];
@@ -199,7 +199,7 @@ UnkSwarmEntry_A5_b67 fn_7100650158(UnkRedenkiEntryCtrl_ovb0084* self, s32 index)
         if (entry.name.data != &g_unk_7101d47108->empty && entry.path.data != &g_unk_7101d47200->empty)
             return entry;
     }
-    return fn_710074e2c0(reinterpret_cast<UnkSwarmController_A5_b67*>(self), index);
+    return CSwarmControllerComponent_GetCharClassEntry(reinterpret_cast<UnkSwarmController_A5_b67*>(self), index);
 }
 
 // ---- fn_71006503ac: after fn_710074c304, every member of every active group that fn_7100744e1c accepts is started

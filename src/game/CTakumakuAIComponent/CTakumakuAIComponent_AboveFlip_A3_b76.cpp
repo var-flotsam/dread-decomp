@@ -55,7 +55,7 @@ static inline __attribute__((always_inline)) bool IsAbove(UnkTakumakuAI_A3_b76* 
     return self->owner->field_0x54 - y >= g_unk_7101a67de8;
 }
 
-void fn_71006d56d0(UnkTakumakuAI_A3_b76* self) {
+void CTakumakuAIComponent_SyncAboveTargetFlag(UnkTakumakuAI_A3_b76* self) {
     UnkActor* owner = self->owner;
     if (!owner)
         return;

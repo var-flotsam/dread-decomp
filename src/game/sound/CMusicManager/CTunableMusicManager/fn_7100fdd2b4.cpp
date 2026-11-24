@@ -44,8 +44,8 @@ inline UnkEntry_0x60_fdd2b4& UnkArray_fdd2b4::operator[](u64 i) {
         u32 n = capacity;
         if (i >= capacity && step != 0)
             n = ((u32)i / step + 1) * step;
-        fn_7100fddcb4(reinterpret_cast<base::global::CRntVector<UnkMusicEntry_0x60>*>(this), n);  // the same array
-        fn_7100fde4d8(this, i + 1);
+        CTunableMusicManager_ReserveRequestArray(reinterpret_cast<base::global::CRntVector<UnkMusicEntry_0x60>*>(this), n);  // the same array
+        CTunableMusicManager_ResizeRequestArray(this, i + 1);
     }
     return data[i];
 }

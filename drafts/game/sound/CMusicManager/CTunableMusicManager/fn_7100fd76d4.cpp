@@ -47,7 +47,7 @@ struct UnkMusicRequest {
 static_assert(sizeof(UnkMusicRequest) == 0x60, "UnkMusicRequest placeholder layout");
 
 // Fills the two requests a music id stands for.
-void fn_7100fd73a4(UnkMusicManager* self, const CStrId* id, UnkMusicRequest* first, UnkMusicRequest* second);
+void CTunableMusicManager_FillRequestsFromDefinition(UnkMusicManager* self, const CStrId* id, UnkMusicRequest* first, UnkMusicRequest* second);
 
 // The music id built from a name (fn_7100000850 builds it in place), released in one step.
 struct UnkMusicNameId_fd76d4 {
@@ -88,7 +88,7 @@ bool fn_7100fd76d4(void* manager, const CRntString* name) {
     UnkMusicRequest& second = requests[1];
     {
         UnkMusicNameId_fd76d4 id(*name);
-        fn_7100fd73a4(self, id.Id(), &first, &second);
+        CTunableMusicManager_FillRequestsFromDefinition(self, id.Id(), &first, &second);
     }
     if (first.files.count == 0 && second.files.count == 0)
         return false;
