@@ -10,33 +10,33 @@ using base::global::CStrId;
 
 struct UnkCharClassSoundEvent_b0080 {
     u8 pad_0x0[0x10];
-    u8 field_0x10[8];
-    u8 field_0x18[8];
-    u8 field_0x20[8];
-    u8 field_0x28[8];
-    u8 field_0x30[8];
-    u8 field_0x38[8];
-    u8 field_0x40[8];
-    u8 field_0x48[8];
+    u8 sSoundID[8];
+    u8 sAlternativeSoundID1[8];
+    u8 sAlternativeSoundID2[8];
+    u8 sAlternativeSoundID3[8];
+    u8 sAlternativeSoundID4[8];
+    u8 sAlternativeSoundID5[8];
+    u8 sAlternativeSoundID6[8];
+    u8 sAlternativeSoundID7[8];
     u8 pad_0x50[8];
-    f32 field_0x58;
-    f32 field_0x5c;
-    f32 field_0x60;
-    f32 field_0x64;
-    f32 field_0x68;
-    u8 field_0x6c;
-    f32 field_0x70;
-    f32 field_0x74;
-    f32 field_0x78;
-    f32 field_0x7c;
-    u8 field_0x80;
-    u8 field_0x81;
+    f32 fVolume;
+    f32 fRadiusMinAttenuation;
+    f32 fRadiusMaxAttenuation;
+    f32 fPitch;
+    f32 fPitchMax;
+    u8 bStopOnChangeAnim;
+    f32 fFadeInTime;
+    f32 fFadeOutTime;
+    f32 fStopInTime;
+    f32 fRumbleGainOverride;
+    u8 bStopOnEntityDead;
+    u8 bRumbleSync;
     u8 pad_0x82[6];
-    u8 field_0x88[8];
-    u8 field_0x90[8];
-    u32 field_0x98;
+    u8 sSoundGroupId[8];
+    u8 sType[8];
+    u32 eSoundType;
 };
-static_assert(__builtin_offsetof(UnkCharClassSoundEvent_b0080, field_0x98) == 0x98, "layout");
+static_assert(__builtin_offsetof(UnkCharClassSoundEvent_b0080, eSoundType) == 0x98, "layout");
 
 void fn_7100cdc2f0(UnkCharClassSoundEvent_b0080* self, const void* a10, const void* a18, const void* a20,
                    const void* a28, const void* a30, const void* a38, const void* a40, f32 f58, f32 f5c,
@@ -46,9 +46,9 @@ void fn_7100cdc2f0(UnkCharClassSoundEvent_b0080* self, const void* a10, const vo
 void fn_7100cdebcc(UnkCharClassSoundEvent_b0080* self, void* arg) {
     if (fn_7101198688(g_unk_7101d47330))
         return;
-    fn_7100cdc2f0(self, self->field_0x10, self->field_0x18, self->field_0x20, self->field_0x28, self->field_0x30,
-                  self->field_0x38, self->field_0x40, self->field_0x58, self->field_0x5c, self->field_0x60,
-                  self->field_0x64, self->field_0x68, self->field_0x70, self->field_0x74, self->field_0x7c,
-                  self->field_0x48, self->field_0x90, &base::global::CStrId::Empty(), self->field_0x88, self->field_0x6c,
-                  self->field_0x98, self->field_0x80, self->field_0x81, self->field_0x78, arg);
+    fn_7100cdc2f0(self, self->sSoundID, self->sAlternativeSoundID1, self->sAlternativeSoundID2, self->sAlternativeSoundID3, self->sAlternativeSoundID4,
+                  self->sAlternativeSoundID5, self->sAlternativeSoundID6, self->fVolume, self->fRadiusMinAttenuation, self->fRadiusMaxAttenuation,
+                  self->fPitch, self->fPitchMax, self->fFadeInTime, self->fFadeOutTime, self->fRumbleGainOverride,
+                  self->sAlternativeSoundID7, self->sType, &base::global::CStrId::Empty(), self->sSoundGroupId, self->bStopOnChangeAnim,
+                  self->eSoundType, self->bStopOnEntityDead, self->bRumbleSync, self->fStopInTime, arg);
 }

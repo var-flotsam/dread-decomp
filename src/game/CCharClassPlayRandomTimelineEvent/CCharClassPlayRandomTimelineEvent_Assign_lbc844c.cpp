@@ -9,18 +9,18 @@
 using base::global::CStrId;
 
 static_assert(__builtin_offsetof(UnkPlayRandomTimelineEvent, params) == 0xc, "layout");
-static_assert(__builtin_offsetof(UnkPlayRandomTimelineEvent, field_0x20) == 0x20, "layout");
+static_assert(__builtin_offsetof(UnkPlayRandomTimelineEvent, sName0) == 0x20, "layout");
 
 UnkPlayRandomTimelineEvent* fn_7100bc844c(UnkPlayRandomTimelineEvent* self, const UnkPlayRandomTimelineEvent* other) {
     self->field_0x8 = other->field_0x8;
     self->params = other->params;
-    self->field_0x20 = other->field_0x20;
-    self->field_0x28 = other->field_0x28;
-    self->field_0x30 = other->field_0x30;
-    self->field_0x38 = other->field_0x38;
-    self->field_0x40 = other->field_0x40;
-    self->field_0x48 = other->field_0x48;
-    self->field_0x50 = other->field_0x50;
-    self->field_0x58 = other->field_0x58;
+    self->sName0 = other->sName0;
+    self->sName1 = other->sName1;
+    self->sName2 = other->sName2;
+    self->sName3 = other->sName3;
+    self->sName4 = other->sName4;
+    self->sName5 = other->sName5;
+    self->sName6 = other->sName6;
+    self->sName7 = other->sName7;
     return self;
 }

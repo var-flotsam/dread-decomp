@@ -19,7 +19,7 @@ using base::global::CStrId;
 struct UnkItemBase_71011a91c4;
 
 void fn_7100e1d0a8(void* manager, const u64* key);
-static_assert(__builtin_offsetof(UnkBillboardComponent_l72f1a4, field_0x160) == 0x160, "layout");
+static_assert(__builtin_offsetof(UnkBillboardComponent_l72f1a4, fSoundImpactRadiusMaxAtt) == 0x160, "layout");
 
 // The billboard manager, made on first use.
 inline void* UnkBillboardManager_l72f3cc() {
@@ -59,17 +59,17 @@ void fn_710072f3cc(UnkBillboardComponent_l72f1a4* self) {
     UnkRemoveItems_l72f3cc(self->field_0x108);
     self->field_0xe0.count = 0;
     self->field_0x108.count = 0;
-    self->field_0x150.~CStrId();
-    self->field_0x140.~CFilePathStrId();
-    self->field_0x130.~CStrId();
+    self->sSoundImpactBase.~CStrId();
+    self->sSoundLoopLit.~CFilePathStrId();
+    self->sSoundLoopLot.~CStrId();
     self->field_0x108.Free();
     self->field_0xe0.Free();
     self->field_0xd8.~CStrId();
     self->field_0xd0.~CStrId();
-    self->field_0xc0.~CStrId();
-    self->field_0xb0.~CStrId();
-    self->field_0xa8.~CStrId();
-    self->field_0x70.~CFilePathStrId();
-    self->field_0x68.~CFilePathStrId();
+    self->sGroupMotionDefaultLoop.~CStrId();
+    self->sBillboardMotionDefaultLoop.~CStrId();
+    self->sBillboardDefaultLoop.~CStrId();
+    self->sBgPath.~CFilePathStrId();
+    self->sPath.~CFilePathStrId();
     fn_71011acd74(reinterpret_cast<UnkIdObject_8da5c0*>(self));
 }

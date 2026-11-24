@@ -11,15 +11,15 @@ struct UnkComponent_0x138 {
     void** vtable;
     u8 unk_0x8[0xe8];
     UnkStringData* field_0xf0;  // CStrId
-    bool field_0xf8;
+    bool bUseCheckBeforeCast;
     u32 field_0xfc;
-    bool field_0x100;
+    bool bApplyGravityOnInitialSpeed;
     UnkStringData* field_0x108;  // CStrId
     UnkStringData* field_0x110;  // CStrId
-    bool field_0x118;
-    bool field_0x119;
+    bool bDeleteAfterCollisionProcessed;
+    bool bDestroyOnImpactSpeedBooster;
     u8 unk_0x11a[0xe];
-    bool field_0x128;
+    bool bIgnoreInvulnerableEntities;
     u8 unk_0x129[0x7];
     u16 field_0x130;
 };
@@ -41,13 +41,13 @@ void fn_7100ac14f8(UnkComponent_0x138* self) {
     self->field_0xf0 = id;
     if (&g_unk_7101d47108->empty != id)
         ++id->ref_count;
-    self->field_0xf8 = false;
+    self->bUseCheckBeforeCast = false;
     self->field_0xfc = 0;
-    self->field_0x100 = true;
+    self->bApplyGravityOnInitialSpeed = true;
     InitEmptyId(&self->field_0x108);
     InitEmptyId(&self->field_0x110);
-    self->field_0x118 = true;
-    self->field_0x119 = false;
-    self->field_0x128 = true;
+    self->bDeleteAfterCollisionProcessed = true;
+    self->bDestroyOnImpactSpeedBooster = false;
+    self->bIgnoreInvulnerableEntities = true;
     self->field_0x130 = 0;
 }

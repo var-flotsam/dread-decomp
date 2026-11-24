@@ -16,30 +16,30 @@ struct UnkAIAttackEvent_b42a3 {
     void* vtable;
     u8 unk_0x8[0x8];
     CStrId id_0x10;
-    f32 field_0x18;
-    bool field_0x1c;
-    bool field_0x1d;
-    bool field_0x1e;
+    f32 fProbability;
+    bool bPlayerOnViewDir;
+    bool bCheckPlayerNotInvulnerable;
+    bool bCheckPlayerInvulnerable;
     u64 field_0x20;
     u64 field_0x28;
     u64 field_0x30;
     s64 field_0x38;
-    s32 field_0x40;
-    bool field_0x44;
+    s32 iBehaviorPresetMax;
+    bool bCheckInCombat;
 };
 
 void fn_7100cac8b0(UnkAIAttackEvent_b42a3* self) {
     fn_7100067ea4(self);
     self->vtable = g_unk_7101aa5500 + 0x10;
     new (&self->id_0x10) CStrId("", true);
-    self->field_0x18 = 0.5f;
-    self->field_0x1c = true;
-    self->field_0x1d = true;
-    self->field_0x1e = false;
+    self->fProbability = 0.5f;
+    self->bPlayerOnViewDir = true;
+    self->bCheckPlayerNotInvulnerable = true;
+    self->bCheckPlayerInvulnerable = false;
     self->field_0x20 = 0;
     self->field_0x28 = 0;
     self->field_0x30 = 0;
     self->field_0x38 = -1;
-    self->field_0x40 = -1;
-    self->field_0x44 = false;
+    self->iBehaviorPresetMax = -1;
+    self->bCheckInCombat = false;
 }

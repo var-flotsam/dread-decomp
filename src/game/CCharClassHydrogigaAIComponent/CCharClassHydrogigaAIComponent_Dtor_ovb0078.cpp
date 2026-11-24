@@ -27,28 +27,28 @@ struct UnkCharClassHydrogigaAI_ovb0078 : UnkBossAIComponent {
     u8 pad_0x55c[4];
     f32 field_0x560;
     u8 pad_0x564[0x14];
-    u8 field_0x578[0x70];
-    u8 field_0x5e8[0x70];
-    u8 field_0x658[0x70];
-    u8 field_0x6c8[0x70];
-    u8 field_0x738[0xf8];
-    u8 field_0x830[0xf0];
-    u8 field_0x920[0x178];
-    u8 field_0xa98[0xf0];
+    u8 oDamageSourceFactorClose[0x70];
+    u8 oDamageSourceFactorOpen[0x70];
+    u8 oDamageSourceFactorDry[0x70];
+    u8 oDamageSourceFactorPolyps[0x70];
+    u8 oHydrogigaBraidAttackDef[0xf8];
+    u8 oHydrogigaMaelstormAttackDef[0xf0];
+    u8 oHydrogigaPolypsAttackDef[0x178];
+    u8 oHydrogigaTentacleBashAttackDef[0xf0];
     u8 field_0xb88[0x8];
 };
 
 void fn_71005b98f0(UnkCharClassHydrogigaAI_ovb0078* self) {
     self->vtable = g_unk_7101a50aa0 + 2;
     fn_71005b27cc(self->field_0xb88);
-    fn_71005b23ec(self->field_0xa98);
-    fn_71005af7e4(self->field_0x920);
-    fn_71005ad92c(self->field_0x830);
-    fn_71005ad544(self->field_0x738);
-    fn_71008c2de0(self->field_0x6c8);
-    fn_71008c2de0(self->field_0x658);
-    fn_71008c2de0(self->field_0x5e8);
-    fn_71008c2de0(self->field_0x578);
+    fn_71005b23ec(self->oHydrogigaTentacleBashAttackDef);
+    fn_71005af7e4(self->oHydrogigaPolypsAttackDef);
+    fn_71005ad92c(self->oHydrogigaMaelstormAttackDef);
+    fn_71005ad544(self->oHydrogigaBraidAttackDef);
+    fn_71008c2de0(self->oDamageSourceFactorPolyps);
+    fn_71008c2de0(self->oDamageSourceFactorDry);
+    fn_71008c2de0(self->oDamageSourceFactorOpen);
+    fn_71008c2de0(self->oDamageSourceFactorClose);
     self->field_0x528.~UnkOwnedList();
     fn_710041a230(reinterpret_cast<UnkGoliathXBase*>(self));
 }

@@ -17,19 +17,19 @@ using base::global::CStrId;
 struct UnkStruct_71008bca30;
 struct UnkItemBase_71011a91c4;
 
-static_assert(__builtin_offsetof(UnkBillboardComponent_l72f1a4, field_0x160) == 0x160, "layout");
+static_assert(__builtin_offsetof(UnkBillboardComponent_l72f1a4, fSoundImpactRadiusMaxAtt) == 0x160, "layout");
 
 void fn_710072f1a4(UnkBillboardComponent_l72f1a4* self) {
     fn_71011acd10(reinterpret_cast<UnkStruct_71008bca30*>(self));
-    self->field_0x58 = 0;
+    self->iPoolSize = 0;
     self->vtable = g_unk_7101a6d578 + 0x10;
     self->field_0x5c = 20.0f;
     self->field_0x60 = 10.0f;
-    new (&self->field_0x68) CFilePathStrId("", true);
-    self->field_0x70.data = nullptr;
+    new (&self->sPath) CFilePathStrId("", true);
+    self->sBgPath.data = nullptr;
     if (!g_unk_7101d47200)
         base::global::UnkEnsureFilePathPool();
-    self->field_0x70.data = &g_unk_7101d47200->empty;
+    self->sBgPath.data = &g_unk_7101d47200->empty;
     self->field_0x78 = 1;
     self->field_0x7c = 1;
     self->field_0x80 = 1.0f;
@@ -41,24 +41,24 @@ void fn_710072f1a4(UnkBillboardComponent_l72f1a4* self) {
     self->field_0x98 = 0;
     self->field_0x9c = 1.0f;
     self->field_0xa0 = 0;
-    new (&self->field_0xa8) CStrId("", true);
-    new (&self->field_0xb0) CStrId("", true);
+    new (&self->sBillboardDefaultLoop) CStrId("", true);
+    new (&self->sBillboardMotionDefaultLoop) CStrId("", true);
     self->field_0xb8 = 10.0f;
-    new (&self->field_0xc0) CStrId("", true);
+    new (&self->sGroupMotionDefaultLoop) CStrId("", true);
     self->field_0xc8 = 30.0f;
-    self->field_0xcc = false;
+    self->bUseRotation = false;
     new (&self->field_0xd0) CStrId("", true);
     new (&self->field_0xd8) CStrId("", true);
     new (&self->field_0xe0) base::global::CRntVector<UnkItemBase_71011a91c4*>(0xf);
     new (&self->field_0x108) base::global::CRntVector<UnkItemBase_71011a91c4*>(0xf);
-    new (&self->field_0x130) CStrId("", true);
-    self->field_0x138 = 0.2f;
-    new (&self->field_0x140) CFilePathStrId("", true);
-    self->field_0x148 = 300.0f;
-    self->field_0x14c = 1000.0f;
-    new (&self->field_0x150) CStrId("", true);
-    self->field_0x158 = 1;
-    self->field_0x15c = 500.0f;
-    self->field_0x160 = 2000.0f;
+    new (&self->sSoundLoopLot) CStrId("", true);
+    self->fSoundLoopLotAmountPct = 0.2f;
+    new (&self->sSoundLoopLit) CFilePathStrId("", true);
+    self->fSoundLoopAttMinDist = 300.0f;
+    self->fSoundLoopAttMaxDist = 1000.0f;
+    new (&self->sSoundImpactBase) CStrId("", true);
+    self->iSoundImpactCount = 1;
+    self->fSoundImpactRadiusMinAtt = 500.0f;
+    self->fSoundImpactRadiusMaxAtt = 2000.0f;
     self->field_0x18 = 2500;
 }

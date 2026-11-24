@@ -21,7 +21,7 @@ void fn_7100a62f34(void* member);
 struct UnkTriggerComponent_la5dac0 {
     void** vtable;
     u8 pad_0x8[0x35];
-    bool field_0x3d;
+    bool bCallEntityLuaCallback;
     u8 pad_0x3e[2];
     s64 field_0x40;
     bool field_0x48;
@@ -39,13 +39,13 @@ struct UnkTriggerComponent_la5dac0 {
     u8 records[16][0x18];  // 0x64
     u8 pad_0x1e4[4];
     CStrId name;  // 0x1e8
-    CStrId field_0x1f0;
-    CStrId field_0x1f8;
-    bool field_0x200;
-    bool field_0x201;
+    CStrId sOnEnable;
+    CStrId sOnDisable;
+    bool bOnEnableAlways;
+    bool bOnDisableAlways;
     bool field_0x202;
     bool field_0x203;
-    bool field_0x204;
+    bool bCheckAllEntities;
     bool field_0x205;
     u8 pad_0x206[2];
     CRntString text;  // 0x208
@@ -58,11 +58,11 @@ struct UnkTriggerComponent_la5dac0 {
     u32 field_0x248;
     u32 field_0x24c;
     base::global::CRntVector<void*> field_0x250;
-    bool field_0x278;
+    bool bPersistentState;
     u8 pad_0x279[7];
     u8 field_0x280[0x38];
     u8 field_0x2b8[0x160];
-    bool field_0x418;
+    bool bStartEnabled;
     u8 pad_0x419[7];
     CStrId field_0x420;
 };
@@ -80,15 +80,15 @@ static inline void MakeEmpty(CStrId* id) {
 
 // The component's state as a fresh one has it.
 static inline void ResetTrigger(UnkTriggerComponent_la5dac0* self) {
-    self->field_0x1f0 = base::global::CStrId::Empty();
-    self->field_0x1f8 = base::global::CStrId::Empty();
-    self->field_0x3d = false;
-    self->field_0x278 = false;
-    self->field_0x200 = false;
-    self->field_0x201 = false;
+    self->sOnEnable = base::global::CStrId::Empty();
+    self->sOnDisable = base::global::CStrId::Empty();
+    self->bCallEntityLuaCallback = false;
+    self->bPersistentState = false;
+    self->bOnEnableAlways = false;
+    self->bOnDisableAlways = false;
     self->field_0x202 = false;
     self->field_0x203 = false;
-    self->field_0x204 = false;
+    self->bCheckAllEntities = false;
     self->field_0x205 = false;
     CRntString_AssignCString(&self->text, g_unk_710162e2ed);
     self->field_0x240 = false;
@@ -117,8 +117,8 @@ void CTriggerComponent_Construct(void* p) {
     self->field_0x58 = 0;
     self->count = 0;
     new (&self->name) CStrId(g_unk_710162e2ed, true);
-    MakeEmpty(&self->field_0x1f0);
-    MakeEmpty(&self->field_0x1f8);
+    MakeEmpty(&self->sOnEnable);
+    MakeEmpty(&self->sOnDisable);
     fn_710007e6c4(&self->text);
     self->field_0x244 = 0;
     self->field_0x248 = 0;
@@ -126,7 +126,7 @@ void CTriggerComponent_Construct(void* p) {
     new (&self->field_0x250) base::global::CRntVector<void*>(0xf);
     fn_7100a62f34(self->field_0x280);
     fn_7100ae9cc8(self->field_0x2b8);
-    self->field_0x418 = true;
+    self->bStartEnabled = true;
     new (&self->field_0x420) CStrId(base::global::CStrId::Empty());
     ResetTrigger(self);
 }

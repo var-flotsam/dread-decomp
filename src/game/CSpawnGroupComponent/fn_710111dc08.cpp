@@ -8,29 +8,29 @@ using base::global::CRntString;
 
 struct UnkObj_710111dc08 {
     u8 unk_0x0[0x13a];
-    bool field_0x13a;
-    bool field_0x13b;
-    bool field_0x13c;
+    bool bIsGenerator;
+    bool bIsInfinite;
+    bool bAutomanaged;
     u8 unk_0x13d[0x1];
-    bool field_0x13e;
+    bool bAutoenabled;
     u8 unk_0x13f[0x9];
     CRntString field_0x148;
     u8 unk_0x178[0x8];
     s32 field_0x180;
     u8 unk_0x184[0x8];
-    s32 field_0x18c;
-    s32 field_0x190;
+    s32 iMaxToGenerate;
+    s32 iMaxSimultaneous;
     s32 field_0x194;
     u8 unk_0x198[0x30];
-    CRntString field_0x1c8;
-    CRntString field_0x1f8;
-    CRntString field_0x228;
-    CRntString field_0x258;
-    CRntString field_0x288;
-    CRntString field_0x2b8;
-    CRntString field_0x2e8;
-    CRntString field_0x318;
-    CRntString field_0x348;
+    CRntString sOnEnable;
+    CRntString sOnDisable;
+    CRntString sOnEntityGenerated;
+    CRntString sOnBeforeGenerateEntity;
+    CRntString sOnMaxSimultaneous;
+    CRntString sOnMaxGenerated;
+    CRntString sOnEntityDead;
+    CRntString sOnEntityDamaged;
+    CRntString sOnAllEntitiesDead;
 };
 
 
@@ -44,77 +44,77 @@ u32 fn_710111dc08(UnkObj_710111dc08* self, UnkProp* p) {
     if (Is(p, Key(0x1a88)) && p->set) {
         char buf[0x80];
         CRntFile_ReadFormat(p->stream, "s", buf);
-        CRntString_AssignCString(&self->field_0x258, buf);
+        CRntString_AssignCString(&self->sOnBeforeGenerateEntity, buf);
         return true;
     }
     if (Is(p, Key(0x1ad8)) && p->set) {
         char buf[0x80];
         CRntFile_ReadFormat(p->stream, "s", buf);
-        CRntString_AssignCString(&self->field_0x228, buf);
+        CRntString_AssignCString(&self->sOnEntityGenerated, buf);
         return true;
     }
     if (Is(p, Key(0x1aa8)) && p->set) {
         char buf[0x80];
         CRntFile_ReadFormat(p->stream, "s", buf);
-        CRntString_AssignCString(&self->field_0x1c8, buf);
+        CRntString_AssignCString(&self->sOnEnable, buf);
         return true;
     }
     if (Is(p, Key(0x1a98)) && p->set) {
         char buf[0x80];
         CRntFile_ReadFormat(p->stream, "s", buf);
-        CRntString_AssignCString(&self->field_0x1f8, buf);
+        CRntString_AssignCString(&self->sOnDisable, buf);
         return true;
     }
     if (Is(p, Key(0x1af8)) && p->set) {
         char buf[0x80];
         CRntFile_ReadFormat(p->stream, "s", buf);
-        CRntString_AssignCString(&self->field_0x288, buf);
+        CRntString_AssignCString(&self->sOnMaxSimultaneous, buf);
         return true;
     }
     if (Is(p, Key(0x1af0)) && p->set) {
         char buf[0x80];
         CRntFile_ReadFormat(p->stream, "s", buf);
-        CRntString_AssignCString(&self->field_0x2b8, buf);
+        CRntString_AssignCString(&self->sOnMaxGenerated, buf);
         return true;
     }
     if (Is(p, Key(0x1ad0)) && p->set) {
         char buf[0x80];
         CRntFile_ReadFormat(p->stream, "s", buf);
-        CRntString_AssignCString(&self->field_0x2e8, buf);
+        CRntString_AssignCString(&self->sOnEntityDead, buf);
         return true;
     }
     if (Is(p, Key(0x1ac8)) && p->set) {
         char buf[0x80];
         CRntFile_ReadFormat(p->stream, "s", buf);
-        CRntString_AssignCString(&self->field_0x318, buf);
+        CRntString_AssignCString(&self->sOnEntityDamaged, buf);
         return true;
     }
     if (Is(p, Key(0x1a68)) && p->set) {
         char buf[0x80];
         CRntFile_ReadFormat(p->stream, "s", buf);
-        CRntString_AssignCString(&self->field_0x348, buf);
+        CRntString_AssignCString(&self->sOnAllEntitiesDead, buf);
         return true;
     }
     if (!p->set && Is(p, Key(0x1500)))
-        return CRntFile_WriteFormat(p->stream, "b", self->field_0x13e) != 0;
+        return CRntFile_WriteFormat(p->stream, "b", self->bAutoenabled) != 0;
     if (!p->set && Is(p, Key(0x1508)))
-        return CRntFile_WriteFormat(p->stream, "b", self->field_0x13c) != 0;
+        return CRntFile_WriteFormat(p->stream, "b", self->bAutomanaged) != 0;
     if (!p->set && Is(p, Key(0x1518)))
-        return CRntFile_WriteFormat(p->stream, "b", self->field_0x13a) != 0;
+        return CRntFile_WriteFormat(p->stream, "b", self->bIsGenerator) != 0;
     if (p->set && Is(p, Key(0x1518)))
-        return CRntFile_ReadFormat(p->stream, "b", &self->field_0x13a) != 0;
+        return CRntFile_ReadFormat(p->stream, "b", &self->bIsGenerator) != 0;
     if (p->set && Is(p, Key(0x1520)))
-        return CRntFile_ReadFormat(p->stream, "b", &self->field_0x13b) != 0;
+        return CRntFile_ReadFormat(p->stream, "b", &self->bIsInfinite) != 0;
     if (!p->set && Is(p, Key(0x1758)))
-        return CRntFile_WriteFormat(p->stream, "i", self->field_0x18c) != 0;
+        return CRntFile_WriteFormat(p->stream, "i", self->iMaxToGenerate) != 0;
     if (p->set && Is(p, Key(0x1758)))
-        return CRntFile_ReadFormat(p->stream, "i", &self->field_0x18c) != 0;
+        return CRntFile_ReadFormat(p->stream, "i", &self->iMaxToGenerate) != 0;
     if (!p->set && Is(p, Key(0x19c0)))
         return CRntFile_WriteFormat(p->stream, "i", self->field_0x194) != 0;
     if (p->set && Is(p, Key(0x19c0)))
         return CRntFile_ReadFormat(p->stream, "i", &self->field_0x194) != 0;
     if (p->set && Is(p, Key(0x1738)))
-        return CRntFile_ReadFormat(p->stream, "i", &self->field_0x190) != 0;
+        return CRntFile_ReadFormat(p->stream, "i", &self->iMaxSimultaneous) != 0;
     if (p->set && Is(p, Key(0x1180)))
         return CRntFile_ReadFormat(p->stream, "i", &self->field_0x180) != 0;
     if (Is(p, Key(0x1f88))) {
