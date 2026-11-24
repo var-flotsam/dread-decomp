@@ -11,7 +11,7 @@ struct UnkWorldGraphHolder {
     u32 count;
 };
 
-__attribute__((disable_tail_calls)) void* fn_7100acca54(UnkWorldGraphHolder* self, u32 index) {
+__attribute__((disable_tail_calls)) void* CWorldGraph_GetNodeAt(UnkWorldGraphHolder* self, u32 index) {
     if (index < self->count)
         return fn_7100acc418(reinterpret_cast<UnkWorldGraphArray*>(self->array), index);
     return nullptr;

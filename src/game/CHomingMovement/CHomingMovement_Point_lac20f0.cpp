@@ -25,7 +25,7 @@ static inline UnkActor* Target(UnkHomingMovement_lac20f0* self) {
     return reinterpret_cast<UnkActor*>(self->target->target);
 }
 
-UnkVec3f fn_7100ac20f0(UnkHomingMovement_lac20f0* self) {
+UnkVec3f CHomingMovement_GetTargetPoint(UnkHomingMovement_lac20f0* self) {
     UnkVec3f point(0.0f, 0.0f, 0.0f);
     if (self->point.data != &g_unk_7101d47108->empty) {
         FindPoint(Target(self)->field_0x228, self->point.data->Key(), &point);

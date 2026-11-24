@@ -229,7 +229,7 @@ struct UnkBombCollideMovement_ovb0078 {
     UnkBombRequest_ovb0078 request;  // 0x348
 };
 
-void fn_7100aabdac(UnkBombCollideMovement_ovb0078* self, UnkBombTargetActor_ovb0078* actor, void*, void*,
+void CBombMovement_DamageCollidedActor(UnkBombCollideMovement_ovb0078* self, UnkBombTargetActor_ovb0078* actor, void*, void*,
                    UnkBombHitData_ovb0078* hit) {
     if (fn_7100ac79d8(self, actor, hit))
         return;
@@ -348,7 +348,7 @@ struct UnkBombHitInfo_ovb0078 {
     UnkBombHitEntry_ovb0078* field_0x0;
 };
 
-void fn_7100aaaaf4(UnkBombHitHandler_ovb0078* self, u32* kinds, void* arg, UnkBombHitInfo_ovb0078* info,
+void CBombMovement_DispatchHit(UnkBombHitHandler_ovb0078* self, u32* kinds, void* arg, UnkBombHitInfo_ovb0078* info,
                    f32 value, UnkBombOnActor_ovb0078 on_actor, UnkBombOnTiles_ovb0078 on_tiles) {
     UnkBombHitEntry_ovb0078* entry = info->field_0x0;
     if (!entry || !entry->field_0x10)

@@ -105,7 +105,7 @@ static inline void MakeEmpty(CStrId* id) {
 }
 
 void fn_7100817c94(UnkGrappleBeam_l817c94* self) {
-    fn_7100ac7224(reinterpret_cast<UnkComponent_0x5b8*>(self));
+    CWeaponMovement_Construct(reinterpret_cast<UnkComponent_0x5b8*>(self));
     self->vtable = g_unk_7101a75230 + 2;
 
     UnkGrappleMachine_l817c94& machine = self->machine;

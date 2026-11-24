@@ -23,7 +23,7 @@ struct UnkThermalDevice_A5_b73 {
     UnkThermalName_A5_b73* script;
 };
 
-void fn_7100a92b2c(UnkThermalDevice_A5_b73* self) {
+void CThermalDeviceComponent_SetupUseStateAndCallOnEnterUse(UnkThermalDevice_A5_b73* self) {
     fn_7100a925a0(self);
     if ((u64)self->script == (u64)&g_unk_7101d47108->empty)
         return;

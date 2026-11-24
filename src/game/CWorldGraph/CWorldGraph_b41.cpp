@@ -10,7 +10,7 @@ using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
 struct UnkReflType;
-void* fn_7100acc2f0(char* self, u32 value, void* arg1, void* arg2);
+void* CWorldGraph_CreateNode(char* self, u32 value, void* arg1, void* arg2);
 
 static inline __attribute__((always_inline)) void* ArgPtr_b41a3(UnkReflValue* arg) {
     if (!arg->type)
@@ -26,7 +26,7 @@ UnkReflValue fn_7100accfc8(void*, char* obj, UnkReflValue* const* args) {
     u32 value = *base::reflection::refl_ArgValue<u32>(&a[0]);
     void* p1 = ArgPtr_b41a3(&a[1]);
     void* p2 = ArgPtr_b41a3(&a[2]);
-    void* node = fn_7100acc2f0(target, value, p1, p2);
+    void* node = CWorldGraph_CreateNode(target, value, p1, p2);
     UnkReflValue r;
     r.field_0x0 = nullptr;
     r.type = nullptr;

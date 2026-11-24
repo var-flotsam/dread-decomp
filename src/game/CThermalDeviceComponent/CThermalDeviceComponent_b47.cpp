@@ -28,7 +28,7 @@ struct UnkThermalDeviceComponent {
 
 bool fn_7100aa122c(UnkThermalDeviceComponent* self, void* arg);
 
-bool fn_7100a92834(UnkThermalDeviceComponent* self, void* arg) {
+bool CThermalDeviceComponent_SaveCheckpointBeforeUsage(UnkThermalDeviceComponent* self, void* arg) {
     if (reinterpret_cast<const u8*>(g_unk_7101d47310)[0x2441])
         return false;
     if (self->field_0x59c && fn_7100dfbe3c(g_unk_7101d47310)) {

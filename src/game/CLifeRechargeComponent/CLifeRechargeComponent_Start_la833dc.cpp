@@ -36,7 +36,7 @@ struct UnkLifeRecharge_la833dc {
 // The base step, as the ammo recharge's start declares it.
 struct UnkAmmoRecharge_la77790;
 
-void fn_7100a833dc(UnkLifeRecharge_la833dc* self) {
+void CLifeRechargeComponent_PlayRechargeFXAndSound(UnkLifeRecharge_la833dc* self) {
     fn_7100aa2850(reinterpret_cast<UnkAmmoRecharge_la77790*>(self));
     UnkWorld* world = self->owner->world;
     fn_710114fe8c(world, self->effect_0x548->hash, 1, 1);

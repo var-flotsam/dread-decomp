@@ -14,7 +14,7 @@ struct UnkWorldGraphEntries_b47a3 {
     u32 count;
 };
 
-s32 fn_7100acca04(UnkWorldGraphEntries_b47a3* self, const u64* key) {
+s32 CWorldGraph_FindNodeIndexById(UnkWorldGraphEntries_b47a3* self, const u64* key) {
     for (u64 i = 0; i < self->count; ++i) {
         if (self->entries[i].key == *key)
             return (s32)i;

@@ -30,6 +30,6 @@ static inline CRntString ShipRechargeName(UnkShipRechargeComponent_b51* self) {
     return *reinterpret_cast<const CRntString*>(cls + Offset);
 }
 
-CRntString fn_7100a8b738(UnkShipRechargeComponent_b51* self) { return ShipRechargeName<0x1e8, fn_7100a9f704>(self); }
+CRntString CShipRechargeComponent_GetUseQuestionID(UnkShipRechargeComponent_b51* self) { return ShipRechargeName<0x1e8, fn_7100a9f704>(self); }
 
-CRntString fn_7100a8b7bc(UnkShipRechargeComponent_b51* self) { return ShipRechargeName<0x1b8, fn_7100a9f740>(self); }
+CRntString CShipRechargeComponent_GetUseSuccessMessage(UnkShipRechargeComponent_b51* self) { return ShipRechargeName<0x1b8, fn_7100a9f740>(self); }

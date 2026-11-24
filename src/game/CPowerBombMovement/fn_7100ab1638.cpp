@@ -76,7 +76,7 @@ void fn_7100ab1638(UnkBombHitHandler_ovb0078* self, u32 mask, const void* source
     }
     if (hit) {
         for (UnkPbHitRecord_lab1638 *it = hits.items(), *end = it + hits.count; it != end; ++it)
-            fn_7100aaaaf4(self, kinds, const_cast<void*>(source), reinterpret_cast<UnkBombHitInfo_ovb0078*>(it),
+            CBombMovement_DispatchHit(self, kinds, const_cast<void*>(source), reinterpret_cast<UnkBombHitInfo_ovb0078*>(it),
                           size, on_actor, on_tiles);
     }
 }

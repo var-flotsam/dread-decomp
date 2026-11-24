@@ -41,7 +41,7 @@ struct UnkSwitcher {
 };
 
 // `f` (s0) reaches the query untouched in the original, which computes with it (tools/forwarded_args.py).
-void fn_7100aaac80(UnkSwitcher* self, void* where, void* filter, f32 f) {
+void CBombMovement_HitBreakableTiles(UnkSwitcher* self, void* where, void* filter, f32 f) {
     if (g_unk_7101d47310->field_0x1af8->field_0xdc)
         return;
     u32 count = 0;

@@ -92,7 +92,7 @@ struct UnkSaveStation_ovb0118 {
 extern const u64 g_unk_710164b5c0;
 extern const u64 g_unk_710164b5c8;
 
-void fn_7100a8a068(UnkSaveStation_ovb0118* self) {
+void CSaveStationUsableComponent_StopSaveSoundAndFX(UnkSaveStation_ovb0118* self) {
     if (self->sound.Get()) {
         fn_7100d7c510(reinterpret_cast<UnkShipRechargeEntity_b49a4*>(self->entity), &self->sound, 2.5f, 0.0f);
         self->sound = g_unk_7108b6c460;
@@ -110,7 +110,7 @@ void fn_7100a8a068(UnkSaveStation_ovb0118* self) {
     fn_7100d7c828(reinterpret_cast<UnkActor*>(target), &g_unk_710164b5c8, false);
 }
 
-bool fn_7100a89bf8(UnkSaveStation_ovb0118* self, UnkWeakTarget* user) {
+bool CSaveStationUsableComponent_AskSaveQuestion(UnkSaveStation_ovb0118* self, UnkWeakTarget* user) {
     if (!user)
         return false;
     AssignRef(&self->user, fn_7100d78378(user));

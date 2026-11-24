@@ -73,7 +73,7 @@ struct UnkModeCondition {
     }
 };
 
-bool fn_7100bc77ec(const UnkModeCondition<0x18>* self, UnkModeActor* actor) { return self->Check(actor); }
+bool CCharClassPlayRandomTimelineEvent_CheckPlayOnly(const UnkModeCondition<0x18>* self, UnkModeActor* actor) { return self->Check(actor); }
 bool fn_7100bc8e88(const UnkModeCondition<0x18>* self, UnkModeActor* actor) { return self->Check(actor); }
 bool fn_7100bc9f90(const UnkModeCondition<0x30>* self, UnkModeActor* actor) { return self->Check(actor); }
 bool fn_7100c45dc8(const UnkModeCondition<0x30>* self, UnkModeActor* actor) { return self->Check(actor); }

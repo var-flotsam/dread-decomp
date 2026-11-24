@@ -70,7 +70,7 @@ static inline void AddRef(UnkStringData* d, base::global::UnkStringPool* pool) {
 }
 
 void fn_7100ac2c5c(UnkComponent_0x5b8* self) {
-    fn_7100ac7224(self);
+    CWeaponMovement_Construct(self);
     self->vtable = &g_unk_7101a96b30[2];
     self->field_0x480 = -1.0f;
     self->field_0x484 = -1.0f;

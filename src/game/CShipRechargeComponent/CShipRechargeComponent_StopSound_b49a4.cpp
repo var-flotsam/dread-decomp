@@ -30,7 +30,7 @@ struct UnkShipRecharge_b49a4 {
     UnkSoundHandle sound;  // +0x540
 };
 
-void fn_7100a8bf18(UnkShipRecharge_b49a4* self) {
+void CShipRechargeComponent_StopSound(UnkShipRecharge_b49a4* self) {
     if (self->sound.Get() == nullptr)
         return;
     fn_7100d7c510(self->entity, &self->sound, 0.25f, 0.0f);

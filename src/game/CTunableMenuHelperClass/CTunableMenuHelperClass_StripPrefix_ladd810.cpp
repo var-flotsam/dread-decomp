@@ -65,7 +65,7 @@ inline const CRntString& Read_ladd810(const CStrId& id) {
 // Whether two strings have the same text, by their keys.
 inline bool SameText_ladd810(const CRntString& a, const CRntString& b) { return a.key == b.key; }
 
-bool fn_7100add810(const CStrId* id, void* unused, CStrId* out) {
+bool CTunableMenuHelperClass_StripTunablePrefix(const CStrId* id, void* unused, CStrId* out) {
     UnkInlineString_ladd810 text;
     CRntString_AssignStrId(text.Str(), id);
     s32 bar = CRntString_FindLastChar(text.Str(), '|', -1);

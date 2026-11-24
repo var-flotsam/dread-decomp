@@ -13,9 +13,9 @@ struct UnkWorldGraphNode_A6_b68 {
     f32 z;
 };
 
-void* fn_7100acc650(void* self, void* data, const base::math::CVector2D* pos);
+void* CWorldGraph_FindOrAddNodeById(void* self, void* data, const base::math::CVector2D* pos);
 
-void* fn_7100acc5ec(void* self, UnkWorldGraphNode_A6_b68* node) {
+void* CWorldGraph_AddNodeForObject(void* self, UnkWorldGraphNode_A6_b68* node) {
     if (!node)
         return nullptr;
     f32 x = node->x;
@@ -25,5 +25,5 @@ void* fn_7100acc5ec(void* self, UnkWorldGraphNode_A6_b68* node) {
     base::math::CVector2D pos;
     base::math::CVector3D pos3 = {x, y, z};
     fn_710007b430(&pos, &pos3);
-    return fn_7100acc650(self, data, &pos);
+    return CWorldGraph_FindOrAddNodeById(self, data, &pos);
 }

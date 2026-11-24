@@ -21,8 +21,8 @@ struct UnkBombMovement {
 
 struct UnkComponent_0x5b8;  // src/game/CProjectileMovement/fn_7100ac2c5c.cpp
 
-void fn_7100aa9ee4(UnkBombMovement* self) {
-    fn_7100ac7224(reinterpret_cast<UnkComponent_0x5b8*>(self));
+void CBombMovement_Construct(UnkBombMovement* self) {
+    CWeaponMovement_Construct(reinterpret_cast<UnkComponent_0x5b8*>(self));
     self->vtable = &g_unk_7101a94c90[2];
     new (&self->field_0x480) CFilePathStrId("", true);
     self->field_0x488 = false;
