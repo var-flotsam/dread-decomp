@@ -90,5 +90,5 @@ void CHangableGrappleSurfaceComponent_FadeMaterialAlpha(UnkGrappleSurface_A5_b65
     UnkVector4D vfrom = fn_7100030878(&from);
     fn_71009272c4(reinterpret_cast<UnkMagnetColorChange_b0086*>(&change), i, false, &vto, &vfrom, 0.1f);
     change.kind = 2;
-    fn_7100926aa0(fx, reinterpret_cast<UnkMagnetColorChange_b0086*>(&change));
+    CMaterialFXComponent_AddOrReplaceColorChange(fx, reinterpret_cast<UnkMagnetColorChange_b0086*>(&change));
 }

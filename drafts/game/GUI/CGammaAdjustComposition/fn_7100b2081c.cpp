@@ -59,7 +59,7 @@ void fn_7100b2081c(UnkGammaAdjustComposition_lb2081c* self, UnkGammaInputEvent_l
                 CStrId text("#GUI_GAMMA_LABEL_CONFIRM_OPTIONS", true);
                 UnkGammaCallback_lb2081c accept_callback = {self, fn_7100b210a0};
                 UnkGammaCallback_lb2081c back_callback = {self, fn_7100b210a4};
-                fn_7100b5fde0(reinterpret_cast<UnkGuiComposition_ovb0090*>(popup), &text, &accept, &back,
+                CPopUpComposition_ShowAcceptBackPrompt(reinterpret_cast<UnkGuiComposition_ovb0090*>(popup), &text, &accept, &back,
                               reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                               reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
             }
@@ -70,7 +70,7 @@ void fn_7100b2081c(UnkGammaAdjustComposition_lb2081c* self, UnkGammaInputEvent_l
             CStrId text("#GUI_GAMMA_LABEL_CONFIRM_OPTIONS", true);
             UnkGammaCallback_lb2081c accept_callback = {self, fn_7100b210a0};
             UnkGammaCallback_lb2081c back_callback = {self, fn_7100b210a4};
-            fn_7100b5fde0(ref->composition, &text, &accept, &back,
+            CPopUpComposition_ShowAcceptBackPrompt(ref->composition, &text, &accept, &back,
                           reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                           reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
         }

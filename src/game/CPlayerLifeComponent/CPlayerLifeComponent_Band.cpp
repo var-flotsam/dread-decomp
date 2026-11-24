@@ -7,7 +7,7 @@ struct UnkPlayerLifeBand {
     f32 field_0x54;
 };
 
-u32 fn_7101165c40(UnkPlayerLifeBand* self) {
+u32 CPlayerLifeComponent_GetCurrentLifeBand(UnkPlayerLifeBand* self) {
     f32 value = self->field_0x54;
     if (value <= 25.0f)
         return 2;

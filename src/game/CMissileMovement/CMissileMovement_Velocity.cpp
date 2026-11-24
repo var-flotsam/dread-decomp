@@ -24,7 +24,7 @@ static_assert(__builtin_offsetof(UnkMissileMovement_aba644, tunables) == 0x5f0, 
 
 struct UnkSelf;
 
-void fn_7100aba644(UnkMissileMovement_aba644* self) {
+void CMissileMovement_SetVelocityFromInitialSpeed(UnkMissileMovement_aba644* self) {
     fn_7100ac3880(reinterpret_cast<UnkSelf*>(self));
     f32 speed = self->tunables->speed;
     const CVector3D& d = self->direction;

@@ -680,7 +680,7 @@ struct UnkSubAreaCameraSettings {
 
 // What the camera step calls: the CMetroidCameraCtrl controller takes a value and a flag, and a
 // flag with the camera's id.
-void fn_7100935cb8(f32 value, UnkCameraCtrl* ctrl, bool flag);
+void CMetroidCameraCtrl_SetRequestedDistance(f32 value, UnkCameraCtrl* ctrl, bool flag);
 void fn_71009349b0(UnkCameraCtrl* ctrl, bool flag, const CStrId* id);
 
 // Hands the sub-area's camera settings to the main camera's controller when it is the
@@ -699,7 +699,7 @@ void SubArea_ApplyCameraSettings(UnkSubAreaTag, UnkSubArea* area, bool flag) {
     UnkCameraCtrl* ctrl = fn_71010e389c(component, &GameManagerIdTable().field_0x17e0);
     if (ctrl && ctrl->vf_0x0() == fn_7100932fa4()) {
         const UnkSubAreaCameraSettings* settings = reinterpret_cast<const UnkSubAreaCameraSettings*>(area);
-        fn_7100935cb8(settings->field_0x100, ctrl, flag);
+        CMetroidCameraCtrl_SetRequestedDistance(settings->field_0x100, ctrl, flag);
         static CStrId s_id("SubareaCamera", true);
         fn_71009349b0(ctrl, settings->field_0x104, &s_id);
     }

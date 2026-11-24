@@ -48,6 +48,6 @@ void fn_7100afa114(UnkContinueGameButton_ovb0134* self) {
     CStrId accept("#GUI_A_ACCEPT", true);
     UnkContinueCallback_ovb0134 accept_callback = {self, fn_7100afacd0};
     UnkContinueCallback_ovb0134 back_callback = {self, fn_7100afacd4};
-    fn_7100b5fde0(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
+    CPopUpComposition_ShowAcceptBackPrompt(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
 }

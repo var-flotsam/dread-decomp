@@ -153,7 +153,7 @@ void fn_71011f3cfc(UnkGuiModel3D_ovb0109* self) {
     fn_71011ccfb4(reinterpret_cast<char*>(self));
 }
 
-void fn_71011f3e0c(UnkGuiModel3D_ovb0109* self) {
+void CModel3D_ResetDefaultsWithCustomCharClass(UnkGuiModel3D_ovb0109* self) {
     fn_71011cd4b4(self);
     self->mode = 3;
     self->spin_speed = 0.0f;
@@ -200,7 +200,7 @@ void fn_71011f4350(UnkGuiModel3D_ovb0109* self, f32 dt) {
     self->idle_time = 0.0f;
 }
 
-void* fn_71011f4590(UnkGuiModel3D_ovb0109* self, const CStrId* type, const CRntString& name) {
+void* CModel3D_CreateEntityByCharClassId(UnkGuiModel3D_ovb0109* self, const CStrId* type, const CRntString& name) {
     fn_71011cde14(Display(self));
     UnkSpawnDefRef_b52 def = fn_71011938bc(g_unk_71726a0220, type, &g_unk_7101d470e8);
     if (!def.ptr)
@@ -222,7 +222,7 @@ void fn_71011f46a0(UnkGuiModel3D_ovb0109* self) {
     switch (self->mode) {
     case 0:
         self->entity = static_cast<UnkModelEntity_ovb0109*>(
-            fn_71011f4590(self, &self->char_class_name, CRntString("Model3DMainEntity")));
+            CModel3D_CreateEntityByCharClassId(self, &self->char_class_name, CRntString("Model3DMainEntity")));
         break;
     case 1:
         if (self->model_path.data && self->model_path.data[0]) {

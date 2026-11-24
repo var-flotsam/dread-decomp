@@ -44,7 +44,7 @@ static inline __attribute__((always_inline)) void AskSaveQuestion(UnkMapAcquisit
     CStrId text("#GUI_SAVESTATION_QUESTION", true);
     UnkMapCallback_ovb0090 accept_callback = {self, on_accept};
     UnkMapCallback_ovb0090 back_callback = {self, on_back};
-    fn_7100b5fde0(gui, &text, &accept, &back, &accept_callback, &back_callback, 0, -1.0f);
+    CPopUpComposition_ShowAcceptBackPrompt(gui, &text, &accept, &back, &accept_callback, &back_callback, 0, -1.0f);
 }
 
 struct UnkMapAcquisitionQ_ovb0090 {

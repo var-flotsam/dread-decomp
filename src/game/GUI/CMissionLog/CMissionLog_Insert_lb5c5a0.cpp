@@ -89,7 +89,7 @@ static inline UnkMissionLogRecord_b5c5a0* Records_b5c5a0(UnkElem38Array* self) {
 
 void fn_7100b5c5a0(UnkElem38Array* self, const UnkMissionLogRecord_b5c5a0* value, u32 index) {
     if (index == self->count) {
-        fn_7100b593d0(self, reinterpret_cast<const UnkElem38*>(value));
+        CMissionLog_EntriesPushBack(self, reinterpret_cast<const UnkElem38*>(value));
         return;
     }
     u32 n = self->count;

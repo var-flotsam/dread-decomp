@@ -7,5 +7,5 @@
 
 struct UnkSource;
 struct UnkSourceArg;
-void fn_71009c5ab8(UnkSource* src, UnkSourceArg* arg);
+void CNavMeshItemStage_AppendIdEntry(UnkSource* src, UnkSourceArg* arg);
 void fn_71009c5d6c(UnkSource* src);

@@ -26,12 +26,12 @@ static inline __attribute__((always_inline)) void Destroy(UnkMaterialFXComponent
     fn_71010c4194(reinterpret_cast<UnkBaseComponent*>(self));
 }
 
-void fn_710092737c(UnkMaterialFXComponent* self) {
+void CMaterialFXComponent_Destroy(UnkMaterialFXComponent* self) {
     Destroy(self);
 }
 
 // The deleting form.
-void fn_7100927420(UnkMaterialFXComponent* self) {
+void CMaterialFXComponent_DestroyAndDelete(UnkMaterialFXComponent* self) {
     Destroy(self);
     operator delete(self);
 }

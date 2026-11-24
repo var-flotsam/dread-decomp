@@ -96,7 +96,7 @@ static void* AsList(const CType* type) {
     return const_cast<CType*>(type);
 }
 
-void fn_710102c510() {
+void CSoundManager_InitStatics() {
     UnkStatics_710102c510& s = g_unk_71729f9b70;
     InitHeaderIds(&s.ids);
     s.field_0x30 = -1.0f;

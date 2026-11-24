@@ -69,7 +69,7 @@ static inline UnkMaterialFXSlots_l926aa0* Slots(UnkKey* key) {
     return reinterpret_cast<UnkMaterialFXSlots_l926aa0*>(fn_710080fa28(key));
 }
 
-void fn_7100926aa0(UnkMagnetFx_b0086* fx, UnkMagnetColorChange_b0086* change_) {
+void CMaterialFXComponent_AddOrReplaceColorChange(UnkMagnetFx_b0086* fx, UnkMagnetColorChange_b0086* change_) {
     UnkMaterialFXComponent_l926aa0* self = reinterpret_cast<UnkMaterialFXComponent_l926aa0*>(fx);
     UnkMaterialFXRecord_l926aa0* change = reinterpret_cast<UnkMaterialFXRecord_l926aa0*>(change_);
     fn_710080fb00(Key(change), self);

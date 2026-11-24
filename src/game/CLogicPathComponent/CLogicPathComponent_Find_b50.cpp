@@ -17,7 +17,7 @@ using base::reflection::UnkReflObject;
 extern CStrId g_unk_7172735b90 __attribute__((visibility("hidden")));  // CLogicPathComponent's id
 extern CType g_unk_7172735b98 __attribute__((visibility("hidden")));   // its type
 
-void* fn_7100912674(const CStrId* key) {
+void* CLogicPathComponent_FindById(const CStrId* key) {
     UnkGameManagerIdList* list =
         fn_7100de94cc(g_unk_7101d47310, reinterpret_cast<const u64*>(&g_unk_7172735b90));
     UnkReflObject* obj = fn_710024e2e8(list, const_cast<CStrId*>(key));

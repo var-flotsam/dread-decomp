@@ -77,7 +77,7 @@ __attribute__((always_inline)) static inline void Construct_b52(UnkSPRTutoLogicA
     self->field_0xe8 = nullptr;
 }
 
-void fn_7100a5340c(UnkSPRTutoLogicAction_b52* self) {
+void CSPRTutoLogicAction_Construct(UnkSPRTutoLogicAction_b52* self) {
     Construct_b52(self);
 }
 

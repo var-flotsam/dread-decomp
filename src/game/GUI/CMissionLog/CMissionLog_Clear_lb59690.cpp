@@ -47,7 +47,7 @@ static inline void SetRecords_b59690(CBlackboard* blackboard, const CStrId& sect
     }
 }
 
-bool fn_7100b59690(UnkMissionLog* self, bool flag) {
+bool CMissionLog_StoreEntryListsInBlackboards(UnkMissionLog* self, bool flag) {
     auto* manager = reinterpret_cast<UnkMissionLogGameManager_b59690*>(g_unk_7101d47310);
     CBlackboard* blackboard = &manager->field_0x820;
     SetRecords_b59690(blackboard, base::reflection::refl_GetStrIdTable<0x7100031894>().ids[0x37c],

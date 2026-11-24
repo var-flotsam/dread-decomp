@@ -50,7 +50,7 @@ struct UnkCopiedIds_ldd8540 {
 };
 
 static inline void PlaySound(const UnkStrIdPathRecord_b48* sound) {
-    fn_7101024e28(g_unk_7101d47318, UnkCopiedIds_ldd8540(sound).Pair(), nullptr, false);
+    CSoundManager_PlayPresetFromIdPath(g_unk_7101d47318, UnkCopiedIds_ldd8540(sound).Pair(), nullptr, false);
 }
 
 struct UnkInput_ldd8540 {
@@ -179,7 +179,7 @@ void fn_7100dd8540(UnkFlow_ldd8540* self, f32 dt) {
             fn_71011cdce8(gui, true);
             UnkFlowCallback_ldd8540 accept_callback = {self, reinterpret_cast<void (*)(UnkFlow_ldd8540*)>(fn_7100dd905c)};
             UnkFlowCallback_ldd8540 back_callback = {self, fn_7100dd9150};
-            fn_7100b5fde0(reinterpret_cast<UnkGuiComposition_ovb0090*>(gui), &g_unk_71727bdfd8, &g_unk_71727bdfc8,
+            CPopUpComposition_ShowAcceptBackPrompt(reinterpret_cast<UnkGuiComposition_ovb0090*>(gui), &g_unk_71727bdfd8, &g_unk_71727bdfc8,
                           &g_unk_71727bdfd0, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                           reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, 1.0f);
         } else {

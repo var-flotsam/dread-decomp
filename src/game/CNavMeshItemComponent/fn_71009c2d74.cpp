@@ -55,7 +55,7 @@ UnkReflValue fn_71009c28b8(void*, char* obj, UnkReflValue* const* args) {
         for (u32 i = 0; i < self->sources.count; ++i) {
             UnkSource* src = fn_71009c0bf0(&self->sources, i);
             if (src && src->desc->id == id) {
-                fn_71009c5ab8(src, value);
+                CNavMeshItemStage_AppendIdEntry(src, value);
                 break;
             }
         }

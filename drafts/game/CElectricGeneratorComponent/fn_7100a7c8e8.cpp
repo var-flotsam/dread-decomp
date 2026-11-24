@@ -34,7 +34,7 @@ const CStrId* fn_7100fac818(UnkSubArea* area, u32 index);
 
 struct UnkScenarioLayer_ovb0032;
 struct UnkScenarioKey_ovb0032;
-void* fn_71011a3234(UnkScenarioLayer_ovb0032* layers, u32 index, UnkScenarioKey_ovb0032* const* key);
+void* CScenario_FindLayerValueByKey(UnkScenarioLayer_ovb0032* layers, u32 index, UnkScenarioKey_ovb0032* const* key);
 
 struct UnkBreakableTarget {
     u8 pad_0x0[0x10];
@@ -145,7 +145,7 @@ static inline UnkGeneratorParts_la7c8e8* RecordParts(UnkGeneratorRecord_ovb0120*
     UnkScenarioLayer_ovb0032* layers = reinterpret_cast<UnkScenarioLayer_ovb0032*>(g_unk_7101d47310->field_0x608);
     const CStrId* key = fn_7100fac818(reinterpret_cast<UnkSubArea*>(record), which);
     return static_cast<UnkGeneratorParts_la7c8e8*>(
-        fn_71011a3234(layers, layer, reinterpret_cast<UnkScenarioKey_ovb0032* const*>(key)));
+        CScenario_FindLayerValueByKey(layers, layer, reinterpret_cast<UnkScenarioKey_ovb0032* const*>(key)));
 }
 
 static inline void* PartObject(UnkGeneratorPart_la7c8e8* part) {

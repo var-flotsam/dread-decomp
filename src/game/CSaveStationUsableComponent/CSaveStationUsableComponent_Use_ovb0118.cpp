@@ -113,7 +113,7 @@ bool CSaveStationUsableComponent_AskSaveQuestion(UnkSaveStation_ovb0118* self, U
     CStrId text("#GUI_SAVESTATION_QUESTION", true);
     UnkSaveCallback_ovb0118 accept_callback = {self, fn_7100a8ad50};
     UnkSaveCallback_ovb0118 back_callback = {self, fn_7100a8ad5c};
-    fn_7100b5fde0(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
+    CPopUpComposition_ShowAcceptBackPrompt(gui, &text, &accept, &back, reinterpret_cast<const UnkMapCallback_ovb0090*>(&accept_callback),
                   reinterpret_cast<const UnkMapCallback_ovb0090*>(&back_callback), 0, -1.0f);
     return true;
 }
