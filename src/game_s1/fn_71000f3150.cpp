@@ -36,7 +36,7 @@ void fn_71000eff10();
 void fn_71000f0074(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 void fn_71000f0070();
 
-void fn_71000f3150() {
+void InitTypedRefWriterStatics() {
     new (&g_unk_7101d68140.sources) CStrId("sources", true);
     fn_7100000250(CStrId_Destroy, &g_unk_7101d68140.sources, &g_unk_7101a19000);
     new (&g_unk_7101d68140.binaries) CStrId("binaries", true);

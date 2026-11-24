@@ -33,7 +33,7 @@ void fn_71000ed06c() HIDDEN;
 void fn_71000ed078() HIDDEN;
 void fn_71000eceec(UnkEnumInfo* obj, CStrId* name, void (*fn)(), void* a);
 
-void fn_71000ed100() {
+void RegisterEPersistenceEnumType() {
     {
         CStrId name("base::serialization::EPersistence", true);
         fn_71000eceec(&reinterpret_cast<UnkEnumInfo&>(base::reflection::TypeObject<base::serialization::EPersistence>::object), &name, fn_71000ecda0, nullptr);

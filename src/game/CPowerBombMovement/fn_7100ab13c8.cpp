@@ -122,7 +122,7 @@ void fn_7100ab13c8(UnkPbMovement_lab13c8* self, const UnkVec3f& position, f32 si
         if (!link || !link->owner)
             continue;
         void* collider = link->owner->collider;
-        UnkMatrix44_7100078c9c xf = fn_7100078cd8(position);
+        UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(position);
         if (!fn_7100d57ca0(&shape, &xf, collider, &hits, 0))
             continue;
         for (UnkPbHitRecord_lab13c8 *it = hits.items(), *end = it + hits.count; it != end; ++it)

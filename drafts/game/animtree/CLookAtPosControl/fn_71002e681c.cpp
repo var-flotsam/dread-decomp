@@ -13,7 +13,7 @@ struct UnkAnimatedNode_ovb0138;
 struct UnkNodeOwner_ovb0138;
 UnkNodeOwner_ovb0138* fn_71002dbb7c(UnkAnimatedNode_ovb0138* self);
 
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 
 struct UnkLookAtPosControl_l2e681c;
 
@@ -96,12 +96,12 @@ void fn_71002e681c(UnkLookAtPosControl_l2e681c* self, f32 dt) {
             f32 yaw = dir.x * 0.0f + dir.y + dir.z * 0.0f > 0.0f ? -c : c;
             if (yaw < self->yaw_min || yaw > self->yaw_max) {
                 f32 limit = yaw < self->yaw_min ? self->yaw_min : self->yaw_max;
-                dir = fn_710007a390(UnkVec3f(facing, 0.0f, 0.0f), facing < 0.0f ? limit : -limit);
+                dir = RotateVec3AboutZ(UnkVec3f(facing, 0.0f, 0.0f), facing < 0.0f ? limit : -limit);
                 pos = UnkVec3f(ox + dist * dir.x, oy + dist * dir.y, oz + dist * dir.z);
             }
         }
         if (roll != 0.0f) {
-            dir = fn_710007a390(dir, facing * self->roll);
+            dir = RotateVec3AboutZ(dir, facing * self->roll);
             pos = UnkVec3f(ox + dist * dir.x, oy + dist * dir.y, oz + dist * dir.z);
         }
     }

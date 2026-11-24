@@ -33,7 +33,7 @@ static inline s64 DivideBy1000(s64 x) {
     return (h >> 7) + static_cast<s64>(static_cast<u64>(x) >> 63);
 }
 
-void fn_7100080c40(UnkTimer_7100080c40* self) {
+void ResetTimerAndStartStampToNow(UnkTimer_7100080c40* self) {
     self->elapsed = 0;
     self->field_0x30 = 0.0f;
     self->field_0x34 = -1.0f;
@@ -43,7 +43,7 @@ void fn_7100080c40(UnkTimer_7100080c40* self) {
 }
 
 // Milliseconds since the start stamp (fn_7100080f2c).
-s64 fn_7100080f2c(const UnkTimer_7100080c40* self) {
+s64 GetMillisecondsSinceTimerStart(const UnkTimer_7100080c40* self) {
     s64 now = DivideBy1000(nn::os::ConvertToTimeSpan(nn::os::GetSystemTick()).nanoseconds);
     return (now - self->start) / 1000;
 }

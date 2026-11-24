@@ -28,7 +28,7 @@ struct UnkActorDefFactory;
 struct UnkPowerUpLifeEntry_b52;
 struct UnkPowerUpLifeType_b52;
 
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 
 struct UnkActorPosition {
     f32 x, y, z, w;
@@ -176,7 +176,7 @@ void fn_71005f6a60(UnkKraidNailsAttack_l5f6a60* self) {
         position = UnkVec3f(point.m[3], point.m[7], point.m[11]);
 
     f32 angle = self->entry->angle * 3.141592653589793 / 180.0;
-    UnkVec3f dir = fn_710007a390(UnkVec3f(1.0f, 0.0f, 0.0f), angle);
+    UnkVec3f dir = RotateVec3AboutZ(UnkVec3f(1.0f, 0.0f, 0.0f), angle);
     if (self->owner->xform.GetMatrix().m[2] < 0.0f)
         dir.x = -dir.x;
     f32 inv = InvLengthEps(dir);

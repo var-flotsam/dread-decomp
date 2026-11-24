@@ -12,7 +12,7 @@
 using base::math::CVector3D;
 using base::math::CVector4D;
 
-UnkQuatRet_b0172 fn_71000772fc(const UnkMatrix44* mat);
+UnkQuatRet_b0172 MatrixToQuaternion(const UnkMatrix44* mat);
 
 // fn_71000772fc's conversion, which the original expands in place for a local matrix.
 static inline UnkQuatRet_b0172 ToQuaternion(const f32* m) {
@@ -90,7 +90,7 @@ void fn_7100077620(const UnkMatrix44* mat, CVector3D* translation, CVector4D* ro
     scale->y = sy;
     scale->z = sz;
     if (IsUnitScale(*scale)) {
-        SetRotation(rotation, fn_71000772fc(mat));
+        SetRotation(rotation, MatrixToQuaternion(mat));
     } else {
         SetRotation(rotation, UnscaledRotation(mat));
     }

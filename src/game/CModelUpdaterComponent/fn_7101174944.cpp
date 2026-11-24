@@ -68,8 +68,8 @@ bool fn_710117364c(char* self, const void* name, u32* out) {
 // The same by id (the bone owner's lookup fn_71001c1920), next door.
 struct UnkBoneOwner;
 struct UnkMatrix44;
-bool fn_71001c1920(UnkBoneOwner* self, const u64* id, UnkMatrix44* out);
+bool GetScaledBoneChainMatrixById(UnkBoneOwner* self, const u64* id, UnkMatrix44* out);
 
 bool CModelUpdaterComponent_TryGetEntryTranslationById(char* self, const u64* id, u32* out) {
-    return Translation<UnkBoneOwner, u64, UnkMatrix44, fn_71001c1920>(self, id, out);
+    return Translation<UnkBoneOwner, u64, UnkMatrix44, GetScaledBoneChainMatrixById>(self, id, out);
 }

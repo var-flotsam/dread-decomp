@@ -11,7 +11,7 @@
 using base::reflection::UnkReflValue;
 
 struct UnkHashed_71000e81e8;
-s32 fn_71000e81e8(UnkHashed_71000e81e8* self);
+s32 ComputeClassFieldChecksum(UnkHashed_71000e81e8* self);
 
 struct UnkClassField_0xb0 {
     u8 pad_0x0[0xb0];
@@ -43,7 +43,7 @@ s32 fn_7100097250(UnkClass_l097250* self) {
     UnkClassField_0xb0* end = self->fields + self->count;
     for (UnkClassField_0xb0* f = self->fields; f != end; ++f) {
         if (Persistent(f))
-            s.Put(fn_71000e81e8(reinterpret_cast<UnkHashed_71000e81e8*>(f)));
+            s.Put(ComputeClassFieldChecksum(reinterpret_cast<UnkHashed_71000e81e8*>(f)));
     }
     return s.Finish();
 }

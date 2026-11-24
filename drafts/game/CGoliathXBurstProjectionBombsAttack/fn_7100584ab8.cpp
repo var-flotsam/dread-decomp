@@ -35,7 +35,7 @@ struct UnkMatrix44Words {
     UnkMatrix44Words(const UnkMatrix44Words& other);
 };
 
-UnkMatrix44Words fn_7100076dc4(const UnkMatrix44Words* src);
+UnkMatrix44Words CopyMatrixWithoutTranslation(const UnkMatrix44Words* src);
 
 struct UnkAIReach {
     f32 radius;
@@ -259,8 +259,8 @@ void fn_7100584ab8(UnkBombsAttack_l584ab8* self) {
     if (fn_71011735e8(static_cast<UnkEntity*>(owner->field_0x228), &g_unk_7101649fd8, &node, 0)) {
         pos = UnkVec3f(node.m[3], node.m[7], node.m[11]);
         // The offset turned by the node's rotation.
-        UnkVec3f offset = fn_7100078170(
-            reinterpret_cast<const UnkMat4f*>(AddressOf(fn_7100076dc4(reinterpret_cast<const UnkMatrix44Words*>(&node)))),
+        UnkVec3f offset = TransformPointByMatrixWithPerspectiveDivide(
+            reinterpret_cast<const UnkMat4f*>(AddressOf(CopyMatrixWithoutTranslation(reinterpret_cast<const UnkMatrix44Words*>(&node)))),
             &g_unk_7101649fe0);
         pos.x = offset.x + pos.x;
         pos.y = offset.y + pos.y;

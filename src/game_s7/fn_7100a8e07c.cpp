@@ -18,7 +18,7 @@ static inline void Construct_7100a8e07c(UnkIdPair_7100a8e07c* self) {
     self->field_0x8 = &g_unk_7101d47108->empty;
 }
 
-void fn_7100a8e07c(UnkIdPair_7100a8e07c* self) {
+void ConstructEmptyStrIdPair(UnkIdPair_7100a8e07c* self) {
     Construct_7100a8e07c(self);
 }
 

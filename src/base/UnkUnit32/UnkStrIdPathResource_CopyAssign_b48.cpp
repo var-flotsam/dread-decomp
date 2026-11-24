@@ -8,7 +8,7 @@
 struct UnkStrIdPathResource;
 struct UnkIdPair;
 
-UnkStrIdPathRecord_b48* fn_7100027418(UnkStrIdPathRecord_b48* self, const UnkStrIdPathRecord_b48* other) {
+UnkStrIdPathRecord_b48* CopyAssignAssetLink(UnkStrIdPathRecord_b48* self, const UnkStrIdPathRecord_b48* other) {
     if (self != other) {
         UnkStrIdPathRecord_b48 tmp;
         fn_7100027464(&tmp, other);

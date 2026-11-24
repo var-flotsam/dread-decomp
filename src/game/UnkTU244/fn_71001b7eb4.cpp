@@ -62,7 +62,7 @@ void fn_71001b7eb4(UnkLookAtView* view) {
     f32 roll = self->field_0x27e ? self->aim_roll : self->roll;
     if (fabsf(roll) > 0.001f) {
         UnkMatrix44 rotation = fn_710007966c(&self->dir, -roll);
-        self->up = fn_7100078170(reinterpret_cast<const UnkMat4f*>(&rotation), &self->up);
+        self->up = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&rotation), &self->up);
         ux = self->up.x;
         uy = self->up.y;
         uz = self->up.z;

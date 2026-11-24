@@ -17,7 +17,7 @@ struct UnkNamedObjectMap {
     base::UnkStrIdHashMap<UnkObjectsByName> map;
 };
 
-__attribute__((flatten)) void fn_71000875d0(UnkNamedObjectMap* self, UnkNamedObject_0875d0* object) {
+__attribute__((flatten)) void InsertObjectIntoStrIdMapByItsId(UnkNamedObjectMap* self, UnkNamedObject_0875d0* object) {
     u64 value = reinterpret_cast<u64>(object);
     base::refl_StrIdHashInsert<UnkObjectsByName>(&self->map, object->vf_0x18(), &value);
 }

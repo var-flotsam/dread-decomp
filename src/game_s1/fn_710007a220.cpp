@@ -16,7 +16,7 @@ static inline f32 WrapAngle(f32 v) {
     return a;
 }
 
-UnkVec3f fn_710007a220(const UnkVec3f* v) {
+UnkVec3f WrapAngles3ToPi(const UnkVec3f* v) {
     f32 x = WrapAngle(v->x);
     f32 y = WrapAngle(v->y);
     f32 z = WrapAngle(v->z);

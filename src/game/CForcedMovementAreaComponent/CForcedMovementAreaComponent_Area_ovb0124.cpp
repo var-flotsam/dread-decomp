@@ -503,7 +503,7 @@ struct UnkAreaShaped_ovb0124 {
 bool CForcedMovementAreaComponent_QueryNamedColliderHit(UnkForcedAreaQuery_ovb0124* self, const CStrId* name) {
     UnkGameManagerSub_0x608* scenario = g_unk_7101d47310->field_0x608;
     UnkTree* tree = scenario ? static_cast<UnkTree*>(scenario->field_0x820) : nullptr;
-    UnkMatrix44_7100078c9c xf = fn_7100078cd8(self->owner->Position());
+    UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(self->owner->Position());
     UnkAreaHitQuery_ovb0124 query(self->owner->Position());
     void* object = fn_710043acb4(self->owner);
     if (!object)

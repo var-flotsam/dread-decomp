@@ -5,7 +5,7 @@
 #include "base/UnkMatrix44Words.h"
 #include "types.h"
 
-UnkMatrix44Words fn_7100076dc4(const UnkMatrix44Words* src) {
+UnkMatrix44Words CopyMatrixWithoutTranslation(const UnkMatrix44Words* src) {
     UnkMatrix44Words r;
     UnkMatrix44Words* dst = &r;
     dst->m[0] = src->m[0];

@@ -108,7 +108,7 @@ struct UnkStruct_7172a0768c {
 };
 void fn_71011258dc(void* self);  // its destructor, as registered
 
-void fn_7101132ba0() {
+void InitSpawnPointComponentStatics() {
     InitHeaderIds(&g_unk_7172a08680.ids);
     InitId(&g_unk_7172a06900, "SPAWNPOINT");
     InitProperty(&g_unk_7172a06908, g_unk_7101cb2a58, g_unk_71726db788, "Enabled", TypeOf<fn_710000d228>(), fn_710112f064, fn_7101120afc);

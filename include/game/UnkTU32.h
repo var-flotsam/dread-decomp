@@ -18,7 +18,7 @@ UnkStrIdPathResource* fn_7100027118(UnkStrIdPathResource* self, UnkStrIdPathReso
 
 bool fn_710002589c(void* link, UnkLinkTarget127_b66a1* target, u32 mode, void* extra);
 void fn_7100027464(UnkStrIdPathRecord_b48* self, const UnkStrIdPathRecord_b48* other);  // Copy constructor.
-void fn_710002572c(void* member);  // A member's destructor (shared by several classes).
-void fn_7100025a98(void* record);
+void DetachTreeNodeFromParentAndChildren(void* member);  // A member's destructor (shared by several classes).
+void ResetXformToIdentity(void* record);
 void fn_7100026f70(UnkIdPair* pair);  // An id pair's destructor: releases both ids.
 extern base::reflection::CType g_unk_7101d4ec50;

@@ -169,7 +169,7 @@ bool fn_71009ed53c(UnkSamusMovement_l9ed53c* self, const CVector3D* pos, const C
 
     UnkWallQuery_l9ed53c query(*pos);
     u32 mask = self->mask;
-    UnkMatrix44_7100078c9c xf = fn_7100078cd8(*reinterpret_cast<const UnkVec3f*>(pos));
+    UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(*reinterpret_cast<const UnkVec3f*>(pos));
     CVector2D delta;
     f32 x = dir->x;
     f32 y = dir->y;

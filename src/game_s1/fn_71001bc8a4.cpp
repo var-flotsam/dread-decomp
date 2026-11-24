@@ -16,14 +16,14 @@ struct UnkXformHolder_0x84 {
     UnkXform xform;
 };
 
-void fn_71001bc8a4(UnkXformHolder_0x84* self, const UnkVec3f* v) {
+void SetXformHolderAngleIfEnabled(UnkXformHolder_0x84* self, const UnkVec3f* v) {
     if (self->active_0x81) {
         self->xform.SetAngle(*v);
         self->dirty_0x82 = 1;
     }
 }
 
-void fn_71001bc740(UnkXformHolder_0x84* self, const UnkVec3f* v) {
+void SetXformTranslationFacingNewPosition(UnkXformHolder_0x84* self, const UnkVec3f* v) {
     if (self->face_0x80) {
         UnkXform* x = &self->xform;
         UnkVec3f t = x->GetTranslation();

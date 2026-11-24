@@ -18,7 +18,7 @@ struct UnkCopyPair_l01e3b4 {
 struct UnkStrIdPathPairVec_b45a1;
 
 static inline void Reserve_l01e3b4(base::global::CRntVector<UnkCopyPair_l01e3b4>* self, u32 n) {
-    fn_710001e4e8(reinterpret_cast<UnkStrIdPathPairVec_b45a1*>(self), n);
+    ReserveStrIdPairVectorCapacity(reinterpret_cast<UnkStrIdPathPairVec_b45a1*>(self), n);
 }
 
 void fn_710001e3b4(base::global::CRntVector<UnkCopyPair_l01e3b4>* self,

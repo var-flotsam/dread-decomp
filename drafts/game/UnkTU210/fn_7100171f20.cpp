@@ -119,7 +119,7 @@ void fn_7100171f20(UnkEmitter_l171f20* self, const UnkVec3f& dir) {
     fwd.z = 0.0f;
     UnkVec3f up = dir;
     if (!self->field_0x43a) {
-        up = fn_7100077c04(self->field_0x3f0, up);
+        up = TransformDirectionByMatrix3x3(self->field_0x3f0, up);
         f32 inv = 1.0f / (sqrtf(up.x * up.x + up.y * up.y + up.z * up.z) + 0.0001f);
         up.x *= inv;
         up.y *= inv;

@@ -243,12 +243,12 @@ bool fn_710000af7c(UnkBlendSpace* self) {
                 bool blend = __builtin_memcmp(name + len - 4, "mbls", 4) == 0;
                 if (blend) {
                     UnkAnimIds ids{*reinterpret_cast<const CStrId*>(g_unk_7101d4c138), a->path};
-                    UnkAssetResRef found = fn_710002038c(g_unk_7101d4bbc0,
+                    UnkAssetResRef found = MakeResourceFromRegistryFactory(g_unk_7101d4bbc0,
                                                          reinterpret_cast<const UnkStrIdPathPair*>(&ids), true, nullptr);
                     Resolve(a, found);
                 } else {
                     UnkAnimIds ids{*reinterpret_cast<const CStrId*>(g_unk_7101d4b418), a->path};
-                    UnkAssetResRef found = fn_710002038c(g_unk_7101d4bbc0,
+                    UnkAssetResRef found = MakeResourceFromRegistryFactory(g_unk_7101d4bbc0,
                                                          reinterpret_cast<const UnkStrIdPathPair*>(&ids), true, nullptr);
                     Resolve(a, found);
                 }

@@ -129,6 +129,6 @@ bool fn_71009225b8(UnkSlidingWithCollisions_ovb0133* self, f32 t) {
     UnkTree* tree = static_cast<UnkTree*>(g_unk_7101d47310->field_0x608->field_0x820);
     UnkSlideQuery_ovb0133 query(self->owner->Position(), self->owner);
     UnkShape* shape = reinterpret_cast<UnkSlideShaped_ovb0133*>(self->collision_object->target)->shape;
-    UnkMatrix44_7100078c9c xf = fn_7100078cd8(reinterpret_cast<const UnkVec3f&>(point.v));
+    UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(reinterpret_cast<const UnkVec3f&>(point.v));
     return !fn_7100d5b484(tree, 8, shape, reinterpret_cast<const UnkMtx44*>(&xf), &query, 1);
 }

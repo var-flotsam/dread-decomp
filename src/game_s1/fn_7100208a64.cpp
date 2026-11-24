@@ -8,7 +8,7 @@
 #include "game/UnkXformNode.h"
 
 struct UnkXformHolder_0x84;
-void fn_71001bc8a4(UnkXformHolder_0x84* self, const UnkVec3f* v);
+void SetXformHolderAngleIfEnabled(UnkXformHolder_0x84* self, const UnkVec3f* v);
 void fn_71001bc69c(UnkXformHolder_0x84* self);
 
 struct UnkLinkedXformNode;
@@ -32,12 +32,12 @@ void fn_7100208a64(UnkLinkedXformNode* self, bool on) {
         {
             UnkXformHolder_0x84* target = self->Target();
             UnkVec3f t = self->Xform()->GetTranslation();
-            fn_71001bc740(target, &t);
+            SetXformTranslationFacingNewPosition(target, &t);
         }
         {
             UnkXformHolder_0x84* target = self->Target();
             UnkVec3f a = self->GetAngle();
-            fn_71001bc8a4(target, &a);
+            SetXformHolderAngleIfEnabled(target, &a);
         }
         fn_71001bc69c(self->Target());
     }

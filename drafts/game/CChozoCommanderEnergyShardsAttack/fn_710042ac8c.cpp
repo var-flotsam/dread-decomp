@@ -29,7 +29,7 @@ struct UnkMatrix44Words {
     UnkMatrix44Words(const UnkMatrix44Words& other);
 };
 
-UnkMatrix44Words fn_7100076dc4(const UnkMatrix44Words* src);
+UnkMatrix44Words CopyMatrixWithoutTranslation(const UnkMatrix44Words* src);
 UnkVec3f fn_7100076acc(const UnkXform* x);  // The rotation angles of a transform.
 UnkVec3f fn_710007a7f0(const UnkVec3f& dir);  // Direction to rotation angles.
 
@@ -139,7 +139,7 @@ void fn_710042ac8c(UnkShardsAttack_42ac8c* self) {
         // From the launch point, along its x axis.
         position = UnkVec3f(launch.m[3], launch.m[7], launch.m[11]);
         angles = fn_7100076acc(reinterpret_cast<const UnkXform*>(&launch));
-        dir = XAxis(fn_7100076dc4(reinterpret_cast<const UnkMatrix44Words*>(&launch)));
+        dir = XAxis(CopyMatrixWithoutTranslation(reinterpret_cast<const UnkMatrix44Words*>(&launch)));
     } else {
         f32 inv = 1.0f / (length + 0.0001f);
         dir = UnkVec3f(dir.x * inv, dir.y * inv, dir.z * inv);

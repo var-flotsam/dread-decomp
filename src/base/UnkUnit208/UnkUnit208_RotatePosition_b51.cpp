@@ -22,7 +22,7 @@ struct UnkRotator_710016c83c {
 
 static inline void Rotate(UnkRotator_710016c83c* self, u32 index) {
     const UnkVec3f& old = self->positions->values[index];
-    UnkVec3f p = fn_7100077c04(self->rotation, old);
+    UnkVec3f p = TransformDirectionByMatrix3x3(self->rotation, old);
     self->deltas->values[index] = p - old;
     self->positions->values[index] = p;
 }

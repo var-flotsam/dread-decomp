@@ -132,7 +132,7 @@ bool fn_7100d6675c(UnkLeafVisitor<UnkBox2D, bool>* self, const UnkTreeNode* node
                 value = 3;
             } else {
                 auto* pool = reinterpret_cast<UnkPool_0x48*>(const_cast<void*>(query->field_0x18));
-                const auto* polygon = reinterpret_cast<const UnkPolygon2D*>(fn_710012431c(pool, LeafHandle(node)));
+                const auto* polygon = reinterpret_cast<const UnkPolygon2D*>(ResolveHandleToPoolSlot(pool, LeafHandle(node)));
                 value = query->vf_0x10(UnkPolygonHit{polygon, LeafHandle(node), *p}).value;
             }
             self->result.value |= value;

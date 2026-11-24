@@ -179,7 +179,7 @@ void fn_71009244a4(UnkMagnetSurface_ovb0137* self) {
     }
     UnkSurfaceShape_ovb0137* shape = tracker->shape;
     const UnkMatrix44_7100078c9c& m =
-        fn_7100078cd8(Offset(shape->vf_0x68(), static_cast<UnkSurfaceOwner_ovb0137*>(self->owner)));
+        BuildTranslationMatrixFromVec3(Offset(shape->vf_0x68(), static_cast<UnkSurfaceOwner_ovb0137*>(self->owner)));
     UnkCopyMatrix(reinterpret_cast<UnkMatrix44*>(&shape->transform), reinterpret_cast<const UnkMatrix44&>(m));
     shape->vf_0x80();
     reinterpret_cast<UnkSurfaceCollider_ovb0137*>(

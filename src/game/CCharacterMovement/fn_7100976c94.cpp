@@ -81,7 +81,7 @@ bool fn_7100976c94(UnkGrappleTarget* target, const UnkVec3f* pos, u32 value, voi
     shape->Scale(scale);
     bool hit;
     {
-        UnkMatrix44_7100078c9c xf = fn_7100078cd8(*pos);
+        UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(*pos);
         hit = fn_7100d5b484(static_cast<UnkTree*>(tracker), value, reinterpret_cast<UnkShape*>(shape),
                             reinterpret_cast<const UnkMtx44*>(&xf), nullptr, flag);
     }

@@ -10,7 +10,7 @@ extern "C" void __cxa_guard_release(u64* guard);
 extern u64 g_unk_717272d618;
 extern u8 g_unk_717272d610[];
 
-void fn_71005b9d70() {
+void InitCollisionCamera028StrIdOnce() {
     if (!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_71726eb3d8), __ATOMIC_ACQUIRE) & 1)) {
         if (__cxa_guard_acquire(&g_unk_71726eb3d8)) {
             new (g_unk_71726eb3d0) CStrId("collision_camera_028", true);
@@ -20,7 +20,7 @@ void fn_71005b9d70() {
     }
 }
 
-void fn_71006e0f90() {
+void GuardedInitV3WanderCenterStrId() {
     if (!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_717270aea8), __ATOMIC_ACQUIRE) & 1)) {
         if (__cxa_guard_acquire(&g_unk_717270aea8)) {
             new (g_unk_717270aea0) CStrId("v3WanderCenter", true);
@@ -30,7 +30,7 @@ void fn_71006e0f90() {
     }
 }
 
-void fn_7100898e80() {
+void InitFinishedStrIdOnce() {
     if (!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_717272d618), __ATOMIC_ACQUIRE) & 1)) {
         if (__cxa_guard_acquire(&g_unk_717272d618)) {
             new (g_unk_717272d610) CStrId("finished", true);

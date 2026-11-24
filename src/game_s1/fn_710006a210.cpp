@@ -38,7 +38,7 @@ void fn_710006a0f0() HIDDEN;
 void fn_710006a0fc() HIDDEN;
 void fn_710006a108() HIDDEN;
 void fn_710006a114() HIDDEN;
-void fn_710006a210() {
+void RegisterEEventPropsAndTEventPropsFlagsTypes() {
     {
         CStrId name("EEventProps", true);
         fn_7100069e20(&base::reflection::TypeObject<EEventProps, UnkEnumInfo>::object, &name, fn_7100069a34, nullptr);

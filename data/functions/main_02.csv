@@ -664,7 +664,7 @@ address,size,name,name_source,subsystem,status
 0x7100217b80,4,base::reflection::ValueOps<engine::utils::ELightPreset>::Destroy,reflection,engine/reflection,O
 0x7100217b84,20,base::reflection::ValueOps<engine::utils::ELightPreset>::CopyAssign,reflection,engine/reflection,O
 0x7100217b98,20,base::reflection::ValueOps<engine::utils::ELightPreset>::MoveAssign,reflection,engine/reflection,O
-0x7100217bb0,664,fn_7100217bb0,unknown,engine/reflection?,O
+0x7100217bb0,664,InitMaterialConstantColorAndLightPresetStatics,inferred,engine/reflection?,O
 0x7100217e50,12,fn_7100217e50,unknown,unknown,O
 0x7100217e60,124,fn_7100217e60,unknown,unknown,O
 0x7100217ee0,124,fn_7100217ee0,unknown,game?,O
@@ -862,10 +862,10 @@ address,size,name,name_source,subsystem,status
 0x710021c2f8,4,base::reflection::ValueOps<media::EMovieStatus>::Destroy,reflection,engine/reflection,O
 0x710021c2fc,20,base::reflection::ValueOps<media::EMovieStatus>::CopyAssign,reflection,engine/reflection,O
 0x710021c310,20,base::reflection::ValueOps<media::EMovieStatus>::MoveAssign,reflection,engine/reflection,O
-0x710021c330,412,fn_710021c330,unknown,media?,O
+0x710021c330,412,InitEMovieStatusStatics,inferred,media?,O
 0x710021c4cc,828,fn_710021c4cc,unknown,media?,U
 0x710021c808,212,fn_710021c808,unknown,media?,O
-0x710021c8dc,252,fn_710021c8dc,unknown,media?,O
+0x710021c8dc,252,FreeKeyedStrIdArrays,inferred,media?,O
 0x710021c9d8,224,fn_710021c9d8,unknown,media?,O
 0x710021cab8,484,fn_710021cab8,unknown,media?,O
 0x710021cc9c,228,fn_710021cc9c,unknown,media?,U
@@ -2271,7 +2271,7 @@ address,size,name,name_source,subsystem,status
 0x710024b780,1672,fn_710024b780,unknown,unknown,O
 0x710024be10,3216,fn_710024be10,unknown,unknown,O
 0x710024caa0,404,fn_710024caa0,unknown,engine/reflection?,O
-0x710024cc40,5800,fn_710024cc40,unknown,engine/reflection?,O
+0x710024cc40,5800,InitActorCollectionTypeStatics,inferred,engine/reflection?,O
 0x710024e2e8,220,fn_710024e2e8,unknown,unknown,U
 0x710024e3c4,4,CActorComponent::refl_AddAttributes,reflection,game/components,O
 0x710024e3c8,244,CActorComponent::refl_GetClass,reflection,game/components,O
@@ -2929,7 +2929,7 @@ address,size,name,name_source,subsystem,status
 0x7100264100,284,fn_7100264100,unknown,engine/reflection?,O
 0x710026421c,412,fn_710026421c,unknown,engine/reflection?,O
 0x71002643b8,216,fn_71002643b8,unknown,game/world?,O
-0x7100264490,384,fn_7100264490,unknown,unknown,O
+0x7100264490,384,InitCActorSublayerStatics,inferred,unknown,O
 0x7100264610,140,fn_7100264610,unknown,unknown,O
 0x71002646a0,140,fn_71002646a0,unknown,unknown,O
 0x7100264730,140,fn_7100264730,unknown,unknown,O
@@ -3414,7 +3414,7 @@ address,size,name,name_source,subsystem,status
 0x710027990c,336,fn_710027990c,unknown,ai/navmesh?,O
 0x7100279a5c,336,fn_7100279a5c,unknown,ai/navmesh?,O
 0x7100279bac,244,fn_7100279bac,unknown,ai/navmesh?,O
-0x7100279ca0,308,fn_7100279ca0,unknown,ai/navmesh?,O
+0x7100279ca0,308,PushBackNavMeshRecordCopy,inferred,ai/navmesh?,O
 0x7100279dd4,472,CNavMesh_GrowItemArrayAt,inferred,ai/navmesh?,O
 0x7100279fac,672,fn_7100279fac,unknown,ai/navmesh?,U
 0x710027a24c,200,fn_710027a24c,unknown,ai/navmesh?,O
@@ -3482,7 +3482,7 @@ address,size,name,name_source,subsystem,status
 0x71002803a4,440,fn_71002803a4,unknown,ai/navmesh?,U
 0x710028055c,580,fn_710028055c,unknown,ai/navmesh?,U
 0x71002807a0,404,fn_71002807a0,unknown,ai/navmesh?,O
-0x7100280934,536,fn_7100280934,unknown,ai/navmesh?,O
+0x7100280934,536,InvokeDeferredCallbacksU16,inferred,ai/navmesh?,O
 0x7100280b4c,336,fn_7100280b4c,unknown,ai/navmesh?,O
 0x7100280c9c,536,fn_7100280c9c,unknown,ai/navmesh?,O
 0x7100280eb4,336,fn_7100280eb4,unknown,ai/navmesh?,O
@@ -3551,7 +3551,7 @@ address,size,name,name_source,subsystem,status
 0x710028795c,4,fn_710028795c,unknown,unknown,O
 0x7100287960,140,fn_7100287960,unknown,unknown,O
 0x71002879ec,1020,fn_71002879ec,unknown,ai/navmesh?,U
-0x7100287de8,576,fn_7100287de8,unknown,unknown,O
+0x7100287de8,576,GetOrGrowOwnedListAt,inferred,unknown,O
 0x7100288028,172,fn_7100288028,unknown,unknown,O
 0x71002880d4,508,fn_71002880d4,unknown,unknown,O
 0x71002882d0,80,fn_71002882d0,unknown,unknown,O

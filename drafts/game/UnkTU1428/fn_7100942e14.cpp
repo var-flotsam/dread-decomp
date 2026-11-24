@@ -104,5 +104,5 @@ void fn_7100942e14(UnkBallMovement_l942e14* self, const UnkVec3f* from, const Un
     }
     Roll_l942e14(rot, turns, back, forward);
     rot->z += step;
-    *rot = fn_710007a220(rot);
+    *rot = WrapAngles3ToPi(rot);
 }

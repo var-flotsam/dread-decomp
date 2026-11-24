@@ -23,6 +23,6 @@ u32 fn_710009d110(UnkHashed_710009d110* self) {
     s.Begin(0x14);
     s.Put(self->inner_0x8->field_0x30);
     s.Put(self->node_0x78 ? self->node_0x78->inner_0x8->field_0x30 : (u64)-1);
-    s.Put(self->ref_0x80 ? fn_7100093bb8(self->ref_0x80) : (u32)-1);
+    s.Put(self->ref_0x80 ? HashFlaggedAttributeKeysAndValues(self->ref_0x80) : (u32)-1);
     return s.Finish();
 }

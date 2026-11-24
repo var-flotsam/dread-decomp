@@ -6,13 +6,13 @@
 #include "types.h"
 
 struct UnkObj_7101072a80;
-u32 fn_710019536c(UnkObj_7101072a80* obj);
+u32 ComputeSubtreeDepth(UnkObj_7101072a80* obj);
 
 typedef UnkObj_7101072a80 UnkDepthNode;
 
 // Deeper subtrees sort first.
 struct UnkDepthOrder {
-    bool operator()(UnkDepthNode* a, UnkDepthNode* b) const { return fn_710019536c(a) > fn_710019536c(b); }
+    bool operator()(UnkDepthNode* a, UnkDepthNode* b) const { return ComputeSubtreeDepth(a) > ComputeSubtreeDepth(b); }
 };
 
 // The first element of the sorted range [first, last) that `value` sorts before.

@@ -5,7 +5,7 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
-void fn_710001e62c(base::global::CRntVector<UnkStrIdPathPair>* self, u32 count) {
+void TruncateStrIdPathPairVector(base::global::CRntVector<UnkStrIdPathPair>* self, u32 count) {
     for (u32 i = count; i < self->count; ++i)
         self->data[i].~UnkStrIdPathPair();
     self->count = count;

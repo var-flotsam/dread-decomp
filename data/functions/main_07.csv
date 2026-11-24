@@ -2394,7 +2394,7 @@ address,size,name,name_source,subsystem,status
 0x710077bbc4,12,fn_710077bbc4,unknown,unknown,O
 0x710077bbd0,264,fn_710077bbd0,unknown,unknown,O
 0x710077bcd8,4,fn_710077bcd8,unknown,unknown,O
-0x710077bce0,2316,fn_710077bce0,unknown,engine/reflection?,O
+0x710077bce0,2316,InitCentralUnitComponentStatics,inferred,engine/reflection?,O
 0x710077c5ec,4,CCentralUnitComponentDef::refl_AddAttributes,reflection,game,O
 0x710077c5f0,244,CCentralUnitComponentDef::refl_GetClass,reflection,game,O
 0x710077c6e4,4,CCentralUnitComponentDef::refl_AddFields,reflection,game,O
@@ -3090,7 +3090,7 @@ address,size,name,name_source,subsystem,status
 0x710079c78c,260,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::MoveAssign",reflection,engine/reflection,O
 0x710079c890,348,fn_710079c890,unknown,unknown,U
 0x710079c9ec,360,fn_710079c9ec,unknown,unknown,O
-0x710079cb54,356,fn_710079cb54,unknown,unknown,O
+0x710079cb54,356,ShrinkU32StrIdTableToCount,inferred,unknown,O
 0x710079ccb8,304,CCharClassCollisionComponent_ColMatDictEraseAt,inferred,unknown,O
 0x710079cde8,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::Begin",reflection,engine/reflection,O
 0x710079cdf4,20,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::End",reflection,engine/reflection,O
@@ -3407,9 +3407,9 @@ address,size,name,name_source,subsystem,status
 0x71007adb3c,20,fn_71007adb3c,unknown,game/components?,O
 0x71007adb50,80,fn_71007adb50,unknown,game/components?,O
 0x71007adba0,72,fn_71007adba0,unknown,game/components?,O
-0x71007adbe8,80,fn_71007adbe8,unknown,game/components?,O
+0x71007adbe8,80,InvokeCutsceneComponentTryLaunchCutscene,inferred,game/components?,O
 0x71007adc38,68,fn_71007adc38,unknown,game/components?,O
-0x71007adc7c,408,fn_71007adc7c,unknown,game/components?,O
+0x71007adc7c,408,PushSetTakePlayModeParamTypes,inferred,game/components?,O
 0x71007ade14,148,fn_71007ade14,unknown,game/components?,O
 0x71007adea8,136,fn_71007adea8,unknown,game/components?,O
 0x71007adf30,220,base::reflection::refl_GetType<CCutscene*>,reflection,engine/reflection,O

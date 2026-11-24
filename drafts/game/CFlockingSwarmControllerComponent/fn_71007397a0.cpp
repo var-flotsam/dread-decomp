@@ -6,7 +6,7 @@
 #include "types.h"
 
 // As src/game_s1/fn_7100078c9c.cpp defines it: v turned by `angle` about the z axis.
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 
 struct UnkSwarmMember_l7397a0 {
     u8 pad_0x0[0x2c];
@@ -59,7 +59,7 @@ void fn_71007397a0(UnkFlockingSwarm_l7397a0* self, UnkSwarmGroup_l7397a0* group)
         member->field_0x44 = distance;
         member->field_0x48 = RandomRange_l7397a0(0.0f, kTwoPi);
         UnkVec3f offset(radius * distance, 0.0f, 0.0f);
-        offset = fn_710007a390(offset, memberAngle);
+        offset = RotateVec3AboutZ(offset, memberAngle);
         offset.z = RandomRange_l7397a0(-25.0f, 25.0f);
         member->offset = offset;
         member->field_0x6c = member->field_0x70 = self->settings->field_0x468;

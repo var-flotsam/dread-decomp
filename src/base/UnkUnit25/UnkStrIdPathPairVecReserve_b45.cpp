@@ -49,7 +49,7 @@ struct UnkStrIdPathPairVec_b45a1 {
     base::UnkAllocator* allocator;
 };
 
-void fn_710001e4e8(UnkStrIdPathPairVec_b45a1* self, u32 capacity) {
+void ReserveStrIdPairVectorCapacity(UnkStrIdPathPairVec_b45a1* self, u32 capacity) {
     if (self->capacity < capacity) {
         auto* p = static_cast<UnkMovedPair_b45a1*>(
             self->allocator->vf_0x40((u64)capacity * sizeof(UnkMovedPair_b45a1), 8, self->flags));

@@ -65,10 +65,10 @@ struct UnkRegistryKey_b0248 {
 };
 
 // Lists the paths below one path, recursing `depth` levels (not matched yet).
-bool fn_7100087b0c(UnkRegistry_b0248* self, UnkRegistryHandler_b0248* handler, UnkListedPath_b0248* path, u32 depth,
+bool ListRegistryHandlerPathsAtDepth(UnkRegistry_b0248* self, UnkRegistryHandler_b0248* handler, UnkListedPath_b0248* path, u32 depth,
                    UnkFilePathList_b0248* out);
 
-bool fn_71000878f0(UnkRegistry_0x70* registry, const UnkStrPair_0x10* key_, u32 flags, void* out_) {
+bool AppendRegistryPathsListedBelowPath(UnkRegistry_0x70* registry, const UnkStrPair_0x10* key_, u32 flags, void* out_) {
     auto* self = reinterpret_cast<UnkRegistry_b0248*>(registry);
     auto* key = reinterpret_cast<const UnkRegistryKey_b0248*>(key_);
     auto* out = static_cast<base::UnkVtableList<UnkListedPair_b0248>*>(out_);
@@ -90,7 +90,7 @@ bool fn_71000878f0(UnkRegistry_0x70* registry, const UnkStrPair_0x10* key_, u32 
     if (!handler)
         return false;
     UnkFilePathList_b0248 found;
-    bool ok = fn_7100087b0c(self, handler, const_cast<UnkListedPath_b0248*>(&key->path), flags, &found);
+    bool ok = ListRegistryHandlerPathsAtDepth(self, handler, const_cast<UnkListedPath_b0248*>(&key->path), flags, &found);
     if (ok) {
         for (UnkListedPath_b0248* n = found.head; n; n = n->next) {
             UnkPairSlot_b0248 temp;

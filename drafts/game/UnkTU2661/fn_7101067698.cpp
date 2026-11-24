@@ -258,7 +258,7 @@ bool fn_7101067698(UnkCutscene_l067698* self, const CFilePathStrId* path) {
                 CStrId type = ActionSetType();
                 UnkResourceIds_l067698 ids{type, self->action_set_path};
                 UnkAssetResRef found =
-                    fn_710002038c(registry, reinterpret_cast<const UnkStrIdPathPair*>(&ids), true, nullptr);
+                    MakeResourceFromRegistryFactory(registry, reinterpret_cast<const UnkStrIdPathPair*>(&ids), true, nullptr);
                 self->action_set = AsActionSet(found);
             }
 

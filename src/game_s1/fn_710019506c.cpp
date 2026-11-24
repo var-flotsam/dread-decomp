@@ -39,10 +39,10 @@ struct UnkObj_7101072a80 {
 };
 
 // The depth of the tree below `obj`, counting it: 1 for a leaf.
-u32 fn_710019536c(UnkObj_7101072a80* obj) {
+u32 ComputeSubtreeDepth(UnkObj_7101072a80* obj) {
     u32 depth = 0;
     for (UnkObj_7101072a80 **it = obj->children, **end = it + obj->child_count; it != end; ++it) {
-        u32 d = fn_710019536c(*it);
+        u32 d = ComputeSubtreeDepth(*it);
         if (d > depth)
             depth = d;
     }

@@ -209,6 +209,6 @@ void fn_71006d4fdc(UnkTakumakuAI4_b0012* self, const u64* key, f32* inout) {
     fn_71007142e8(&motion.motion);
     Sample(timeline, &motion);
     UnkVec3f offset = motion.Translation();
-    UnkVec3f moved = fn_7100078170(&rotation, &offset);
+    UnkVec3f moved = TransformPointByMatrixWithPerspectiveDivide(&rotation, &offset);
     *inout = fabsf(moved.x);
 }

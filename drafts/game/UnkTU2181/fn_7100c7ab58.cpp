@@ -96,7 +96,7 @@ void fn_7100c7ab58(UnkRecord_lc7ab58* self, CRntFile* file) {
     UnkRegistry_7100d92158* registry = g_unk_7101d4bbc0;
     UnkResourceIds_lc7ab58 ids{*reinterpret_cast<const CStrId*>(g_unk_7101d4f338), path};
     UnkAssetResRef found =
-        fn_710002038c(registry, reinterpret_cast<const UnkStrIdPathPair*>(&ids), true, nullptr);
+        MakeResourceFromRegistryFactory(registry, reinterpret_cast<const UnkStrIdPathPair*>(&ids), true, nullptr);
     // The resource, kept (counted) only when it is a curve.
     UnkAssetResRef kept{nullptr};
     if (UnkCountedResource* r = found.ptr) {

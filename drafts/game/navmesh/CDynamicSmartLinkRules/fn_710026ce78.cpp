@@ -78,7 +78,7 @@ struct UnkSmartLinkRules_l26ce78 {
 
 bool fn_710026ce78(UnkSmartLinkRules_l26ce78* self) {
     {
-        UnkPathPairTemp_b45a1 s = fn_710001ab24(self->path);
+        UnkPathPairTemp_b45a1 s = MakePathPairFromRegistryCallback(self->path);
         base::global::UnkStringData* data = static_cast<base::global::UnkStringData*>(s.path);
         ++data->reads;
         self->name = static_cast<CStrId&&>(UnkBuiltStrId_l26ce78(data->String()).id);

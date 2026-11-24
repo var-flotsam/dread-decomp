@@ -15,7 +15,7 @@ static inline UnkGuiPos Transform_b53(const UnkGuiItemState* state, const UnkGui
     r.y = state->scale_y * r.y;
     if (state->angle != 0.0f) {
         r.y = fn_7100132ff0() * r.y;
-        UnkVec2Result t = fn_710007a2c0(*reinterpret_cast<const UnkVec2Result*>(&r), state->angle);
+        UnkVec2Result t = RotateVec2ByAngle(*reinterpret_cast<const UnkVec2Result*>(&r), state->angle);
         r.x = t.x;
         r.y = t.y;
         r.y = fn_7100132fe0() * r.y;

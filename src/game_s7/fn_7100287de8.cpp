@@ -6,7 +6,7 @@
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include "game_s2/UnkOwnedList.h"
 
-UnkOwnedList* fn_7100287de8(base::global::CRntVector<UnkOwnedList>* self, u32 index) { return &self->GrowAt(index); }
+UnkOwnedList* GetOrGrowOwnedListAt(base::global::CRntVector<UnkOwnedList>* self, u32 index) { return &self->GrowAt(index); }
 
 UnkOwnedList* fn_7100738c9c(base::global::CRntVector<UnkOwnedList>* self, u32 index) { return &self->GrowAt(index); }
 

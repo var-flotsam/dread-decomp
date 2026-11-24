@@ -45,10 +45,10 @@ void fn_71007adb3c();
 extern const base::reflection::CType g_unk_71727199c0 __attribute__((visibility("hidden")));
 void fn_71007adb50();
 void fn_71007adba0();
-base::reflection::UnkReflValue fn_71007adbe8(void*, char* obj);
+base::reflection::UnkReflValue InvokeCutsceneComponentTryLaunchCutscene(void*, char* obj);
 void fn_71007a55c8(CFunction* fn, const char* name);
 base::reflection::UnkReflValue fn_71007ade14(void*, char* obj, base::reflection::UnkReflValue* const* args);
-void fn_71007adc7c(CFunction* fn);
+void PushSetTakePlayModeParamTypes(CFunction* fn);
 void fn_71007a5744(CFunction* fn, const char* name);
 void fn_71007ae270();
 base::reflection::UnkReflValue fn_71007ae2bc(void*, char* obj, base::reflection::UnkReflValue* const* args);
@@ -205,7 +205,7 @@ void fn_71007a2fb4(CClass* cls) {
         fn->return_type = fn_710000d228();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71007adbe8);
+        fn->invoker = reinterpret_cast<void*>(&InvokeCutsceneComponentTryLaunchCutscene);
     }
     if (CFunction* fn = AddReflectedFunction(cls, CStrId("QueueCutscenePlayer", true)))
         fn_71007a55c8(fn, "QueueCutscenePlayer");
@@ -215,7 +215,7 @@ void fn_71007a2fb4(CClass* cls) {
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ade14);
-        fn_71007adc7c(fn);
+        PushSetTakePlayModeParamTypes(fn);
     }
     if (CFunction* fn = AddReflectedFunction(cls, CStrId("SkipCutscene", true)))
         fn_71007a5744(fn, "SkipCutscene");

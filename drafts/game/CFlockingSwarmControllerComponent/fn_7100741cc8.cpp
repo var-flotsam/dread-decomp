@@ -25,7 +25,7 @@ struct UnkVec3_cs {
     f32 x, y, z;
 };
 
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 void fn_7100745e74(UnkBillboardEntry_be* self, const CVector3D* target, bool keep_items);
 
 struct UnkSwarmMember_l741cc8 {
@@ -144,9 +144,9 @@ void fn_7100741cc8(UnkFlockingSwarm_l741cc8* self, s32 index, f32 dt) {
             // Turn the other way when the difference lies on the right of the velocity (about z).
             f32 side = dx * (vel.y - vel.z * 0.0f) + dy * (vel.z * 0.0f - vel.x) + dz * (vel.x * 0.0f - vel.y * 0.0f);
             if (side > 0.0f)
-                vel = fn_710007a390(vel, -max_turn);
+                vel = RotateVec3AboutZ(vel, -max_turn);
             else
-                vel = fn_710007a390(vel, max_turn);
+                vel = RotateVec3AboutZ(vel, max_turn);
         }
 
         f32 speed = self->speed;

@@ -204,7 +204,7 @@ void fn_71001c5b74(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
     }
 }
 
-UnkMatrix44* fn_7100196674(UnkDrawState_b0247* self, const void* size);
+UnkMatrix44* GetCachedXformMatrixAdjustedByAspectRatio(UnkDrawState_b0247* self, const void* size);
 void fn_710015e4b0(void* state, u32 stage, u64 location, u32 count, u32 a, const UnkMatrix44* values, u32 b);
 void fn_7100160990(s32 a, s32 b, bool c);
 void fn_7100160ab0(u32 a, s32 b, u32 c);
@@ -227,7 +227,7 @@ void fn_71001c5114(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
         self->field_0x3183650 = cmd->field_0xfc;
     }
     fn_710015f770(0, cmd->field_0xa8, true);
-    const UnkMatrix44* matrix = fn_7100196674(cmd, self->field_0x317aa08);
+    const UnkMatrix44* matrix = GetCachedXformMatrixAdjustedByAspectRatio(cmd, self->field_0x317aa08);
     fn_710015e4b0(self->field_0x317af68, 0, self->field_0x317ae18, 4, 1, matrix, 1);
     u64 location;
     if (fn_71001aa0b4(self->field_0x317af70, 1, 0x59, &location)) {

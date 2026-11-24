@@ -90,7 +90,7 @@ address,size,name,name_source,subsystem,status
 0x7100104cc0,60,base::snd::CSoundGroupManager::refl_Destroy,reflection,engine/base,O
 0x7100104cfc,212,base::snd::CSoundGroupManager::refl_CopyAssign,reflection,engine/base,O
 0x7100104dd0,84,base::snd::CSoundGroupManager::refl_MoveAssign,reflection,engine/base,O
-0x7100104e30,196,fn_7100104e30,unknown,engine/base?,O
+0x7100104e30,196,InitCSoundGroupManagerReflectionStatics,inferred,engine/base?,O
 0x7100104ef4,20,fn_7100104ef4,unknown,engine/base?,O
 0x7100104f08,300,fn_7100104f08,unknown,engine/base?,U
 0x7100105034,64,fn_7100105034,unknown,engine/base?,O
@@ -131,7 +131,7 @@ address,size,name,name_source,subsystem,status
 0x7100106a14,4,base::reflection::ValueOps<base::snd::ESoundGroupIds>::Destroy,reflection,engine/reflection,O
 0x7100106a18,20,base::reflection::ValueOps<base::snd::ESoundGroupIds>::CopyAssign,reflection,engine/reflection,O
 0x7100106a2c,20,base::reflection::ValueOps<base::snd::ESoundGroupIds>::MoveAssign,reflection,engine/reflection,O
-0x7100106a40,292,fn_7100106a40,unknown,engine/base?,O
+0x7100106a40,292,RegisterESoundGroupIdsEnumType,inferred,engine/base?,O
 0x7100106b64,4,base::snd::CSoundSystem::CTunableSoundSystem::refl_AddAttributes,reflection,engine/base,O
 0x7100106b68,244,base::snd::CSoundSystem::CTunableSoundSystem::refl_GetClass,reflection,engine/base,O
 0x7100106c5c,1584,base::snd::CSoundSystem::CTunableSoundSystem::refl_AddFields,reflection,engine/base,O
@@ -396,7 +396,7 @@ address,size,name,name_source,subsystem,status
 0x7100110a54,68,fn_7100110a54,unknown,engine/base?,O
 0x7100110a98,80,fn_7100110a98,unknown,engine/base?,O
 0x7100110ae8,164,fn_7100110ae8,unknown,engine/base?,O
-0x7100110b90,196,fn_7100110b90,unknown,engine/base?,O
+0x7100110b90,196,InitCOBox2DStatics,inferred,engine/base?,O
 0x7100110c54,84,fn_7100110c54,unknown,engine/base?,O
 0x7100110ca8,44,fn_7100110ca8,unknown,engine/base?,O
 0x7100110cd4,228,fn_7100110cd4,unknown,engine/base?,O
@@ -951,7 +951,7 @@ address,size,name,name_source,subsystem,status
 0x7100122dc4,4,operator.delete,symbol,unknown,O
 0x7100122dc8,92,fn_7100122dc8,unknown,unknown,O
 0x7100122e24,4,fn_7100122e24,unknown,unknown,O
-0x7100122e30,2944,fn_7100122e30,unknown,engine/reflection?,O
+0x7100122e30,2944,InitStaticsOfSpatialSegmentTypes,inferred,engine/reflection?,O
 0x71001239b0,896,fn_71001239b0,unknown,engine/base?,O
 0x7100123d30,388,base::spatial::CPolygonCollection2D::refl_InitClass,reflection,engine/base,O
 0x7100123eb4,104,fn_7100123eb4,unknown,engine/base?,O
@@ -961,7 +961,7 @@ address,size,name,name_source,subsystem,status
 0x7100124054,48,fn_7100124054,unknown,engine/base?,O
 0x7100124084,236,fn_7100124084,unknown,engine/base?,O
 0x7100124170,428,fn_7100124170,unknown,engine/base?,U
-0x710012431c,40,fn_710012431c,unknown,engine/base?,O
+0x710012431c,40,ResolveHandleToPoolSlot,inferred,engine/base?,O
 0x7100124344,40,fn_7100124344,unknown,engine/base?,O
 0x710012436c,64,fn_710012436c,unknown,engine/base?,m
 0x71001243ac,40,fn_71001243ac,unknown,engine/base?,m
@@ -984,7 +984,7 @@ address,size,name,name_source,subsystem,status
 0x7100125584,236,base::spatial::CPolygonCollection2D::refl_MoveAssign,reflection,engine/base,O
 0x7100125670,412,fn_7100125670,unknown,engine/base?,O
 0x710012580c,156,fn_710012580c,unknown,engine/base?,O
-0x71001258b0,324,fn_71001258b0,unknown,engine/base?,O
+0x71001258b0,324,InitCPolygonCollection2DStatics,inferred,engine/base?,O
 0x71001259f4,52,fn_71001259f4,unknown,unknown,O
 0x7100125a28,20,fn_7100125a28,unknown,unknown,O
 0x7100125a3c,40,fn_7100125a3c,unknown,unknown,O
@@ -2721,7 +2721,7 @@ address,size,name,name_source,subsystem,status
 0x7100168424,4,base::reflection::ValueOps<msapi::api::types::fillMode::EFillMode>::Destroy,reflection,engine/reflection,O
 0x7100168428,20,base::reflection::ValueOps<msapi::api::types::fillMode::EFillMode>::CopyAssign,reflection,engine/reflection,O
 0x710016843c,20,base::reflection::ValueOps<msapi::api::types::fillMode::EFillMode>::MoveAssign,reflection,engine/reflection,O
-0x7100168450,2752,fn_7100168450,unknown,engine/reflection?,O
+0x7100168450,2752,InitMsapiApiEnumTypeStatics,inferred,engine/reflection?,O
 0x7100168f10,24,fn_7100168f10,unknown,unknown,O
 0x7100168f28,4,fn_7100168f28,unknown,unknown,O
 0x7100168f2c,4,operator.delete,symbol,unknown,O
@@ -3169,7 +3169,7 @@ address,size,name,name_source,subsystem,status
 0x71001952fc,8,fn_71001952fc,unknown,unknown,O
 0x7100195304,12,fn_7100195304,unknown,engine/base?,O
 0x7100195310,92,fn_7100195310,unknown,unknown,O
-0x710019536c,100,fn_710019536c,unknown,unknown,O
+0x710019536c,100,ComputeSubtreeDepth,inferred,unknown,O
 0x71001953d0,140,fn_71001953d0,unknown,unknown,O
 0x710019545c,60,fn_710019545c,unknown,unknown,O
 0x7100195498,84,fn_7100195498,unknown,unknown,O
@@ -3196,7 +3196,7 @@ address,size,name,name_source,subsystem,status
 0x7100196480,284,fn_7100196480,unknown,unknown,O
 0x710019659c,180,fn_710019659c,unknown,unknown,O
 0x7100196650,36,fn_7100196650,unknown,unknown,O
-0x7100196674,232,fn_7100196674,unknown,unknown,O
+0x7100196674,232,GetCachedXformMatrixAdjustedByAspectRatio,inferred,unknown,O
 0x710019675c,40,fn_710019675c,unknown,gui?,O
 0x7100196784,200,fn_7100196784,unknown,gui?,U
 0x710019684c,240,fn_710019684c,unknown,gui?,O
@@ -3644,7 +3644,7 @@ address,size,name,name_source,subsystem,status
 0x71001b1088,12,msapi::res::CProgramResource::refl_Equals,reflection,msapi,O
 0x71001b1094,8,msapi::res::CProgramResource::refl_Hash,reflection,msapi,O
 0x71001b109c,12,msapi::res::CProgramResource::refl_TypeOf,reflection,msapi,O
-0x71001b10b0,376,fn_71001b10b0,unknown,msapi?,O
+0x71001b10b0,376,InitCProgramResourceStatics,inferred,msapi?,O
 0x71001b1228,4,msapi::res::CRenderRes::refl_AddAttributes,reflection,msapi,O
 0x71001b122c,244,msapi::res::CRenderRes::refl_GetClass,reflection,msapi,O
 0x71001b1320,4,msapi::res::CRenderRes::refl_AddFields,reflection,msapi,O
@@ -3778,8 +3778,8 @@ address,size,name,name_source,subsystem,status
 0x71001bc634,104,fn_71001bc634,unknown,unknown,O
 0x71001bc69c,72,fn_71001bc69c,unknown,unknown,O
 0x71001bc6e4,92,fn_71001bc6e4,unknown,unknown,U
-0x71001bc740,356,fn_71001bc740,unknown,engine/reflection?,O
-0x71001bc8a4,156,fn_71001bc8a4,unknown,engine/reflection?,O
+0x71001bc740,356,SetXformTranslationFacingNewPosition,inferred,engine/reflection?,O
+0x71001bc8a4,156,SetXformHolderAngleIfEnabled,inferred,engine/reflection?,O
 0x71001bc940,208,fn_71001bc940,unknown,unknown,O
 0x71001bca10,300,fn_71001bca10,unknown,unknown,O
 0x71001bcb3c,8,fn_71001bcb3c,unknown,unknown,O
@@ -3829,7 +3829,7 @@ address,size,name,name_source,subsystem,status
 0x71001bf068,240,fn_71001bf068,unknown,unknown,O
 0x71001bf158,3052,fn_71001bf158,unknown,unknown,U
 0x71001bfd44,24,fn_71001bfd44,unknown,unknown,O
-0x71001bfd5c,328,fn_71001bfd5c,unknown,engine?,O
+0x71001bfd5c,328,PassXformTranslationToSphereOnMatrixChange,inferred,engine?,O
 0x71001bfea4,132,fn_71001bfea4,unknown,game?,O
 0x71001bff28,156,fn_71001bff28,unknown,game?,O
 0x71001bffc4,4,fn_71001bffc4,unknown,engine?,O
@@ -3858,11 +3858,11 @@ address,size,name,name_source,subsystem,status
 0x71001c1514,384,fn_71001c1514,unknown,game/components?,O
 0x71001c1694,336,fn_71001c1694,unknown,game/components?,O
 0x71001c17e4,316,fn_71001c17e4,unknown,unknown,O
-0x71001c1920,592,fn_71001c1920,unknown,unknown,O
-0x71001c1b70,256,fn_71001c1b70,unknown,unknown,O
+0x71001c1920,592,GetScaledBoneChainMatrixById,inferred,unknown,O
+0x71001c1b70,256,GetBoneWorldMatrixByIndex,inferred,unknown,O
 0x71001c1c70,492,fn_71001c1c70,unknown,game/components?,O
 0x71001c1e5c,320,fn_71001c1e5c,unknown,game/components?,O
-0x71001c1f9c,568,fn_71001c1f9c,unknown,engine/reflection?,O
+0x71001c1f9c,568,SetScaleRescalingSphereAndHolderMatrix,inferred,engine/reflection?,O
 0x71001c21d4,684,fn_71001c21d4,unknown,engine/reflection?,O
 0x71001c2480,732,fn_71001c2480,unknown,engine/reflection?,O
 0x71001c275c,8,fn_71001c275c,unknown,unknown,O
@@ -4086,7 +4086,7 @@ address,size,name,name_source,subsystem,status
 0x71001d7320,8,fn_71001d7320,unknown,unknown,O
 0x71001d7328,196,fn_71001d7328,unknown,unknown,O
 0x71001d73ec,88,fn_71001d73ec,unknown,unknown,O
-0x71001d7444,260,fn_71001d7444,unknown,unknown,O
+0x71001d7444,260,ClearStrIdKeyedCountedResourceTable,inferred,unknown,O
 0x71001d7548,396,fn_71001d7548,unknown,unknown,O
 0x71001d76d4,332,fn_71001d76d4,unknown,unknown,O
 0x71001d7820,332,fn_71001d7820,unknown,unknown,O
@@ -4827,7 +4827,7 @@ address,size,name,name_source,subsystem,status
 0x71001fe260,304,fn_71001fe260,unknown,engine?,O
 0x71001fe390,384,fn_71001fe390,unknown,engine?,O
 0x71001fe510,36,fn_71001fe510,unknown,engine?,O
-0x71001fe540,344,fn_71001fe540,unknown,engine?,O
+0x71001fe540,344,InitCSceneManagerStatics,inferred,engine?,O
 0x71001fe698,508,fn_71001fe698,unknown,engine?,O
 0x71001fe894,380,engine::scene::CSceneSlot::refl_InitClass,reflection,engine,O
 0x71001fea10,220,base::reflection::refl_GetType<engine::scene::CSceneSlot*>,reflection,engine/reflection,O

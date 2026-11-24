@@ -69,7 +69,7 @@ extern char g_unk_71729da9e8[];
 extern char g_unk_71729da9e9[];
 extern UnkStrIdBase g_unk_71729da9f0[9];
 
-void fn_7100ef2780() {
+void InitSubAreaManagerStatics() {
     InitHeaderIds(&g_unk_71729daec0.ids);
     g_unk_71729daec0.field_0x68 = -1.0f;
     g_unk_71729daec0.field_0x6c = -1.0f;

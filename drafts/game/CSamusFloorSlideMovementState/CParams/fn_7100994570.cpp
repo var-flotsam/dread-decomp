@@ -97,7 +97,7 @@ bool fn_7100994570(UnkRoomState_l994570* self, bool unused, bool skip_second, co
         return false;
 
     UnkVec3f at = QueryPosition(self, pos);
-    UnkMatrix44_7100078c9c xf = fn_7100078cd8(at);
+    UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(at);
     UnkRoomCapsule_l994570 capsule;
     capsule.field_0xa8 = body->field_0xa8;
     capsule.field_0xac = body->field_0xac;

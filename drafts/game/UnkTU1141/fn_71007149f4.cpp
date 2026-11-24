@@ -27,7 +27,7 @@ extern const CVector3D g_unk_71016477a8;
 
 void fn_7100714604(UnkWeighted_7100714808* self, const UnkWeighted_7100714808* other);
 UnkMatrix44 fn_7100078834(const UnkMatrix44* a, const UnkMatrix44* b, f32 t);
-UnkVector4D fn_71000772fc(const UnkMatrix44* m);
+UnkVector4D MatrixToQuaternion(const UnkMatrix44* m);
 CVector4D fn_7100079fb0(const CVector4D* q);
 UnkMatrix44 fn_7100078b24(const CVector3D* translation, const CVector4D* rotation, const CVector3D* scale);
 
@@ -41,7 +41,7 @@ static inline UnkVec3 operator+(const UnkVec3& a, const UnkVec3& b) { return Unk
 
 // The rotation of `m` scaled by `t`.
 static inline UnkVector4D PartialRotation(const UnkMatrix44& m, f32 t) {
-    UnkVector4D q = fn_71000772fc(&m);
+    UnkVector4D q = MatrixToQuaternion(&m);
     return q * t;
 }
 

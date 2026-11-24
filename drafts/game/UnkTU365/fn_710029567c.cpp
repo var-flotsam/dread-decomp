@@ -141,7 +141,7 @@ static inline void Snap(CVector2D* end, const UnkSegment2D& edge) {
 
 static inline UnkNavPolyline_l29567c* Polygon(UnkNavShape_l29567c* shape, const UnkNavHit_l29567c* hit) {
     return reinterpret_cast<UnkNavPolyline_l29567c*>(
-        fn_710012431c(reinterpret_cast<UnkPool_0x48*>(shape->polygons), hit->handle));
+        ResolveHandleToPoolSlot(reinterpret_cast<UnkPool_0x48*>(shape->polygons), hit->handle));
 }
 
 // The index of the link with these ends (either way round, within 10), or -1.

@@ -107,7 +107,7 @@ void fn_710018f654(UnkQuadEmitter_18f654* self, const UnkVec3f* direction) {
     CVector3D fwd = {};
     UnkVec3f dir = *direction;
     if (!self->worldSpace) {
-        dir = fn_7100077c04(self->transform, dir);
+        dir = TransformDirectionByMatrix3x3(self->transform, dir);
         dir = Normalized(dir);
     }
     fn_710016fa84((UnkOwner_710016fa84*)self, (const CVector3D*)&dir, &self->rotation, &side, &fwd);

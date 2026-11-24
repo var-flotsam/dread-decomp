@@ -12,7 +12,7 @@
 
 using base::global::CStrId;
 
-UnkMatrix44Words fn_7100076dc4(const UnkMatrix44Words* src);
+UnkMatrix44Words CopyMatrixWithoutTranslation(const UnkMatrix44Words* src);
 
 struct UnkCommanderBagOwner_l45488c {
     u8 pad_0x0[0x80];
@@ -56,9 +56,9 @@ void CChozoCommanderAIComponent_SetDirectionAndAngleParam(UnkCommanderAI_l45488c
     if (!bag_owner)
         return;
     // The aim direction in the owner's frame: through the inverse of the owner's rotation.
-    UnkVec3f local = fn_7100078170(
+    UnkVec3f local = TransformPointByMatrixWithPerspectiveDivide(
         reinterpret_cast<const UnkMat4f*>(AddressOf(fn_7100078314(reinterpret_cast<const UnkMatrix44*>(
-            AddressOf(fn_7100076dc4(reinterpret_cast<const UnkMatrix44Words*>(&fn_710002614c(&owner->transform)))))))),
+            AddressOf(CopyMatrixWithoutTranslation(reinterpret_cast<const UnkMatrix44Words*>(&fn_710002614c(&owner->transform)))))))),
         aim);
     f32 angle = atan2f(local.y, local.z) * 180.0f / 3.14159265358979323846;
     unk_prop_bag::fn_710033187c(&bag_owner->bag, CStrId("Angle", true), angle);

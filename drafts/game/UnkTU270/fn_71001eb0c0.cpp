@@ -106,7 +106,7 @@ bool fn_71001eb0c0(UnkPlacedPool_l1eb0c0* self, UnkPlacedObject_l1eb0c0* object,
         // The sphere: its centre into world space, its radius by the largest scale.
         UnkVec3f scale = fn_7100076cec(xform);
         UnkVec3f center = entry->sphere.pos;
-        center = fn_7100078170(reinterpret_cast<const UnkMat4f*>(&entry->matrix), &center);
+        center = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&entry->matrix), &center);
         f32 largest = scale.x < scale.y ? scale.y : scale.x;
         largest = largest < scale.z ? scale.z : largest;
         f32 radius = entry->sphere.radius * largest;
@@ -121,7 +121,7 @@ bool fn_71001eb0c0(UnkPlacedPool_l1eb0c0* self, UnkPlacedObject_l1eb0c0* object,
         UnkVec3f min(3.40282347e+38f, 3.40282347e+38f, 3.40282347e+38f);
         UnkVec3f max(-3.40282347e+38f, -3.40282347e+38f, -3.40282347e+38f);
         for (s32 i = 0; i < 8; ++i) {
-            UnkVec3f p = fn_7100078170(reinterpret_cast<const UnkMat4f*>(xform), &corners.corner[i]);
+            UnkVec3f p = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(xform), &corners.corner[i]);
             min.x = p.x < min.x ? p.x : min.x;
             min.y = p.y < min.y ? p.y : min.y;
             min.z = p.z < min.z ? p.z : min.z;

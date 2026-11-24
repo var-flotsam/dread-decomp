@@ -32,7 +32,7 @@ struct UnkVec2Result {
 UnkVec2Result fn_7100125e78(const UnkSegment2D* seg);
 
 // `v` turned by `angle` (radians) in the plane (src/game_s1/fn_7100078c9c.cpp).
-UnkVec2Result fn_710007a2c0(const UnkVec2Result& v, f32 angle);
+UnkVec2Result RotateVec2ByAngle(const UnkVec2Result& v, f32 angle);
 
 // Whether the point lies on the segment within the tolerance; `extended` also accepts a point just
 // past either end.

@@ -13,7 +13,7 @@ struct UnkClamper;
 struct UnkSentenceSphereMovement_ovb0135;
 UnkVec3Bits fn_710045bd10(UnkClamper* self);
 void CChozoCommanderSentenceSphereMovementComponent_ApplyRadius(UnkSentenceSphereMovement_ovb0135* self);
-UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle);
+UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 
 struct UnkSphereDef_l45be3c {
     u8 pad_0x0[0x138];
@@ -142,7 +142,7 @@ void fn_710045be3c(UnkSentenceSphere_l45be3c* self, f32 dt) {
     f32 side_z = dir.x * down_y - dir.y * down_x;
     f32 side = to_x * side_x + to_y * side_y + to_z * side_z;
 
-    UnkVec3f turned = fn_710007a390(dir, side < 0.0f ? -step : step);
+    UnkVec3f turned = RotateVec3AboutZ(dir, side < 0.0f ? -step : step);
     self->velocity_x = speed * turned.x;
     self->velocity_y = speed * turned.y;
     self->velocity_z = speed * 0.0f;

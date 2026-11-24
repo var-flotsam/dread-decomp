@@ -41,11 +41,11 @@ struct UnkMovieUnit322_b50 {
 };
 
 extern void* g_unk_7101a20420[];  // the vtable
-void fn_710021c8dc(void* member);
+void FreeKeyedStrIdArrays(void* member);
 
 static inline __attribute__((always_inline)) void Destroy_b50(UnkMovieUnit322_b50* self) {
     self->vtable = g_unk_7101a20420 + 2;
-    fn_710021c8dc(self->field_0x40);
+    FreeKeyedStrIdArrays(self->field_0x40);
     if (self->field_0x18) {
         for (u64 i = 0; i < self->field_0x20; ++i) {
             if (UnkShared_b50* obj = self->field_0x18[i]) {

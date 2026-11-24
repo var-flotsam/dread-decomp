@@ -135,10 +135,10 @@ void fn_71007251e0(UnkBillboardCollision_ovb0137* self) {
             UnkBillboardItem_ovb0137* item = &self->billboards->data->items[i];
             if (!item->shown || (self->field_0x138 && self->field_0x138->data && !item->field_0xe0)) {
                 *reinterpret_cast<u32*>(&record.field_0x20) = 0;
-                UnkMatrix44_7100078c9c m = fn_7100078cd8(UnkVec3f(item->pos));
+                UnkMatrix44_7100078c9c m = BuildTranslationMatrixFromVec3(UnkVec3f(item->pos));
                 reinterpret_cast<UnkBillboardObject_ovb0137*>(record.field_0x28)->vf_0x78(&m);
             } else if (*reinterpret_cast<bool*>(&record.field_0x18)) {
-                UnkMatrix44_7100078c9c m = fn_7100078cd8(UnkVec3f(item->pos));
+                UnkMatrix44_7100078c9c m = BuildTranslationMatrixFromVec3(UnkVec3f(item->pos));
                 *reinterpret_cast<u32*>(&record.field_0x20) = 0x802180;
                 reinterpret_cast<UnkBillboardObject_ovb0137*>(record.field_0x28)->vf_0x78(&m);
             }
@@ -154,7 +154,7 @@ void fn_71007251e0(UnkBillboardCollision_ovb0137* self) {
             continue;
         }
         UnkVec3Result pos = fn_71007455dc(reinterpret_cast<UnkStruct_71007455dc*>(key));
-        UnkMatrix44_7100078c9c m = fn_7100078cd8(reinterpret_cast<const UnkVec3f&>(pos));
+        UnkMatrix44_7100078c9c m = BuildTranslationMatrixFromVec3(reinterpret_cast<const UnkVec3f&>(pos));
         reinterpret_cast<UnkBillboardObject_ovb0137*>(entry)->vf_0x78(&m);
     }
 }

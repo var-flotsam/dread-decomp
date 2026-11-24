@@ -101,7 +101,7 @@ void fn_7100186328(UnkEmitter_l186328* self, const UnkVec3f& view) {
     UnkVertex_l186328* vtx = (UnkVertex_l186328*)g_unk_716e34c3d0;
     UnkVec3f dir = view;
     if (!self->world_space) {
-        dir = fn_7100077c04(self->matrix, dir);
+        dir = TransformDirectionByMatrix3x3(self->matrix, dir);
         f32 len = sqrtf(dir.x * dir.x + dir.y * dir.y + dir.z * dir.z);
         f32 inv = 1.0f / (len + 0.0001f);
         dir.x = dir.x * inv;

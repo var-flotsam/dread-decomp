@@ -24,7 +24,7 @@
 using base::reflection::UnkReflObject;
 
 bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
-UnkVec3f fn_710007a400(const UnkVec3f& v, const UnkMatrix44& m);
+UnkVec3f RotateVec3ByAngles(const UnkVec3f& v, const UnkMatrix44& m);
 void fn_71000769f0(UnkMatrix44* out, const void* a, const void* b, const void* c, const void* d);
 
 struct UnkMatrix44_7100078c9c {
@@ -230,7 +230,7 @@ void fn_7101134718(UnkAIAttackComponent_l134718* self, UnkTurnTarget_l134718* ta
     UnkTurnOwner_l134718* owner = self->owner;
     UnkVec3f pos = owner->xform.GetTranslation();
     UnkVec3f angle = owner->xform.GetAngle();
-    UnkVec3f forward = fn_710007a400(g_unk_710164cfb8, *reinterpret_cast<const UnkMatrix44*>(&angle));
+    UnkVec3f forward = RotateVec3ByAngles(g_unk_710164cfb8, *reinterpret_cast<const UnkMatrix44*>(&angle));
     UnkVec3f moved = pos;
     UnkVec3f turned;
     if (hit) {
@@ -253,7 +253,7 @@ void fn_7101134718(UnkAIAttackComponent_l134718* self, UnkTurnTarget_l134718* ta
         turned = angle;
         UnkTurnVec_l134718 fwd(forward.x, forward.y, 0.0f);
         if (fwd.LengthSq() > 1.1920929e-07f) {
-            UnkVec3f up3 = fn_710007a400(g_unk_710164cfd0, *reinterpret_cast<const UnkMatrix44*>(&angle));
+            UnkVec3f up3 = RotateVec3ByAngles(g_unk_710164cfd0, *reinterpret_cast<const UnkMatrix44*>(&angle));
             UnkTurnVec_l134718 up(up3.x, up3.y, 0.0f);
             if (up.LengthSq() != 0.0f) {
                 UnkTurnVec_l134718 f = fwd.Normalized();
@@ -279,7 +279,7 @@ void fn_7101134718(UnkAIAttackComponent_l134718* self, UnkTurnTarget_l134718* ta
                 if (collider && (shape = collider->shape)) {
                     UnkSweepOffset_l134718 sweep(pos, moved);
                     UnkSweepQuery_l134718 sweep_hit;
-                    UnkMatrix44_7100078c9c xf = fn_7100078cd8(pos);
+                    UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(pos);
                     if (fn_7100d5babc(static_cast<UnkTree*>(tracker), 3, shape,
                                       reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(&sweep.v),
                                       &sweep_hit, false)) {

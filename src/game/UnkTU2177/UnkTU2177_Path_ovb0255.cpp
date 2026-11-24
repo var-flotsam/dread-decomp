@@ -40,7 +40,7 @@ void fn_7100c66b50(UnkPathOwner_b0255* self, UnkPathOwner_b0255* other) {
     auto* path = reinterpret_cast<UnkPath_b0255*>(fn_7100124344(reinterpret_cast<UnkPool_0x48*>(self->pool), 0));
     fn_7100119f3c(reinterpret_cast<UnkEntryArray108*>(path), 0);
     fn_7100119f3c(reinterpret_cast<UnkEntryArray108*>(path), InnerEnd(path));
-    auto* source = reinterpret_cast<UnkPath_b0255*>(fn_710012431c(reinterpret_cast<UnkPool_0x48*>(other->pool), 0));
+    auto* source = reinterpret_cast<UnkPath_b0255*>(ResolveHandleToPoolSlot(reinterpret_cast<UnkPool_0x48*>(other->pool), 0));
     UnkEntry108 entry;
     entry.field_0x0 = 0;
     entry.field_0x4 = 0;
@@ -110,7 +110,7 @@ __attribute__((noinline)) bool fn_7100c77a9c(UnkPathUser_b0255* self, UnkPathRef
     UnkWorld_b0255* world = ref->holder->owner->world;
     if ((world != nullptr) & (world->vf_0x18() == 0x10)) {
         UnkPool_0x48* pool = reinterpret_cast<UnkPool_0x48*>(world->pool);
-        auto* slot = reinterpret_cast<UnkPathSlot_b0255*>(fn_710012431c(pool, ref->handle));
+        auto* slot = reinterpret_cast<UnkPathSlot_b0255*>(ResolveHandleToPoolSlot(pool, ref->handle));
         UnkPathCopy_b0255 path;
         fn_710011d8b4(reinterpret_cast<UnkPart0*>(&path), reinterpret_cast<const UnkPart0*>(slot));
         path.field_0x28 = slot->field_0x28;
@@ -124,7 +124,7 @@ __attribute__((noinline)) bool fn_7100c77a9c(UnkPathUser_b0255* self, UnkPathRef
         bool inside = fn_7100118ef0(&path, self->target);
         auto* points = reinterpret_cast<base::global::CRntVector<UnkVec3f>*>(path.points);
         if (self->target) {
-            bool missing = fn_710012431c(pool, ref->handle) == nullptr;
+            bool missing = ResolveHandleToPoolSlot(pool, ref->handle) == nullptr;
             if (!(inside | missing)) {
                 points->Free();
                 return true;

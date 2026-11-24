@@ -40,7 +40,7 @@ struct UnkEventSet {
 };
 
 // The listeners of `set` from `first` to the end (fn_7100069a04).
-UnkEventRange fn_7100069a04(UnkEventSet* set, UnkEventListener** first);
+UnkEventRange MakeEntryRangeFromPositionToTableEnd(UnkEventSet* set, UnkEventListener** first);
 
 struct UnkEventDispatch {
     UnkEventSet* set;
@@ -65,7 +65,7 @@ void fn_7100068bec(UnkEventDispatch* self, bool exclusive) {
     if (!set)
         return;
     if (set->count) {
-        UnkEventRange range = fn_7100069a04(set, self->first);
+        UnkEventRange range = MakeEntryRangeFromPositionToTableEnd(set, self->first);
         for (UnkEventListener **it = range.first, **end = range.first + range.count; it != end; ++it) {
             UnkEventListener* listener = *it;
             if (listener->flags & 0x100)

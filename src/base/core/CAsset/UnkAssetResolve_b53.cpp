@@ -42,6 +42,6 @@ struct UnkAssetResRef {
 UnkAssetResRef fn_7100017878(void* self, const UnkStrIdPathPair* ids) {
     UnkAssetResRef res;
     if (ids->id.data != &g_unk_7101d47108->empty && ids->path.data != &g_unk_7101d47200->empty)
-        res = fn_710002038c(g_unk_7101d4bbc0, ids, true, nullptr);
+        res = MakeResourceFromRegistryFactory(g_unk_7101d4bbc0, ids, true, nullptr);
     return res;
 }

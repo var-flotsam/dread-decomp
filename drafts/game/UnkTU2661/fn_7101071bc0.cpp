@@ -5,11 +5,11 @@
 #include "types.h"
 
 struct UnkObj_7101072a80;
-u32 fn_710019536c(UnkObj_7101072a80* obj);
+u32 ComputeSubtreeDepth(UnkObj_7101072a80* obj);
 
 struct UnkOrder_7101071bc0 {
     bool operator()(UnkObj_7101072a80* a, UnkObj_7101072a80* b) const {
-        return fn_710019536c(a) > fn_710019536c(b);
+        return ComputeSubtreeDepth(a) > ComputeSubtreeDepth(b);
     }
 };
 

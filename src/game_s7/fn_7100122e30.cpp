@@ -102,7 +102,7 @@ extern UnkEnumType g_unk_7108b6e9d8;
 void fn_7100116bec(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_7108b6eb48[];
 
-void fn_7100122e30() {
+void InitStaticsOfSpatialSegmentTypes() {
     InitHeaderIds(&g_unk_7108b6fd60.ids);
     {
         CStrId n("base::spatial::CEditorSegment", true);

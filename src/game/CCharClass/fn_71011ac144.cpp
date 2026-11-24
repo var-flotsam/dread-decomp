@@ -51,7 +51,7 @@ struct UnkActionSetIds_l1ac144 {
 };
 
 static inline UnkAssetResRef Resolve(UnkRegistry_7100d92158* registry, const UnkActionSetIds_l1ac144& ids) {
-    return fn_710002038c(registry, reinterpret_cast<const UnkStrIdPathPair*>(&ids), true, nullptr);
+    return MakeResourceFromRegistryFactory(registry, reinterpret_cast<const UnkStrIdPathPair*>(&ids), true, nullptr);
 }
 
 // The resource as an action set (a new reference), or none when it is not one.

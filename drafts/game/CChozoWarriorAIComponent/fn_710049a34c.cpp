@@ -32,7 +32,7 @@ struct UnkMatrix44Words {
     UnkMatrix44Words() {}
     UnkMatrix44Words(const UnkMatrix44Words& other);
 };
-UnkMatrix44Words fn_7100076dc4(const UnkMatrix44Words* src);
+UnkMatrix44Words CopyMatrixWithoutTranslation(const UnkMatrix44Words* src);
 void fn_710007839c(UnkMat4f* m);
 
 void fn_710007b8f0(char** self, const char* str);
@@ -135,9 +135,9 @@ void fn_710049a34c(UnkChozoWarriorAI_l49a34c* self, void* arg, UnkChozoWarriorHi
         origin_y = joint.m[7];
     }
     UnkVec3f local(point.x - origin_x, point.y - origin_y, point.z - origin_z);
-    UnkMatrix44Words frame = fn_7100076dc4(reinterpret_cast<const UnkMatrix44Words*>(&joint));
+    UnkMatrix44Words frame = CopyMatrixWithoutTranslation(reinterpret_cast<const UnkMatrix44Words*>(&joint));
     fn_710007839c(reinterpret_cast<UnkMat4f*>(&frame));
-    local = fn_7100078170(reinterpret_cast<const UnkMat4f*>(&frame), &local);
+    local = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&frame), &local);
 
     void* effects = self->owner->field_0x280;
     char* name = nullptr;

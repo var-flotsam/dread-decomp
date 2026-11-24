@@ -16,7 +16,7 @@ struct UnkVoicePool_b56;
 struct UnkUnit50Object_b49a1;
 
 void fn_71000723cc(UnkFade* fade, f32 time, bool flag);
-void fn_7100071dac(UnkUnit50Object_b49a1* self, u32 id);
+void ConstructTunableRumbleEntry(UnkUnit50Object_b49a1* self, u32 id);
 
 // An effect as the manager reads it: the channel it plays on.
 struct UnkRumbleEffect_b0068 {
@@ -59,7 +59,7 @@ UnkRumbleEffect_b0068* fn_7100074b38(UnkTunableRumbleManager_b0068* self) {
     auto* effect = static_cast<UnkRumbleEffect_b0068*>(
         fn_7100083804(reinterpret_cast<UnkVoicePool_b56*>(&self->effect_blocks)));
     if (effect) {
-        fn_7100071dac(reinterpret_cast<UnkUnit50Object_b49a1*>(effect), self->next_id++);
+        ConstructTunableRumbleEntry(reinterpret_cast<UnkUnit50Object_b49a1*>(effect), self->next_id++);
         self->effects.PushBack(effect);
     }
     return effect;

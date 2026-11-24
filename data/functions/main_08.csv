@@ -3382,7 +3382,7 @@ address,size,name,name_source,subsystem,status
 0x71008988fc,244,CSpbSprActivator::refl_GetClass,reflection,game,O
 0x71008989f0,768,CSpbSprActivator::refl_AddFields,reflection,game,O
 0x7100898cf0,388,CSpbSprActivator::refl_InitClass,reflection,game,O
-0x7100898e80,128,fn_7100898e80,unknown,game?,O
+0x7100898e80,128,InitFinishedStrIdOnce,inferred,game?,O
 0x7100898f00,188,fn_7100898f00,unknown,game?,O
 0x7100898fbc,408,fn_7100898fbc,unknown,game?,O
 0x7100899154,1024,fn_7100899154,unknown,game?,O
@@ -4159,7 +4159,7 @@ address,size,name,name_source,subsystem,status
 0x71008c1884,4,base::reflection::ValueOps<EForcedDamageMode>::Destroy,reflection,engine/reflection,O
 0x71008c1888,20,base::reflection::ValueOps<EForcedDamageMode>::CopyAssign,reflection,engine/reflection,O
 0x71008c189c,20,base::reflection::ValueOps<EForcedDamageMode>::MoveAssign,reflection,engine/reflection,O
-0x71008c18b0,664,fn_71008c18b0,unknown,engine/reflection?,O
+0x71008c18b0,664,InitEDamageTypeAndEForcedDamageModeStatics,inferred,engine/reflection?,O
 0x71008c1b48,4,CDamageSourceFactor::refl_AddAttributes,reflection,game,O
 0x71008c1b4c,240,CDamageSourceFactor::refl_GetClass,reflection,game,O
 0x71008c1c3c,4072,CDamageSourceFactor::refl_AddFields,reflection,game,O

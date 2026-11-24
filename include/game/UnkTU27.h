@@ -26,6 +26,6 @@ UnkFactoryEntry* fn_7100020320(UnkRegistry_7100d92158* registry, const UnkRegist
 
 // The resource the ids name, looked up in the registry (the flag's and the last argument's meanings are unknown; the
 // last is a 64-bit word).
-UnkAssetResRef fn_710002038c(UnkRegistry_7100d92158* registry, const UnkStrIdPathPair* ids, bool a, void* b);
-void fn_71000231f4(base::global::CRntVector<u8>* vector, u32 capacity);
+UnkAssetResRef MakeResourceFromRegistryFactory(UnkRegistry_7100d92158* registry, const UnkStrIdPathPair* ids, bool a, void* b);
+void ReserveCountedRefVector(base::global::CRntVector<u8>* vector, u32 capacity);
 extern base::global::CStrId g_unk_7101d4e590;

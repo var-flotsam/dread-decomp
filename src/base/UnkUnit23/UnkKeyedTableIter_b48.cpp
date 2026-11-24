@@ -15,7 +15,7 @@ struct UnkKeyedTable_b48 {
 
 // The keys are pointer-sized handles (-1 when none): the original reloads the cursor after the
 // store through the key.
-bool fn_7100015570(UnkKeyedTable_b48* self, void** key, UnkKeyedEntry** entry) {
+bool GetNextKeyedTableKeyAndEntry(UnkKeyedTable_b48* self, void** key, UnkKeyedEntry** entry) {
     *key = reinterpret_cast<void*>(~0ull);
     *entry = nullptr;
     UnkKeyedEntry* entries = self->entries;

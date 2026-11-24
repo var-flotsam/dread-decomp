@@ -536,7 +536,7 @@ UnkVec3f fn_71010c9928(UnkEnemyMovement_k* self) {
     if (self->InState1())
         facing = self->facing;
     UnkVec3f angles(0.0f, facing ? 1.5707964f : -1.5707964f, yaw);
-    return fn_710007a220(&angles);
+    return WrapAngles3ToPi(&angles);
 }
 
 // fn_71010cd278: the ground probe (fn_7100977e50) of the character movement from virtual slot 0x2a8, from

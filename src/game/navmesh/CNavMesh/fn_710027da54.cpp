@@ -15,14 +15,14 @@ struct UnkNavMesh_l27da54 {
     UnkDeferredSet<UnkDeferredCallback<u16>> field_0x110;
 };
 
-void fn_7100280934(UnkDeferredSet<UnkDeferredCallback<u16>>* s, const u16* arg);
+void InvokeDeferredCallbacksU16(UnkDeferredSet<UnkDeferredCallback<u16>>* s, const u16* arg);
 
 void CNavMesh_NotifyCellFlagChanged(UnkNavMesh_l27da54* self, const u16* value, bool first) {
     if (first) {
         u16 arg = *value;
-        fn_7100280934(&self->field_0x90, &arg);
+        InvokeDeferredCallbacksU16(&self->field_0x90, &arg);
     } else {
         u16 arg = *value;
-        fn_7100280934(&self->field_0x110, &arg);
+        InvokeDeferredCallbacksU16(&self->field_0x110, &arg);
     }
 }

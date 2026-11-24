@@ -468,6 +468,21 @@ python tools/member_batch.py apply [--only path:Struct]
 python tools/member_batch.py cost
 ```
 
+### `tools/match_batch.py`
+
+Ask the Claude Message Batches API for candidate rewrites of functions, and keep only what a local compile proves.
+
+```sh
+python tools/match_batch.py --version 2.1.0 build --run match-c1 --pool clean [--limit 30] [--spread] [--k 4] [--dry-run]
+python tools/match_batch.py --version 2.1.0 build --run match-n1 --pool near [--limit 30] [--min-similarity 95] [--dry-run]
+python tools/match_batch.py submit --run R [--budget 180] [--cap 80]   # create the batch (refuses past either)
+python tools/match_batch.py status --run R
+python tools/match_batch.py fetch --run R                              # results.jsonl and a ledger row
+python tools/match_batch.py --version 2.1.0 harvest --run R [--jobs 8] # compile every candidate; harvest.csv
+python tools/match_batch.py --version 2.1.0 apply --run R [--only ID,...]   # write the kept texts (re-checked first)
+python tools/match_batch.py cost                                       # the match runs in the ledger, and the total
+```
+
 ### `tools/equiv_test.py`
 
 The machine test for tier 2: is a hand-written function that does not match equivalent to the original?

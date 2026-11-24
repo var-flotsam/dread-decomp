@@ -28,6 +28,6 @@ UnkVec2Result fn_71011cf0a8(UnkGuiDisplayObject* self, const UnkVec2Result& poin
     r.x = x * p->scale_x;
     r.y = y * p->scale_y;
     // The turned point is dropped: the result is the unturned one.
-    fn_710007a2c0(r, p->angle);
+    RotateVec2ByAngle(r, p->angle);
     return r;
 }

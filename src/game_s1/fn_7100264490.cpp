@@ -16,7 +16,7 @@ UnkReflType* fn_7100262878();
 UnkReflType* fn_7100262954();
 UnkReflType* fn_7100262a30();
 
-void fn_7100264490() {
+void InitCActorSublayerStatics() {
     InitHeader(g_unk_71726a2168);
     InitClass(&g_unk_71726a1cd8, "CActorSublayer", fn_71002624c8, fn_7100261c94);
     fn_710009ec00(&g_unk_71726a1e10, &g_unk_71726a1cd8);

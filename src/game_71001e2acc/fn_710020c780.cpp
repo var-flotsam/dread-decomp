@@ -164,7 +164,7 @@ void fn_71002098a4(UnkUpdater_710020c780* self) {
 // 0xfa is set; then the settings are copied back and the value at 0x80 is told the previous
 // first one. fn_71001fb0c4 (fn_71001bfd5c, fn_71001bffc4), fn_710020da1c (fn_71001c2480,
 // fn_71001c1030; it also calls vtable slot 0xa8 either way).
-void fn_71001bfd5c(UnkSource_710020c780* source, void* state);
+void PassXformTranslationToSphereOnMatrixChange(UnkSource_710020c780* source, void* state);
 void fn_71001c1030(UnkSource_710020c780* source, bool, f32 dt);
 
 __attribute__((always_inline)) static inline void CopyBack(UnkUpdater_710020c780* self) {
@@ -180,7 +180,7 @@ bool fn_71001fb0c4(UnkUpdater_710020c780* self, f32 dt) {
         return false;
     if (self->field_0xfa) {
         self->field_0xfa = false;
-        fn_71001bfd5c(self->field_0x108, self->field_0x18);
+        PassXformTranslationToSphereOnMatrixChange(self->field_0x108, self->field_0x18);
     }
     fn_71001bffc4(self->field_0x108, dt);
     CopyBack(self);

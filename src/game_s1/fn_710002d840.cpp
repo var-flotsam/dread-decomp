@@ -33,7 +33,7 @@ void fn_710002d7ac() HIDDEN;
 void fn_710002d7b8() HIDDEN;
 void fn_710002d62c(UnkEnumInfo* obj, CStrId* name, void (*fn)(), void* a);
 
-void fn_710002d840() {
+void RegisterEEditorModeDataFlowEnum() {
     {
         CStrId name("gameeditor::EEditorModeDataFlow", true);
         fn_710002d62c(&reinterpret_cast<UnkEnumInfo&>(base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object), &name, fn_710002d420, nullptr);

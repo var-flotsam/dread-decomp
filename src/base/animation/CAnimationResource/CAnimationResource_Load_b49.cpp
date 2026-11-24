@@ -68,7 +68,7 @@ bool fn_7100004db0(UnkAnimResource_b49a1* self, UnkAnimLoadRequest_b49a1* reques
     UnkAnimObject_b49a1* object;
     bool ok;
     {
-        UnkPathPairTemp_b45a1 key = fn_710001ab24(self->path);
+        UnkPathPairTemp_b45a1 key = MakePathPairFromRegistryCallback(self->path);
         ok = reinterpret_cast<UnkAnimRegistryLoader_b49a1*>(reg)->vf_0x28(&key, &object, 1, request->size, 0x80, 10);
     }
     if (ok) {

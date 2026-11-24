@@ -95,7 +95,7 @@ void CBaseBigFistAIComponent_ComputeSidewaysAnimationReach(UnkGoliathAI_l590cc0*
         fn_71007142e8(reinterpret_cast<UnkStruct_71007142e8*>(&motion));
         Sample_l3e5a70(timeline, &motion);
         UnkVec3f offset = motion.Translation();
-        UnkVec3f moved = fn_7100078170(&rotation, &offset);
+        UnkVec3f moved = TransformPointByMatrixWithPerspectiveDivide(&rotation, &offset);
         self->reach += fabsf(moved.x);
     }
 }

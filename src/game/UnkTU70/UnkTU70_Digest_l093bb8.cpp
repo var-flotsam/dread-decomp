@@ -74,7 +74,7 @@ struct UnkReflAttrEntry {
     bool operator!=(UnkReflAttrEntry& other) { return Refs().key != other.Refs().key; }
 };
 
-u32 fn_7100093bb8(void* ref) {
+u32 HashFlaggedAttributeKeysAndValues(void* ref) {
     auto* attrs = static_cast<UnkPropertyArrays*>(ref);
     UnkScopedHashStream stream(0x16, nullptr);
     u32 count = attrs->count;

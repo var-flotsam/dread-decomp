@@ -125,7 +125,7 @@ void fn_7100947f64(UnkContactMovement_l947f64* self, UnkContactHit_l947f64* hit)
 
     if (shape && kind == 0x10) {
         UnkPool_0x48* pool = reinterpret_cast<UnkPool_0x48*>(shape->polygons);
-        auto* polygon = reinterpret_cast<UnkContactPolygon_l947f64*>(fn_710012431c(pool, hit->handle));
+        auto* polygon = reinterpret_cast<UnkContactPolygon_l947f64*>(ResolveHandleToPoolSlot(pool, hit->handle));
         if (polygon->EdgeCount() > (hit->handle & 0xffff)) {
             UnkSegment2D edge = fn_710012436c(reinterpret_cast<UnkPolygonCollection2D*>(pool), hit->handle);
             UnkContactOwner_l947f64* owner = self->owner;

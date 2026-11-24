@@ -15,7 +15,7 @@ struct UnkKeyCursor42 {
     u64* pos;  // 0x18
 };
 
-__attribute__((noinline)) f32 fn_7100069a20(UnkKeyTable42* self, u64* key) {
+__attribute__((noinline)) f32 GetParallelFloatValueForKeyEntry(UnkKeyTable42* self, u64* key) {
     u32 index = static_cast<u32>(key - self->keys);
     return self->values[index];
 }
@@ -25,5 +25,5 @@ f32 fn_71000686b8(UnkKeyCursor42* self) {
     if (pos == nullptr || pos == self->table->keys) {
         return 0.0f;
     }
-    return fn_7100069a20(self->table, pos - 1);
+    return GetParallelFloatValueForKeyEntry(self->table, pos - 1);
 }

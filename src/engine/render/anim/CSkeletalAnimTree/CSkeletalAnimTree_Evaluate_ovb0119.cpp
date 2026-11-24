@@ -12,7 +12,7 @@
 
 struct UnkFixedArray_71000155cc;
 struct UnkElem_0x40;
-s32 fn_71000155cc(UnkFixedArray_71000155cc* self, const UnkElem_0x40* e);
+s32 TryAppendMatrix44ToFixedArray(UnkFixedArray_71000155cc* self, const UnkElem_0x40* e);
 
 struct UnkMatrix_b0119 {
     f32 m[16];
@@ -81,7 +81,7 @@ __attribute__((always_inline)) static inline void Evaluate(UnkAnimTree_b0119<Shi
     out->end = out->begin;
     u32 count = skeleton->count;
     for (u32 i = 0; i < count; ++i)
-        fn_71000155cc(reinterpret_cast<UnkFixedArray_71000155cc*>(out),
+        TryAppendMatrix44ToFixedArray(reinterpret_cast<UnkFixedArray_71000155cc*>(out),
                       reinterpret_cast<const UnkElem_0x40*>(skeleton->bones[i].matrix));
     out->end = out->begin + out->capacity;
     self->busy = true;

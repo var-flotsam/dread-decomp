@@ -96,7 +96,7 @@ void fn_7100167b3c(UnkEnumType* type, const CStrId& name, void (*)(), void*);
 void fn_71001679f0();
 extern char g_unk_716e34c1a8[];
 
-void fn_7100168450() {
+void InitMsapiApiEnumTypeStatics() {
     InitHeaderIds(&g_unk_716e34c1b0.ids);
     InitEnum(&base::reflection::TypeObject<msapi::api::shdr::EShaderType, UnkEnumType>::object, "msapi::api::shdr::EShaderType", fn_7100163228, fn_710016307c, g_unk_716e34b088, &g_unk_716e34b090, fn_7100167cf8, &g_unk_716e34b0b0, fn_7100167d04);
     {

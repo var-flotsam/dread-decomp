@@ -189,7 +189,7 @@ void fn_710089e7c0(UnkSteamJet_l89e7c0* self, f32 dt) {
         f32 elapsed = self->grow_time;
         f32 length = self->grow_length;
         f32 t = !(elapsed <= 0.0f) ? (elapsed >= length ? length : elapsed) : 0.0f;
-        f32 size = Mix(1.0f, 0.0f, fn_7100076850(t / length));
+        f32 size = Mix(1.0f, 0.0f, SmoothStepCubic(t / length));
         if (self->grow_time <= self->grow_length) {
             self->size = size;
             f32 scale = self->blowing || self->stopping ? self->fade * self->scale : self->scale;

@@ -54,7 +54,7 @@ bool fn_7100029cbc(UnkCurveResource_b45a1* self, UnkLoadRequest_b45a1* request) 
     UnkCurveObject_b45a1* object;
     bool ok;
     {
-        UnkPathPairTemp_b45a1 key = fn_710001ab24(self->path);
+        UnkPathPairTemp_b45a1 key = MakePathPairFromRegistryCallback(self->path);
         ok = reinterpret_cast<UnkRegistryLoader_b45a1*>(reg)->vf_0x28(&key, &object, 1, request->size, 0x80, 0x56);
     }
     if (ok) {

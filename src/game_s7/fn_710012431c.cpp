@@ -10,7 +10,7 @@ struct UnkStruct_0x48 {
     u8 unk_0x0[0x48];
 };
 
-UnkStruct_0x48* fn_710012431c(UnkPool_0x48* pool, u32 handle) {
+UnkStruct_0x48* ResolveHandleToPoolSlot(UnkPool_0x48* pool, u32 handle) {
     u32 index = (handle >> 16) & 0x7fff;
     if (index < pool->count)
         return &pool->slots[index];

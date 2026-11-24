@@ -57,7 +57,7 @@ void fn_71010d1ca4(UnkMovementComponent_c4* self, UnkHeightOut_c4* out) {
     UnkCollection_c4* polygons = collection->GetType() == 16 ? collection : nullptr;
     if (polygons) {
         UnkPolygon_c4* polygon = reinterpret_cast<UnkPolygon_c4*>(
-            fn_710012431c(&polygons->field_0xa8, self->polygon));
+            ResolveHandleToPoolSlot(&polygons->field_0xa8, self->polygon));
         if (polygon) {
             UnkMatrix44 m = fn_7100d36a2c(reinterpret_cast<UnkShape*>(self->owner ? self->owner->shape : nullptr));
             out->height = m.m[11] + polygon->height;

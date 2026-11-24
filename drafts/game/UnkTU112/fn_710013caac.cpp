@@ -25,7 +25,7 @@ using base::global::CRntString;
 using base::reflection::UnkReflTypedPtr;
 
 // Reads a line of at most `size` bytes from the position; false when none could be read.
-bool fn_710007c9e8(base::global::CRntFile* file, char* buffer, u32 size);
+bool ReadRntFileLine(base::global::CRntFile* file, char* buffer, u32 size);
 void CRntString_Trim(CRntString* self);  // trims both ends
 UnkTunableLine fn_710013ab54(UnkTunableFieldHandle* field, const UnkReflTypedPtr* obj);  // the value as text
 
@@ -111,7 +111,7 @@ bool fn_710013caac(UnkTunableRegistry* self, const UnkStrPair_0x10* path) {
     UnkTunableObject* tunable = nullptr;
     bool result = true;
     while (in.file.position < in.file.size) {
-        if (!fn_710007c9e8(&in.file, buffer, 0x100))
+        if (!ReadRntFileLine(&in.file, buffer, 0x100))
             continue;
         CRntString_AssignCString(line.Str(), buffer);
         CRntString_Trim(line.Str());

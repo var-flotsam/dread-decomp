@@ -56,7 +56,7 @@ void fn_7100a8de20(UnkUsable_la8de20* self) {
     MakeEmpty(&self->ids[0]);
     MakeEmpty(&self->ids[1]);
     MakeEmpty(&self->ids[2]);
-    fn_7100a8e07c(&self->pair);
+    ConstructEmptyStrIdPair(&self->pair);
 
     new (&self->listener) UnkUsableListener_la8de20;
 

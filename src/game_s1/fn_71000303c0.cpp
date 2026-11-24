@@ -31,6 +31,6 @@ __attribute__((flatten)) void fn_71000303c0(UnkDeferredSet<UnkDeferredCallback<b
     base::refl_DeferredInvoke<UnkDeferredInvoke_71000303c0, bool>(s, arg);
 }
 
-__attribute__((flatten)) void fn_7100280934(UnkDeferredSet<UnkDeferredCallback<u16>>* s, const u16* arg) {
+__attribute__((flatten)) void InvokeDeferredCallbacksU16(UnkDeferredSet<UnkDeferredCallback<u16>>* s, const u16* arg) {
     base::refl_DeferredInvoke<UnkDeferredInvoke_7100280934, u16>(s, arg);
 }

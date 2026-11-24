@@ -32,11 +32,11 @@ void fn_710087f018(UnkFanComponent* self) {
     if (!node)
         return;
     f32 angle = node->xform_0x38.GetAngle().z;
-    UnkMatrix44 rot = fn_7100078d8c(angle);
+    UnkMatrix44 rot = MakeRotationMatrixZ(angle);
     base::math::CVector2D proj;
     {
         UnkVec3f half;
-        UnkVec3f dir = fn_7100078170(reinterpret_cast<const UnkMat4f*>(&rot), &g_unk_710164ae30);
+        UnkVec3f dir = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&rot), &g_unk_710164ae30);
         f32 s = self->field_0xac0;
         f32 x = s * dir.x;
         f32 y = s * dir.y;
@@ -46,7 +46,7 @@ void fn_710087f018(UnkFanComponent* self) {
         half.z = z * 0.5f;
         fn_710007b430(&proj, reinterpret_cast<const base::math::CVector3D*>(&half));
     }
-    UnkVec3f moved = fn_7100078170(reinterpret_cast<const UnkMat4f*>(&rot), &g_unk_710164ae30);
+    UnkVec3f moved = TransformPointByMatrixWithPerspectiveDivide(reinterpret_cast<const UnkMat4f*>(&rot), &g_unk_710164ae30);
     self->field_0xad0 = moved;
     fn_7100a48fe0(self, angle, self->field_0xac0, self->field_0xacc, &proj);
 }
