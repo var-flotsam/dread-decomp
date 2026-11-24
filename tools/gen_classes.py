@@ -551,6 +551,66 @@ def clashes(classes: set[str], types: dict[str, dict], units: list[Unit]) -> dic
     return out
 
 
+# How a reflection function shows its class's virtual table (base/reflection/ReflectedClass.h): the getter in slot 0
+# and the destructor after it (ClassOf, Destroy, or the declared form), or the destructor first.
+SLOT_FORMS = [
+    (re.compile(r"refl_TypeOf\(const void\* obj\) \{ return (?:ClassOf\(obj\)|\*static_cast<const [\w:]+\*>\(obj\)->vf_0x0\(\)); \}"),
+     "getter"),
+    (re.compile(r"refl_Destroy\(void\* obj\) \{ (?:Destroy\(obj\);|static_cast<[\w:]+\*>\(obj\)->~\w+\(\);) \}"), "destructor"),
+    (re.compile(r"\b(?:ClassOfDestructorFirst|DestroyDestructorFirst)\(obj\)"), "destructor first"),
+]
+DECLARED_LINE = re.compile(r"^.*?\b((?:\w+::)*\w+)::refl_(?:TypeOf|Destroy)\(.*$", re.M)
+
+
+def slot_evidence() -> dict[str, set[str]]:
+    """{class: what its src/reflection/ functions show of its virtual table} (SLOT_FORMS). A function that is not
+    in src/reflection/ (say, a lifted one) shows nothing, whatever it does."""
+    out: dict[str, set[str]] = {}
+    for f in sorted(REFLECTION.glob("*.cpp")):
+        text = f.read_text(encoding="utf-8")
+        pieces = [(m.group(1), m.group(2)) for m in CLASS_BLOCK.finditer(text)]
+        pieces += [(m.group(1), m.group(0)) for m in DECLARED_LINE.finditer(text)]
+        for cls, body in pieces:
+            for regex, tag in SLOT_FORMS:
+                if regex.search(body):
+                    out.setdefault(cls, set()).add(tag)
+    return out
+
+
+def reflected_destroys() -> set[str]:
+    """The classes data/functions/ gives a refl_Destroy."""
+    out = set()
+    for path in sorted(FUNCTIONS.glob("*.csv")):
+        for r in read_rows(path):
+            m = QUALIFIED_REFL.fullmatch(r["name"])
+            if m and m.group(2) == "refl_Destroy":
+                out.add(m.group(1))
+    return out
+
+
+def unpinned_roots(roots: set[str], types: dict[str, dict], evidence: dict[str, set[str]],
+                   destroys: set[str]) -> dict[str, str]:
+    """{root: why} for each root whose virtual table src/reflection/ does not pin to the one a header declares (the
+    getter in slot 0, the destructor after it). The evidence of every reflected class under the root counts, as
+    they share its table: some class must call the getter in slot 0; if any has a refl_Destroy, some class must
+    call the destructor after it; none may put the destructor first."""
+    out: dict[str, str] = {}
+    for r in sorted(roots):
+        tree, todo = [], [r]
+        while todo:
+            c = todo.pop()
+            tree.append(c)
+            todo += children(types).get(c, [])
+        seen = set().union(*(evidence.get(c, set()) for c in tree))
+        if "destructor first" in seen:
+            out[r] = "a class under it puts the destructor first in the virtual table"
+        elif "getter" not in seen:
+            out[r] = "no source of src/reflection/ shows the class getter in slot 0 of its virtual table"
+        elif "destructor" not in seen and any(c in destroys for c in tree):
+            out[r] = "no source of src/reflection/ shows where its virtual table holds the destructor"
+    return out
+
+
 def problems(name: str, types: dict[str, dict], fields: dict, extra: Extra,
              refl: tuple[set[str], dict[str, str]], memo: dict[str, list[str]] | None = None) -> list[str]:
     """Why the rule does not select `name` (empty: it does). `memo` keeps each base's own answer across calls
@@ -640,6 +700,23 @@ def selected(types: dict[str, dict], fields: dict, extra: Extra, limit: set[str]
             if limit is not None:
                 errors.append(f"{c}: {message}")
         out = kept
+    # A root's virtual table is declared as the getter in slot 0 and the destructor after it: a root whose
+    # src/reflection/ functions do not show that (or show otherwise) is left out, with every class under it.
+    unpinned = unpinned_roots({c for c in declared(types, out) if not types[c]["parent"]}, types, slot_evidence(),
+                              reflected_destroys())
+    if unpinned:
+        kept = []
+        for c in out:
+            root = chain(c, types)[-1]
+            if root not in unpinned:
+                kept.append(c)
+                continue
+            message = f"{root}: {unpinned[root]}"
+            if why is not None:
+                why[c] = message
+            if limit is not None:
+                errors.append(f"{c}: {message}")
+        out = kept
     # A unit that would both see a declared class and open a namespace of its name does not compile: that class
     # (and so every class based on it) is left out, until no unit clashes.
     units = refl[3] if len(refl) > 3 else []
@@ -717,6 +794,7 @@ REASONS = [
     ("a unit opens a namespace of its name (CTunable statics, a namespace-form subclass)", ("opens a namespace",)),
     ("a hand-written source defines a type of its name", ("a hand-written source defines",)),
     ("its reflection source does not convert", ("does not convert",)),
+    ("its root's virtual table is not shown by src/reflection/", ("virtual table",)),
     ("excluded by data/class_scope.csv", ("excluded by data/class_scope.csv",)),
 ]
 UNK_TYPE = re.compile(r"^(?:struct|class|union) (Unk\w*)\b[^;\n]*$", re.M)  # a definition, not a declaration

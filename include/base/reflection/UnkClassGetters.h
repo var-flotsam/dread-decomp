@@ -1524,6 +1524,7 @@ const base::reflection::CClass* fn_7100ed365c();  // CShotManager::CTunableShotM
 const base::reflection::CClass* fn_7100edf9e4();  // CSubAreaManager::CTunableSubAreaManager::refl_GetClass
 const base::reflection::CClass* fn_7100f03390();  // CHearingSensor::refl_GetClass
 const base::reflection::CClass* fn_7100f03dd0();  // CHearingStimulusDef::refl_GetClass
+const base::reflection::CClass* fn_7100f048e0();  // CSensor::refl_GetClass
 const base::reflection::CClass* fn_7100f0fdbc();  // CReserveTankInfo::refl_GetClass
 const base::reflection::CClass* fn_7100f1003c();  // CReserveTankInfo::CTunableReserveTanks::refl_GetClass
 const base::reflection::CClass* fn_7100f17db8();  // CStartCentralUnitCombatLogicAction::refl_GetClass
