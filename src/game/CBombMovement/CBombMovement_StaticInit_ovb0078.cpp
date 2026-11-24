@@ -21,7 +21,7 @@ extern char g_unk_7172753ac9[];
 extern UnkTunable g_unk_7172753ad0;
 extern void* g_unk_7101a94fa8[];
 
-void fn_7100aac720() {
+void CBombMovement_InitStatics() {
     InitHeaderIds(&g_unk_7172753b10.ids);
     fn_7100aa9174();
     fn_710009ec00(g_unk_7172753ac8, g_unk_7172753b10.field_0x38);

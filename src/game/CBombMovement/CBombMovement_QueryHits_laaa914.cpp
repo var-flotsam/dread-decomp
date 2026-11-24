@@ -66,7 +66,7 @@ struct UnkBombHitVisitor_laaa914 : UnkBombHitList_laaa914 {
     }
 };
 
-void fn_7100aaa914(UnkBombHitHandler_ovb0078* self, u32 mask, const void* source, f32 size, u32* kinds,
+void CBombMovement_QueryHits(UnkBombHitHandler_ovb0078* self, u32 mask, const void* source, f32 size, u32* kinds,
                    UnkBombOnActor_ovb0078 on_actor, UnkBombOnTiles_ovb0078 on_tiles) {
     UnkTree* tree = static_cast<UnkTree*>(g_unk_7101d47310->field_0x608->field_0x820);
     if (!tree)

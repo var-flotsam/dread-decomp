@@ -53,7 +53,7 @@ static inline const char* OrEmpty_A5_b73(const char* s) {
     return s ? s : "";
 }
 
-bool fn_7100a8c318(UnkShipRecharge_A5_b73* self, UnkShipRechargeUser_A5_b73* user, const char* const* level) {
+bool CShipRechargeComponent_LevelChangeUse(UnkShipRecharge_A5_b73* self, UnkShipRechargeUser_A5_b73* user, const char* const* level) {
     if (!user)
         return false;
     self->field_0x53a = false;

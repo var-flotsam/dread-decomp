@@ -57,7 +57,7 @@ struct UnkSaveStation_la89dc0 {
     }
 };
 
-void fn_7100a89dc0(UnkSaveStation_la89dc0* self) {
+void CSaveStationUsableComponent_PlaySaveSound(UnkSaveStation_la89dc0* self) {
     if (!Playing(self->sound) && self->CharClass()->sound.data != &g_unk_7101d47200->empty) {
         static UnkSoundDesc s_params;
         s_params.kind.field_0x0 = 0;

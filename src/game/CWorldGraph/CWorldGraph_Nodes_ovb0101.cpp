@@ -116,7 +116,7 @@ void* fn_7100acc2f0(UnkWorldGraph_b0101* self, u32 index, const base::math::CVec
 
 // The node whose id is `*key`; when there is none, a new node at `point` (none off the navigation
 // mesh), appended and announced to the listeners.
-__attribute__((disable_tail_calls)) void* fn_7100acc650(UnkWorldGraph_b0101* self, u64* key, const base::math::CVector2D* point) {
+__attribute__((disable_tail_calls)) void* CWorldGraph_FindOrAddNodeById(UnkWorldGraph_b0101* self, u64* key, const base::math::CVector2D* point) {
     base::global::CRntVector<UnkWorldGraphNode_b0101>* nodes = &self->nodes;
     for (u32 i = 0; i < self->nodes.count; ++i) {
         auto* node = static_cast<UnkWorldGraphNodeData_b0101*>(fn_7100acc418(reinterpret_cast<UnkWorldGraphArray*>(nodes), i));

@@ -21,7 +21,7 @@ struct UnkHomingMovement_ovb0050 {
     CStrId point;           // 0x5e0
 };
 
-void fn_7100ac2238(UnkHomingMovement_ovb0050* self, UnkWeakTarget* target, const CStrId& point) {
+void CHomingMovement_SetTarget(UnkHomingMovement_ovb0050* self, UnkWeakTarget* target, const CStrId& point) {
     UnkWeakHandle* h = target ? fn_7100d78378(target) : nullptr;
     AssignRef(&self->target, h);
     self->point = point;
@@ -47,7 +47,7 @@ struct UnkHomingMovement2_ovb0050 {
 
 struct UnkChargeComponent;
 
-void fn_7100ac2014(UnkHomingMovement2_ovb0050* self, f32 dt) {
+void CHomingMovement_UpdateDirectionToTarget(UnkHomingMovement2_ovb0050* self, f32 dt) {
     fn_7100ac40fc(reinterpret_cast<UnkChargeComponent*>(self), dt);
     if (self->target && self->target->target) {
         UnkVec3f p = self->vf_0x370();

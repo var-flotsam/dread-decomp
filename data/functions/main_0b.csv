@@ -4786,8 +4786,8 @@ address,size,name,name_source,subsystem,status
 0x7100bc6914,244,CCharClassPlayRandomTimelineEvent::refl_GetClass,reflection,game/characters,O
 0x7100bc6a08,2716,CCharClassPlayRandomTimelineEvent::refl_AddFields,reflection,game/characters,O
 0x7100bc74a4,388,CCharClassPlayRandomTimelineEvent::refl_InitClass,reflection,game/characters,O
-0x7100bc7628,452,fn_7100bc7628,unknown,game/characters?,O
-0x7100bc77ec,332,fn_7100bc77ec,unknown,game/characters?,O
+0x7100bc7628,452,CCharClassPlayRandomTimelineEvent_PlayRandomTimeline,inferred,game/characters?,O
+0x7100bc77ec,332,CCharClassPlayRandomTimelineEvent_CheckPlayOnly,inferred,game/characters?,O
 0x7100bc7938,220,fn_7100bc7938,unknown,game/characters?,O
 0x7100bc7a14,28,fn_7100bc7a14,unknown,game/characters?,O
 0x7100bc7a30,628,fn_7100bc7a30,unknown,game/characters?,O

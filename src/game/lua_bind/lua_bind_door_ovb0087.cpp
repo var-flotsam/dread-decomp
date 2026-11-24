@@ -47,7 +47,7 @@ struct UnkLuaDoorState {
     bool enabled;  // 0x10
 };
 UnkLuaDoorState* fn_7100acc8a8(UnkLuaDoorTarget* target, const CStrId& name);
-void* fn_7100acc5ec(UnkLuaDoorTarget* target, void* object);
+void* CWorldGraph_AddNodeForObject(UnkLuaDoorTarget* target, void* object);
 
 void fn_7100fbbaa4(UnkLuaDoorTarget* self) {
     for (u64 i = 0; i < self->item_count; ++i)
@@ -162,7 +162,7 @@ int AddWorldGraphNode(lua_State* L) {
         }
         if (object && object2) {
             if (UnkLuaDoorTarget* target = fn_710055b104(object))
-                fn_7100acc5ec(target, object2);
+                CWorldGraph_AddNodeForObject(target, object2);
         }
     }
     return 0;
