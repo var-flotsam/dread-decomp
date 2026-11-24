@@ -186,7 +186,7 @@ struct UnkAIStateInit_b0169 {
     u8 pad_0x1ed[0x3];
     s32 field_0x1f0;  // 0x1f0
     u8 pad_0x1f4[0x4];
-    base::UnkAllocator* allocator;  // 0x1f8
+    base::IAllocator* allocator;  // 0x1f8
     u8 flag_0x200;  // 0x200
     u8 pad_0x201[0x1];
     u8 flag_0x202;  // 0x202

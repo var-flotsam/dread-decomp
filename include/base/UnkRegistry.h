@@ -11,7 +11,7 @@
 
 struct UnkRegistry_0x70 {
     void* vtable;
-    base::UnkAllocator* allocator;  // +0x8, fn_7100083990
+    base::IAllocator* allocator;  // +0x8, fn_7100083990
     u32 flags;                      // +0x10, 0xe
     u8 pad_0x14[4];
     base::global::CRntVector<void*> entries;  // +0x18

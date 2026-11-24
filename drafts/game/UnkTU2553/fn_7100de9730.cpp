@@ -53,7 +53,7 @@ struct UnkHandleList_de9540 {
     u32 step;
     bool growable;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void PushBack(const UnkHandleRef_de9540& value) {
         u32 n = count;

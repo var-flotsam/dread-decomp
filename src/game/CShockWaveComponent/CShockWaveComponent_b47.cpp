@@ -30,7 +30,7 @@ struct UnkShockWaveResetB47 {
     u32 field_0x258;
     UnkShockWaveNodeB47* field_0x260;
     UnkShockWaveNodeB47* field_0x268;
-    base::UnkAllocator* field_0x270;
+    base::IAllocator* field_0x270;
     u32 field_0x278;
     void* field_0x280;
     void* field_0x288;

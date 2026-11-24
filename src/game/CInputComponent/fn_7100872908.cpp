@@ -13,7 +13,7 @@ struct UnkOwner_7100872908 {
     u32 count;                   // 0xaa8
     UnkNode_7100872908* head;    // 0xab0
     UnkNode_7100872908* tail;    // 0xab8
-    base::UnkAllocator* allocator;  // 0xac0
+    base::IAllocator* allocator;  // 0xac0
 };
 
 void fn_7100872908(UnkOwner_7100872908* self, void* value) {

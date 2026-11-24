@@ -27,7 +27,7 @@ struct UnkFXIdList_l14debc {
     u32 count;
     UnkIdNode_0x18* head;
     UnkIdNode_0x18* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkFXIdList_l14debc() {
         for (UnkIdNode_0x18* n = head; n;) {
@@ -54,7 +54,7 @@ struct UnkFXValueArrays_l14debc {
     u32 count;
     u32 capacity;
     u8 pad_0x18[8];
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
 };
 
 extern void* g_unk_7101cb3728[];  // the component's vtable

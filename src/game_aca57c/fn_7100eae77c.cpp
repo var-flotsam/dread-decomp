@@ -9,7 +9,7 @@
 #include "game/UnkTU2566.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::CRntString;
 using base::global::UnkStringData;
 
@@ -44,7 +44,7 @@ __attribute__((always_inline)) inline UnkStrBuffer_7100eae77c::~UnkStrBuffer_710
     CRntString_Destroy(reinterpret_cast<CRntString*>(this));
 }
 __attribute__((always_inline)) inline UnkStrBuffer_7100eae77c::UnkStrBuffer_7100eae77c(const UnkStrBuffer_7100eae77c& other) {
-    CRntString_InitWithAllocator(reinterpret_cast<CRntString*>(this), reinterpret_cast<UnkAllocator*>(&storage));
+    CRntString_InitWithAllocator(reinterpret_cast<CRntString*>(this), reinterpret_cast<IAllocator*>(&storage));
     storage.vtable = g_unk_7101a1b5a0 + 2;
     storage.field_0x28 = nullptr;
     storage.field_0x30 = 0;
@@ -108,7 +108,7 @@ struct UnkRecord118Table {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 };
 
 void fn_7100eae77c(UnkRecord118Table* self) {

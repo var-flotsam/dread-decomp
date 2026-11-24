@@ -20,7 +20,7 @@ struct UnkPresetList_b0192 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Init() {
         data = nullptr;

@@ -51,7 +51,7 @@ struct UnkSubIdMap_8c0004 {
     UnkMap_71003327a4 buckets;  // 0xd0
     u32 first_index;                  // 0xf8
     UnkSubIdNode_8c0004* first_node;  // 0x100
-    base::UnkAllocator* allocator;    // 0x108
+    base::IAllocator* allocator;    // 0x108
     u32 flags;                        // 0x110
     u32 size;                         // 0x114
     u32 allocations;                  // 0x118

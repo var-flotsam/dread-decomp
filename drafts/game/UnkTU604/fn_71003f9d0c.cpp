@@ -17,7 +17,7 @@ struct UnkValueList_l3f9d0c {
     u32 count;
     UnkValueNode_l3f9d0c* head;     // 0x10
     UnkValueNode_l3f9d0c* tail;     // 0x18
-    base::UnkAllocator* allocator;  // 0x20: the pool once it has one
+    base::IAllocator* allocator;  // 0x20: the pool once it has one
     u32 flags;                      // 0x28
     base::UnkBlockPool pool;        // 0x30
 };
@@ -29,7 +29,7 @@ void fn_71003f9d0c(UnkValueList_l3f9d0c* self, const UnkValueList_l3f9d0c* other
     self->count = 0;
     self->head = nullptr;
     self->tail = nullptr;
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
     self->flags = 0x13;
     self->allocator = allocator;
     self->vtable = g_unk_7101a32660 + 2;
@@ -39,7 +39,7 @@ void fn_71003f9d0c(UnkValueList_l3f9d0c* self, const UnkValueList_l3f9d0c* other
     u32 flags = other->flags;
     self->flags = flags;
 
-    base::UnkAllocator* parent = other->pool.parent;
+    base::IAllocator* parent = other->pool.parent;
     if (!parent) {
         self->allocator = other->allocator;
         return;
@@ -52,7 +52,7 @@ void fn_71003f9d0c(UnkValueList_l3f9d0c* self, const UnkValueList_l3f9d0c* other
         fn_710008378c(&self->pool.blocks, parent->vf_0x40(size, 8, flags), size, sizeof(Node));
     }
     // The pool's address, formed as an integer (as in base::UnkPoolList::Init).
-    self->allocator = reinterpret_cast<base::UnkAllocator*>(reinterpret_cast<u64>(self) + 0x30);
+    self->allocator = reinterpret_cast<base::IAllocator*>(reinterpret_cast<u64>(self) + 0x30);
 
     if (self == other)
         return;

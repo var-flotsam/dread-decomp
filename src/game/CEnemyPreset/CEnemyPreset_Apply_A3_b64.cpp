@@ -20,7 +20,7 @@ struct UnkPresetAI_A3_b64 {
     UnkPresetNode_A3_b64* field_0x1178;
     u64 field_0x1180;
     u8 pad_0x1188[0x8];
-    base::UnkAllocator* field_0x1190;
+    base::IAllocator* field_0x1190;
 
     void vf_0x210(UnkEnemyPreset_A3_b64* preset) {
         reinterpret_cast<void (*)(UnkPresetAI_A3_b64*, UnkEnemyPreset_A3_b64*)>(vtable[0x210 / 8])(this, preset);

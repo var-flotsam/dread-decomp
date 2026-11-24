@@ -34,7 +34,7 @@ struct UnkBillboardGroup_A5_b71 {
     u8 pad_0xcd[0x3];
     u32 field_0xd0;
     u8 pad_0xd4[0x4];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u8 pad_0xe0[0x8];
     u8 member[0x50];
     void* owner;

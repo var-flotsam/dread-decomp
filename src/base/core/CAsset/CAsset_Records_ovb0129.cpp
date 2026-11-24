@@ -119,7 +119,7 @@ struct UnkAssetRecordMap_b0129 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) ~UnkAssetRecordMap_b0129() {
         if (keys)

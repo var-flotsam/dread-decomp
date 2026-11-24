@@ -45,7 +45,7 @@ struct UnkLengthNode_l0fee24 {
 };
 
 struct UnkLengthMap_l0fee24 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 alloc_flags;  // 0x8
     u32 count;        // 0xc
     UnkLengthNode_l0fee24** buckets;  // 0x10

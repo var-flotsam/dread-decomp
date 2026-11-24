@@ -24,7 +24,7 @@ static inline bool HasValue(const CStrId& id) {
 void fn_7100ae9a10(UnkQualifiedId* self, UnkIdSource* source, const CStrId& prefix) {
     UnkInlineString s;
     auto* str = reinterpret_cast<base::global::CRntString*>(&s);
-    CRntString_InitWithAllocator(str, reinterpret_cast<base::UnkAllocator*>(&s.vtable));
+    CRntString_InitWithAllocator(str, reinterpret_cast<base::IAllocator*>(&s.vtable));
     s.vtable = &g_unk_7101a1b750[2];
     s.field_0xb8 = 0;
     s.field_0xc0 = 0;

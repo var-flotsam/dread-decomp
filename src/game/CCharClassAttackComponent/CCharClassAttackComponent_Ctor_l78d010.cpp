@@ -22,7 +22,7 @@ struct UnkAttackArray_l78d010 {
     u64 field_0xb0;
     u32 step;         // 0xb8
     u32 flags;        // 0xbc
-    base::UnkAllocator* allocator;  // 0xc0
+    base::IAllocator* allocator;  // 0xc0
 };
 
 struct UnkCharClassAttack_l78d010 {

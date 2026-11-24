@@ -17,7 +17,7 @@ struct UnkUnit958Array {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_710063cb28(UnkUnit958Array* array, u32 n);

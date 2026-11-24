@@ -477,7 +477,7 @@ struct UnkVideoEntry {{
 
 // The map's layout as base/UnkHashMap.h describes it (allocator, count, buckets, node list).
 struct UnkVideoMap {{
-    base::UnkAllocator* alloc;
+    base::IAllocator* alloc;
     u32 alloc_flags;
     u32 count;
     UnkVideoNode** buckets;

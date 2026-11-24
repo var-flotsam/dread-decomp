@@ -65,7 +65,7 @@ struct UnkPlayerInfo_lf088c8 {
     UnkStringData** names;                            // 0x328
     u32 entry_count;                                  // 0x330
     u8 pad_0x334[0xc];
-    base::UnkAllocator* allocator;                    // 0x340
+    base::IAllocator* allocator;                    // 0x340
     u8 member_0x348[0xb0];
 };
 #pragma pack(pop)

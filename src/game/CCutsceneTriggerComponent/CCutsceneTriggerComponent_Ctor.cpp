@@ -18,7 +18,7 @@ struct UnkCutsceneTriggerComponent {
     u32 field_0xad8;
     bool field_0xadc;
     u32 field_0xae0;
-    base::UnkAllocator* field_0xae8;
+    base::IAllocator* field_0xae8;
     u32 field_0xaf0;
     u64 field_0xaf8;
     bool bOneShot;

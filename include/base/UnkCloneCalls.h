@@ -324,7 +324,7 @@ struct UnkKeyedCopyArray {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    UnkAllocator* allocator;
+    IAllocator* allocator;
 };
 
 template <class Tag, u64 Size>

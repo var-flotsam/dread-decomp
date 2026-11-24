@@ -22,7 +22,7 @@ struct UnkKeyedArray_710025ad0c {
     u32 capacity;
     u32 field_0x18;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Clear() {
         if (keys && count)
@@ -58,7 +58,7 @@ struct UnkNodeMap_710025ad0c {
     u32 field_0x18;
     u32 bucket_count;
     u8 pad_0x20[0x10];
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     UnkNode_710025ad0c* field_0x38;
     UnkNode_710025ad0c* head;
     u64 field_0x48;

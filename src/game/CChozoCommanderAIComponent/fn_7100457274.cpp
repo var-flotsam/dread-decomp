@@ -18,7 +18,7 @@ struct UnkIdList_l457274 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkIdList_l457274(const UnkIdList_l457274& other)
         : data(nullptr), count(0), capacity(0), step(other.step), field_0x14(other.field_0x14),

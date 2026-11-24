@@ -35,7 +35,7 @@ template <class V>
 struct UnkSoundDefMap_l0f8b30 {
     using Node = UnkSoundDefNode_l0f8b30<V>;
 
-    base::UnkAllocator* node_allocator;  // 0x0
+    base::IAllocator* node_allocator;  // 0x0
     u32 node_flags;                      // 0x8
     u32 count;                           // 0xc
     Node** buckets;                      // 0x10 (a base::global::CRntVector)
@@ -44,14 +44,14 @@ struct UnkSoundDefMap_l0f8b30 {
     u32 step;                            // 0x20
     bool field_0x24;                     // 0x24
     u32 bucket_flags;                    // 0x28
-    base::UnkAllocator* allocator;       // 0x30
+    base::IAllocator* allocator;       // 0x30
     Node* tail;                          // 0x38
     Node* head;                          // 0x40
 
     explicit UnkSoundDefMap_l0f8b30(base::UnkSubAllocator* heap)
-        : node_allocator(reinterpret_cast<base::UnkAllocator*>(heap)), node_flags(0xe), count(0),
+        : node_allocator(reinterpret_cast<base::IAllocator*>(heap)), node_flags(0xe), count(0),
           buckets(nullptr), bucket_count(0), bucket_capacity(0), step(10), field_0x24(true),
-          bucket_flags(0xe), allocator(reinterpret_cast<base::UnkAllocator*>(heap)), tail(nullptr),
+          bucket_flags(0xe), allocator(reinterpret_cast<base::IAllocator*>(heap)), tail(nullptr),
           head(nullptr) {}
 
     // From the sound sub-allocator.

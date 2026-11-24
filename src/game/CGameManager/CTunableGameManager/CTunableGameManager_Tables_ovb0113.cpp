@@ -56,7 +56,7 @@ struct UnkTunableTable_ovb0113 {
     UnkTunableId_ovb0113* keys;
     u32 count;
     u8 pad_0x14[0x20 - 0x14];
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     u64 field_0x28;
 
     __attribute__((always_inline)) void Clear() {

@@ -16,7 +16,7 @@ struct UnkThermalDeviceList {
     u32 field_0x18;
     bool field_0x1c;
     u32 field_0x20;
-    base::UnkAllocator* field_0x28;
+    base::IAllocator* field_0x28;
     u32 field_0x30;
     u64 field_0x38;
     u64 field_0x40;

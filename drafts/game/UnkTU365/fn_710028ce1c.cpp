@@ -59,7 +59,7 @@ struct UnkEdgeList_l28ce1c {
     u32 count;                      // 0x8
     UnkEdgeNode_l28ce1c* head;      // 0x10
     UnkEdgeNode_l28ce1c* tail;      // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     u32 flags;                      // 0x28
 
     void PushBack(const UnkEdge_l28ce1c& edge) {

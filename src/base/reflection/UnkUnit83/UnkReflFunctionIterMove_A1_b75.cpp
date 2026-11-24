@@ -19,7 +19,7 @@ struct UnkKeyedArray {
     u32 capacity;
     u32 step;
     u32 field_0x1c;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkKeyedArray(UnkKeyedArray&& other)
         : data(other.data), keys(other.keys), count(other.count), capacity(other.capacity), step(other.step),
@@ -38,7 +38,7 @@ struct UnkVectorView {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     UnkVectorView(UnkVectorView&& other)
         : data(other.data), count(other.count), capacity(other.capacity), step(other.step),

@@ -13,7 +13,7 @@
 struct UnkPrimeBucket_b42a1;
 
 struct UnkPrimeHashTable_b42a1 {
-    base::UnkAllocator* allocator0;
+    base::IAllocator* allocator0;
     u32 flags0;
     u32 field_0xc;
     UnkPrimeBucket_b42a1** data;
@@ -22,11 +22,11 @@ struct UnkPrimeHashTable_b42a1 {
     u32 step;
     bool field_0x24;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     void* field_0x38;
     void* field_0x40;
 
-    __attribute__((always_inline)) UnkPrimeHashTable_b42a1(u32 n, base::UnkAllocator* alloc, u32 fl) {
+    __attribute__((always_inline)) UnkPrimeHashTable_b42a1(u32 n, base::IAllocator* alloc, u32 fl) {
         if (alloc) {
             allocator0 = alloc;
             flags0 = fl;
@@ -84,7 +84,7 @@ struct UnkPrimeHashTable_b42a1 {
 
 #define UNK_PRIME_HASH_TABLE_B42A1(addr)                                                       \
     void fn_##addr(void* self, u32 n, void* alloc, u32 flags) {                               \
-        new (self) UnkPrimeHashTable_b42a1(n, static_cast<base::UnkAllocator*>(alloc), flags); \
+        new (self) UnkPrimeHashTable_b42a1(n, static_cast<base::IAllocator*>(alloc), flags); \
     }
 
 UNK_PRIME_HASH_TABLE_B42A1(710013208c)

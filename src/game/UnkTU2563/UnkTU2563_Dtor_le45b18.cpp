@@ -57,7 +57,7 @@ struct UnkTable_le45b18 {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkTable_le45b18() {
         Ops::Clear(this);

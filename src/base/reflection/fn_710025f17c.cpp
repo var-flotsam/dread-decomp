@@ -7,12 +7,12 @@
 #include "base/reflection.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 using base::global::CRntVector;
 using base::global::UnkStringData;
 
 struct UnkAllocatorHandle_710025f17c {
-    UnkAllocator* allocator = GetDefaultAllocator();
+    IAllocator* allocator = GetDefaultAllocator();
     u32 flags = 0xe;
     u32 field_0xc = 0;
 };

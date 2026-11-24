@@ -29,7 +29,7 @@ struct UnkQueue_l1aa898 {
     u32 count;
     UnkNode_l1aa898* head;
     UnkNode_l1aa898* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 static inline UnkRes_l1aa898* AsRes(UnkRes_l1aa898* res) {

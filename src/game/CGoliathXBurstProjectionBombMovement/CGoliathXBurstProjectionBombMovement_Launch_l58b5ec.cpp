@@ -25,7 +25,7 @@ struct UnkBurstBombKey_l58b5ec;
 extern UnkBurstBombKey_l58b5ec g_unk_710164a020;  // reached through the GOT
 
 void CGoliathXBurstProjectionBombMovement_ConstructVec3ArrayFromValues(UnkBombVector_b49* self, const UnkBombValue_b49* values, u64 count, u32 step,
-                   base::UnkAllocator* allocator, u32 flags);
+                   base::IAllocator* allocator, u32 flags);
 
 // Takes over other's array, leaving it empty (CRntVector's move assignment).
 static inline void MoveAssign(UnkBombVector_b49* self, UnkBombVector_b49* other) {

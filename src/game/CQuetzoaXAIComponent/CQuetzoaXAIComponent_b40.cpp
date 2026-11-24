@@ -23,7 +23,7 @@ struct UnkQuetzoaXAIComponent {
     u32 field_0x14ba0;
     bool field_0x14ba4;
     u32 field_0x14ba8;
-    base::UnkAllocator* field_0x14bb0;
+    base::IAllocator* field_0x14bb0;
     u32 field_0x14bb8;
     u64 field_0x14bc0;
     u8 pad_0x14bc8[8];

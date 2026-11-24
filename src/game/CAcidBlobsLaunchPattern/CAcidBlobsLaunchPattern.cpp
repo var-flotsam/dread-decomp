@@ -17,7 +17,7 @@ struct UnkGrowArray_71005d69b8 {
     u32 capacity;
     bool field_0x14;
     u32 growth;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 struct UnkLaunchPattern_71005d69b8 {

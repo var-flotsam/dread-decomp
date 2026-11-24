@@ -9,7 +9,7 @@
 #include "game/UnkTU604.h"
 #include "types.h"
 
-using base::UnkAllocator;
+using base::IAllocator;
 
 extern char g_unk_7101a326a0[];
 
@@ -35,7 +35,7 @@ __attribute__((always_inline)) static inline void DestroyNodeList(char* self) {
     *reinterpret_cast<char**>(self + 0x30) = Traits::member_vtable() + 0x10;
     if (char* p = *reinterpret_cast<char**>(self + 0x60)) {
         fn_71000837f4(reinterpret_cast<UnkBlockFreeList*>(self + 0x40));
-        (*reinterpret_cast<UnkAllocator**>(self + 0x38))->vf_0x48(p);
+        (*reinterpret_cast<IAllocator**>(self + 0x38))->vf_0x48(p);
         *reinterpret_cast<char**>(self + 0x38) = nullptr;
     }
     *reinterpret_cast<char**>(self) = Traits::base_vtable() + 0x10;
@@ -49,7 +49,7 @@ void fn_71003fadf4(char* owner, char* list) {
     if (!list)
         return;
     DestroyNodeList(list);
-    (*reinterpret_cast<UnkAllocator**>(owner + 0x20))->vf_0x48(list);
+    (*reinterpret_cast<IAllocator**>(owner + 0x20))->vf_0x48(list);
 }
 
 void fn_71003facac(char* self) {
@@ -58,7 +58,7 @@ void fn_71003facac(char* self) {
     while (n) {
         char* next = *reinterpret_cast<char**>(n + 0x78);
         DestroyNodeList(n);
-        (*reinterpret_cast<UnkAllocator**>(self + 0x20))->vf_0x48(n);
+        (*reinterpret_cast<IAllocator**>(self + 0x20))->vf_0x48(n);
         n = next;
     }
     __builtin_operator_delete(self);
@@ -73,7 +73,7 @@ void fn_71003f8b80(char* self) {
     while (n) {
         char* next = *reinterpret_cast<char**>(n + 0x78);
         DestroyNodeList(n);
-        (*reinterpret_cast<UnkAllocator**>(self + 0x28))->vf_0x48(n);
+        (*reinterpret_cast<IAllocator**>(self + 0x28))->vf_0x48(n);
         n = next;
     }
     *reinterpret_cast<u32*>(self + 0x10) = 0;

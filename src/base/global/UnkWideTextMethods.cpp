@@ -21,17 +21,17 @@ struct UnkWideTextObj {
     void* vtable;
     wchar_t* chars;
     u32 count;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
-    base::UnkAllocator* GetAllocator() const {
-        base::UnkAllocator* a = allocator;
+    base::IAllocator* GetAllocator() const {
+        base::IAllocator* a = allocator;
         if (!a)
             a = GetDefaultAllocator();
         return a;
     }
     // Allocates `length` + 1 characters, empty.
     void Allocate(u32 length) {
-        base::UnkAllocator* a = GetDefaultAllocator();
+        base::IAllocator* a = GetDefaultAllocator();
         chars = static_cast<wchar_t*>(a->vf_0x40((u64)(length + 1) * 4, 8, 0x11));
         wcscpy(chars, g_unk_7101647684);
         count = wcslen(chars);

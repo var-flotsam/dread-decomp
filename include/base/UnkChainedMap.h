@@ -11,7 +11,7 @@
 struct UnkMapNode;
 
 struct UnkChainedMap {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     base::global::CRntVector<UnkMapNode*> buckets;

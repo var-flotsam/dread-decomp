@@ -31,7 +31,7 @@ struct UnkMusicNode_dca88 {
 
 // A hash map by name whose nodes are also kept in a list.
 struct UnkMusicMap_dca88 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;  // 0xc
     UnkMusicNode_dca88** buckets;

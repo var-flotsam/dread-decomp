@@ -43,7 +43,7 @@ struct UnkU1115Table_A4_b71 {
     u32 count;
     u32 field_0x14;
     u64 field_0x18;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 template <u32 Offset>

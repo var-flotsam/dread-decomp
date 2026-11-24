@@ -66,8 +66,8 @@ struct UnkSubAllocator {
     bool field_0x31 = false;
 };
 
-// Its slots 0x40 and 0x48 are the ones UnkAllocator names: the default allocator is what
-// fn_7100083990 hands out as an UnkAllocator. Vtable at 0x7101a1ac28 (via GOT 0x7101cbc2c8):
+// Its slots 0x40 and 0x48 are the ones IAllocator names: the default allocator is what
+// fn_7100083990 hands out as an IAllocator. Vtable at 0x7101a1ac28 (via GOT 0x7101cbc2c8):
 // 0x0/0x8 fn_7100082cc8/fn_7100082d1c (destructors), 0x10 fn_7100082d78, 0x40 fn_71000831a8,
 // 0x48 fn_71000832d8, 0x50 fn_7100082ea0, 0x58 fn_71000835a0, 0x88 fn_7100083374.
 struct UnkDefaultAllocator {

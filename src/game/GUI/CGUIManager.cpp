@@ -398,7 +398,7 @@ void fn_71011b9ce4(UnkGuiRoot* root, const UnkStrPair_0x10* path) {
 extern char unk_7101cb58a8[];  // the base part's vtable (reached through the GOT)
 extern char unk_7101cb5888[];  // the container's vtable (reached through the GOT)
 
-void fn_71011b250c(UnkParentPoolList* self, u32 n, u32 /*unused*/, u32 flags, base::UnkAllocator* a) {
+void fn_71011b250c(UnkParentPoolList* self, u32 n, u32 /*unused*/, u32 flags, base::IAllocator* a) {
     refl_ParentPoolListCtor<0x18, unk_7101cb58a8, unk_7101cb5888>(self, n, flags, a);
 }
 

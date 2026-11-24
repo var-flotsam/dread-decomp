@@ -29,7 +29,7 @@ static inline __attribute__((always_inline)) void InitList(void* self, u64 o) {
     At<u32>(self, o + 0x18) = 10;
     At<u8>(self, o + 0x1c) = 1;
     At<u32>(self, o + 0x20) = 0xf;
-    At<base::UnkAllocator*>(self, o + 0x28) = GetDefaultAllocator();
+    At<base::IAllocator*>(self, o + 0x28) = GetDefaultAllocator();
     At<u32>(self, o + 0x30) = 0;
     At<char*>(self, o) = reinterpret_cast<char*>(g_unk_7101a33fa0) + 0x10;
     At<u64>(self, o + 0x38) = 0;

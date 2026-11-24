@@ -47,7 +47,7 @@ struct UnkStringList_l02e6e0 {
     u8 pad_0xc[0x4];
     UnkStringNode_l02e6e0* head;  // 0x10
     UnkStringNode_l02e6e0* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
+    base::IAllocator* allocator;  // 0x20
     u32 flags;                      // 0x28
 
     void PushBack(const CRntString& value) {

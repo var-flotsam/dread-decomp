@@ -114,7 +114,7 @@ struct UnkCallbackSetVector_7100d88e14 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     template <void (*Reserve)(UnkCallbackSetVector_7100d88e14*, u32),
               void (*PushBack)(UnkCallbackSetVector_7100d88e14*, const UnkCallbackSetElem*)>

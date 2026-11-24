@@ -71,7 +71,7 @@ struct UnkGrowArray_ovb0092 {
     u32 step;
     bool grow;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) void Reallocate(u32 n) {
         T* p = static_cast<T*>(allocator->vf_0x40((u64)n * sizeof(T), 8, flags));

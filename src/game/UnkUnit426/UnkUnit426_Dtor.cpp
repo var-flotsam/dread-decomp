@@ -20,11 +20,11 @@ struct UnkUnit426Object {
     u32 field_0x18;
     u32 field_0x1c;
     u8 pad_0x20[0x10];
-    base::UnkAllocator* allocator2;  // 0x30
+    base::IAllocator* allocator2;  // 0x30
     u8 pad_0x38[0x30];
     UnkUnit426Member68 member;   // 0x68
     u8 pad_0x78[0x10];
-    base::UnkAllocator* allocator;  // 0x88
+    base::IAllocator* allocator;  // 0x88
     UnkCountedResource* resource;   // 0x90
 };
 

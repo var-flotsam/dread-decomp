@@ -50,7 +50,7 @@ struct UnkTryAttackNodeList_l6b0f58 {
     u32 count;
     void* head;
     void* tail;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkTryAttackNodeList_l6b0f58() {
         vtable = g_unk_7101a21540 + 0x10;

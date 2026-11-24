@@ -15,7 +15,7 @@ struct UnkPairedArray {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     __attribute__((always_inline)) UnkPairedArray(UnkPairedArray&& other)
         : data(other.data), field_0x8(other.field_0x8), count(other.count), capacity(other.capacity),

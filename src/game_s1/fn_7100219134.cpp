@@ -116,7 +116,7 @@ struct UnkNodeList28 {
     char* head;
     char* tail;
     u64 field_0x20;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 extern char unk_7101a9e948[];

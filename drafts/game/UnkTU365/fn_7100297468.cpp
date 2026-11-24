@@ -59,7 +59,7 @@ struct UnkNavVertexList_l297468 {
     Node* head;
     Node* tail;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     Node* NewNode(const UnkNavVertexRecord_l297468& v) {
         Node* n = static_cast<Node*>(allocator->vf_0x40(sizeof(Node), 8, flags));

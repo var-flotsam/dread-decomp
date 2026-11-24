@@ -11,7 +11,7 @@ struct UnkPathPointEntryArray {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void Reallocate(u32 new_capacity) {
         UnkPathPointEntry* p = static_cast<UnkPathPointEntry*>(allocator->vf_0x40((u64)new_capacity * sizeof(UnkPathPointEntry), 8, flags));

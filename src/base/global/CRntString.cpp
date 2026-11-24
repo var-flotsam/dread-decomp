@@ -293,13 +293,13 @@ void CRntString_AppendChars(CRntString* self, const char* str, u32 length) {
 struct UnkTrimString {
     char* data;
     u32 length;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     bool owns_allocator;
     s64 key;
     bool borrowed;
 
     CRntString* Str() { return reinterpret_cast<CRntString*>(this); }
-    base::UnkAllocator* GetAllocator() const { return allocator ? allocator : GetDefaultAllocator(); }
+    base::IAllocator* GetAllocator() const { return allocator ? allocator : GetDefaultAllocator(); }
 };
 static_assert(sizeof(UnkTrimString) == sizeof(CRntString), "UnkTrimString layout");
 
@@ -332,7 +332,7 @@ __attribute__((always_inline)) static inline void ClearTemporary(UnkTrimString& 
 // Assigns `count` characters of `str` to `self` through a temporary on inline storage.
 __attribute__((always_inline)) static inline void AssignShort(CRntString* self, const char* str, u32 count) {
     UnkTrimStringInline tmp;
-    tmp.str.allocator = reinterpret_cast<base::UnkAllocator*>(&tmp.allocator_vtable);
+    tmp.str.allocator = reinterpret_cast<base::IAllocator*>(&tmp.allocator_vtable);
     tmp.str.owns_allocator = false;
     tmp.str.borrowed = false;
     tmp.str.data = nullptr;

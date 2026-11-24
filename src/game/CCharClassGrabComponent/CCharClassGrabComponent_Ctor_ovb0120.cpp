@@ -41,7 +41,7 @@ struct UnkCharClassGrab_ovb0120 {
     u32 field_0x60;
     u64 field_0x68;
     u64 field_0x70;
-    base::UnkAllocator* allocator;  // 0x78
+    base::IAllocator* allocator;  // 0x78
     u32 field_0x80;
     u8 pad_0x84[4];
     CStrId sFireCameraFXPreset;

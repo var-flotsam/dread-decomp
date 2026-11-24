@@ -8,8 +8,8 @@
 #include "game/CCharClassFanComponent.h"
 #include "types.h"
 
-void fn_710087dc1c(void* list, u32 block, u32 flags, u32 alloc_flags, base::UnkAllocator* allocator);
-void fn_710087dd34(void* list, u32 block, u32 flags, u32 alloc_flags, base::UnkAllocator* allocator);
+void fn_710087dc1c(void* list, u32 block, u32 flags, u32 alloc_flags, base::IAllocator* allocator);
+void fn_710087dd34(void* list, u32 block, u32 flags, u32 alloc_flags, base::IAllocator* allocator);
 
 struct UnkFanComponent_b44a2 {
     void** vtable;

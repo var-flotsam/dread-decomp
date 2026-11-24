@@ -93,7 +93,7 @@ struct UnkMinimapArrays_e8cbdc {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void FreeArrays() {
         if (second)
@@ -116,7 +116,7 @@ struct UnkMinimapRecords_e8cbdc {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkMinimapRecords_e8cbdc() {
         if (records && count)

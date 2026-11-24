@@ -39,7 +39,7 @@ struct UnkPerceptionOwnedList_b52 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     ~UnkPerceptionOwnedList_b52() {
         if (data) {

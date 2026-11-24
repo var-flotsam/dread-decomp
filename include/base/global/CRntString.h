@@ -43,8 +43,8 @@ public:
     CRntString(CRntString&& other);        // fn_710007eab4
     ~CRntString();                         // fn_710007ecd4
 
-    UnkAllocator* GetAllocator() const {
-        UnkAllocator* a = allocator;
+    IAllocator* GetAllocator() const {
+        IAllocator* a = allocator;
         if (!a)
             a = GetDefaultAllocator();
         return a;
@@ -52,7 +52,7 @@ public:
 
     char* data;
     u32 length;
-    UnkAllocator* allocator;  // +0x10
+    IAllocator* allocator;  // +0x10
     bool owns_allocator;      // +0x18: copies take the allocator only when set
     s64 key;                  // +0x20: the string's CRC-64, -1 when empty
     bool borrowed;            // +0x28
@@ -86,7 +86,7 @@ base::global::CRntString CRntString_Concat(const base::global::CRntString* a, co
 // Builds an empty string that allocates from `allocator` (fn_710007e6e4): the first step of
 // constructing a string with inline storage, whose allocator object follows the string (the
 // callers set that object's vtable afterwards). Leaves owns_allocator and borrowed clear.
-void CRntString_InitWithAllocator(base::global::CRntString* self, base::UnkAllocator* allocator);
+void CRntString_InitWithAllocator(base::global::CRntString* self, base::IAllocator* allocator);
 // Assigns a C string (fn_710007e77c) or another string's text and key (fn_710007eaa0), both
 // through fn_710007ebc8.
 void CRntString_AssignCString(base::global::CRntString* self, const char* str);

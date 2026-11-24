@@ -55,7 +55,7 @@ struct UnkLinkBase_ovb0130 {
     u32 step;  // 0x18
     bool field_0x1c;
     u32 flags;  // 0x20
-    base::UnkAllocator* allocator;  // 0x28
+    base::IAllocator* allocator;  // 0x28
 };
 
 struct UnkTargetLink_ovb0130 : UnkLinkBase_ovb0130 {

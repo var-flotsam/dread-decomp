@@ -27,7 +27,7 @@ struct UnkNamedTable_b0233d3 {
     u32 capacity;                    // 0x14
     u8 pad_0x18[4];
     u32 flags;                       // 0x1c
-    base::UnkAllocator* allocator;   // 0x20
+    base::IAllocator* allocator;   // 0x20
 };
 
 void fn_710015d5d8(UnkNamedTable_b0233d3* self, u32 newCapacity) {

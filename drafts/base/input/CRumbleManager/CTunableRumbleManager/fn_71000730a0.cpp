@@ -22,7 +22,7 @@ static inline u32& NodeFlags(UnkSetupStrList* list) {
 inline void ReservePool(UnkSetupStrList* list, u32 count) {
     if (list->field_0x40.size / sizeof(UnkStrNode_l0730a0) >= count)
         return;
-    base::UnkAllocator* allocator = list->field_0x38 ? list->field_0x38 : list->field_0x20;
+    base::IAllocator* allocator = list->field_0x38 ? list->field_0x38 : list->field_0x20;
     u32 flags = NodeFlags(list);
     if (void* block = list->field_0x40.buffer) {
         fn_71000837f4(&list->field_0x40);
@@ -37,7 +37,7 @@ inline void ReservePool(UnkSetupStrList* list, u32 count) {
         void* buffer = allocator->vf_0x40(size, 8, flags);
         fn_710008378c(&list->field_0x40, buffer, size, sizeof(UnkStrNode_l0730a0));
     }
-    list->field_0x20 = reinterpret_cast<base::UnkAllocator*>(&list->field_0x30);
+    list->field_0x20 = reinterpret_cast<base::IAllocator*>(&list->field_0x30);
 }
 
 void fn_71000730a0(const char* str, const char* separators, UnkSetupStrList* out) {

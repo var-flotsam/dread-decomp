@@ -45,7 +45,7 @@ struct UnkPartF84868_b56 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     UnkPartF84868_b56(const UnkPartF84868_b56& other) { fn_7100f84868(this, &other); }
 
     UnkPartF84868_b56& operator=(UnkPartF84868_b56&& other) {
@@ -100,14 +100,14 @@ struct UnkEntryNode_ovb0224 {
 static_assert(sizeof(UnkEntryNode_ovb0224) == 0x88, "node");
 
 struct UnkEntryMap_ovb0224 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
     u32 count;
     UnkEntryNode_ovb0224** buckets;
     u32 bucket_used;
     u32 bucket_count;
     u8 unk_0x20[0x10];
-    base::UnkAllocator* bucket_allocator;
+    base::IAllocator* bucket_allocator;
     UnkEntryNode_ovb0224* tail;
     UnkEntryNode_ovb0224* head;
 };
@@ -215,7 +215,7 @@ struct UnkMoveVec_ovb0224 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     UnkMoveVec_ovb0224(UnkMoveVec_ovb0224&& o)
         : data(o.data), count(o.count), capacity(o.capacity), step(o.step), field_0x14(o.field_0x14),
           flags(o.flags), allocator(o.allocator) {
@@ -277,7 +277,7 @@ struct UnkRec50_ovb0224 {
     u32 step;
     bool field_0x1c;
     u32 flags;
-    base::UnkAllocator* allocator;  // 0x28
+    base::IAllocator* allocator;  // 0x28
     u64 field_0x30;
     u64 field_0x38;
     u64 field_0x40;
@@ -311,7 +311,7 @@ struct UnkRec50Vec_ovb0224 {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_7100f85d24(UnkRecord50Vec_b56* vec, u32 n) {

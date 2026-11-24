@@ -24,7 +24,7 @@ struct UnkRegistryArray_lfbbbdc {
     u32 capacity;
     u32 step;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 };
 
 void fn_7100fbbbdc(UnkRegistryArray_lfbbbdc* self, u32 capacity) {

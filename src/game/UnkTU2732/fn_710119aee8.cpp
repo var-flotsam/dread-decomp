@@ -32,7 +32,7 @@ struct UnkArray_l19aee8 {
     void* data;
     u32 count;
     u32 capacity;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u32 flags;
 
     explicit UnkArray_l19aee8(u32 flags)

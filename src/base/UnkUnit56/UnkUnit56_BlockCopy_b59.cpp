@@ -10,7 +10,7 @@
 #include "types.h"
 
 struct UnkUnit56Block_b59 {
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
     u64 field_0x8;
     u32 flags;
     u8* data;

@@ -138,7 +138,7 @@ struct UnkSetVector {
     u32 step;
     bool field_0x14;
     u32 flags;
-    base::UnkAllocator* allocator;
+    base::IAllocator* allocator;
 
     void EmplaceBack(UnkSet* value) {
         u32 n = count;
@@ -182,7 +182,7 @@ struct UnkOrphanNode {
 
     explicit UnkOrphanNode(const CStrId& id) : key(id), members(0xf), next(nullptr), prev(nullptr), chain(nullptr) {}
 
-    static void* operator new(unsigned long size, base::UnkAllocator* allocator, u32 flags) noexcept {
+    static void* operator new(unsigned long size, base::IAllocator* allocator, u32 flags) noexcept {
         return allocator->vf_0x40(size, 8, flags);
     }
     void Destroy() {
@@ -201,7 +201,7 @@ void fn_7100ef1abc(UnkOrphanIter* it);
 
 
 struct UnkOrphanMap {
-    base::UnkAllocator* allocator = GetDefaultAllocator();
+    base::IAllocator* allocator = GetDefaultAllocator();
     u32 flags = 0xe;
     u32 count = 0;
     base::global::CRntVector<UnkOrphanNode*> buckets{0xe};
