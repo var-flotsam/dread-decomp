@@ -77,7 +77,7 @@ static_assert(sizeof(UnkRumbleEntry_ovb0083) == 0x68, "UnkRumbleEntry_ovb0083 la
 using UnkRumbleEntries_ovb0083 = base::global::CRntVector<UnkRumbleEntry_ovb0083>;
 
 // Destroys the entry at `index` and moves the later ones down by one.
-void fn_71009dc0cc(UnkRumbleEntries_ovb0083* self, u32 index) {
+void CRumbleComponent_EraseRumbleEntry(UnkRumbleEntries_ovb0083* self, u32 index) {
     if (index < self->count) {
         self->data[index].~UnkRumbleEntry_ovb0083();
         for (u64 i = index; i < self->count - 1; ++i) {

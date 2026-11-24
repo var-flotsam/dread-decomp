@@ -33,7 +33,7 @@ struct UnkUnlockAreaSmartObject_b0086 {
 };
 
 // Whether the owner's animation is not playing the id table's +0x1d78 track (false without one).
-bool fn_7100a07a90(UnkUnlockAreaSmartObject_b0086* self) {
+bool CUnlockAreaSmartObjectComponent_IsNotPlayingRelax(UnkUnlockAreaSmartObject_b0086* self) {
     UnkAnimationComponent* animation = self->owner->animation;
     if (!animation)
         return false;
@@ -74,7 +74,7 @@ struct UnkUnlockAreaSmartObject2_b0086 {
 };
 static_assert(__builtin_offsetof(UnkUnlockAreaSmartObject2_b0086, field_0x148) == 0x148, "layout");
 
-void fn_7100a076b0(UnkUnlockAreaSmartObject2_b0086* self) {
+void CUnlockAreaSmartObjectComponent_SendGrabRequest(UnkUnlockAreaSmartObject2_b0086* self) {
     auto* player = reinterpret_cast<UnkUnlockAreaPlayer_b0086*>(fn_7100dec788(g_unk_7101d47310));
     if (player && player->grabber) {
         if (self->field_0x148.data != &g_unk_7101d47108->empty)
