@@ -60,7 +60,7 @@ struct UnkRecords_l2ef66c {
 };
 
 // Destroys the records past `n` and keeps the first n.
-void fn_71002ef66c(UnkRecords_l2ef66c* self, u32 n) {
+void CPlaythrough_TruncateRecords(UnkRecords_l2ef66c* self, u32 n) {
     for (u64 i = n; i < self->count; ++i)
         self->data[i].~UnkRecord_l2ef66c();
     self->count = n;

@@ -16,7 +16,7 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 struct UnkRecords_l2ef66c;
-void fn_71002ef66c(UnkRecords_l2ef66c* self, u32 n);
+void CPlaythrough_TruncateRecords(UnkRecords_l2ef66c* self, u32 n);
 void fn_71002ef8a4(base::UnkDeferredSet<void>* set, void* item);
 
 // A string id's destructor on the given pool: decrement, then test the reloaded count.
@@ -75,7 +75,7 @@ struct UnkRecordArray_l2ebc18 {
     u8 pad_0x10[0x10];
     base::UnkAllocator* allocator;
 
-    void Truncate(u32 n) { fn_71002ef66c(reinterpret_cast<UnkRecords_l2ef66c*>(this), n); }
+    void Truncate(u32 n) { CPlaythrough_TruncateRecords(reinterpret_cast<UnkRecords_l2ef66c*>(this), n); }
     void Free() {
         if (data) {
             Truncate(0);

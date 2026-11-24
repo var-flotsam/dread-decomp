@@ -374,7 +374,7 @@ CAttack* fn_7101105148(UnkAttackListSelf_b0143* self, const char* name) {
 
 
 struct UnkCancelAttack_ovb0128;
-void* fn_7100362324(UnkCancelAttack_ovb0128*, u32);
+void* CAttack_GetPreset(UnkCancelAttack_ovb0128*, u32);
 
 typedef UnkCancelAttack_ovb0128* UnkCancelPtr_b0143 __attribute__((aligned(4)));
 
@@ -394,7 +394,7 @@ void fn_710110bb4c(UnkCancelSelf_b0143* self, void* arg, u32 id, bool) {
         UnkCancelPtr_b0143* list = reinterpret_cast<UnkCancelPtr_b0143*>(reinterpret_cast<u8*>(self) + 0x161c);
         UnkCancelPtr_b0143* it = list;
         do {
-            if (u8* found = static_cast<u8*>(fn_7100362324(*it, id)))
+            if (u8* found = static_cast<u8*>(CAttack_GetPreset(*it, id)))
                 total += found[0x10];
             ++it;
         } while (it != list + self->count);

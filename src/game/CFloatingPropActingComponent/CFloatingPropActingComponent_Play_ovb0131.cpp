@@ -37,7 +37,7 @@ struct UnkFloatingProp_ovb0131 {
     bool playing;  // 0x9c
 };
 
-void fn_71007e64d0(UnkFloatingProp_ovb0131* self) {
+void CFloatingPropActingComponent_PlayAnimation(UnkFloatingProp_ovb0131* self) {
     const UnkFloatingPropDesc_ovb0131& source = *reinterpret_cast<const UnkFloatingPropDesc_ovb0131*>(&g_unk_710164b958);
     u64 desc_a = source.a;
     u64 desc_b = source.b;

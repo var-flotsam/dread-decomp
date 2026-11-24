@@ -41,7 +41,7 @@ void fn_7100324aa4() __attribute__((visibility("hidden")));
 extern char g_unk_71726affb8[];
 extern void* g_unk_7101a23250[];
 
-void fn_7100325290() {
+void CAbilityOpticCamouflage_InitStatics() {
     InitHeaderIds(&g_unk_71726b00b8.ids);
     g_unk_71726b00b8.field_0x38[0] = -1.0f;
     g_unk_71726b00b8.field_0x38[1] = -1.0f;

@@ -3514,12 +3514,12 @@ address,size,name,name_source,subsystem,status
 0x7100a8b714,36,fn_7100a8b714,unknown,game/components?,O
 0x7100a8b738,132,fn_7100a8b738,unknown,game/components?,O
 0x7100a8b7bc,132,fn_7100a8b7bc,unknown,game/components?,O
-0x7100a8b840,776,fn_7100a8b840,unknown,game/components?,U
+0x7100a8b840,776,fn_7100a8b840,unknown,game/components?,O
 0x7100a8bb48,16,fn_7100a8bb48,unknown,game/components?,O
 0x7100a8bb58,32,fn_7100a8bb58,unknown,game/components?,O
 0x7100a8bb78,124,fn_7100a8bb78,unknown,game/components?,O
 0x7100a8bbf4,80,fn_7100a8bbf4,unknown,game/components?,O
-0x7100a8bc44,724,fn_7100a8bc44,unknown,game/components?,U
+0x7100a8bc44,724,fn_7100a8bc44,unknown,game/components?,O
 0x7100a8bf18,100,fn_7100a8bf18,unknown,game/components?,O
 0x7100a8bf7c,24,fn_7100a8bf7c,unknown,game/components?,O
 0x7100a8bf94,40,fn_7100a8bf94,unknown,game/components?,O

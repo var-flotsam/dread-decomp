@@ -130,7 +130,7 @@ struct UnkPlaythroughIdRef_ovb0123 {
     }
 };
 
-UnkPlaythroughJoined_ovb0123 fn_71002f2478(const UnkPlaythroughIdsOwner_ovb0123* self) {
+UnkPlaythroughJoined_ovb0123 CPlaythroughDef_GetCheckpointTagsString(const UnkPlaythroughIdsOwner_ovb0123* self) {
     UnkPlaythroughJoined_ovb0123 out;
     u32 count = self->ids.count;
     if (count) {

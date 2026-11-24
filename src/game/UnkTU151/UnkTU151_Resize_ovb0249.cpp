@@ -5,6 +5,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU180.h"
 #include "game/UnkTU230.h"
 #include "types.h"
 
@@ -64,8 +65,6 @@ struct __attribute__((packed)) UnkEntryHolder_b0249 {
     UnkEntryArray_b0249 entries;  // 0x7cc
 };
 
-void fn_710015ddc0(void* state, u32 stage, u64* location, const char* name);
-
 // Adds an entry for `id` with `n` zeroed floats, and looks up its uniform location in the program's state.
 void fn_710014ce5c(UnkEntryHolder_b0249* self, u32 kind, const base::global::CStrId* id, u32 n) {
     UnkEntry_b0249* e = &reinterpret_cast<UnkEntry_b0249*>(reinterpret_cast<u8*>(self) + 0x7d0)[self->entries.count];
@@ -76,7 +75,7 @@ void fn_710014ce5c(UnkEntryHolder_b0249* self, u32 kind, const base::global::CSt
     e->values = static_cast<f32*>(fn_7100083ba0((u64)n * 4, 8));
     __builtin_memset(e->values, 0, (u64)n * 4);
     e->count = n;
-    void* state = fn_71001aa028(self->program);
+    auto* state = static_cast<UnkUniformTables*>(fn_71001aa028(self->program));
     u64* location = &e->location;
     if (state) {
         UnkIdData_b0249* data = reinterpret_cast<UnkIdData_b0249*>(e->id.data);

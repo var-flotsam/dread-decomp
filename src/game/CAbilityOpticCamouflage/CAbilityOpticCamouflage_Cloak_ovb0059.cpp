@@ -123,7 +123,7 @@ static_assert(__builtin_offsetof(UnkOpticAbility_ovb0059, holders) == 0xe8, "lay
 static_assert(__builtin_offsetof(UnkOpticAbility_ovb0059, phase) == 0x394, "layout");
 static_assert(__builtin_offsetof(UnkOpticAbility_ovb0059, listener) == 0x3a0, "layout");
 
-void fn_71003247cc(UnkOpticAbility_ovb0059* self) {
+void CAbilityOpticCamouflage_Destroy(UnkOpticAbility_ovb0059* self) {
     self->vtable = &g_unk_7101a230a8[2];
     UnkOpticListener_ovb0059* listener = &self->listener;
     listener->vtable = &g_unk_7101a23280[2];
@@ -138,7 +138,7 @@ void fn_71003247cc(UnkOpticAbility_ovb0059* self) {
     fn_71002fa2bc(self);
 }
 
-void fn_7100324060(UnkOpticAbility_ovb0059* self, f32 dt) {
+void CAbilityOpticCamouflage_PulseModelColor(UnkOpticAbility_ovb0059* self, f32 dt) {
     UnkOpticOwner_ovb0059* owner = self->owner;
     UnkOpticActor_ovb0059* actor = owner->actor;
     UnkSpecialEnergyComponent* energy = owner->part ? owner->part->energy : nullptr;
@@ -157,7 +157,7 @@ void fn_7100324060(UnkOpticAbility_ovb0059* self, f32 dt) {
 
 // The deleting destructor, with the base destructor (fn_71002fa2bc) inlined: CAbility's vtable, its six
 // value holders (+0xe8, 0x70 bytes each, last first) and the member at +0x10, then fn_7101043934.
-void fn_710032485c(UnkOpticAbility_ovb0059* self) {
+void CAbilityOpticCamouflage_DestroyAndDelete(UnkOpticAbility_ovb0059* self) {
     self->vtable = &g_unk_7101a230a8[2];
     UnkOpticListener_ovb0059* listener = &self->listener;
     listener->vtable = &g_unk_7101a23280[2];
