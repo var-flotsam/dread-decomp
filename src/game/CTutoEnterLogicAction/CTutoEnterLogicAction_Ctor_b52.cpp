@@ -44,11 +44,11 @@ struct UnkTutoEnterLogicAction_b52 {
     bool bWaitForInput;
     CStrId id;                              // 0x18
     UnkTutoEnterCallbackSet_b52 callbacks;  // 0x20
-    UnkStringData* name;                    // 0x60
+    base::global::CStrId name;                    // 0x60
     void* field_0x68;
     void* target;                                // 0x70
     u32 (*method)(UnkTutoEnterAction_b48*);      // 0x78
-    UnkStringData* field_0x80;
+    base::global::CStrId field_0x80;
 };
 static_assert(__builtin_offsetof(UnkTutoEnterLogicAction_b52, field_0x80) == 0x80, "layout");
 
@@ -63,9 +63,9 @@ void fn_7100a585a8(UnkTutoEnterLogicAction_b52* self) {
     self->callbacks.field_0x30 = 0;
     self->callbacks.vtable = g_unk_7101a20950 + 2;
     self->callbacks.owner = nullptr;
-    InitEmpty_te52(&self->name);
+    InitEmpty_te52(&self->name.data);
     self->field_0x68 = nullptr;
     self->target = self;
     self->method = &fn_7100a59074;
-    InitEmpty_te52(&self->field_0x80);
+    InitEmpty_te52(&self->field_0x80.data);
 }
