@@ -118,7 +118,7 @@ void fn_71007f4278(UnkFrozenAsFrostbite_ovb0114* self) {
 
 // After the base step: caches the character class (a CCharClassFrozenAsFrostbiteComponent) and
 // makes room in the object list for one object per part of it.
-bool fn_71007f4170(UnkFrozenAsFrostbite_ovb0114* self, void* arg) {
+bool CFrozenAsFrostbiteComponent_InitFromCharClass(UnkFrozenAsFrostbite_ovb0114* self, void* arg) {
     if (!fn_71007f900c(self, arg))
         return false;
     UnkReflObject* object = self->charClass;
@@ -140,7 +140,7 @@ bool fn_71007f4170(UnkFrozenAsFrostbite_ovb0114* self, void* arg) {
 }
 
 struct UnkParent;
-void fn_71007f4514(UnkFrozenAsFrostbite_ovb0114* self);
+void CFrozenAsFrostbiteComponent_PlaceBarelyIceObjects(UnkFrozenAsFrostbite_ovb0114* self);
 
 // The tunable's frost colour and how the last component fades with the remaining time.
 struct UnkFrostbiteTunable_ovb0114 {
@@ -170,7 +170,7 @@ void fn_71007f4378(UnkFrozenAsFrostbite_ovb0114* self, f32 dt) {
         if (self->field_0x3c4 <= 0.0f)
             ReleaseObjects(self);
     } else if (fn_71007f9f20(self)) {
-        fn_71007f4514(self);
+        CFrozenAsFrostbiteComponent_PlaceBarelyIceObjects(self);
     }
     if (self->field_0x3e0 > 0.0f) {
         f32 t = NonNegative(self->field_0x3e0 - dt);
@@ -204,7 +204,7 @@ struct UnkFrostbitePart_ovb0114 {
 
 // Once there is one object per part: places each object at the transform of its part's node in
 // the actor's model.
-void fn_71007f4514(UnkFrozenAsFrostbite_ovb0114* self) {
+void CFrozenAsFrostbiteComponent_PlaceBarelyIceObjects(UnkFrozenAsFrostbite_ovb0114* self) {
     UnkFrostbiteDef_ovb0114* def = self->def;
     if (def->partCount != self->objects.count)
         return;
@@ -245,7 +245,7 @@ static inline void Tint(UnkFrozenAsFrostbite_ovb0114* self, f32 ratio) {
 
 // Without parts, tints the actor by the elapsed share of the definition's duration (+0x5c); then the
 // base update.
-void fn_71007f4f64(UnkFrozenAsFrostbite_ovb0114* self, f32 dt) {
+void CFrozenAsFrostbiteComponent_UpdateThawingTint(UnkFrozenAsFrostbite_ovb0114* self, f32 dt) {
     UnkFrostbiteDef_ovb0114* def = self->def;
     if (!def->partCount) {
         f32 duration = def->field_0x5c;
@@ -261,7 +261,7 @@ void fn_71007fa07c(UnkFrozenAsFrostbite_ovb0114* self, f32 dt);  // the base met
 
 // While frozen: after the delay (+0x3c0) runs out, tints the actor by the remaining time and count;
 // once the time (+0x3bc) runs out too, thaws (as fn_71007f4860). Then the base update.
-void fn_71007f46e8(UnkFrozenAsFrostbite_ovb0114* self, f32 dt) {
+void CFrozenAsFrostbiteComponent_UpdateFrostbiteLevel(UnkFrozenAsFrostbite_ovb0114* self, f32 dt) {
     if (self->count >= 1 && self->timer > 0.0f) {
         f32 delay = self->delay;
         if (delay > 0.0f) {
@@ -314,7 +314,7 @@ struct UnkFrostbiteLife_ovb0114 {
 // definition's limit (+0xa0), where the request is capped to leave the actor one point of life and
 // the component goes to state 2. A refused request marks it (+0xf4) when the component is frozen
 // and not breaking. Always answers false.
-bool fn_71007f5880(UnkFrozenAsFrostbite_ovb0114* self, UnkFrostbiteDamage_ovb0114* request) {
+bool CFrozenAsFrostbiteComponent_HandleDamage(UnkFrozenAsFrostbite_ovb0114* self, UnkFrostbiteDamage_ovb0114* request) {
     UnkFrostbiteComponent* c = reinterpret_cast<UnkFrostbiteComponent*>(self);
     bool ok = fn_71007fb280(c, reinterpret_cast<UnkFrostbiteRequest*>(request));
     bool frozen = fn_71007f9f20(self);

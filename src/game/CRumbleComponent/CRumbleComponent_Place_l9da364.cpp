@@ -111,7 +111,7 @@ static inline bool SameId(const A& a, const B& b) {
     return a.data == b.data;
 }
 
-void fn_71009da364(UnkRumbleComponent_l9da364* self) {
+void CRumbleComponent_UpdateRumblePositions(UnkRumbleComponent_l9da364* self) {
     for (UnkRumbleEntry_ovb0083 *it = self->entries.data, *end = it + self->entries.count; it != end; ++it) {
         if (!it->restart)
             continue;

@@ -30,7 +30,7 @@ struct UnkActorDef_l2563dc {
 };
 static_assert(__builtin_offsetof(UnkActorDef_l2563dc, components) == 0xa0, "layout");
 
-bool fn_71002563dc(UnkActorDef_l2563dc* self, base::global::CRntFile* file) {
+bool CActorDef_ReadComponents(UnkActorDef_l2563dc* self, base::global::CRntFile* file) {
     s32 count;
     CRntFile_Read(file, &count, 4, 1);
     if (!self->loaded)

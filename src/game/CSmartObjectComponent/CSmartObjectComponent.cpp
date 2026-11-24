@@ -18,7 +18,7 @@ struct UnkSmartObjectTU {
 extern UnkSmartObjectTU g_unk_7172742d80 __attribute__((visibility("hidden")));
 extern char g_unk_7172742c68;
 
-void fn_7100a05880() {
+void CSmartObjectComponent_InitStatics() {
     UnkSmartObjectTU& tu = g_unk_7172742d80;
     InitHeader(tu.header);
     fn_7100a00014();

@@ -95,7 +95,7 @@ static inline void* MusicManager() {
     return instance;
 }
 
-bool fn_7100750ab4(UnkBossCameraCtrl_ovb0008* self, UnkWeakTarget* target) {
+bool CBossCameraCtrl_HasTarget(UnkBossCameraCtrl_ovb0008* self, UnkWeakTarget* target) {
     return self->Contains(target);
 }
 
@@ -112,7 +112,7 @@ struct UnkHandleRef_ovb0008 {
     }
 };
 
-void fn_7100750804(UnkBossCameraCtrl_ovb0008* self, UnkWeakTarget* target) {
+void CBossCameraCtrl_AddTarget(UnkBossCameraCtrl_ovb0008* self, UnkWeakTarget* target) {
     if (!target || self->Contains(target))
         return;
     UnkHandleRef_ovb0008 ref(fn_7100d78378(target));
@@ -221,7 +221,7 @@ static inline UnkManagerSub_ovb0008* ManagerSub() {
     return static_cast<UnkManagerSub_ovb0008*>(manager->field_0x2410);
 }
 
-bool fn_710074f91c(UnkBossCameraCtrl_ovb0008* self) {
+bool CBossCameraCtrl_IsFinished(UnkBossCameraCtrl_ovb0008* self) {
     if (!self->active)
         return true;
     fn_710074f550(self);

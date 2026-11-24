@@ -186,9 +186,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100154020,372,drafts/game/UnkTU174/fn_7100154020.cpp,control flow,74.2,24,lean-ob1,heap choice by flag bit 0 is a csel of the two globals; original branches (ldrb/tbnz); late load order around
 0x7100158130,1708,drafts/game/UnkTU176/fn_7100158130.cpp,operations,8.5,385,functional-r1,behaves; held: declares a shared symbol that no unit header can take yet
 0x710015c9b0,3112,drafts/game/UnkTU180/fn_710015c9b0.cpp,build fails,,,lean-r6k,control flow 66 vs 62 branches; frame 0x20 larger (more spills); &rec->table (rec+0x78) hoisted to entry where
-0x710015dc04,244,drafts/game/UnkTU180/fn_710015dc04.cpp,operations,98.4,1,lean-b2,static scratch string sits 8 bytes after its guard; original 0x40 (likely alignas(64) storage); not retried; b
 0x710015dd00,180,drafts/game/UnkTU180/fn_710015dd00.cpp,operations,11.1,39,lean-b2,null-check order (handle first) and 64-bit index add not reproduced
-0x710015ddc0,380,drafts/game/UnkTU180/fn_710015ddc0.cpp,operations,98.9,1,lean-b2,only the scratch static string offset from its guard differs (0x18 vs 8 here); with fn_710015dc04 in one file
 0x710015e020,228,drafts/game/UnkTU180/fn_710015e020.cpp,operations,10.5,49,lean-b2,null-check order; hoisted 64-bit index add; switch layout; stack constant stores
 0x710015e110,212,drafts/game/UnkTU180/fn_710015e110.cpp,operations,11.3,45,lean-b2,null-check order; 64-bit hoisted index add; load order not reproduced
 0x710015e4b0,232,drafts/game/UnkTU181/fn_710015e4b0.cpp,conditions,79.3,12,lean-callee1,the two null guards come out state-first (original location-first) whatever the source order; stage switch low
@@ -1470,8 +1468,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100a7ec7c,800,drafts/game/CPowerGeneratorComponent/fn_7100a7ec7c.cpp,operations,94.0,12,lean-r2kf,stack slot offsets only (sends mode/mask and section id at other sp offsets); frame size and all instructions
 0x7100a862b0,416,drafts/game/CMapAcquisitionComponent/fn_7100a862b0.cpp,registers or order,96.2,4,lean-r2kd,return-false constant: original duplicates mov w0;wzr before the final store; ours shares it after
 0x7100a8a1ec,588,drafts/game/CSaveStationUsableComponent/fn_7100a8a1ec.cpp,registers or order,94.6,8,lean-sib2,second char_class load scheduled after the first csel (x21/x22 swapped) near the top
-0x7100a8b840,776,drafts/game/CShipRechargeComponent/fn_7100a8b840.cpp,operations,94.8,10,lean-fam0a,only the placement of the static sound desc differs: the original has 0x28 bytes of other unit statics between
-0x7100a8bc44,724,drafts/game/CShipRechargeComponent/fn_7100a8bc44.cpp,operations,94.5,10,lean-r2kg,only the static params' .bss placement differs: the original has 0x80 bytes of other unit statics between its
 0x7100a8ebe8,944,drafts/game/UnkTU1600/fn_7100a8ebe8.cpp,operations,28.6,168,lean-sib4,hash for fn_7101176690 kept in x1 (spilled across guard) instead of x21; one extra save; handle slot reload
 0x7100a92ba4,692,drafts/game/UnkTU1601/fn_7100a92ba4.cpp,operations,19.7,138,lean-r2kd,one instruction short: the equal-levels path tail-merges its float store with the second level set (other regi
 0x7100a94e9c,420,drafts/game/UnkTU1601/fn_7100a94e9c.cpp,operations,10.1,94,lean-r2kd,self+0x10 kept in an extra callee-saved register across calls (pre-index store) where the original recomputes

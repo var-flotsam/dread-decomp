@@ -42,7 +42,7 @@ struct UnkAttack_A2_b68 {
     UnkAttackTarget_A2_b68* target;
 };
 
-void* fn_7100362324(UnkAttack_A2_b68* self, u32 value) {
+void* CAttack_GetPreset(UnkAttack_A2_b68* self, u32 value) {
     UnkAttackTarget_A2_b68* first = self->target;
     if (!first)
         return nullptr;

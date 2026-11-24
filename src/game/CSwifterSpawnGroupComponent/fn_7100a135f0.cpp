@@ -74,7 +74,7 @@ void fn_7100a15560(UnkEnumType* type, const CStrId& name, void (*factory)(), voi
 void fn_7100a1588c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100a4e66c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100a4e938(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
-void fn_7100a135f0() {
+void CSwifterSpawnGroupComponent_InitStatics() {
     InitHeaderIds(&g_unk_7172744158.ids);
     InitEnum(&base::reflection::TypeObject<ESwifterSpawnGroupDirection, UnkEnumType>::object, "ESwifterSpawnGroupDirection", fn_7100a11bfc, fn_7100a11ab0,
              g_unk_7172743fa8, &g_unk_7172743fb0, fn_7100a13384, &g_unk_7172743fd0, fn_7100a13390);

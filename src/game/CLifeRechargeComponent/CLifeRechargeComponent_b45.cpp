@@ -3,6 +3,7 @@
 // fn_7100a9722c): with a linked object (+0xe8, its object at +0x10), the inverse of the unit's own
 // test, else false. The result also goes to the flag at +0x235 of the in-game menu's HUD. Names are
 // placeholders.
+#include "game/CUsableComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -17,7 +18,6 @@ struct UnkLifeRecharge_b45a2 {
 };
 
 bool fn_7100aa33a4(UnkLifeRecharge_b45a2* self);
-bool fn_7100aa3330(UnkLifeRecharge_b45a2* self);
 
 template <bool (*Test)(UnkLifeRecharge_b45a2*)>
 bool UnkCanRecharge_b45a2(UnkLifeRecharge_b45a2* self) {

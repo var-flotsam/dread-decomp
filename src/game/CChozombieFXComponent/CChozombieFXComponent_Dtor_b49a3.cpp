@@ -43,11 +43,11 @@ __attribute__((always_inline)) static inline void Destroy_b49a3(UnkChozombieFXCo
     fn_71010c4194(reinterpret_cast<UnkBaseComponent*>(self));
 }
 
-void fn_7100806f1c(UnkChozombieFXComponent_b49a3* self) {
+void CChozombieFXComponent_Destroy(UnkChozombieFXComponent_b49a3* self) {
     Destroy_b49a3(self);
 }
 
-void fn_7100806fc0(UnkChozombieFXComponent_b49a3* self) {
+void CChozombieFXComponent_DestroyAndDelete(UnkChozombieFXComponent_b49a3* self) {
     Destroy_b49a3(self);
     operator delete(self);
 }

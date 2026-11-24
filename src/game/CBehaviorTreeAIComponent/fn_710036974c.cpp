@@ -36,7 +36,7 @@ u32 fn_710036974c(UnkStruct_710036974c* self, UnkStruct_710036974c_Msg* msg) {
         if (is_track)
             fn_710110cc04(self, true);
     } else if (is_track) {
-        fn_71003697f0(self);
+        CBehaviorTreeAIComponent_SendCrazyEnd(self);
         if (self->field_0x146ac > 0.0f)
             self->field_0x146ac = -1.0f;
     }
