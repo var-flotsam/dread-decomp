@@ -62,7 +62,7 @@ extern UnkConversion g_unk_71726b0920;
 void fn_7100331864() __attribute__((visibility("hidden")));
 void fn_7100331870() __attribute__((visibility("hidden")));
 
-void fn_7100332f40() {
+void CAbilityShinespark_InitStatics() {
     InitHeaderIds(&g_unk_71726b0970.ids);
     fn_71003255a4();
     fn_710009ec00(g_unk_71726b0370, g_unk_71726b0970.field_0x60);

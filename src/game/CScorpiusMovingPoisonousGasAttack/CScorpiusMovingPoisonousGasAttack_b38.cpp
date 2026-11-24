@@ -109,7 +109,7 @@ void CScorpiusMovingPoisonousGasAttack_SendFacingAndLinkTrackListener(UnkGasAtta
     DropHandle(self, link);
     if (track) {
         // The slot is addressed by its offset.
-        fn_7100316018(track, reinterpret_cast<UnkWeakRef*>(reinterpret_cast<char*>(self) + 0x90));
+        CAbilityGhostAura_AssignWeakHandleToRef(track, reinterpret_cast<UnkWeakRef*>(reinterpret_cast<char*>(self) + 0x90));
         fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
     }
 }

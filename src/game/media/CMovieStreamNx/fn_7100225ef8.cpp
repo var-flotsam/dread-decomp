@@ -48,7 +48,7 @@ struct UnkPlayer_7100225ef8 {
 
 void fn_7101239de0(void* object);
 
-void fn_7100225ef8(UnkPlayer_7100225ef8* self) {
+void CMovieStreamNx_ClearQueues(UnkPlayer_7100225ef8* self) {
     fn_7101239de0(self->field_0x50);
     self->field_0x2a0.Clear();
     self->field_0x3e0.Clear();

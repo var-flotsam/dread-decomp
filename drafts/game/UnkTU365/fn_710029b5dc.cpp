@@ -136,7 +136,7 @@ UnkActorDefEntry345* fn_7100255368(const UnkActorDef345* self, const u64* id);
 void fn_71002681a8(base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* self,
                    const base::global::CRntVector<UnkSmartLinkEntry_ovb0128>* other);
 void fn_71002a790c(base::global::CRntVector<UnkNavResRef_b64a2>* self, u32 capacity);
-void fn_710027f348(UnkNavLoadMap<UnkNavLoadMap<base::global::CRntVector<UnkNavLoadSlot360>>>* self, u32 capacity);
+void CNavMesh_ReserveCellRecordMapMap(UnkNavLoadMap<UnkNavLoadMap<base::global::CRntVector<UnkNavLoadSlot360>>>* self, u32 capacity);
 void fn_710027f54c(UnkIdMap<UnkOwnedList>* self, u32 capacity);
 
 // The scenario an actor is in: its id at +0x30.
@@ -274,7 +274,7 @@ static inline void Reserve(UnkNavRuleIds_l29b5dc* map, u32 capacity) {
     fn_710027f54c(reinterpret_cast<UnkIdMap<UnkOwnedList>*>(map), capacity);
 }
 static inline void Reserve(UnkNavScenarioRules_l29b5dc* map, u32 capacity) {
-    fn_710027f348(reinterpret_cast<UnkNavLoadMap<UnkNavLoadMap<base::global::CRntVector<UnkNavLoadSlot360>>>*>(map),
+    CNavMesh_ReserveCellRecordMapMap(reinterpret_cast<UnkNavLoadMap<UnkNavLoadMap<base::global::CRntVector<UnkNavLoadSlot360>>>*>(map),
                   capacity);
 }
 

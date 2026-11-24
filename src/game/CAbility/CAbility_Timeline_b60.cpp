@@ -90,7 +90,7 @@ void fn_71002f9f18(UnkAbility_b60a2* self, s32 kind) {
     }
     f32 amount = self->vtbl->vf_0xc0(self);
     if (amount > 0.0f)
-        fn_710030171c(reinterpret_cast<CAbilityComponent*>(self->field_0xc0), amount);
-    fn_71003020f0(reinterpret_cast<CAbilityComponent*>(self->field_0xc0), reinterpret_cast<CAbility*>(self));
+        CAbilityEnergyWave_ApplyClampedAmountToHandleTarget(reinterpret_cast<CAbilityComponent*>(self->field_0xc0), amount);
+    CAbilityEnergyWave_NotifyOtherAbilitiesInStateAtLeast3(reinterpret_cast<CAbilityComponent*>(self->field_0xc0), reinterpret_cast<CAbility*>(self));
     self->field_0xe4 = 0;
 }

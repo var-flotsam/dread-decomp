@@ -154,7 +154,7 @@ void CChozoCommanderLandingSlamAttack_UpdateStage(UnkSlamUpdate_A2_b75* self, f3
         }
         if (track) {
             asm("" : "+r"(self));
-            fn_7100316018(track, &self->handle);
+            CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
             fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
         }
         self->mode = 2;

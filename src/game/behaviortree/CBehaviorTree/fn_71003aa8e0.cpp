@@ -61,7 +61,7 @@ bool fn_71003aa8e0(UnkBehaviorTree_l3aa8e0* self, f32 dt) {
     if (!node)
         return false;
     if (state - 1 <= 2)
-        state = fn_7100394b30(reinterpret_cast<UnkBehaviorNode_A2_b69*>(node), dt, state);
+        state = CBehavior_AdvanceStatus(reinterpret_cast<UnkBehaviorNode_A2_b69*>(node), dt, state);
     if (state - 5 <= 1) {
         if (UnkListenerHolder_l3aa8e0* holder = node->holder)
             if (holder->listener)

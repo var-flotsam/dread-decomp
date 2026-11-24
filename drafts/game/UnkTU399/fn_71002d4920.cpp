@@ -149,9 +149,9 @@ static_assert(__builtin_offsetof(UnkAnimTree_l2d4920, definition) == 0x118, "lay
 void fn_71002dba08(UnkNode*);
 void fn_71002d4e50(base::UnkPairArrays* self, u32 capacity, u32 flags);
 void fn_710014b810(UnkOwned_l2d4920* self);
-bool fn_71002d8274(UnkAnimTreeDefPtrs401* self, void** out);
-bool fn_71002d82b4(UnkAnimTreeDefPtrs401* self, void** out);
-bool fn_71002d82f4(UnkAnimTreeDef401* self, UnkEntry401** out);
+bool CAnimTreeDef_GetNextNode(UnkAnimTreeDefPtrs401* self, void** out);
+bool CAnimTreeDef_NextControl(UnkAnimTreeDefPtrs401* self, void** out);
+bool CAnimTreeDef_GetNextLink(UnkAnimTreeDef401* self, UnkEntry401** out);
 UnkAnimNode_l2d4920* fn_71002d4f58(UnkAnimTree_l2d4920* self, void* node);
 UnkNode_b0249* fn_71002d5070(UnkNodeOwner_b0249* self, base::reflection::UnkReflObjectB* def);
 void fn_71002dfa18(UnkAnimNode399* self, UnkEntry399* entry);
@@ -219,7 +219,7 @@ void fn_71002d4920(UnkAnimTree_l2d4920* self, UnkAnimTreeDef_l2d4920* const& def
 
     d->walks.nodes.Begin();
     void* item;
-    while (fn_71002d8274(walks, &item)) {
+    while (CAnimTreeDef_GetNextNode(walks, &item)) {
         UnkAnimNode_l2d4920* node = fn_71002d4f58(self, item);
         if (!fn_7100023d00(reinterpret_cast<const UnkCameraCtrl*>(node), fn_71002d2250()))
             continue;
@@ -228,13 +228,13 @@ void fn_71002d4920(UnkAnimTree_l2d4920* self, UnkAnimTreeDef_l2d4920* const& def
     d->walks.nodes.End();
 
     d->walks.others.Begin();
-    while (fn_71002d82b4(walks, &item))
+    while (CAnimTreeDef_NextControl(walks, &item))
         fn_71002d5070(reinterpret_cast<UnkNodeOwner_b0249*>(self), static_cast<base::reflection::UnkReflObjectB*>(item));
     d->walks.others.End();
 
     d->walks.links.Begin();
     UnkDefEntry_l2d4920* link;
-    while (fn_71002d82f4(reinterpret_cast<UnkAnimTreeDef401*>(walks), reinterpret_cast<UnkEntry401**>(&link))) {
+    while (CAnimTreeDef_GetNextLink(reinterpret_cast<UnkAnimTreeDef401*>(walks), reinterpret_cast<UnkEntry401**>(&link))) {
         UnkAnimNode_l2d4920* to = self->nodes.Get(link->field_0x8);
         UnkAnimNode_l2d4920* from = self->nodes.Get(link->field_0x0);
         fn_71002dfa18(reinterpret_cast<UnkAnimNode399*>(to), reinterpret_cast<UnkEntry399*>(from));

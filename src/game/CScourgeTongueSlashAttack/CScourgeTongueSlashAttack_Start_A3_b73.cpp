@@ -76,7 +76,7 @@ void fn_710069b178(UnkScourgeAttack_A3_b73* self) {
         }
         if (track) {
             asm("" : "+r"(self));
-            fn_7100316018(track, &self->handle);
+            CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
             fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
         }
     }

@@ -170,7 +170,7 @@ void fn_71004c65c4(UnkLavaDropsAttack_l4c65c4* self) {
             fn_710117b3f0(target, &self->listener);
         ResetRef(&self->handle);
     }
-    fn_7100316018(static_cast<UnkWeakTarget*>(anim), &self->handle);
+    CAbilityGhostAura_AssignWeakHandleToRef(static_cast<UnkWeakTarget*>(anim), &self->handle);
     fn_710117b3e8(self->handle ? self->handle->target : nullptr, &self->listener);
     self->field_0x2fc = 0;
     self->pattern = fn_71004ae918(self->patterns, setup.pattern);

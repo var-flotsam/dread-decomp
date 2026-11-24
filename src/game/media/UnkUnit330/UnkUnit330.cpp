@@ -42,13 +42,13 @@ bool fn_7100224fbc(UnkMedia324* self, void* arg) {
     fn_710006691c(&self->lock);
     if (self->state >= 6) {
         for (UnkMediaTrack330** it = self->tracks, **end = it + self->track_count; it != end; ++it) {
-            fn_710021b860(*it, true, true);
+            CMediaStream_SetFlagBitNotifyOnChange(*it, true, true);
             fn_710021b9a8(*it);
         }
         self->player->vf_0x40(arg);
         fn_710021f168(self, 9);
         for (UnkMediaTrack330** it = self->tracks, **end = it + self->track_count; it != end; ++it)
-            fn_710021b860(*it, true, false);
+            CMediaStream_SetFlagBitNotifyOnChange(*it, true, false);
     } else {
         self->player->vf_0x40(arg);
         fn_710021f168(self, 9);

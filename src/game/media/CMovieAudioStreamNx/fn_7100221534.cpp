@@ -129,12 +129,12 @@ u64 fn_7100221938(UnkPlayer_7100221938* self) {
 }
 
 void fn_7100225b84(UnkPlayer_7100221938* self);
-void fn_710022162c(void* arg);
+void CMovieAudioStreamNx_ThreadMain(void* arg);
 
 s32 fn_7100221534(UnkPlayer_7100221938* self) {
     fn_7100225b84(self);
     fn_71000668f8(&self->field_0xcd8);
-    fn_7100066744(self->field_0xa28, "MovieAudioStreamNx Thread", fn_710022162c, 0, 0x10, self);
+    fn_7100066744(self->field_0xa28, "MovieAudioStreamNx Thread", CMovieAudioStreamNx_ThreadMain, 0, 0x10, self);
     UnkAudioStream_7100221938* stream = new UnkAudioStream_7100221938;
     stream->field_0x4 = -1;
     stream->field_0x8 = -1;
@@ -161,5 +161,5 @@ s32 fn_7100221534(UnkPlayer_7100221938* self) {
     stream->field_0x10 = 0;
     stream->field_0x18 = 0x10;
     UnkDescription_7100221534* d = self->field_0x38;
-    return fn_7100221698(self, d->field_0x28, d->field_0x2c, d->field_0x8 == 4);
+    return CMovieAudioStreamNx_AllocateBuffersAndOpenAudioOut(self, d->field_0x28, d->field_0x2c, d->field_0x8 == 4);
 }

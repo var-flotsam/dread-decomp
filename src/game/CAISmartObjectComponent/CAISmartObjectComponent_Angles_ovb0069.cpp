@@ -31,7 +31,7 @@ static inline UnkVec3f Side(UnkSmartObjectComponent_ovb0069* self) {
     return UnkVec3f(n.m[0] * s, n.m[4] * s, n.m[8] * s);
 }
 
-UnkVec3f fn_71003601ac(UnkSmartObjectComponent_ovb0069* self) {
+UnkVec3f CAISmartObjectComponent_GetSpawnDirectionAngles(UnkSmartObjectComponent_ovb0069* self) {
     UnkMat4f frame = fn_7100079c60(&static_cast<const UnkVec3f&>(Up(self)), &static_cast<const UnkVec3f&>(Side(self)));
     fn_7100077bbc(&frame);
     return fn_7100076acc(reinterpret_cast<const UnkXform*>(&frame));

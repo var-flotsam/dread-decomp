@@ -160,7 +160,7 @@ void fn_710110e82c(UnkSelf_l10e82c* self, UnkSource_l10e82c* source) {
                     }
                 }
                 if (track) {
-                    fn_7100316018(track, &link->handle);
+                    CAbilityGhostAura_AssignWeakHandleToRef(track, &link->handle);
                     fn_710117b3e8(link->handle ? link->handle->target : nullptr, link);
                 }
             }

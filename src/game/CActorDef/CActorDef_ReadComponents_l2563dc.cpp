@@ -15,8 +15,8 @@ using base::global::CStrId;
 
 struct UnkKeyId_b0129;
 struct UnkComponentDefRead_b67a1;
-UnkComponentDef_b0129* fn_7100253988(const base::UnkStrIdMember& name, const UnkKeyId_b0129& type);
-bool fn_7100253af0(UnkComponentDefRead_b67a1* self, base::global::CRntFile* file);
+UnkComponentDef_b0129* CActorComponentDef_CreateByTypeId(const base::UnkStrIdMember& name, const UnkKeyId_b0129& type);
+bool CActorComponentDef_ReadFromFile(UnkComponentDefRead_b67a1* self, base::global::CRntFile* file);
 
 // The order the component list is sorted in (the comparator of the sort instantiated in fn_7100256810).
 struct UnkComponentOrder_l2563dc {};
@@ -54,11 +54,11 @@ bool CActorDef_ReadComponents(UnkActorDef_l2563dc* self, base::global::CRntFile*
         } else {
             CStrId nameId(name, true);
             CStrId typeId(type, true);
-            def = fn_7100253988(reinterpret_cast<const base::UnkStrIdMember&>(nameId),
+            def = CActorComponentDef_CreateByTypeId(reinterpret_cast<const base::UnkStrIdMember&>(nameId),
                                 reinterpret_cast<const UnkKeyId_b0129&>(typeId));
         }
         if (def)
-            ok = fn_7100253af0(reinterpret_cast<UnkComponentDefRead_b67a1*>(def), file);
+            ok = CActorComponentDef_ReadFromFile(reinterpret_cast<UnkComponentDefRead_b67a1*>(def), file);
         else
             ok = false;
         if (!self->loaded)

@@ -40,7 +40,7 @@ struct UnkParticleEnableEmission_b49 {
     UnkEmissionPart_b49* part;
 };
 
-void fn_71003784d0(UnkParticleEnableEmission_b49* self) {
+void CParticleEnableEmission_FindFXAndSetEmission(UnkParticleEnableEmission_b49* self) {
     fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     self->done = false;
     if (self->name.data == &g_unk_7101d47108->empty || !self->owner)

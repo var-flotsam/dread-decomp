@@ -23,7 +23,7 @@ struct UnkSetTimelineAction_b60a2 {
     bool enable;
 };
 
-void fn_71003794f8(UnkSetTimelineAction_b60a2* self) {
+void CSetTimelineAction_SetOrClearTimelineOnOwner(UnkSetTimelineAction_b60a2* self) {
     fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     if (self->name.data == &g_unk_7101d47108->empty || !self->owner)
         return;

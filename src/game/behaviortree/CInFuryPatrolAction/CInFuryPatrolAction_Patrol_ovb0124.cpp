@@ -92,7 +92,7 @@ static_assert(__builtin_offsetof(UnkPatrolAction_ovb0124, field_0xa9) == 0xa9, "
 
 void fn_71003893dc(UnkPatrolAction_ovb0124* self, s32* state);
 
-void fn_7100389864(UnkPatrolAction_ovb0124* self) {
+void CInFuryPatrolAction_ClearFlagsAndReleaseListener(UnkPatrolAction_ovb0124* self) {
     fn_7100394bd4(self);
     if (self->bStopInAbort) {
         UnkParams params;

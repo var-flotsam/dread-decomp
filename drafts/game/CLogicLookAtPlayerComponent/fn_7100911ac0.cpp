@@ -17,7 +17,7 @@ using base::math::CVector3D;
 using base::reflection::CClass;
 
 struct UnkLookAtPosControl_b69;
-void fn_71002e6794(UnkLookAtPosControl_b69* self, const CVector3D& pos, f32 time);
+void CLookAtPosControl_SetTargetPos(UnkLookAtPosControl_b69* self, const CVector3D& pos, f32 time);
 void fn_71002e288c(UnkLookAtPosControl_b69* self, u64 bone);
 const CStrId& fn_7100323590();
 
@@ -161,7 +161,7 @@ void fn_7100911ac0(UnkLogicLookAtPlayer_l911ac0* self, f32 dt) {
             self->timer = 0.0f;
         }
         UnkLookAtPosControl_b69* pos_control = reinterpret_cast<UnkLookAtPosControl_b69*>(control);
-        fn_71002e6794(pos_control, self->target, -1.0f);
+        CLookAtPosControl_SetTargetPos(pos_control, self->target, -1.0f);
         fn_71002e288c(pos_control, bone.data->Key());
         control->vf_0x78();
     }

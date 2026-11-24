@@ -21,9 +21,9 @@ UnkAbility* fn_71003013ec(UnkAbilitySet* set, u64 id);
 UnkAbility* fn_71003012f8(UnkAbilitySet* set, u64 id);
 void fn_71002fe318(CAbilityComponent* self);
 // Hands the component's life component the amount, clamped to what it has.
-void fn_710030171c(CAbilityComponent* self, f32 amount);
+void CAbilityEnergyWave_ApplyClampedAmountToHandleTarget(CAbilityComponent* self, f32 amount);
 // Tells every ability of the component but `except` in state 3 or more about `except` (vtable slot 0x138).
-void fn_71003020f0(CAbilityComponent* self, CAbility* except);
+void CAbilityEnergyWave_NotifyOtherAbilitiesInStateAtLeast3(CAbilityComponent* self, CAbility* except);
 UnkHitFlags_b152 fn_7100301c0c(void*, void*, void*);
 extern void* g_unk_71726af0b0;  // What plays the sounds at a position.
 extern UnkEmmyRegistry_b55* g_unk_71726af0a8;
@@ -32,7 +32,7 @@ extern void* g_unk_7101a22878[];
 UnkWeakTarget* fn_7100302014(void* owner);
 UnkWeakTarget* fn_7100303054(void* owner);  // Looks the component up in the owner.
 // Points the handle in `holder` at the weak handle of that component, unless it still has a target.
-void fn_71002fd814(void* owner, UnkWeakHandle** holder);
+void CAbilityEnergyWave_RefreshOwnerComponentHandle(void* owner, UnkWeakHandle** holder);
 // The ability's tunables (CAbilityEnergyWave::CTunableAbilityEnergyWave).
 struct UnkTunableValue_ovb0262g;
 extern UnkTunableValue_ovb0262g g_unk_71726af060;

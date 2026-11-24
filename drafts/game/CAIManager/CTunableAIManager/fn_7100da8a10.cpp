@@ -26,7 +26,7 @@ bool fn_71006bd074(UnkUnit1055Object_b66a4* self);
 bool fn_71006a1e04(UnkU1038Self_A4_b71* self);
 
 struct UnkSonarModel_ovb0085;
-void* fn_7100339900(UnkRenderPool* pool, const CFilePathStrId* path, UnkSonarModel_ovb0085** out,
+void* CAbilitySonar_CreateModelInRenderPool(UnkRenderPool* pool, const CFilePathStrId* path, UnkSonarModel_ovb0085** out,
                     const CStrId* name);
 
 struct UnkSwitchObject;
@@ -101,7 +101,7 @@ bool fn_7100da8a10(UnkAIManagerParts_da8a10* self) {
                 ModelManager();
                 UnkRenderManager* render = g_unk_7101d47300;
                 UnkSonarModel_ovb0085* model = nullptr;
-                fn_7100339900(render->field_0x218, reinterpret_cast<const CFilePathStrId*>(&path), &model,
+                CAbilitySonar_CreateModelInRenderPool(render->field_0x218, reinterpret_cast<const CFilePathStrId*>(&path), &model,
                               &g_unk_7101d470e0);
                 auto* overlay = reinterpret_cast<UnkOverlayModel*>(model);
                 fn_7100219ae0(render, overlay ? &overlay->node : nullptr, 0);

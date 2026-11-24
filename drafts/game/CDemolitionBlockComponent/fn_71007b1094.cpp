@@ -8,7 +8,7 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
+void CAbilityGhostAura_AssignWeakHandleToRef(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
 u32 fn_71007b1a24(char* p0);
 __attribute__((visibility("hidden"))) extern const char g_unk_71015c6b1a[];  // "move"
@@ -88,7 +88,7 @@ void fn_71007b1094(UnkDemolitionBlock* self, f32 value) {
         }
         // keeps self in its own register across the handle reset
         asm("" : "+r"(self));
-        fn_7100316018(target, &self->handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(target, &self->handle);
         fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
     }
     if (UnkStruct_710024fa0c* comp = self->owner->field_0x2a0)

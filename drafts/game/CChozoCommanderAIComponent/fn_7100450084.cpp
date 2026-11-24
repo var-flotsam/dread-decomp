@@ -133,6 +133,6 @@ void fn_7100450084(UnkChozoCommanderAI_l450084* self) {
             fn_710117b3f0(target, link);
         ResetRef(&self->handle);
     }
-    fn_7100316018(anim, &self->handle);
+    CAbilityGhostAura_AssignWeakHandleToRef(anim, &self->handle);
     fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
 }

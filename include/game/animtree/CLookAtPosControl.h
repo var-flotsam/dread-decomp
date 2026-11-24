@@ -9,4 +9,4 @@
 struct UnkLookAtPosControl_b69;
 // Sets the position to look at and the time to turn to it
 // (src/game/animtree/CLookAtPosControl/CLookAtPosControl_SetTarget_A2_b69.cpp).
-void fn_71002e6794(UnkLookAtPosControl_b69* self, const base::math::CVector3D& pos, f32 time);
+void CLookAtPosControl_SetTargetPos(UnkLookAtPosControl_b69* self, const base::math::CVector3D& pos, f32 time);

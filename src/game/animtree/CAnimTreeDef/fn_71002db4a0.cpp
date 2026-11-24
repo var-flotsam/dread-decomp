@@ -37,7 +37,7 @@ void fn_71002d78b8(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71726a97c8[];
 extern char g_unk_71726a97c9[];
 
-void fn_71002db4a0() {
+void CAnimTreeDef_InitStatics() {
     InitHeaderIds(&g_unk_71726a9d20.ids);
     fn_71002d6464();
     fn_710009ec00(g_unk_71726a93d0, g_unk_71726a9d20.field_0x28);

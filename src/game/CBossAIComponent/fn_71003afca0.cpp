@@ -10,7 +10,7 @@
 
 using base::global::CStrId;
 
-void fn_7100301860(void* service, const UnkStrIdHandle& handle);
+void CAbilityEnergyWave_EnableAbilitiesMatchingId(void* service, const UnkStrIdHandle& handle);
 
 struct UnkSubject_3afca0 {
     u8 pad_0x0[0x518];
@@ -26,7 +26,7 @@ void CBossAIComponent_DispatchInventoryItemOnKilled(UnkSelf_3afca0* self) {
     UnkStrIdHandle handle(self->field_0x14908->field_0x518);
     if (handle.id.data != &g_unk_7101d47108->empty) {
         fn_71011437bc(fn_7100df55e4(g_unk_7101d47310), handle);
-        fn_7100301860(fn_7100df5440(g_unk_7101d47310), handle);
+        CAbilityEnergyWave_EnableAbilitiesMatchingId(fn_7100df5440(g_unk_7101d47310), handle);
         fn_7100b30454(fn_7100deac84(g_unk_7101d47310), handle);
     }
 }

@@ -57,7 +57,7 @@ static inline void SetDirMirrored(UnkDirOut_b56* out, f32 angle) {
     out->z = 1.0f;
 }
 
-void fn_710032f4cc(UnkShinespark_b56* self, UnkDirOut_b56* out) {
+void CAbilityShinespark_SnapDirectionToTunableAngle(UnkShinespark_b56* self, UnkDirOut_b56* out) {
     u32 state = fn_710032f678(self, out);
     UnkDirMap_b56* map = &self->directions;
     u32* it = Find(map, &state);

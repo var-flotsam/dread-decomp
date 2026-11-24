@@ -25,7 +25,7 @@ struct UnkSetRotationAction_b49 {
     f32 z;
 };
 
-u32 fn_7100391268(UnkSetRotationAction_b49* self) {
+u32 CSetRotationAction_ApplyFlaggedAnglesToOwner(UnkSetRotationAction_b49* self) {
     UnkVec3f angle = self->owner->transform.GetAngle();
     if (self->set_x)
         angle.x = self->x;

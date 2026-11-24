@@ -12,7 +12,7 @@ struct UnkBehaviorNode_A2_b69 {
     void vf_0x90(s32 s) { reinterpret_cast<void (*)(UnkBehaviorNode_A2_b69*, s32)>(vtable[0x90 / 8])(this, s); }
 };
 
-s32 fn_7100394b30(UnkBehaviorNode_A2_b69* node, f32 value, s32 state) {
+s32 CBehavior_AdvanceStatus(UnkBehaviorNode_A2_b69* node, f32 value, s32 state) {
     if (state == 1)
         node->vf_0x78();
     if (state == 3)

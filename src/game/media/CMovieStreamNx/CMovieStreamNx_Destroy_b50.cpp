@@ -65,7 +65,7 @@ void fn_710022594c(UnkMovieStreamNx_b50* self) {
     Destroy_b50(self);
 }
 
-void fn_7100225aac(UnkMovieStreamNx_b50* self) {
+void CMovieStreamNx_DestroyAndDelete(UnkMovieStreamNx_b50* self) {
     Destroy_b50(self);
     operator delete(self);
 }

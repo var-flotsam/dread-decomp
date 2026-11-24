@@ -69,7 +69,7 @@ struct UnkTeleporterShow_la8ebe8 {
 
     // Takes the weak handle of `track` and links the listener to its target.
     void Track(UnkWeakTarget* track) {
-        fn_7100316018(track, &handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(track, &handle);
         fn_710117b3e8(handle ? handle->target : nullptr, &link);
     }
 };

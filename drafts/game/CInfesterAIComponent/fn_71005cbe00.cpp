@@ -29,7 +29,7 @@ void* fn_71010d7a6c(UnkPlayerMovementCache* self);
 
 struct Vec2;
 using Mesh = UnkNavMesh;
-Vec2* fn_710027a410(Mesh* mesh, u16 index);
+Vec2* CNavMesh_GetVertex(Mesh* mesh, u16 index);
 
 // The next side along the mesh from side `side` of `cell`, in the given direction.
 bool fn_710027c460(UnkNavMesh* mesh, u16 cell, u8 side, bool forward, const CVector2D* extents, u32 flags,
@@ -75,7 +75,7 @@ static inline UnkNavMeshManager* UnkNavManager() {
 }
 
 static inline const CVector2D& Vertex(UnkNavMesh* mesh, u16 index) {
-    return *reinterpret_cast<const CVector2D*>(fn_710027a410(mesh, index));
+    return *reinterpret_cast<const CVector2D*>(CNavMesh_GetVertex(mesh, index));
 }
 
 // Whether `value` is within 0.01 of `target`.

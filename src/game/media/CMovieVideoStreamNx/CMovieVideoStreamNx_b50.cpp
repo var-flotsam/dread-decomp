@@ -68,7 +68,7 @@ void fn_71002268dc(UnkMovieVideoStreamNx_b50* self, movie::MediaData* format) {
 void fn_7100225fb8(UnkMovieVideoStreamNx_b50* self, s32 a, bool b);
 
 // On state 0 with the flag set, reads the decoder's output format and applies it.
-void fn_7100226ab0(UnkMovieVideoStreamNx_b50* self, s32 state, bool flags) {
+void CMovieVideoStreamNx_ResizeFromDecoderFormatAndForward(UnkMovieVideoStreamNx_b50* self, s32 state, bool flags) {
     if (state == 0 && flags) {
         movie::MediaData format;
         if (self->field_0x50.GetOutputFormat(&format) == 0) {

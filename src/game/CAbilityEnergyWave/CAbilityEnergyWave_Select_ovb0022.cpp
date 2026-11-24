@@ -86,7 +86,7 @@ static inline void Attach(CAbilityComponent* self, CAbility* ability) {
 
 // Selects the ability named `id` when it is selectable, its state 2 or more; the components are refreshed
 // when it is already selected. `notify` plays the timeline key g_unk_7101648d18 on the owner.
-bool fn_71003010e0(CAbilityComponent* self, const CStrId* id, bool notify, bool) {
+bool CAbilityEnergyWave_SelectAbilityByName(CAbilityComponent* self, const CStrId* id, bool notify, bool) {
     CAbility* ability = Find(self, id);
     if (ability && ability->selectable && (u32)ability->State() >= 2) {
         CAbility* current = self->current;

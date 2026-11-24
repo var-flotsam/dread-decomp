@@ -31,7 +31,7 @@ void fn_71003aaf50() __attribute__((visibility("hidden")));
 void fn_71003aaf5c() __attribute__((visibility("hidden")));
 extern char g_unk_71726bc3f0[];
 
-void fn_71003ab270() {
+void CBehaviorTree_InitStatics() {
     InitHeaderIds(&g_unk_71726bc3f8.ids);
     InitEnum(&base::reflection::TypeObject<behaviortree::SStatus::Enum, UnkEnumType>::object, "behaviortree::SStatus::Enum", fn_71003a9a9c, fn_71003a9710,
              g_unk_71726bc248, &g_unk_71726bc250, fn_71003aaf38, &g_unk_71726bc270, fn_71003aaf44);

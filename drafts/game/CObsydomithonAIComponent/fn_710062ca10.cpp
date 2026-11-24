@@ -136,7 +136,7 @@ void fn_710062ca10(UnkObsydomithonAI_l62ca10* self) {
             ResetRef(&self->handle);
         }
         if (track) {
-            fn_7100316018(track, &self->handle);
+            CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
             fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
         }
         base::reflection::refl_EmitU32(self->owner->animation, 0x1ba5f261458e5017, 0xfc45ff84f571ba40, 2,

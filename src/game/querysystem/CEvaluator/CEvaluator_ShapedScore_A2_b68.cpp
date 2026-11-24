@@ -32,7 +32,7 @@ struct UnkShapedEvaluator_A2_b68 {
 
 // `a` and `b` (x1, x2) reach the raw value's virtual untouched in the original; the caller sets x2
 // (tools/forwarded_args.py).
-f32 fn_71002b80ec(UnkShapedEvaluator_A2_b68* self, void* a, void* b) {
+f32 CEvaluator_ComputeWeightedScore(UnkShapedEvaluator_A2_b68* self, void* a, void* b) {
     f32 t = self->vf_0x20(a, b);
     if (reinterpret_cast<void*>(self->modifiers) != &g_unk_7101d47108->empty) {
         ++self->modifiers->use_count;

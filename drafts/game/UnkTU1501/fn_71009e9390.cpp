@@ -225,7 +225,7 @@ void fn_71009e9390(UnkMove_b152* self, UnkOwnerState_b152* other) {
 void fn_71009e9890(UnkMove_b152* self);
 void fn_71009796dc(UnkMove_b152* self);
 void fn_71009f115c();
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
+void CAbilityGhostAura_AssignWeakHandleToRef(UnkWeakTarget* self, UnkWeakHandle** out);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
 
 void fn_71009e9890(UnkMove_b152* self) {
@@ -250,6 +250,6 @@ void fn_71009e9890(UnkMove_b152* self) {
     }
     // Keeps the movement in its own register across the handle update.
     asm("" : "+r"(self));
-    fn_7100316018(track, &self->link.handle);
+    CAbilityGhostAura_AssignWeakHandleToRef(track, &self->link.handle);
     fn_710117b3e8(self->link.handle ? self->link.handle->target : nullptr, link);
 }

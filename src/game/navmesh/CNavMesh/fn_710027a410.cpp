@@ -12,6 +12,6 @@ struct UnkNavMeshVertices {
     u64* vertices;
 };
 
-Vec2_ebfa7c* fn_710027a410(Mesh* mesh, u16 index) {
+Vec2_ebfa7c* CNavMesh_GetVertex(Mesh* mesh, u16 index) {
     return reinterpret_cast<Vec2_ebfa7c*>(&reinterpret_cast<UnkNavMeshVertices*>(mesh)->vertices[index]);
 }

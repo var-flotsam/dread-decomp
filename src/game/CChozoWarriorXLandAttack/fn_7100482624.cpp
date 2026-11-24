@@ -89,7 +89,7 @@ struct UnkLandLink_l482624 {
     void Attach(UnkWeakTarget* animation) {
         Detach();
         if (animation) {
-            fn_7100316018(animation, &ref);
+            CAbilityGhostAura_AssignWeakHandleToRef(animation, &ref);
             fn_710117b3e8(ref.handle ? ref.handle->target : nullptr, this);
         }
     }

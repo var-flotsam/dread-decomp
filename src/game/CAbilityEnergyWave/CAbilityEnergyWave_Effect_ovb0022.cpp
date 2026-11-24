@@ -70,7 +70,7 @@ struct UnkEnergyWavePlayer_ovb22 {
 
 // Turns the effect `hash` of `world` (the player's by default) on (switching the first part off and
 // fading the second in) or off.
-void fn_7100301600(void* self, u64 hash, bool on, UnkObject* world) {
+void CAbilityEnergyWave_SetEffectEnabledByHash(void* self, u64 hash, bool on, UnkObject* world) {
     if (!world)
         world = reinterpret_cast<UnkEnergyWavePlayer_ovb22*>(fn_7100defcd4(g_unk_7101d47310))->world;
     if (!on) {

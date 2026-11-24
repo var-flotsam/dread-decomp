@@ -161,7 +161,7 @@ void fn_71006cea10(UnkTakumakuInit_l6cea10* self) {
                 fn_710117b3f0(handle->target, &self->link);
             ResetRef(&self->handle);
         }
-        fn_7100316018(static_cast<UnkWeakTarget*>(animation), &self->handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(static_cast<UnkWeakTarget*>(animation), &self->handle);
         fn_710117b3e8(self->handle ? self->handle->target : nullptr, &self->link);
     }
     self->field_0x74 = false;

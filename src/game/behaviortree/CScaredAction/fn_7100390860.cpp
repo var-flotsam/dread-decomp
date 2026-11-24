@@ -33,7 +33,7 @@ struct UnkHandler_390860 {
     };
 };
 
-u32 fn_7100390860(UnkHandler_390860* self, UnkMessage* message) {
+u32 CScaredAction_SetStateFromMessageId(UnkHandler_390860* self, UnkMessage* message) {
     const CStrId* id = &base::global::CStrId::Empty();
     if (message->field_0x8) {
         UnkPayload* inner = message->field_0x8->field_0x10;

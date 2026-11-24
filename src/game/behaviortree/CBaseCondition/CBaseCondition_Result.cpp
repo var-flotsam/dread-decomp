@@ -16,7 +16,7 @@ struct UnkBaseCondition {
     s32 eReturnStatusFailed;   // the status when it does not
 };
 
-s32 fn_7100394538(UnkBaseCondition* self) {
+s32 CBaseCondition_GetReturnStatusFromTest(UnkBaseCondition* self) {
     bool passed = self->vf_20();
     return passed == !self->bNegate ? self->eReturnStatusSuccess : self->eReturnStatusFailed;
 }

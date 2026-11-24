@@ -54,7 +54,7 @@ static inline bool Facing(UnkWasImpacted_ovb0121* self) {
     return false;
 }
 
-bool fn_71003a3480(UnkWasImpacted_ovb0121* self) {
+bool CWasImpacted_CheckImpactedWithinTime(UnkWasImpacted_ovb0121* self) {
     UnkImpactActor_ovb0121* actor = self->actor;
     if (actor && actor->ai) {
         f32 last = actor->ai->last_impact;

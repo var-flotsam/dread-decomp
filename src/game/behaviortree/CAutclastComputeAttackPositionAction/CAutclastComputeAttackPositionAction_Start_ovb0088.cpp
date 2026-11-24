@@ -91,8 +91,8 @@ void fn_71003b3188(UnkAutclastAction_ovb0088* self) {
     to.x = 0;
     to.y = 0;
     to.z = 0;
-    fn_710039525c(reinterpret_cast<UnkSelf*>(self), self->from_key, &from);
-    fn_710039525c(reinterpret_cast<UnkSelf*>(self), self->to_key, &to);
+    CBehavior_LoadVector3DValue(reinterpret_cast<UnkSelf*>(self), self->from_key, &from);
+    CBehavior_LoadVector3DValue(reinterpret_cast<UnkSelf*>(self), self->to_key, &to);
     UnkAutclastBody_ovb0088* actor = self->actor;
     f32 range = reinterpret_cast<UnkAutclastTunable_ovb0088*>(&g_unk_71726bd2c8)->attack_range;
     f32 range2 = range * range;

@@ -120,7 +120,7 @@ UnkFxObject_ovb0041* fn_71003b7db0(UnkModelManager* self, const void* path_arg, 
         return reinterpret_cast<UnkFxObject_ovb0041*>(fx);
     UnkRenderManager* render = g_unk_7101d47300;
     UnkSwitchObject* object = nullptr;
-    fn_7100339d48(render->field_0x218, path, &object, &g_unk_7101d470e0);
+    CAbilitySonar_CreateSwitchObjectInRenderPool(render->field_0x218, path, &object, &g_unk_7101d470e0);
     fn_7100219ae0(render, object ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<u8*>(object) + 8) : nullptr,
                   layer);
     return reinterpret_cast<UnkFxObject_ovb0041*>(object);

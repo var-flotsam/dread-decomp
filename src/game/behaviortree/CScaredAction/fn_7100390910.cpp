@@ -22,7 +22,7 @@ extern UnkConversion g_unk_71726b7198;
 void fn_7100390730() __attribute__((visibility("hidden")));
 void fn_710039073c() __attribute__((visibility("hidden")));
 
-void fn_7100390910() {
+void CScaredAction_InitStatics() {
     InitHeaderIds(&g_unk_71726b71b8.ids);
     fn_710038f7d4();
     fn_710009ec00(g_unk_71726b7050, g_unk_71726b71b8.field_0x20);

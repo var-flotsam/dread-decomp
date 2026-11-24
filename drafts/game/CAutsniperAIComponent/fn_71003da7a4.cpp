@@ -200,7 +200,7 @@ void fn_71003da7a4(UnkAutsniperAI_l3da7a4* self) {
             }
         }
         if (target) {
-            fn_7100316018(reinterpret_cast<UnkWeakTarget*>(target), &self->handle);
+            CAbilityGhostAura_AssignWeakHandleToRef(reinterpret_cast<UnkWeakTarget*>(target), &self->handle);
             fn_710117b3e8(self->handle ? self->handle->target : nullptr, link);
         }
     }

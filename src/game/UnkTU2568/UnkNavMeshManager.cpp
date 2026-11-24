@@ -67,7 +67,7 @@ struct Result {
 
 Vec2_ebfa7c fn_7100125a64(Vec2_ebfa7c*);
 bool fn_71002afcd8(Cell*, Edge*, u32);
-Vec2_ebfa7c* fn_710027a410(Mesh*, u16);
+Vec2_ebfa7c* CNavMesh_GetVertex(Mesh*, u16);
 
 // Vec2_ebfa7c has CVector2D's layout (it only adds the out-of-line copy constructor); fn_710007b430 reads
 // only the x and y of its source.
@@ -87,7 +87,7 @@ bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2_ebfa7c* pos, Result* out, f32 a
     p.x = pos->x;
     p.y = pos->y;
     s32 ret = 0;
-    u16 cellId = fn_710027a41c(self->navmesh, AsV2(&p), flags);
+    u16 cellId = CNavMesh_FindCellIndexAtPoint(self->navmesh, AsV2(&p), flags);
     if (cellId != 0xffff) {
         ret = fn_7100ebfd4c(self, pos, cellId, out, flags, a, b);
         Mesh* mesh = self->navmesh;
@@ -101,8 +101,8 @@ bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2_ebfa7c* pos, Result* out, f32 a
             if (!(d >= 1.0f))
                 continue;
             IdPair ids = fn_71002afe60(cell, &i);
-            Vec2_ebfa7c* v0 = fn_710027a410(mesh, ids.a);
-            Vec2_ebfa7c* v1 = fn_710027a410(mesh, ids.b);
+            Vec2_ebfa7c* v0 = CNavMesh_GetVertex(mesh, ids.a);
+            Vec2_ebfa7c* v1 = CNavMesh_GetVertex(mesh, ids.b);
             Segment seg(*AsV2(v0), *AsV2(v1));
             // Vec2_ebfa7c has CVector2D's layout (it only adds the out-of-line copy constructor).
             if (!fn_7100125c64(&seg, reinterpret_cast<const base::math::CVector2D*>(&p), false, 0.0f))
@@ -191,8 +191,8 @@ bool fn_7100ebfd4c(UnkNavMeshManager* self, Vec2_ebfa7c* pos, u16 cell_id, Resul
         u8 side = 0;
         while (side < cell->field_0x10) {
             UnkNavMeshSidePair ids = fn_71002afe60(cell, &side);
-            Vec2_ebfa7c* v0 = fn_710027a410(mesh, ids.a);
-            Vec2_ebfa7c* v1 = fn_710027a410(mesh, ids.b);
+            Vec2_ebfa7c* v0 = CNavMesh_GetVertex(mesh, ids.a);
+            Vec2_ebfa7c* v1 = CNavMesh_GetVertex(mesh, ids.b);
             Segment seg(*reinterpret_cast<base::math::CVector2D*>(v0), *reinterpret_cast<base::math::CVector2D*>(v1));
             if (fn_710012bcd0(reinterpret_cast<const UnkSweep2D*>(pos), &seg,
                               reinterpret_cast<UnkContact2D*>(&out->point))) {

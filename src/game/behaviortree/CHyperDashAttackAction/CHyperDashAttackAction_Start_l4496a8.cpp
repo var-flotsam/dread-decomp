@@ -73,7 +73,7 @@ void fn_71004496a8(UnkHyperDashAttackAction_l4496a8* self) {
         commander->field_0x15ed0 = false;
     UnkDashName_l4496a8 name(*reinterpret_cast<const UnkDashName_l4496a8*>(&self->name));
     if (self->name_property.data != &g_unk_7101d47108->empty)
-        fn_7100395044(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->name_property,
+        CBehavior_ReadStringProperty(reinterpret_cast<UnkStringEqualsCondition_A2_b72*>(self), &self->name_property,
                       reinterpret_cast<UnkInlineString_A2_b72*>(&name));
     UnkReflObject* target = fn_7100449868(reinterpret_cast<UnkHyperDashNode_ovb0095*>(self));
     self->field_0x70 = fn_7100449944(self, target);

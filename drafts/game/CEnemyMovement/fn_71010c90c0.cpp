@@ -57,7 +57,7 @@ void fn_71010c90c0(UnkEnemyMovement_l0c90c0* self) {
                 self->handle = nullptr;
             }
         }
-        fn_7100316018(track, &self->handle);
+        CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
         fn_710117b3e8(self->handle ? self->handle->target : nullptr, &self->link);
     }
     if (!fn_7100deabe4(g_unk_7101d47310) && !fn_7100deac04(g_unk_7101d47310)) {

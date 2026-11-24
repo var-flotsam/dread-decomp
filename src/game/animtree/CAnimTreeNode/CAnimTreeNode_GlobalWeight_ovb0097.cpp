@@ -60,12 +60,12 @@ void fn_71002df844(UnkAnimTreeNode_ovb0097* self) {
     }
 }
 
-void fn_71002df91c(UnkAnimTreeChild_b66a2* child, bool recurse) {
+void CAnimTreeNode_RecomputeGlobalWeightOptionallyRecursive(UnkAnimTreeChild_b66a2* child, bool recurse) {
     auto* self = reinterpret_cast<UnkAnimTreeNode_ovb0097*>(child);
     self->UpdateGlobalWeight();
     if (recurse) {
         UnkAnimTreeNode_ovb0097** end = self->children + self->child_count;
         for (UnkAnimTreeNode_ovb0097** it = self->children; it != end; ++it)
-            fn_71002df91c(reinterpret_cast<UnkAnimTreeChild_b66a2*>(*it), true);
+            CAnimTreeNode_RecomputeGlobalWeightOptionallyRecursive(reinterpret_cast<UnkAnimTreeChild_b66a2*>(*it), true);
     }
 }

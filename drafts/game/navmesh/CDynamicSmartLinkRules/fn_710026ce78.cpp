@@ -108,7 +108,7 @@ bool fn_710026ce78(UnkSmartLinkRules_l26ce78* self) {
         CRntFile_Read(&file, &self->field_0x60, 1, 1);
         char text[0x200];
         fn_710007ca94(&file, text);
-        self->kinds = fn_710026d2e4(text);
+        self->kinds = CDynamicSmartLinkRules_ParseSmartLinkKindMask(text);
         s32 count;
         CRntFile_Read(&file, &count, 4, 1);
         for (s32 i = 0; i < count; ++i) {

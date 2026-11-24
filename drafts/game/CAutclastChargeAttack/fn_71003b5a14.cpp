@@ -18,7 +18,7 @@ using base::reflection::UnkReflObject;
 
 struct UnkSource_7100286798;
 u32 fn_7100413fd0(UnkSource_7100286798* self);
-const CVector2D* fn_710027a410(UnkNavMesh* mesh, u16 index);
+const CVector2D* CNavMesh_GetVertex(UnkNavMesh* mesh, u16 index);
 bool fn_710027c460(UnkNavMesh* self, u16 cell, u8 side, bool forward, const CVector2D* widths, u32 flags,
                    u16* out_cell, u8* out_side);
 
@@ -81,8 +81,8 @@ struct UnkAutclastChargeAttack_l3b5a14 {
 // The wall along `side` of `cell`.
 static inline UnkSegment2D SideSegment(UnkAutclastChargeAttack_l3b5a14* self, u16 cell, u8* side) {
     UnkNavMeshSidePair pair = fn_71002afe60(fn_710027a328(self->mesh, cell), side);
-    const CVector2D* a = fn_710027a410(self->mesh, pair.a);
-    const CVector2D* b = fn_710027a410(self->mesh, pair.b);
+    const CVector2D* a = CNavMesh_GetVertex(self->mesh, pair.a);
+    const CVector2D* b = CNavMesh_GetVertex(self->mesh, pair.b);
     return UnkSegment2D(*a, *b);
 }
 

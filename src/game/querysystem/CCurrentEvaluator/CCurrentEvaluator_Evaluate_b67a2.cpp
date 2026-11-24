@@ -20,7 +20,7 @@ struct UnkCurrentEvaluatorActor_b67a2 {
     UnkCurrentEvaluatorAI_b67a2* ai;
 };
 
-f32 fn_71002bab54(void* self, UnkCurrentEvaluatorActor_b67a2* actor, void* candidate) {
+f32 CCurrentEvaluator_ScoreCandidateIsCurrent(void* self, UnkCurrentEvaluatorActor_b67a2* actor, void* candidate) {
     UnkCurrentEvaluatorAI_b67a2* ai = actor->ai;
     if (ai != nullptr && fn_710009d50c(ai->vf_0x0(), fn_710046ea2c()) && ai->current == candidate)
         return 1.0f;
