@@ -82,7 +82,7 @@ struct UnkFieldId_la03a14 : UnkStrIdBase {
     }
 };
 
-void fn_7100a03a14(UnkSmartObjectObject_la03a14* self, CRntFile* file) {
+void CSmartObjectComponent_LoadFromFile(UnkSmartObjectObject_la03a14* self, CRntFile* file) {
     fn_710024fc0c(reinterpret_cast<UnkPickableItem_A4_b76*>(self), file);
 
     bool startEnabled;

@@ -40,6 +40,6 @@ void fn_71009f3a60(CShockWaveComponent& self) {
     self.~CShockWaveComponent();
 }
 
-void fn_71009f3ae0(CShockWaveComponent& self) {
+void CShockWaveComponent_DestroyAndDelete(CShockWaveComponent& self) {
     delete &self;
 }

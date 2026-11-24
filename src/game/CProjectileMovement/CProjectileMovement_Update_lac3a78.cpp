@@ -13,7 +13,7 @@
 
 struct UnkSteeringMovement_ovb0023;
 struct UnkVec3;
-void fn_71009fa8fc(UnkVec3* out, f32 dirY, f32 dirX, f32 speed, f32 gravity, f32 t);
+void CShotLaunchConfig_GetTrajectoryOffset(UnkVec3* out, f32 dirY, f32 dirX, f32 speed, f32 gravity, f32 t);
 void fn_7100ac3d74(UnkNailongThornMovement* self, f32 dt);
 
 struct UnkUpdateOwner_lac3a78 {
@@ -100,9 +100,9 @@ void fn_7100ac3a78(UnkNailongThornMovement* movement, f32 dt) {
     if (def && def->follow_curve) {
         UnkVec3f before = Zero();
         UnkVec3f after = Zero();
-        fn_71009fa8fc(reinterpret_cast<UnkVec3*>(&before), self->launch_dir_y, self->launch_dir_x,
+        CShotLaunchConfig_GetTrajectoryOffset(reinterpret_cast<UnkVec3*>(&before), self->launch_dir_y, self->launch_dir_x,
                       self->launch_speed, self->gravity, self->time - dt);
-        fn_71009fa8fc(reinterpret_cast<UnkVec3*>(&after), self->launch_dir_y, self->launch_dir_x,
+        CShotLaunchConfig_GetTrajectoryOffset(reinterpret_cast<UnkVec3*>(&after), self->launch_dir_y, self->launch_dir_x,
                       self->launch_speed, self->gravity, self->time);
         UnkVec3f delta(after.x - before.x, after.y - before.y, after.z - before.z);
         delta.x *= (f32)((self->direction > 0.0f) - (self->direction < 0.0f));

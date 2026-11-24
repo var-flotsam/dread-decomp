@@ -68,7 +68,7 @@ struct UnkSlotArray;
 struct UnkTag_710031da18;
 
 struct UnkSpittailMovement_ovb0130;
-void fn_71006df774(UnkSpittailMovement_ovb0130* self);
+void CVulkranMagmaBallMovementComponent_BeginPlay(UnkSpittailMovement_ovb0130* self);
 
 struct UnkHandlePtr_ovb0130 {
     UnkWeakHandle* p = nullptr;
@@ -113,7 +113,7 @@ struct UnkSpittailMovement_ovb0130 {
 // fn_71006ca2ac: after the base step (fn_71006df774) the flag at +0x5d8 is cleared, and the ball's handle is
 // appended to the spawning CVulkranAIComponent's list (+0x14760) when the spawner's actor has one.
 void fn_71006ca2ac(UnkSpittailMovement_ovb0130* self) {
-    fn_71006df774(self);
+    CVulkranMagmaBallMovementComponent_BeginPlay(self);
     self->field_0x5d8 = false;
     UnkSpittailLink_ovb0130* link = self->spawner;
     if (!link || !link->actor)

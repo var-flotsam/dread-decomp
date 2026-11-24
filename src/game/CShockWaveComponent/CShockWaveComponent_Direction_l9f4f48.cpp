@@ -34,7 +34,7 @@ inline UnkVec3f Turned(UnkVec3f* dir, const UnkVec3f& offset) {
     return fn_710007a450(dir, &offset);
 }
 
-UnkVec3f fn_71009f4f48(UnkShockWave_l9f4f48* self) {
+UnkVec3f CShockWaveComponent_GetDirection(UnkShockWave_l9f4f48* self) {
     UnkVec3f dir(0.0f, 0.0f, 0.0f);
     bool positive = true;
     if (self->link) {

@@ -42,7 +42,7 @@ static inline __attribute__((always_inline)) void UnkRumbleMark_b45a2(UnkRumbleL
     }
 }
 
-void fn_71009da040(u8* self, void* object) {
+void CRumbleComponent_MarkRumbleStopped(u8* self, void* object) {
     UnkRumbleMark_b45a2(reinterpret_cast<UnkRumbleList_b45a2*>(self + 0x48), object);
 }
 

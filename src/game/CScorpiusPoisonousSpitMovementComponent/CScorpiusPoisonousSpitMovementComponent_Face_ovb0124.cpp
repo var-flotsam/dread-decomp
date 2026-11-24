@@ -27,7 +27,7 @@ struct UnkSpitMovement_ovb0124 {
     f32 vx, vy, vz;  // 0x4b8
 };
 
-void fn_7100699288(UnkSpitMovement_ovb0124* self, f32 dt) {
+void CScorpiusPoisonousSpitMovementComponent_FaceAlongVelocity(UnkSpitMovement_ovb0124* self, f32 dt) {
     fn_71010d1a90(reinterpret_cast<UnkMovementComponent*>(self), dt);
     f32 inv = 1.0f / (sqrtf(self->vx * self->vx + self->vy * self->vy + self->vz * self->vz) + 0.0001f);
     f32 x = self->vx * inv;
