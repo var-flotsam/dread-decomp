@@ -33,7 +33,9 @@ struct UnkSlotPool_ovb0224 {
     void* vtable;
     u8 unk_0x8[0x60];
     u8 field_0x68[0x780];
-    u8 field_0x7e8[0x9f8];
+    u8 field_0x7e8[0x1e4];
+    u8 field_0x9cc[0x14];                     // 0x9cc
+    u64 field_0x9e0[0x100];                   // 0x9e0: the queue's buffer
     u8 queue[0x48];                           // 0x11e0
     base::global::CRntVector<UnkPoolSlot_ovb0224> slots;  // 0x1228
     nn::os::MutexType mutex;                  // 0x1250
@@ -127,7 +129,7 @@ void fn_71002236ac(UnkPlayer* player) {
     fn_710021c4cc(self);
     self->vtable = g_unk_7101a20630 + 0x10;
     fn_7100222970(self->field_0x68);
-    __builtin_memset(reinterpret_cast<u8*>(self) + 0x9cc, 0, 0x14);
+    __builtin_memset(self->field_0x9cc, 0, 0x14);
     void* thread = self->field_0x7e8;
     new (&self->slots) base::global::CRntVector<UnkPoolSlot_ovb0224>(0xf);
     if (!(g_unk_7172699f08.in_use & 1)) {
@@ -140,7 +142,7 @@ void fn_71002236ac(UnkPlayer* player) {
     }
     movie::SetAllocator(fn_71002237f0, fn_7100223860, fn_7100223980, nullptr);
     nn::os::InitializeMessageQueue(reinterpret_cast<nn::os::MessageQueueType*>(self->queue),
-                                   reinterpret_cast<u64*>(reinterpret_cast<u8*>(self) + 0x9e0), 0x100);
+                                   self->field_0x9e0, 0x100);
     fn_7100066744(thread, "MovieInputHandler", fn_7100223b8c, 0, 0x10, self);
     fn_7100223c2c(reinterpret_cast<UnkRenderTargetOwner*>(self));
 }

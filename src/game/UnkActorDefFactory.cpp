@@ -244,7 +244,7 @@ base::reflection::UnkReflObject* fn_7101193ee0(UnkActorDefFactory* self, const C
     if (map.buckets.count == 0)
         return nullptr;
     const UnkStringData* data = id->data;
-    const u32* hash = reinterpret_cast<const u32*>(reinterpret_cast<const char*>(data) + 0x30);
+    const u32* hash = data->hash;
     u32 bucket = (hash[0] ^ hash[1]) % map.buckets.capacity;
     if (bucket >= map.buckets.count)
         return nullptr;

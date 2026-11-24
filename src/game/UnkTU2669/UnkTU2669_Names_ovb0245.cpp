@@ -139,7 +139,7 @@ struct UnkCompared_0x30;
 
 // Removes `key`'s item from the table; returns the item after it in the list, or null.
 UnkScriptItem_ovb0245* fn_710109da60(UnkScriptTable_ovb0245* self, UnkScriptItem_ovb0245* key) {
-    u32 hash = *reinterpret_cast<u32*>(reinterpret_cast<u8*>(key) + 0x20) ^ *reinterpret_cast<u32*>(reinterpret_cast<u8*>(key) + 0x24);
+    u32 hash = (u32)key->name.key ^ (u32)((u64)key->name.key >> 32);
     u32 index = hash % self->bucket_count;
     UnkScriptItem_ovb0245** slot = &self->buckets[index];
     UnkScriptItem_ovb0245* node = *slot;

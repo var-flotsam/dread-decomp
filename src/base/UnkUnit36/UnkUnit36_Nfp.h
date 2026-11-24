@@ -23,7 +23,9 @@ struct UnkUnit36Machine {
     s32 state;
     u8 unk_0x4[4];
     u32 field_0x8;
-    u8 unk_0xc[0x20c];
+    u8 unk_0xc[0x30];
+    u32 field_0x3c;
+    u8 unk_0x40[0x1d8];
     u32 field_0x218;
     u32 field_0x21c;
     u8 unk_0x220[0xd8];

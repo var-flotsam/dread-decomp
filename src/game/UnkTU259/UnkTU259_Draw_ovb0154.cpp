@@ -654,7 +654,10 @@ struct UnkTargetSet_b0154t {
     virtual void vf_0x48();
     virtual void vf_0x50();
     UnkGlobal_710b372a98* field_0x8;  // 0x8
-    u8 pad_0x10[0xc10 - 0x0];
+    u8 field_0x10[0xc10];             // 0x10
+    u8 field_0xc20[0xc10];            // 0xc20
+    u8 field_0x1830[0xc10];           // 0x1830
+    u8 field_0x2440[0xc10];           // 0x2440
 };
 
 struct __attribute__((packed)) UnkTargetInfo_b0154t {
@@ -701,8 +704,8 @@ void fn_71001d8330(UnkTargetSet_b0154t* self) {
         format_4 = 0x12;
         fn_710015c1e0(&g_unk_716e595ee0, 0x320, 0x1c2, 0xb, format_4);
     }
-    fn_710014e6fc((u8*)self + 0x10);
-    fn_710014dc5c((u8*)self + 0xc20);
-    fn_710014ddbc((u8*)self + 0x1830);
-    fn_710014f074((u8*)self + 0x2440);
+    fn_710014e6fc(self->field_0x10);
+    fn_710014dc5c(self->field_0xc20);
+    fn_710014ddbc(self->field_0x1830);
+    fn_710014f074(self->field_0x2440);
 }

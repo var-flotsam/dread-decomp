@@ -10,7 +10,10 @@
 
 struct UnkVulkranChaseAction;
 
-struct UnkVulkranTarget_ovb0120;
+struct UnkVulkranTarget_ovb0120 {
+    u8 pad_0x0[0x146e0];
+    s32 field_0x146e0;
+};
 
 using base::global::UnkStringData;
 
@@ -77,7 +80,7 @@ bool fn_71006d808c(UnkVulkranChaseEv_ovb0120* self, const UnkVulkranEvent_ovb012
                 delay = 0.002f;
             }
             self->delay = delay;
-            *reinterpret_cast<s32*>(reinterpret_cast<u8*>(self->target) + 0x146e0) = 0;
+            self->target->field_0x146e0 = 0;
         }
     }
     return true;

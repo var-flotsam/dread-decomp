@@ -33,7 +33,6 @@ static inline bool Near_np41(const CVector3D& a, const CVector3D& b) {
 void fn_710070699c(UnkSelf_np41* self, const CVector3D* target) {
     if (!Near_np41(self->target, *target)) {
         self->target.x = target->x;
-        asm("" ::: "memory");
         self->target.y = target->y;
         self->target.z = target->z;
         u8& dirty = self->field_0x37fdc;

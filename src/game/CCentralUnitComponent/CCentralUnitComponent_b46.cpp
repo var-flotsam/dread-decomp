@@ -30,6 +30,11 @@ struct UnkCentralUnitLink_b46a2 {
     UnkEntityState* entity;
 };
 
+// The slot's weak handle (base::UnkRefCounted's layout); its entity is at +0x10.
+struct UnkCentralUnitTarget_b46a2 : base::UnkRefCounted {
+    UnkWeakTarget* field_0x10;
+};
+
 struct UnkCentralUnit_b46a2 {
     u8 pad_0x0[0x3f0];
     u32 mode;
@@ -50,10 +55,10 @@ u32 fn_7100776248(UnkCentralUnit_b46a2* self) {
         }
         self->state = 2;
     }
-    if (base::UnkRefCounted* target = self->target.ptr) {
-        if (*reinterpret_cast<void**>(reinterpret_cast<char*>(target) + 0x10)) {
+    if (auto* target = static_cast<UnkCentralUnitTarget_b46a2*>(self->target.ptr)) {
+        if (target->field_0x10) {
             asm("" : "+r"(target));
-            UnkWeakTarget* entity = *reinterpret_cast<UnkWeakTarget**>(reinterpret_cast<char*>(target) + 0x10);
+            UnkWeakTarget* entity = target->field_0x10;
             if (UnkDoorLock* door = fn_71002af860(entity)) {
                 if (UnkCentralUnitDoor_b46a2* d = fn_71004056fc(*reinterpret_cast<void**>(reinterpret_cast<char*>(door) + 0x30)))
                     fn_71008ca700(d, 1);

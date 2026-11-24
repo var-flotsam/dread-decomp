@@ -14,7 +14,9 @@ struct UnkGotoParams_b64a4 {
 };
 
 struct UnkGotoState_b64a4 {
-    u8 pad_0x0[0x38180];
+    u8 pad_0x0[0xb0];
+    u8 field_0xb0;
+    u8 pad_0xb1[0x380cf];
     bool field_0x38180;
 };
 
@@ -24,7 +26,7 @@ void fn_7100702618(UnkGotoState_b64a4* self, UnkGotoParams_b64a4* params, bool r
     fn_71007038f4(self, params, reset);
     if (params->kind > 1)
         return;
-    fn_710037c884(reinterpret_cast<u8*>(self) + 0xb0, params, reset);
+    fn_710037c884(&self->field_0xb0, params, reset);
     if (reset || (params->kind == 1 && params->has_target && params->target))
         self->field_0x38180 = true;
 }

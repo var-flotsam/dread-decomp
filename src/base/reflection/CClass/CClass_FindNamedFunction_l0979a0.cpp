@@ -36,7 +36,7 @@ struct UnkAttrValue_l0979a0 {
     ~UnkAttrValue_l0979a0() { fn_71000a1c60(Raw()); }
 
     UnkReflValue* Raw() { return reinterpret_cast<UnkReflValue*>(this); }
-    u64 TypeSize() const { return *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(type) + 0x18); }
+    u64 TypeSize() const { return type->m_size; }
     const void* Value() const { return (field_0x14 == 1 || TypeSize() > 8) ? field_0x0 : this; }
 
     // Whether the value is a string id, and the value as one.

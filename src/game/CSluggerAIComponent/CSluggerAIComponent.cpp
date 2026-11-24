@@ -13,6 +13,11 @@ struct UnkSluggerEvent;
 
 void fn_71006c7d1c(base::reflection::UnkReflObject* movement, UnkSluggerEvent* event);
 
+// The handle's target (base::UnkRefCounted's layout); its owner is at +0x10.
+struct UnkSluggerTarget : base::UnkRefCounted {
+    char* field_0x10;
+};
+
 namespace {
 struct UnkHeldRef {
     base::UnkRefCounted* ptr;
@@ -31,7 +36,7 @@ u32 fn_71006c6a78(UnkSluggerAI* self, UnkSluggerEvent* event) {
     u32 handled = fn_7101105e44(self, event);
     UnkHeldRef ref(*reinterpret_cast<base::UnkRefCounted**>(reinterpret_cast<char*>(self) + 0x147a8));
     if (ref.ptr) {
-        if (char* owner = *reinterpret_cast<char**>(reinterpret_cast<char*>(ref.ptr) + 0x10)) {
+        if (char* owner = static_cast<UnkSluggerTarget*>(ref.ptr)->field_0x10) {
             if (base::reflection::UnkReflObject* movement =
                     *reinterpret_cast<base::reflection::UnkReflObject**>(owner + 0x1f0)) {
                 if (fn_710009d50c(movement->vf_0x0(), fn_71006c7734()))

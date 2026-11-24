@@ -123,7 +123,7 @@ static inline void Request_ovb0047(UnkGrappleSm_ovb0047* self, u32 id) {
 }
 
 static inline u32 StateId_ovb0047(UnkGrappleSmState_ovb0047* state) {
-    return *reinterpret_cast<u32*>(reinterpret_cast<char*>(state) + 0x10);
+    return state->id;
 }
 
 // Clears both flags and, from state 2 or 3 (id | 1 == 3), requests state 4.

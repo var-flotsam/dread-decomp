@@ -67,6 +67,7 @@ struct UnkMedia324 {
     u32 loop_mode;                   // 0xad0
     bool start_pending;              // 0xad4
     UnkMediaPlayer330* player;       // 0xad8
+    u8 field_0xae0[1];               // 0xae0, a timer (fn_71002207bc stops it)
 };
 static_assert(__builtin_offsetof(UnkMedia324, lock) == 0x960, "UnkMedia324 layout");
 static_assert(__builtin_offsetof(UnkMedia324, loop_mode) == 0xad0, "UnkMedia324 layout");
