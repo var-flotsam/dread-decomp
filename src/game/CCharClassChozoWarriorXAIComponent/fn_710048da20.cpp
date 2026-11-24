@@ -11,15 +11,15 @@
 #include "game/CCharClassChozoWarriorXSpitAttack.h"
 #include "game/CCharClassChozoWarriorXUltimateGrabAttack.h"
 #include "game/CCharClassChozoWarriorXWallClimbAttack.h"
+#include "game/UnkChozoWarriorCharClass.h"
 #include "types.h"
 
 using base::global::UnkStrId;
 
-struct UnkNode {
-    void** vtable;
-};
+// The Chozo Warrior X's char class: the Chozo Warrior's, with its own attack definitions after it.
+struct UnkChozoWarriorXCharClass_48da20 : UnkChozoWarriorCharClass {};
 
-void fn_710048da20(UnkNode* self) {
+void fn_710048da20(UnkChozoWarriorXCharClass_48da20* self) {
     fn_7100497584(self);
     self->vtable = &g_unk_7101a3b748[2];
     fn_710047c6b4(reinterpret_cast<char*>(self) + 0x808);
@@ -28,5 +28,5 @@ void fn_710048da20(UnkNode* self) {
     fn_710047ba88(reinterpret_cast<char*>(self) + 0xad8);
     fn_710047e698(reinterpret_cast<char*>(self) + 0xbc8);
     fn_710047f4d4(reinterpret_cast<char*>(self) + 0xcb8);
-    reinterpret_cast<void (*)(UnkNode*)>(self->vtable[3])(self);
+    reinterpret_cast<void (*)(UnkChozoWarriorXCharClass_48da20*)>(self->vtable[3])(self);
 }

@@ -6,7 +6,7 @@
 #include "base/reflection/CType.h"
 #include "types.h"
 
-struct UnkNode {
+struct UnkHashedTypeNode {
     u8 pad_0x0[8];
     UnkInner* inner_0x8;
 };

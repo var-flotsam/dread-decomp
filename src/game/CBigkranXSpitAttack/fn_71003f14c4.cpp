@@ -12,7 +12,7 @@ struct UnkActor_71003b4718 {
     const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkActor_71003b4718*)>(vtable[0])(this); }
 };
 
-struct UnkSelf {
+struct UnkSelf_3f14c4 {
     u8 pad_0x0[0x28];
     UnkActor_71003b4718* field_0x28;
     u8 pad_0x30[0xa0];
@@ -22,9 +22,9 @@ struct UnkSelf {
     u64 field_0xf0;
 };
 
-void fn_71003606c8(UnkSelf* self, UnkActor_71003b4718* actor);
+void fn_71003606c8(UnkSelf_3f14c4* self, UnkActor_71003b4718* actor);
 
-void fn_71003f14c4(UnkSelf* self, UnkActor_71003b4718* actor) {
+void fn_71003f14c4(UnkSelf_3f14c4* self, UnkActor_71003b4718* actor) {
     fn_71003606c8(self, actor);
     if (actor) {
         UnkActor_71003b4718* attack = nullptr;
