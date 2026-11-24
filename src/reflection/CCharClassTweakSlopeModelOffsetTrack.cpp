@@ -29,7 +29,7 @@ void CCharClassTweakSlopeModelOffsetTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassTweakSlopeModelOffsetTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassTweakSlopeModelOffsetTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTweakSlopeModelOffsetTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakSlopeModelOffsetTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTweakSlopeModelOffsetTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakSlopeModelOffsetTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTweakSlopeModelOffsetTrack::refl_Destroy(void* obj) { static_cast<CCharClassTweakSlopeModelOffsetTrack*>(obj)->~CCharClassTweakSlopeModelOffsetTrack(); }
 struct CCharClassTweakSlopeModelOffsetTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassTweakSlopeModelOffsetTrack);

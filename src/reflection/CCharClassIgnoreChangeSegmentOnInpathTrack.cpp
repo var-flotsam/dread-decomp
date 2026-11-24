@@ -22,7 +22,7 @@ void CCharClassIgnoreChangeSegmentOnInpathTrack::refl_AddAttributes(CClass* cls)
 void CCharClassIgnoreChangeSegmentOnInpathTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreChangeSegmentOnInpathTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreChangeSegmentOnInpathTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreChangeSegmentOnInpathTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreChangeSegmentOnInpathTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreChangeSegmentOnInpathTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreChangeSegmentOnInpathTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreChangeSegmentOnInpathTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreChangeSegmentOnInpathTrack*>(obj)->~CCharClassIgnoreChangeSegmentOnInpathTrack(); }
 struct CCharClassIgnoreChangeSegmentOnInpathTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreChangeSegmentOnInpathTrack);

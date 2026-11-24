@@ -22,7 +22,7 @@ void CCharClassForceBossCameraTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassForceBossCameraTrack::refl_AddFields(CClass*) {}
 bool CCharClassForceBossCameraTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassForceBossCameraTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassForceBossCameraTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceBossCameraTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassForceBossCameraTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceBossCameraTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassForceBossCameraTrack::refl_Destroy(void* obj) { static_cast<CCharClassForceBossCameraTrack*>(obj)->~CCharClassForceBossCameraTrack(); }
 struct CCharClassForceBossCameraTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassForceBossCameraTrack);

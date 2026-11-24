@@ -659,10 +659,10 @@ extern CClass g_unk_71729f9c40 __attribute__((visibility("hidden")));
 void* fn_7101025f4c(void* self, void* source, u32 flags) {
     fn_710101fb24();
     const CClass* desc = &g_unk_71729f9c40;
-    if (fn_710009d50c(desc, fn_7100016894()) && desc->m_fn_0x28) {
+    if (fn_710009d50c(desc, fn_7100016894()) && desc->m_construct) {
         void* obj = GetDefaultAllocator()->vf_0x40(desc->m_size, 8, flags);
         if (obj)
-            reinterpret_cast<void (*)(void*)>(desc->m_fn_0x28)(obj);
+            reinterpret_cast<void (*)(void*)>(desc->m_construct)(obj);
         return obj;
     }
     return nullptr;

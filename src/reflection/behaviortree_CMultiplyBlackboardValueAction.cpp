@@ -24,7 +24,7 @@ void behaviortree::CMultiplyBlackboardValueAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CMultiplyBlackboardValueAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CMultiplyBlackboardValueAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CMultiplyBlackboardValueAction::refl_TypeOf(const void* obj) { return *static_cast<const CMultiplyBlackboardValueAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CMultiplyBlackboardValueAction::refl_TypeOf(const void* obj) { return *static_cast<const CMultiplyBlackboardValueAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CMultiplyBlackboardValueAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CMultiplyBlackboardValueAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CMultiplyBlackboardValueAction::refl_Destroy(void* obj) { static_cast<CMultiplyBlackboardValueAction*>(obj)->~CMultiplyBlackboardValueAction(); }

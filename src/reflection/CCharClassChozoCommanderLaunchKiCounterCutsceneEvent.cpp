@@ -22,7 +22,7 @@ void CCharClassChozoCommanderLaunchKiCounterCutsceneEvent::refl_AddAttributes(CC
 void CCharClassChozoCommanderLaunchKiCounterCutsceneEvent::refl_AddFields(CClass*) {}
 bool CCharClassChozoCommanderLaunchKiCounterCutsceneEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassChozoCommanderLaunchKiCounterCutsceneEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassChozoCommanderLaunchKiCounterCutsceneEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChozoCommanderLaunchKiCounterCutsceneEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassChozoCommanderLaunchKiCounterCutsceneEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChozoCommanderLaunchKiCounterCutsceneEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassChozoCommanderLaunchKiCounterCutsceneEvent::refl_Destroy(void* obj) { static_cast<CCharClassChozoCommanderLaunchKiCounterCutsceneEvent*>(obj)->~CCharClassChozoCommanderLaunchKiCounterCutsceneEvent(); }
 struct CCharClassChozoCommanderLaunchKiCounterCutsceneEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassChozoCommanderLaunchKiCounterCutsceneEvent);

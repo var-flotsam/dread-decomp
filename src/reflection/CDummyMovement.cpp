@@ -14,7 +14,7 @@ void CDummyMovement::refl_AddAttributes(CClass*) {}
 void CDummyMovement::refl_AddFields(CClass*) {}
 bool CDummyMovement::refl_Equals(const void*, const void*) { return false; }
 s32 CDummyMovement::refl_Hash() { return -1; }
-const base::reflection::CType& CDummyMovement::refl_TypeOf(const void* obj) { return *static_cast<const CDummyMovement*>(obj)->vf_0x0(); }
+const base::reflection::CType& CDummyMovement::refl_TypeOf(const void* obj) { return *static_cast<const CDummyMovement*>(obj)->refl_GetDynamicClass(); }
 void CDummyMovement::refl_CopyConstruct(void*, const void*) {}
 void CDummyMovement::refl_MoveConstruct(void*, const void*) {}
 void CDummyMovement::refl_Destroy(void* obj) { static_cast<CDummyMovement*>(obj)->~CDummyMovement(); }

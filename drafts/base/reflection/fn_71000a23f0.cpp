@@ -141,8 +141,8 @@ static inline void VisitValue(UnkObjectVisitor_l0a23f0* self, UnkVisitedField_l0
 bool fn_71000a23f0(UnkObjectVisitor_l0a23f0* self, const UnkReflTypedPtr* obj) {
     if (self->WalksClasses() == 1) {
         const CClass* cls = ClassOf(obj);
-        auto* fields = static_cast<UnkVisitedField_l0a23f0*>(cls->m_array_0xe8.data);
-        for (u64 i = 0, n = cls->m_array_0xe8.count; i != n; ++i) {
+        auto* fields = static_cast<UnkVisitedField_l0a23f0*>(cls->m_fields.data);
+        for (u64 i = 0, n = cls->m_fields.count; i != n; ++i) {
             UnkVisitedField_l0a23f0* field = &fields[i];
             if (self->AcceptsField(field) == 1) {
                 if (fn_71000e74bc(reinterpret_cast<CVariable*>(field))) {
@@ -163,8 +163,8 @@ bool fn_71000a23f0(UnkObjectVisitor_l0a23f0* self, const UnkReflTypedPtr* obj) {
             }
             self->EndField(field);
         }
-        auto* functions = static_cast<UnkVisitedFunction_l0a23f0*>(cls->m_array_0x110.data);
-        for (auto* function = functions; function != functions + cls->m_array_0x110.count; ++function)
+        auto* functions = static_cast<UnkVisitedFunction_l0a23f0*>(cls->m_functions.data);
+        for (auto* function = functions; function != functions + cls->m_functions.count; ++function)
             self->VisitFunction(function);
     }
     self->VisitObject(obj);

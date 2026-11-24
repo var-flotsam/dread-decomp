@@ -22,7 +22,7 @@ void CCharClassEmmyVisionConeOffTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassEmmyVisionConeOffTrack::refl_AddFields(CClass*) {}
 bool CCharClassEmmyVisionConeOffTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassEmmyVisionConeOffTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEmmyVisionConeOffTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyVisionConeOffTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEmmyVisionConeOffTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyVisionConeOffTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEmmyVisionConeOffTrack::refl_Destroy(void* obj) { static_cast<CCharClassEmmyVisionConeOffTrack*>(obj)->~CCharClassEmmyVisionConeOffTrack(); }
 struct CCharClassEmmyVisionConeOffTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassEmmyVisionConeOffTrack);

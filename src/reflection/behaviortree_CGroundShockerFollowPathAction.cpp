@@ -14,7 +14,7 @@ void behaviortree::CGroundShockerFollowPathAction::refl_AddAttributes(CClass*) {
 void behaviortree::CGroundShockerFollowPathAction::refl_AddFields(CClass*) {}
 bool behaviortree::CGroundShockerFollowPathAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CGroundShockerFollowPathAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CGroundShockerFollowPathAction::refl_TypeOf(const void* obj) { return *static_cast<const CGroundShockerFollowPathAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CGroundShockerFollowPathAction::refl_TypeOf(const void* obj) { return *static_cast<const CGroundShockerFollowPathAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CGroundShockerFollowPathAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CGroundShockerFollowPathAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CGroundShockerFollowPathAction::refl_Destroy(void* obj) { static_cast<CGroundShockerFollowPathAction*>(obj)->~CGroundShockerFollowPathAction(); }

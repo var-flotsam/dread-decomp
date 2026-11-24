@@ -33,13 +33,13 @@ void refl_AddAttributes(CClass* cls) {
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_hashSections_GetterFunction", &base::reflection::TypeObject<CBlackboard::TSectionContainer>::object, 0x1, fn_7101049fa8);
-    CVariable* field0 = AddReflectedField(cls, CStrId("hashSections", true), &base::reflection::TypeObject<CBlackboard::TSectionContainer>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("hashSections", true), &base::reflection::TypeObject<CBlackboard::TSectionContainer>::object, 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 1);
     field0->attrs.Add<const char*>(base::reflection::attr::CreateElement(), "CreateSection");
     field0->attrs.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterSectionsDeserialization", true));
     DREAD_REFLECTED_FUNCTION("CreateSection") {
         fn_7101045544(fn, "CreateSection");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sKey", true));
         fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
     }

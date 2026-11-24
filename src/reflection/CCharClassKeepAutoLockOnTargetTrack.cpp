@@ -22,7 +22,7 @@ void CCharClassKeepAutoLockOnTargetTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassKeepAutoLockOnTargetTrack::refl_AddFields(CClass*) {}
 bool CCharClassKeepAutoLockOnTargetTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassKeepAutoLockOnTargetTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassKeepAutoLockOnTargetTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKeepAutoLockOnTargetTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassKeepAutoLockOnTargetTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKeepAutoLockOnTargetTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassKeepAutoLockOnTargetTrack::refl_Destroy(void* obj) { static_cast<CCharClassKeepAutoLockOnTargetTrack*>(obj)->~CCharClassKeepAutoLockOnTargetTrack(); }
 struct CCharClassKeepAutoLockOnTargetTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassKeepAutoLockOnTargetTrack);

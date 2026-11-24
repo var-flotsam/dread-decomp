@@ -44,7 +44,8 @@ not a POD).
 
 A root class's virtual table is declared as the reflection sources call it: the class getter in slot 0
 and the destructor after it (base/reflection/ReflectedClass.h, ClassOf and Destroy). The getter has no
-known name and keeps its slot placeholder, vf_0x0. Every other class declares its destructor out of line
+known name and is called by what it returns, refl_GetDynamicClass (base/reflection/CClass.h, ReflectedObject).
+Every other class declares its destructor out of line
 (`~T() override;`, or a `dtor` row's declaration), defined nowhere here: it is the class's key function, so
 no unit that constructs the class emits a weak copy of its virtual table or of the implicit destructors.
 
@@ -384,8 +385,9 @@ def class_lines(name: str, types: dict[str, dict], fields: dict, extra: Extra = 
               *[f"    {decl};" for fn, decl in REFL_MEMBERS if refl is None or fn in refl.get(name, ())],
               "    struct refl_Description;"]
     if not parent:
-        lines += ["    // The class getter (no known name) and the destructor, as the reflection functions call them.",
-                  "    virtual const base::reflection::CClass* vf_0x0() const;"]
+        lines += ["    // The object's class (the getter's own name is not known) and the destructor, as the reflection",
+                  "    // functions call them.",
+                  "    virtual const base::reflection::CClass* refl_GetDynamicClass() const;"]
         if not has_dtor:
             lines.append(f"    virtual ~{short}();")
     elif not has_dtor:
@@ -559,7 +561,7 @@ def clashes(classes: set[str], types: dict[str, dict], units: list[Unit]) -> dic
 # How a reflection function shows its class's virtual table (base/reflection/ReflectedClass.h): the getter in slot 0
 # and the destructor after it (ClassOf, Destroy, or the declared form), or the destructor first.
 SLOT_FORMS = [
-    (re.compile(r"refl_TypeOf\(const void\* obj\) \{ return (?:ClassOf\(obj\)|\*static_cast<const [\w:]+\*>\(obj\)->vf_0x0\(\)); \}"),
+    (re.compile(r"refl_TypeOf\(const void\* obj\) \{ return (?:ClassOf\(obj\)|\*static_cast<const [\w:]+\*>\(obj\)->refl_GetDynamicClass\(\)); \}"),
      "getter"),
     (re.compile(r"refl_Destroy\(void\* obj\) \{ (?:Destroy\(obj\);|static_cast<[\w:]+\*>\(obj\)->~\w+\(\);) \}"), "destructor"),
     (re.compile(r"\b(?:ClassOfDestructorFirst|DestroyDestructorFirst)\(obj\)"), "destructor first"),

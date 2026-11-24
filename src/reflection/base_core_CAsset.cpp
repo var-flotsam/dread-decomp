@@ -14,7 +14,7 @@ void base::core::CAsset::refl_AddAttributes(CClass*) {}
 void base::core::CAsset::refl_AddFields(CClass*) {}
 bool base::core::CAsset::refl_Equals(const void*, const void*) { return false; }
 s32 base::core::CAsset::refl_Hash() { return -1; }
-const base::reflection::CType& base::core::CAsset::refl_TypeOf(const void* obj) { return *static_cast<const CAsset*>(obj)->vf_0x0(); }
+const base::reflection::CType& base::core::CAsset::refl_TypeOf(const void* obj) { return *static_cast<const CAsset*>(obj)->refl_GetDynamicClass(); }
 struct base::core::CAsset::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CAsset);
     static constexpr bool abstract = true;

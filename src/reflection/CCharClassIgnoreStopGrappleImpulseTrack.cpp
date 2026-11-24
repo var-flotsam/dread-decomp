@@ -22,7 +22,7 @@ void CCharClassIgnoreStopGrappleImpulseTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreStopGrappleImpulseTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreStopGrappleImpulseTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreStopGrappleImpulseTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreStopGrappleImpulseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreStopGrappleImpulseTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreStopGrappleImpulseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreStopGrappleImpulseTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreStopGrappleImpulseTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreStopGrappleImpulseTrack*>(obj)->~CCharClassIgnoreStopGrappleImpulseTrack(); }
 struct CCharClassIgnoreStopGrappleImpulseTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreStopGrappleImpulseTrack);

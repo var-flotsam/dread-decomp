@@ -22,7 +22,7 @@ void CCharClassKraidMoveDownZiplineEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassKraidMoveDownZiplineEvent::refl_AddFields(CClass*) {}
 bool CCharClassKraidMoveDownZiplineEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassKraidMoveDownZiplineEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassKraidMoveDownZiplineEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidMoveDownZiplineEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassKraidMoveDownZiplineEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidMoveDownZiplineEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassKraidMoveDownZiplineEvent::refl_Destroy(void* obj) { static_cast<CCharClassKraidMoveDownZiplineEvent*>(obj)->~CCharClassKraidMoveDownZiplineEvent(); }
 struct CCharClassKraidMoveDownZiplineEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassKraidMoveDownZiplineEvent);

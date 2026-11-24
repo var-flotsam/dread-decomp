@@ -38,7 +38,7 @@ void CCharClassFXControlTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassFXControlTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFXControlTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFXControlTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXControlTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFXControlTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXControlTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFXControlTrack::refl_Destroy(void* obj) { static_cast<CCharClassFXControlTrack*>(obj)->~CCharClassFXControlTrack(); }
 struct CCharClassFXControlTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFXControlTrack);

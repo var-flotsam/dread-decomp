@@ -22,7 +22,7 @@ void CCharClassIgnoreGotoSideNavigationStateTrack::refl_AddAttributes(CClass* cl
 void CCharClassIgnoreGotoSideNavigationStateTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreGotoSideNavigationStateTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreGotoSideNavigationStateTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreGotoSideNavigationStateTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreGotoSideNavigationStateTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreGotoSideNavigationStateTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreGotoSideNavigationStateTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreGotoSideNavigationStateTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreGotoSideNavigationStateTrack*>(obj)->~CCharClassIgnoreGotoSideNavigationStateTrack(); }
 struct CCharClassIgnoreGotoSideNavigationStateTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreGotoSideNavigationStateTrack);

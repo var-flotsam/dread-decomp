@@ -26,7 +26,7 @@ void CCharClassTweakPowerBombCharClassTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassTweakPowerBombCharClassTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassTweakPowerBombCharClassTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTweakPowerBombCharClassTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakPowerBombCharClassTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTweakPowerBombCharClassTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakPowerBombCharClassTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTweakPowerBombCharClassTrack::refl_Destroy(void* obj) { static_cast<CCharClassTweakPowerBombCharClassTrack*>(obj)->~CCharClassTweakPowerBombCharClassTrack(); }
 struct CCharClassTweakPowerBombCharClassTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassTweakPowerBombCharClassTrack);

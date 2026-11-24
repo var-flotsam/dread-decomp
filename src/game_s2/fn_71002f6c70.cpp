@@ -1,6 +1,6 @@
 // Creates an object through the global allocator from a type description: the description is
 // chosen by whether the source's first word equals the global's, checked with the is-kind-of
-// test (fn_710009d50c), and, when it has a constructor hook (CType::m_fn_0x28), its storage is
+// test (fn_710009d50c), and, when it has a constructor hook (CType::m_construct), its storage is
 // allocated (CType::m_size, alignment 8) and constructed through the hook. Returns the object or
 // null.
 #include "base/reflection/UnkClassGetters.h"
@@ -18,10 +18,10 @@ struct UnkSource_2f6c70 {
 // comparison is b.ne where the original has b.eq); behaviour is identical
 void* fn_71002f6c70(void* self, UnkSource_2f6c70* source, u32 flags) {
     const CClass* desc = source->field_0x0 == g_unk_71727b9db0 ? fn_71002effc4() : fn_71002e970c();
-    if (fn_710009d50c(desc, fn_7100016894()) && desc->m_fn_0x28) {
+    if (fn_710009d50c(desc, fn_7100016894()) && desc->m_construct) {
         void* obj = GetDefaultAllocator()->vf_0x40(desc->m_size, 8, flags);
         if (obj)
-            reinterpret_cast<void (*)(void*)>(desc->m_fn_0x28)(obj);
+            reinterpret_cast<void (*)(void*)>(desc->m_construct)(obj);
         return obj;
     }
     return nullptr;

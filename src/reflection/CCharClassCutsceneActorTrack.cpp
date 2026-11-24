@@ -22,7 +22,7 @@ void CCharClassCutsceneActorTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassCutsceneActorTrack::refl_AddFields(CClass*) {}
 bool CCharClassCutsceneActorTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCutsceneActorTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCutsceneActorTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCutsceneActorTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCutsceneActorTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCutsceneActorTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCutsceneActorTrack::refl_Destroy(void* obj) { static_cast<CCharClassCutsceneActorTrack*>(obj)->~CCharClassCutsceneActorTrack(); }
 struct CCharClassCutsceneActorTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCutsceneActorTrack);

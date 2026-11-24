@@ -26,7 +26,7 @@ void CCharClassInvertRotationEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassInvertRotationEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassInvertRotationEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassInvertRotationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassInvertRotationEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassInvertRotationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassInvertRotationEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassInvertRotationEvent::refl_Destroy(void* obj) { static_cast<CCharClassInvertRotationEvent*>(obj)->~CCharClassInvertRotationEvent(); }
 struct CCharClassInvertRotationEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassInvertRotationEvent);

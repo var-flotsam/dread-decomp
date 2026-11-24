@@ -11,8 +11,8 @@
 // The object's dynamic type through `type`'s getter (CType+0x68), null when it has none.
 char* fn_710009dcd8(char* type, void* obj) {
     auto* t = reinterpret_cast<base::reflection::CType*>(type);
-    if (t->m_fn_0x68)
-        return reinterpret_cast<char*>(const_cast<base::reflection::CType*>(&t->m_fn_0x68(obj)));
+    if (t->m_typeOf)
+        return reinterpret_cast<char*>(const_cast<base::reflection::CType*>(&t->m_typeOf(obj)));
     return nullptr;
 }
 
@@ -23,11 +23,11 @@ char* fn_710009dcd8(char* type, void* obj) {
 base::reflection::UnkReflTypedPtr fn_710009d6d0(const base::reflection::CType* type, u32 flags) {
     base::reflection::UnkReflTypedPtr r;
     void* obj = GetDefaultAllocator()->vf_0x40(type->m_size, 8, flags);
-    base::reflection::SlotFn ctor = type->m_fn_0x28;
+    base::reflection::SlotFn ctor = type->m_construct;
     if (obj && ctor) {
         reinterpret_cast<void (*)(void*)>(ctor)(obj);
-        r.type = type->m_fn_0x68
-                     ? reinterpret_cast<char*>(const_cast<base::reflection::CType*>(&type->m_fn_0x68(obj)))
+        r.type = type->m_typeOf
+                     ? reinterpret_cast<char*>(const_cast<base::reflection::CType*>(&type->m_typeOf(obj)))
                      : nullptr;
         r.ptr = obj;
         return r;
@@ -70,8 +70,8 @@ bool fn_710009d7a8(const base::reflection::CType* type, base::reflection::UnkTyp
     if (t != type) {
         u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(type->sName.data) + 0x30);
         do {
-            UnkConversionLookup a{static_cast<UnkTypeConversion**>(t->m_array_0xb8.data),
-                                  static_cast<u64*>(t->m_array_0xb8.keys), t->m_array_0xb8.count};
+            UnkConversionLookup a{static_cast<UnkTypeConversion**>(t->m_conversions.data),
+                                  static_cast<u64*>(t->m_conversions.keys), t->m_conversions.count};
             UnkTypeConversion** p = a.Find(key);
             if (p != a.End()) {
                 if (!*p)
@@ -83,8 +83,8 @@ bool fn_710009d7a8(const base::reflection::CType* type, base::reflection::UnkTyp
         } while (t);
         return false;
     }
-    if (type->m_fn_0x48) {
-        type->m_fn_0x48(dst->ptr, src->ptr);
+    if (type->m_copyAssign) {
+        type->m_copyAssign(dst->ptr, src->ptr);
         return true;
     }
     return false;
@@ -110,7 +110,7 @@ struct UnkReflAttrsInit {
     u32 field_0x30;
 };
 static inline base::reflection::UnkReflAttrs* AttrsOf(base::reflection::CType* type) {
-    auto* attrs = static_cast<UnkReflAttrsInit*>(type->field_0x80);
+    auto* attrs = static_cast<UnkReflAttrsInit*>(type->m_attributes);
     if (!attrs) {
         attrs = static_cast<UnkReflAttrsInit*>(fn_71000839a0(0x38, 0x3e));
         attrs->values = nullptr;
@@ -122,7 +122,7 @@ static inline base::reflection::UnkReflAttrs* AttrsOf(base::reflection::CType* t
         attrs->allocator = GetDefaultAllocator();
         attrs->field_0x28 = nullptr;
         attrs->field_0x30 = 0;
-        type->field_0x80 = attrs;
+        type->m_attributes = attrs;
     }
     return reinterpret_cast<base::reflection::UnkReflAttrs*>(attrs);
 }
@@ -137,6 +137,6 @@ void fn_710009ec00(void* list, void* object) {
         attrs->Add(key, value);
     }
     if (g_unk_7101d5bdc0)
-        type->field_0x88 = g_unk_7101d5bdc0;
+        type->m_nextRegistered = g_unk_7101d5bdc0;
     g_unk_7101d5bdc0 = type;
 }

@@ -22,7 +22,7 @@ void CCharClassRecalculateTweakAttackPlayRatePresetEvent::refl_AddAttributes(CCl
 void CCharClassRecalculateTweakAttackPlayRatePresetEvent::refl_AddFields(CClass*) {}
 bool CCharClassRecalculateTweakAttackPlayRatePresetEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassRecalculateTweakAttackPlayRatePresetEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassRecalculateTweakAttackPlayRatePresetEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassRecalculateTweakAttackPlayRatePresetEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassRecalculateTweakAttackPlayRatePresetEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassRecalculateTweakAttackPlayRatePresetEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassRecalculateTweakAttackPlayRatePresetEvent::refl_Destroy(void* obj) { static_cast<CCharClassRecalculateTweakAttackPlayRatePresetEvent*>(obj)->~CCharClassRecalculateTweakAttackPlayRatePresetEvent(); }
 struct CCharClassRecalculateTweakAttackPlayRatePresetEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassRecalculateTweakAttackPlayRatePresetEvent);

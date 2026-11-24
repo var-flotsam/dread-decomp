@@ -26,7 +26,7 @@ void CCharClassTryToLaunchBlockableAttackWarningTrack::refl_AddFields(CClass* cl
 }
 bool CCharClassTryToLaunchBlockableAttackWarningTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassTryToLaunchBlockableAttackWarningTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTryToLaunchBlockableAttackWarningTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTryToLaunchBlockableAttackWarningTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTryToLaunchBlockableAttackWarningTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTryToLaunchBlockableAttackWarningTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTryToLaunchBlockableAttackWarningTrack::refl_Destroy(void* obj) { static_cast<CCharClassTryToLaunchBlockableAttackWarningTrack*>(obj)->~CCharClassTryToLaunchBlockableAttackWarningTrack(); }
 struct CCharClassTryToLaunchBlockableAttackWarningTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassTryToLaunchBlockableAttackWarningTrack);

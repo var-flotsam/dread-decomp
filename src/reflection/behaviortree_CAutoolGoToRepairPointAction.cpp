@@ -14,7 +14,7 @@ void behaviortree::CAutoolGoToRepairPointAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CAutoolGoToRepairPointAction::refl_AddFields(CClass*) {}
 bool behaviortree::CAutoolGoToRepairPointAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CAutoolGoToRepairPointAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CAutoolGoToRepairPointAction::refl_TypeOf(const void* obj) { return *static_cast<const CAutoolGoToRepairPointAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CAutoolGoToRepairPointAction::refl_TypeOf(const void* obj) { return *static_cast<const CAutoolGoToRepairPointAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CAutoolGoToRepairPointAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CAutoolGoToRepairPointAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CAutoolGoToRepairPointAction::refl_Destroy(void* obj) { static_cast<CAutoolGoToRepairPointAction*>(obj)->~CAutoolGoToRepairPointAction(); }

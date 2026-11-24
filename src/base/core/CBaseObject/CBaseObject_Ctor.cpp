@@ -12,7 +12,7 @@
 using base::reflection::CClass;
 
 extern void* g_unk_7101a196f0[];
-extern base::reflection::UnkReflArray g_unk_7101d4ea78 __attribute__((visibility("hidden")));
+extern base::reflection::UntypedSmallDictionary g_unk_7101d4ea78 __attribute__((visibility("hidden")));
 
 // The entry walk's types as src/base/core/CBaseObject/fn_7100023854.cpp declares them.
 struct UnkNode;
@@ -32,7 +32,7 @@ void fn_7100024e38(UnkBaseObject_7100024e38* self) {
     self->vtable = g_unk_7101a196f0 + 2;
     base::core::CBaseObject::refl_GetClass();
     const CClass* cls = self->vf_0x0();
-    base::reflection::UnkReflArray* entries = &g_unk_7101d4ea78;
+    base::reflection::UntypedSmallDictionary* entries = &g_unk_7101d4ea78;
     asm("" : "+r"(entries));
     u32 count = entries->count;
     UnkClassEntryContext context;

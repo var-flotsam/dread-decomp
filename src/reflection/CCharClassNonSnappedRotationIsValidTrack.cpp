@@ -22,7 +22,7 @@ void CCharClassNonSnappedRotationIsValidTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassNonSnappedRotationIsValidTrack::refl_AddFields(CClass*) {}
 bool CCharClassNonSnappedRotationIsValidTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassNonSnappedRotationIsValidTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassNonSnappedRotationIsValidTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassNonSnappedRotationIsValidTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassNonSnappedRotationIsValidTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassNonSnappedRotationIsValidTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassNonSnappedRotationIsValidTrack::refl_Destroy(void* obj) { static_cast<CCharClassNonSnappedRotationIsValidTrack*>(obj)->~CCharClassNonSnappedRotationIsValidTrack(); }
 struct CCharClassNonSnappedRotationIsValidTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassNonSnappedRotationIsValidTrack);

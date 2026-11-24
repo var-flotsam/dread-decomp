@@ -28,7 +28,7 @@ void behaviortree::CSetRotationAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CSetRotationAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CSetRotationAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CSetRotationAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetRotationAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CSetRotationAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetRotationAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CSetRotationAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CSetRotationAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CSetRotationAction::refl_Destroy(void* obj) { static_cast<CSetRotationAction*>(obj)->~CSetRotationAction(); }

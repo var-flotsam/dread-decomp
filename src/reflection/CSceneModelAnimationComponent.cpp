@@ -29,7 +29,7 @@ void CSceneModelAnimationComponent::refl_AddFields(CClass* cls) {
 }
 bool CSceneModelAnimationComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CSceneModelAnimationComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CSceneModelAnimationComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSceneModelAnimationComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CSceneModelAnimationComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSceneModelAnimationComponent*>(obj)->refl_GetDynamicClass(); }
 void CSceneModelAnimationComponent::refl_CopyConstruct(void*, const void*) {}
 void CSceneModelAnimationComponent::refl_MoveConstruct(void*, const void*) {}
 void CSceneModelAnimationComponent::refl_Destroy(void* obj) { static_cast<CSceneModelAnimationComponent*>(obj)->~CSceneModelAnimationComponent(); }

@@ -26,7 +26,7 @@ void behaviortree::CSetEndAnimAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CSetEndAnimAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CSetEndAnimAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CSetEndAnimAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetEndAnimAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CSetEndAnimAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetEndAnimAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CSetEndAnimAction::refl_Destroy(void* obj) { static_cast<CSetEndAnimAction*>(obj)->~CSetEndAnimAction(); }
 void* behaviortree::CSetEndAnimAction::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* behaviortree::CSetEndAnimAction::refl_MoveAssign(void*, const void*) { return nullptr; }

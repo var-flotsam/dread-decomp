@@ -21,7 +21,7 @@ void base::animation::CAnimationResource::refl_AddAttributes(CClass* cls) {
 void base::animation::CAnimationResource::refl_AddFields(CClass*) {}
 bool base::animation::CAnimationResource::refl_Equals(const void*, const void*) { return false; }
 s32 base::animation::CAnimationResource::refl_Hash() { return -1; }
-const base::reflection::CType& base::animation::CAnimationResource::refl_TypeOf(const void* obj) { return *static_cast<const CAnimationResource*>(obj)->vf_0x0(); }
+const base::reflection::CType& base::animation::CAnimationResource::refl_TypeOf(const void* obj) { return *static_cast<const CAnimationResource*>(obj)->refl_GetDynamicClass(); }
 void base::animation::CAnimationResource::refl_MoveConstruct(void*, const void*) {}
 void base::animation::CAnimationResource::refl_Destroy(void* obj) { static_cast<CAnimationResource*>(obj)->~CAnimationResource(); }
 void* base::animation::CAnimationResource::refl_MoveAssign(void*, const void*) { return nullptr; }

@@ -14,7 +14,7 @@ void behaviortree::CEmmyPatrolBaseAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CEmmyPatrolBaseAction::refl_AddFields(CClass*) {}
 bool behaviortree::CEmmyPatrolBaseAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CEmmyPatrolBaseAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CEmmyPatrolBaseAction::refl_TypeOf(const void* obj) { return *static_cast<const CEmmyPatrolBaseAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CEmmyPatrolBaseAction::refl_TypeOf(const void* obj) { return *static_cast<const CEmmyPatrolBaseAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CEmmyPatrolBaseAction::refl_Destroy(void* obj) { static_cast<CEmmyPatrolBaseAction*>(obj)->~CEmmyPatrolBaseAction(); }
 struct behaviortree::CEmmyPatrolBaseAction::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CEmmyPatrolBaseAction);

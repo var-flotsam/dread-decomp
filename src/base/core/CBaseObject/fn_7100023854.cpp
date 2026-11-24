@@ -29,7 +29,7 @@ void fn_7100023854(UnkNode* node) {
     UnkClassEntryContext context;
     context.cls = self->vf_0x0();
     context.object = node;
-    const base::reflection::UnkReflArray& entries = cls->m_array_0xe8;
+    const base::reflection::UntypedSmallDictionary& entries = cls->m_fields;
     if (entries.count != 0) {
         UnkClassEntry* entry = static_cast<UnkClassEntry*>(entries.data);
         for (UnkClassEntry* end = entry + entries.count; entry != end; ++entry)

@@ -23,7 +23,7 @@ void behaviortree::CCentralUnitAttackAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CCentralUnitAttackAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CCentralUnitAttackAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CCentralUnitAttackAction::refl_TypeOf(const void* obj) { return *static_cast<const CCentralUnitAttackAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CCentralUnitAttackAction::refl_TypeOf(const void* obj) { return *static_cast<const CCentralUnitAttackAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CCentralUnitAttackAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CCentralUnitAttackAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CCentralUnitAttackAction::refl_Destroy(void* obj) { static_cast<CCentralUnitAttackAction*>(obj)->~CCentralUnitAttackAction(); }

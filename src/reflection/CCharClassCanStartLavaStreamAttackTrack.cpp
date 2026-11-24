@@ -22,7 +22,7 @@ void CCharClassCanStartLavaStreamAttackTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassCanStartLavaStreamAttackTrack::refl_AddFields(CClass*) {}
 bool CCharClassCanStartLavaStreamAttackTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCanStartLavaStreamAttackTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCanStartLavaStreamAttackTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCanStartLavaStreamAttackTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCanStartLavaStreamAttackTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCanStartLavaStreamAttackTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCanStartLavaStreamAttackTrack::refl_Destroy(void* obj) { static_cast<CCharClassCanStartLavaStreamAttackTrack*>(obj)->~CCharClassCanStartLavaStreamAttackTrack(); }
 struct CCharClassCanStartLavaStreamAttackTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCanStartLavaStreamAttackTrack);

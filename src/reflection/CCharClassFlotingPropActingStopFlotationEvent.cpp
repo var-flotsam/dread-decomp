@@ -22,7 +22,7 @@ void CCharClassFlotingPropActingStopFlotationEvent::refl_AddAttributes(CClass* c
 void CCharClassFlotingPropActingStopFlotationEvent::refl_AddFields(CClass*) {}
 bool CCharClassFlotingPropActingStopFlotationEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFlotingPropActingStopFlotationEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFlotingPropActingStopFlotationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFlotingPropActingStopFlotationEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFlotingPropActingStopFlotationEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFlotingPropActingStopFlotationEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFlotingPropActingStopFlotationEvent::refl_Destroy(void* obj) { static_cast<CCharClassFlotingPropActingStopFlotationEvent*>(obj)->~CCharClassFlotingPropActingStopFlotationEvent(); }
 struct CCharClassFlotingPropActingStopFlotationEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFlotingPropActingStopFlotationEvent);

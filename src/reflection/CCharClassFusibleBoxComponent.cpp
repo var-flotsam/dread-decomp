@@ -15,7 +15,7 @@ void CCharClassFusibleBoxComponent::refl_AddAttributes(CClass*) {}
 void CCharClassFusibleBoxComponent::refl_AddFields(CClass*) {}
 bool CCharClassFusibleBoxComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassFusibleBoxComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFusibleBoxComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFusibleBoxComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFusibleBoxComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFusibleBoxComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFusibleBoxComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassFusibleBoxComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassFusibleBoxComponent::refl_Destroy(void* obj) { static_cast<CCharClassFusibleBoxComponent*>(obj)->~CCharClassFusibleBoxComponent(); }
@@ -40,7 +40,7 @@ void CFusibleBoxComponent::refl_AddAttributes(CClass*) {}
 void CFusibleBoxComponent::refl_AddFields(CClass*) {}
 bool CFusibleBoxComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CFusibleBoxComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CFusibleBoxComponent::refl_TypeOf(const void* obj) { return *static_cast<const CFusibleBoxComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CFusibleBoxComponent::refl_TypeOf(const void* obj) { return *static_cast<const CFusibleBoxComponent*>(obj)->refl_GetDynamicClass(); }
 void CFusibleBoxComponent::refl_Destroy(void* obj) { static_cast<CFusibleBoxComponent*>(obj)->~CFusibleBoxComponent(); }
 struct CFusibleBoxComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CFusibleBoxComponent);

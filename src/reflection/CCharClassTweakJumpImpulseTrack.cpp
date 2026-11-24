@@ -29,7 +29,7 @@ void CCharClassTweakJumpImpulseTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassTweakJumpImpulseTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassTweakJumpImpulseTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTweakJumpImpulseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakJumpImpulseTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTweakJumpImpulseTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakJumpImpulseTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTweakJumpImpulseTrack::refl_Destroy(void* obj) { static_cast<CCharClassTweakJumpImpulseTrack*>(obj)->~CCharClassTweakJumpImpulseTrack(); }
 struct CCharClassTweakJumpImpulseTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassTweakJumpImpulseTrack);

@@ -26,7 +26,7 @@ void CCharClassEmmyCheckSetSuccessActionEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassEmmyCheckSetSuccessActionEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassEmmyCheckSetSuccessActionEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEmmyCheckSetSuccessActionEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyCheckSetSuccessActionEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEmmyCheckSetSuccessActionEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmyCheckSetSuccessActionEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEmmyCheckSetSuccessActionEvent::refl_Destroy(void* obj) { static_cast<CCharClassEmmyCheckSetSuccessActionEvent*>(obj)->~CCharClassEmmyCheckSetSuccessActionEvent(); }
 struct CCharClassEmmyCheckSetSuccessActionEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassEmmyCheckSetSuccessActionEvent);

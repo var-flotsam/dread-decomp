@@ -22,7 +22,7 @@ void CCharClassAutoaimProjectile3DTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassAutoaimProjectile3DTrack::refl_AddFields(CClass*) {}
 bool CCharClassAutoaimProjectile3DTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAutoaimProjectile3DTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAutoaimProjectile3DTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAutoaimProjectile3DTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAutoaimProjectile3DTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAutoaimProjectile3DTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAutoaimProjectile3DTrack::refl_Destroy(void* obj) { static_cast<CCharClassAutoaimProjectile3DTrack*>(obj)->~CCharClassAutoaimProjectile3DTrack(); }
 struct CCharClassAutoaimProjectile3DTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAutoaimProjectile3DTrack);

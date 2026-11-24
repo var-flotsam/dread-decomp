@@ -26,7 +26,7 @@ void CCharClassOverrideAngularSpeedTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassOverrideAngularSpeedTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassOverrideAngularSpeedTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassOverrideAngularSpeedTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassOverrideAngularSpeedTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassOverrideAngularSpeedTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassOverrideAngularSpeedTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassOverrideAngularSpeedTrack::refl_Destroy(void* obj) { static_cast<CCharClassOverrideAngularSpeedTrack*>(obj)->~CCharClassOverrideAngularSpeedTrack(); }
 struct CCharClassOverrideAngularSpeedTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassOverrideAngularSpeedTrack);

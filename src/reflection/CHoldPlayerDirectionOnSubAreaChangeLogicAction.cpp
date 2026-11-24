@@ -23,7 +23,7 @@ void CHoldPlayerDirectionOnSubAreaChangeLogicAction::refl_AddFields(CClass* cls)
 }
 bool CHoldPlayerDirectionOnSubAreaChangeLogicAction::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CHoldPlayerDirectionOnSubAreaChangeLogicAction::refl_Hash() { return -1; }
-const base::reflection::CType& CHoldPlayerDirectionOnSubAreaChangeLogicAction::refl_TypeOf(const void* obj) { return *static_cast<const CHoldPlayerDirectionOnSubAreaChangeLogicAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& CHoldPlayerDirectionOnSubAreaChangeLogicAction::refl_TypeOf(const void* obj) { return *static_cast<const CHoldPlayerDirectionOnSubAreaChangeLogicAction*>(obj)->refl_GetDynamicClass(); }
 void CHoldPlayerDirectionOnSubAreaChangeLogicAction::refl_Destroy(void* obj) { static_cast<CHoldPlayerDirectionOnSubAreaChangeLogicAction*>(obj)->~CHoldPlayerDirectionOnSubAreaChangeLogicAction(); }
 struct CHoldPlayerDirectionOnSubAreaChangeLogicAction::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CHoldPlayerDirectionOnSubAreaChangeLogicAction);

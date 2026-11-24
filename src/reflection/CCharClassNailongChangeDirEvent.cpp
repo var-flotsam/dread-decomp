@@ -22,7 +22,7 @@ void CCharClassNailongChangeDirEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassNailongChangeDirEvent::refl_AddFields(CClass*) {}
 bool CCharClassNailongChangeDirEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassNailongChangeDirEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassNailongChangeDirEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassNailongChangeDirEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassNailongChangeDirEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassNailongChangeDirEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassNailongChangeDirEvent::refl_Destroy(void* obj) { static_cast<CCharClassNailongChangeDirEvent*>(obj)->~CCharClassNailongChangeDirEvent(); }
 struct CCharClassNailongChangeDirEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassNailongChangeDirEvent);

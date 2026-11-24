@@ -307,7 +307,7 @@ address,size,name,name_source,subsystem,status
 0x710000bf54,4,fn_710000bf54,unknown,unknown,O
 0x710000bf58,20,fn_710000bf58,unknown,unknown,O
 0x710000bf6c,20,fn_710000bf6c,unknown,unknown,O
-0x710000bf80,264,fn_710000bf80,unknown,engine/reflection?,O
+0x710000bf80,264,base::reflection::attr::PersistenceKey,inferred,engine/reflection?,O
 0x710000c088,364,fn_710000c088,unknown,engine/reflection?,O
 0x710000c1f4,60,fn_710000c1f4,unknown,engine/reflection?,O
 0x710000c230,4,fn_710000c230,unknown,unknown,O
@@ -2456,7 +2456,7 @@ address,size,name,name_source,subsystem,status
 0x7100092070,260,base::reflection::attr::DeleteItemButtonEnabled,inferred,engine/reflection?,O
 0x7100092180,260,fn_7100092180,unknown,engine/reflection?,O
 0x7100092290,260,fn_7100092290,unknown,engine/reflection?,O
-0x71000923a0,260,fn_71000923a0,unknown,unknown,O
+0x71000923a0,260,base::reflection::attr::EditorModeDataFlowKey,inferred,unknown,O
 0x71000924b0,260,base::reflection::attr::bEditorModeDataFlowInit,inferred,game?,O
 0x71000925c0,260,base::reflection::attr::bSkipDataFlowOrder,inferred,unknown,O
 0x71000926d0,260,base::reflection::attr::CompleteGameModelActionTreeFrom,inferred,unknown,O
@@ -2663,7 +2663,7 @@ address,size,name,name_source,subsystem,status
 0x710009ad28,36,fn_710009ad28,unknown,engine/reflection?,O
 0x710009ad4c,4,fn_710009ad4c,unknown,engine/reflection?,O
 0x710009ad50,268,fn_710009ad50,unknown,engine/reflection?,O
-0x710009ae5c,500,fn_710009ae5c,unknown,engine/reflection?,O
+0x710009ae5c,500,ResizeParameterAttributes,inferred,engine/reflection?,O
 0x710009b050,1052,fn_710009b050,unknown,engine/reflection?,m
 0x710009b46c,296,fn_710009b46c,unknown,engine/reflection?,O
 0x710009b594,220,fn_710009b594,unknown,engine/reflection?,U

@@ -41,7 +41,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_vPos_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0x101, fn_7100c079cc);
     DREAD_REFLECTED_FUNCTION("_vPos_SetterFunction")
         fn_7100bfef1c(fn, "_vPos_SetterFunction");
-    CVariable* field0 = AddReflectedField(cls, CStrId("vPos", true), &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("vPos", true), &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field0->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &base::reflection::TypeObject<CompleteInfo>::object, base::reflection::UnkReflStringList(0x3, base::reflection::UnkReflList<base::global::CRntString>({"vPos", "vSegments:*:vPos"}, 0xa, nullptr, 0xf)));
     field0->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Position"));
     field0->attrs.Add<s32>(base::reflection::attr::EditorModeDataFlow(), 3);
@@ -88,7 +88,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("CreateElement") {
         fn_7100bfff5c(fn, "CreateElement");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create Node At Index");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
         fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
         fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("vPos", true));
@@ -97,20 +97,20 @@ void refl_AddFields(CClass* cls) {
         DREAD_REFLECTED_FUNCTION_DESCRIPTION("InsertElement", &base::reflection::TypeObject<void>::object, 0, fn_7100c07eb0);
         fn_7100c07d10(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Insert Node At Index");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
         fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("rData", true));
     }
     DREAD_REFLECTED_FUNCTION("EraseElement") {
         fn_7100c0001c(fn, "EraseElement");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Erase Node At Index");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
     }
     DREAD_REFLECTED_FUNCTION("DeleteElement") {
         fn_7100c00198(fn, "DeleteElement");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Delete Node At Index");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
     }
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SCameraRailNode>", "tNodes", 0x8, (DisableListAddRemove, true), (EditorVisible, true), (Description, base::global::CRntString("CameraRailNode")), (CreateElement, CStrId("CreateElement", true)), (InsertElement, CStrId("InsertElement", true)), (EraseElement, CStrId("EraseElement", true)), (DeleteElement, CStrId("DeleteElement", true)), (AfterElementDeserialization, CStrId("AfterNodesDeserialization", true)));
@@ -439,10 +439,10 @@ void fn_7100c08624();
 void fn_7100c08674();
 void fn_7100c00b94(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100c08624);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", SCameraRailNode::refl_GetClass(), 0x1, fn_7100c08674);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), SCameraRailNode::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), SCameraRailNode::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/ReflectedAttributes.h"
@@ -456,10 +456,10 @@ void fn_7100c08a10();
 void fn_7100c08a60();
 void fn_7100c01184(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100c08a10);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", SCameraRailNode::refl_GetClass(), 0x101, fn_7100c08a60);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), SCameraRailNode::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), SCameraRailNode::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/ReflectedAttributes.h"
@@ -473,10 +473,10 @@ void fn_7100c09dc4();
 void fn_7100c09e14();
 void fn_7100c01b24(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100c09dc4);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", SCameraSubRail::refl_GetClass(), 0x1, fn_7100c09e14);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), SCameraSubRail::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), SCameraSubRail::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/ReflectedAttributes.h"
@@ -490,9 +490,9 @@ void fn_7100c09f78();
 void fn_7100c09fc8();
 void fn_7100c02114(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100c09f78);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", SCameraSubRail::refl_GetClass(), 0x101, fn_7100c09fc8);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), SCameraSubRail::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), SCameraSubRail::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }

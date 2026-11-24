@@ -25,7 +25,7 @@ void CCharClassMagnetSlidingBlockComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassMagnetSlidingBlockComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassMagnetSlidingBlockComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMagnetSlidingBlockComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMagnetSlidingBlockComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMagnetSlidingBlockComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMagnetSlidingBlockComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMagnetSlidingBlockComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassMagnetSlidingBlockComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassMagnetSlidingBlockComponent::refl_Destroy(void* obj) { static_cast<CCharClassMagnetSlidingBlockComponent*>(obj)->~CCharClassMagnetSlidingBlockComponent(); }

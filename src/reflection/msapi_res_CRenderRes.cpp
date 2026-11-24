@@ -14,7 +14,7 @@ void msapi::res::CRenderRes::refl_AddAttributes(CClass*) {}
 void msapi::res::CRenderRes::refl_AddFields(CClass*) {}
 bool msapi::res::CRenderRes::refl_Equals(const void*, const void*) { return false; }
 s32 msapi::res::CRenderRes::refl_Hash() { return -1; }
-const base::reflection::CType& msapi::res::CRenderRes::refl_TypeOf(const void* obj) { return *static_cast<const CRenderRes*>(obj)->vf_0x0(); }
+const base::reflection::CType& msapi::res::CRenderRes::refl_TypeOf(const void* obj) { return *static_cast<const CRenderRes*>(obj)->refl_GetDynamicClass(); }
 struct msapi::res::CRenderRes::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CRenderRes);
     static constexpr auto equals = &refl_Equals;

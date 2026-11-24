@@ -22,7 +22,7 @@ void CCharClassTakumakuAllowFrontWallCrashTrack::refl_AddAttributes(CClass* cls)
 void CCharClassTakumakuAllowFrontWallCrashTrack::refl_AddFields(CClass*) {}
 bool CCharClassTakumakuAllowFrontWallCrashTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassTakumakuAllowFrontWallCrashTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTakumakuAllowFrontWallCrashTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTakumakuAllowFrontWallCrashTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTakumakuAllowFrontWallCrashTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTakumakuAllowFrontWallCrashTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTakumakuAllowFrontWallCrashTrack::refl_Destroy(void* obj) { static_cast<CCharClassTakumakuAllowFrontWallCrashTrack*>(obj)->~CCharClassTakumakuAllowFrontWallCrashTrack(); }
 struct CCharClassTakumakuAllowFrontWallCrashTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassTakumakuAllowFrontWallCrashTrack);

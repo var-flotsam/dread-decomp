@@ -22,7 +22,7 @@ void CCharClassAllowParkourTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassAllowParkourTrack::refl_AddFields(CClass*) {}
 bool CCharClassAllowParkourTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAllowParkourTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAllowParkourTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowParkourTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAllowParkourTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowParkourTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAllowParkourTrack::refl_Destroy(void* obj) { static_cast<CCharClassAllowParkourTrack*>(obj)->~CCharClassAllowParkourTrack(); }
 struct CCharClassAllowParkourTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAllowParkourTrack);

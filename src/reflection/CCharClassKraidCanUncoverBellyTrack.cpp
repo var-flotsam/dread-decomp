@@ -22,7 +22,7 @@ void CCharClassKraidCanUncoverBellyTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassKraidCanUncoverBellyTrack::refl_AddFields(CClass*) {}
 bool CCharClassKraidCanUncoverBellyTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassKraidCanUncoverBellyTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassKraidCanUncoverBellyTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidCanUncoverBellyTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassKraidCanUncoverBellyTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidCanUncoverBellyTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassKraidCanUncoverBellyTrack::refl_Destroy(void* obj) { static_cast<CCharClassKraidCanUncoverBellyTrack*>(obj)->~CCharClassKraidCanUncoverBellyTrack(); }
 struct CCharClassKraidCanUncoverBellyTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassKraidCanUncoverBellyTrack);

@@ -32,7 +32,7 @@ void CCharClassMovementComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassMovementComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassMovementComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassMovementComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMovementComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassMovementComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassMovementComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassMovementComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassMovementComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassMovementComponent::refl_Destroy(void* obj) { static_cast<CCharClassMovementComponent*>(obj)->~CCharClassMovementComponent(); }

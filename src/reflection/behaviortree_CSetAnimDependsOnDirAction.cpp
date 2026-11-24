@@ -42,7 +42,7 @@ void behaviortree::CSetAnimDependsOnDirAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CSetAnimDependsOnDirAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CSetAnimDependsOnDirAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CSetAnimDependsOnDirAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetAnimDependsOnDirAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CSetAnimDependsOnDirAction::refl_TypeOf(const void* obj) { return *static_cast<const CSetAnimDependsOnDirAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CSetAnimDependsOnDirAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CSetAnimDependsOnDirAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CSetAnimDependsOnDirAction::refl_Destroy(void* obj) { static_cast<CSetAnimDependsOnDirAction*>(obj)->~CSetAnimDependsOnDirAction(); }

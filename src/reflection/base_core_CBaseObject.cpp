@@ -27,7 +27,7 @@ void base::core::CBaseObject::refl_AddFields(CClass* cls) {
 }
 bool base::core::CBaseObject::refl_Equals(const void*, const void*) { return false; }
 s32 base::core::CBaseObject::refl_Hash() { return -1; }
-const base::reflection::CType& base::core::CBaseObject::refl_TypeOf(const void* obj) { return *static_cast<const CBaseObject*>(obj)->vf_0x0(); }
+const base::reflection::CType& base::core::CBaseObject::refl_TypeOf(const void* obj) { return *static_cast<const CBaseObject*>(obj)->refl_GetDynamicClass(); }
 void base::core::CBaseObject::refl_CopyConstruct(void*, const void*) {}
 void base::core::CBaseObject::refl_MoveConstruct(void*, const void*) {}
 void base::core::CBaseObject::refl_Destroy(void* obj) { static_cast<CBaseObject*>(obj)->~CBaseObject(); }

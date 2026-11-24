@@ -22,7 +22,7 @@ void CCharClassCanBeGrabbedTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassCanBeGrabbedTrack::refl_AddFields(CClass*) {}
 bool CCharClassCanBeGrabbedTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCanBeGrabbedTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCanBeGrabbedTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCanBeGrabbedTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCanBeGrabbedTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCanBeGrabbedTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCanBeGrabbedTrack::refl_Destroy(void* obj) { static_cast<CCharClassCanBeGrabbedTrack*>(obj)->~CCharClassCanBeGrabbedTrack(); }
 struct CCharClassCanBeGrabbedTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCanBeGrabbedTrack);

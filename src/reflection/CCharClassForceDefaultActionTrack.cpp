@@ -28,7 +28,7 @@ void CCharClassForceDefaultActionTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassForceDefaultActionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassForceDefaultActionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassForceDefaultActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceDefaultActionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassForceDefaultActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceDefaultActionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassForceDefaultActionTrack::refl_Destroy(void* obj) { static_cast<CCharClassForceDefaultActionTrack*>(obj)->~CCharClassForceDefaultActionTrack(); }
 struct CCharClassForceDefaultActionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassForceDefaultActionTrack);

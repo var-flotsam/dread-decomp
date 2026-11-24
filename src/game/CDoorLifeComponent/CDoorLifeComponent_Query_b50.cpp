@@ -17,7 +17,7 @@ bool fn_71008d5b80(char* self, void*, UnkReflValue* out) {
     const CType* t = fn_710000d228();
     const CType* cur = reinterpret_cast<const CType*>(out->type);
     if (cur && out->field_0x14 == 0 &&
-        (cur == t ? t->m_fn_0x48 != nullptr
+        (cur == t ? t->m_copyAssign != nullptr
                   : fn_710009d52c(t, cur))) {
         fn_71000a1cc8(out, t, &value);
     } else {

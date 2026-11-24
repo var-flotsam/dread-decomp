@@ -14,7 +14,7 @@ void behaviortree::CSelector::refl_AddAttributes(CClass*) {}
 void behaviortree::CSelector::refl_AddFields(CClass*) {}
 bool behaviortree::CSelector::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CSelector::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CSelector::refl_TypeOf(const void* obj) { return *static_cast<const CSelector*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CSelector::refl_TypeOf(const void* obj) { return *static_cast<const CSelector*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CSelector::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CSelector::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CSelector::refl_Destroy(void* obj) { static_cast<CSelector*>(obj)->~CSelector(); }

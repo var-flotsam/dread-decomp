@@ -25,7 +25,7 @@ void CMovementComponent::refl_AddFields(CClass* cls) {
 }
 bool CMovementComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CMovementComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CMovementComponent::refl_TypeOf(const void* obj) { return *static_cast<const CMovementComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CMovementComponent::refl_TypeOf(const void* obj) { return *static_cast<const CMovementComponent*>(obj)->refl_GetDynamicClass(); }
 void CMovementComponent::refl_CopyConstruct(void*, const void*) {}
 void CMovementComponent::refl_MoveConstruct(void*, const void*) {}
 void CMovementComponent::refl_Destroy(void* obj) { static_cast<CMovementComponent*>(obj)->~CMovementComponent(); }

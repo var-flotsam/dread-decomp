@@ -36,7 +36,7 @@ void CCharClassForceDisableSubareaEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassForceDisableSubareaEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassForceDisableSubareaEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassForceDisableSubareaEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceDisableSubareaEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassForceDisableSubareaEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceDisableSubareaEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassForceDisableSubareaEvent::refl_Destroy(void* obj) { static_cast<CCharClassForceDisableSubareaEvent*>(obj)->~CCharClassForceDisableSubareaEvent(); }
 struct CCharClassForceDisableSubareaEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassForceDisableSubareaEvent);

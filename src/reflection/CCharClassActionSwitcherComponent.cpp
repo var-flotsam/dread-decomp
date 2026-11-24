@@ -26,7 +26,7 @@ void CCharClassActionSwitcherComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassActionSwitcherComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassActionSwitcherComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassActionSwitcherComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassActionSwitcherComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassActionSwitcherComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassActionSwitcherComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassActionSwitcherComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassActionSwitcherComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassActionSwitcherComponent::refl_Destroy(void* obj) { static_cast<CCharClassActionSwitcherComponent*>(obj)->~CCharClassActionSwitcherComponent(); }

@@ -25,7 +25,7 @@ void behaviortree::CHyperDashAttackAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CHyperDashAttackAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CHyperDashAttackAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CHyperDashAttackAction::refl_TypeOf(const void* obj) { return *static_cast<const CHyperDashAttackAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CHyperDashAttackAction::refl_TypeOf(const void* obj) { return *static_cast<const CHyperDashAttackAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CHyperDashAttackAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CHyperDashAttackAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CHyperDashAttackAction::refl_Destroy(void* obj) { static_cast<CHyperDashAttackAction*>(obj)->~CHyperDashAttackAction(); }

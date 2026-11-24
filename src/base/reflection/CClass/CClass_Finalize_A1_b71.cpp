@@ -15,7 +15,7 @@ void fn_7100096b54(UnkKeyedB0Array_b51* self);
 void fn_71000e7e54(UnkFunctionRefs_b52* self, CClass* cls);
 void fn_710009ce10(CClass* self);
 void fn_7100096884(CClass* self, const CType* parent);
-void fn_7100096c80(base::reflection::UnkReflArray* array);
+void fn_7100096c80(base::reflection::UntypedSmallDictionary* array);
 
 struct UnkRecordB0_A1b71 {
     u8 bytes[0xb0];
@@ -25,13 +25,13 @@ void fn_71000967ec(CClass* self) {
     fn_710009ce10(self);
     if (const CType* parent = self->m_parent)
         fn_7100096884(self, parent);
-    if (self->m_fn_0x70)
-        self->m_fn_0x70(self);
-    if (self->m_fn_0xe0)
-        self->m_fn_0xe0(self);
-    fn_7100096b54(reinterpret_cast<UnkKeyedB0Array_b51*>(&self->m_array_0xe8));
-    fn_7100096c80(&self->m_array_0x110);
-    UnkRecordB0_A1b71* it = static_cast<UnkRecordB0_A1b71*>(self->m_array_0xe8.data);
-    for (UnkRecordB0_A1b71* end = it + self->m_array_0xe8.count; it != end; ++it)
+    if (self->m_addAttributes)
+        self->m_addAttributes(self);
+    if (self->m_addFields)
+        self->m_addFields(self);
+    fn_7100096b54(reinterpret_cast<UnkKeyedB0Array_b51*>(&self->m_fields));
+    fn_7100096c80(&self->m_functions);
+    UnkRecordB0_A1b71* it = static_cast<UnkRecordB0_A1b71*>(self->m_fields.data);
+    for (UnkRecordB0_A1b71* end = it + self->m_fields.count; it != end; ++it)
         fn_71000e7e54(reinterpret_cast<UnkFunctionRefs_b52*>(it), self);
 }

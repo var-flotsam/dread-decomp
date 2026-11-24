@@ -22,7 +22,7 @@ void CCharClassApplyNoJumpingGravityFactorTrack::refl_AddAttributes(CClass* cls)
 void CCharClassApplyNoJumpingGravityFactorTrack::refl_AddFields(CClass*) {}
 bool CCharClassApplyNoJumpingGravityFactorTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassApplyNoJumpingGravityFactorTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassApplyNoJumpingGravityFactorTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassApplyNoJumpingGravityFactorTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassApplyNoJumpingGravityFactorTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassApplyNoJumpingGravityFactorTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassApplyNoJumpingGravityFactorTrack::refl_Destroy(void* obj) { static_cast<CCharClassApplyNoJumpingGravityFactorTrack*>(obj)->~CCharClassApplyNoJumpingGravityFactorTrack(); }
 struct CCharClassApplyNoJumpingGravityFactorTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassApplyNoJumpingGravityFactorTrack);

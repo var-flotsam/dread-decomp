@@ -33,7 +33,7 @@ void CAcidBlobsLaunchPattern::refl_AddFields(CClass* cls) {
 }
 bool CAcidBlobsLaunchPattern::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CAcidBlobsLaunchPattern::refl_Hash() { return -1; }
-const base::reflection::CType& CAcidBlobsLaunchPattern::refl_TypeOf(const void* obj) { return *static_cast<const CAcidBlobsLaunchPattern*>(obj)->vf_0x0(); }
+const base::reflection::CType& CAcidBlobsLaunchPattern::refl_TypeOf(const void* obj) { return *static_cast<const CAcidBlobsLaunchPattern*>(obj)->refl_GetDynamicClass(); }
 void CAcidBlobsLaunchPattern::refl_Destroy(void* obj) { static_cast<CAcidBlobsLaunchPattern*>(obj)->~CAcidBlobsLaunchPattern(); }
 struct CAcidBlobsLaunchPattern::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CAcidBlobsLaunchPattern);

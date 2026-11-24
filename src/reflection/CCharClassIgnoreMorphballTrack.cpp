@@ -22,7 +22,7 @@ void CCharClassIgnoreMorphballTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreMorphballTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreMorphballTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreMorphballTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreMorphballTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreMorphballTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreMorphballTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreMorphballTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreMorphballTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreMorphballTrack*>(obj)->~CCharClassIgnoreMorphballTrack(); }
 struct CCharClassIgnoreMorphballTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreMorphballTrack);

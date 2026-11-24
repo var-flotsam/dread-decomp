@@ -14,7 +14,7 @@ void CCollisionMaterialCacheComponent::refl_AddAttributes(CClass*) {}
 void CCollisionMaterialCacheComponent::refl_AddFields(CClass*) {}
 bool CCollisionMaterialCacheComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCollisionMaterialCacheComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCollisionMaterialCacheComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCollisionMaterialCacheComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCollisionMaterialCacheComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCollisionMaterialCacheComponent*>(obj)->refl_GetDynamicClass(); }
 void CCollisionMaterialCacheComponent::refl_CopyConstruct(void*, const void*) {}
 void CCollisionMaterialCacheComponent::refl_MoveConstruct(void*, const void*) {}
 void CCollisionMaterialCacheComponent::refl_Destroy(void* obj) { static_cast<CCollisionMaterialCacheComponent*>(obj)->~CCollisionMaterialCacheComponent(); }

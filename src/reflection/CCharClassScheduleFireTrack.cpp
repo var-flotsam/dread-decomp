@@ -22,7 +22,7 @@ void CCharClassScheduleFireTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassScheduleFireTrack::refl_AddFields(CClass*) {}
 bool CCharClassScheduleFireTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassScheduleFireTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassScheduleFireTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassScheduleFireTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassScheduleFireTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassScheduleFireTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassScheduleFireTrack::refl_Destroy(void* obj) { static_cast<CCharClassScheduleFireTrack*>(obj)->~CCharClassScheduleFireTrack(); }
 struct CCharClassScheduleFireTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassScheduleFireTrack);

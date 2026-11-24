@@ -22,7 +22,7 @@ void CCharClassObsydomithonBlockAimTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassObsydomithonBlockAimTrack::refl_AddFields(CClass*) {}
 bool CCharClassObsydomithonBlockAimTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassObsydomithonBlockAimTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassObsydomithonBlockAimTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassObsydomithonBlockAimTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassObsydomithonBlockAimTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassObsydomithonBlockAimTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassObsydomithonBlockAimTrack::refl_Destroy(void* obj) { static_cast<CCharClassObsydomithonBlockAimTrack*>(obj)->~CCharClassObsydomithonBlockAimTrack(); }
 struct CCharClassObsydomithonBlockAimTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassObsydomithonBlockAimTrack);

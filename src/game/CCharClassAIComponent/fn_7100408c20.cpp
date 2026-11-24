@@ -135,7 +135,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_bUseElectricAreaAttackFX_SetterFunction", true)))
             fn_7100411160(fn, "_m_bUseElectricAreaAttackFX_SetterFunction");
     }();
-    CVariable* field9 = AddReflectedField(cls, CStrId("bUseElectricAreaAttackFX", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field9 = AddReflectedField(cls, CStrId("bUseElectricAreaAttackFX", true), fn_710000d228(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field9->attrs.Add<bool>(base::reflection::attr::DefaultValue(), false);
     field9->attrs.Add<const char*>(base::reflection::attr::Description(), "Use Electric Area Attack FX");
     [&] {
@@ -149,7 +149,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_fElectricAreaAttackMaxDist_SetterFunction", true)))
             fn_71004112dc(fn, "_m_fElectricAreaAttackMaxDist_SetterFunction");
     }();
-    CVariable* field10 = AddReflectedField(cls, CStrId("fElectricAreaAttackMaxDist", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field10 = AddReflectedField(cls, CStrId("fElectricAreaAttackMaxDist", true), fn_710000abbc(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field10->attrs.Add<f32>(base::reflection::attr::DefaultValue(), -1.0f);
     field10->attrs.Add<const char*>(base::reflection::attr::Description(), "Electric Area Attack Max dist");
     [&] {
@@ -163,7 +163,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_fShortDistance_SetterFunction", true)))
             fn_7100411458(fn, "_m_fShortDistance_SetterFunction");
     }();
-    CVariable* field11 = AddReflectedField(cls, CStrId("fShortDistance", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field11 = AddReflectedField(cls, CStrId("fShortDistance", true), fn_710000abbc(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field11->attrs.Add<f32>(base::reflection::attr::DefaultValue(), -1.0f);
     [&] {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_fLongDistance_GetterFunction", true))) {
@@ -176,7 +176,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_fLongDistance_SetterFunction", true)))
             fn_71004115d4(fn, "_m_fLongDistance_SetterFunction");
     }();
-    CVariable* field12 = AddReflectedField(cls, CStrId("fLongDistance", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field12 = AddReflectedField(cls, CStrId("fLongDistance", true), fn_710000abbc(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field12->attrs.Add<f32>(base::reflection::attr::DefaultValue(), -1.0f);
     CVariable* field13 = AddReflectedField(cls, CStrId("bUseTargetPos", true), fn_710000d228(), 0x140, -1, -1);
     field13->attrs.Add<bool>(base::reflection::attr::DefaultValue(), false);
@@ -192,7 +192,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_bSuspendIfNotInFrustum_SetterFunction", true)))
             fn_7100411750(fn, "_m_bSuspendIfNotInFrustum_SetterFunction");
     }();
-    CVariable* field14 = AddReflectedField(cls, CStrId("bSuspendIfNotInFrustum", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field14 = AddReflectedField(cls, CStrId("bSuspendIfNotInFrustum", true), fn_710000d228(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field14->attrs.Add<bool>(base::reflection::attr::DefaultValue(), true);
     field14->attrs.Add<const char*>(base::reflection::attr::Description(), "Suspend if not in frustum");
     [&] {
@@ -206,7 +206,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_eInFrustumMode_SetterFunction", true)))
             fn_71004118cc(fn, "_m_eInFrustumMode_SetterFunction");
     }();
-    CVariable* field15 = AddReflectedField(cls, CStrId("eInFrustumMode", true), &base::reflection::TypeObject<EInFrustumMode>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field15 = AddReflectedField(cls, CStrId("eInFrustumMode", true), &base::reflection::TypeObject<EInFrustumMode>::object, 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field15->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<EInFrustumMode>::object, 0);
     field15->attrs.Add<const char*>(base::reflection::attr::Description(), "How to check if entity is in frustum");
     [&] {
@@ -220,7 +220,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_bWantsAdjustHeightOnMelee_SetterFunction", true)))
             fn_7100411a40(fn, "_m_bWantsAdjustHeightOnMelee_SetterFunction");
     }();
-    CVariable* field16 = AddReflectedField(cls, CStrId("bWantsAdjustHeightOnMelee", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field16 = AddReflectedField(cls, CStrId("bWantsAdjustHeightOnMelee", true), fn_710000d228(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field16->attrs.Add<bool>(base::reflection::attr::DefaultValue(), false);
     field16->attrs.Add<const char*>(base::reflection::attr::Description(), "Wants Adjust Height On Melee");
     [&] {
@@ -234,7 +234,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_bWantsMeleeCamera_SetterFunction", true)))
             fn_7100411bbc(fn, "_m_bWantsMeleeCamera_SetterFunction");
     }();
-    CVariable* field17 = AddReflectedField(cls, CStrId("bWantsMeleeCamera", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field17 = AddReflectedField(cls, CStrId("bWantsMeleeCamera", true), fn_710000d228(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field17->attrs.Add<bool>(base::reflection::attr::DefaultValue(), true);
     [&] {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_fMeleeCameraMinExtraZDist_GetterFunction", true))) {
@@ -247,7 +247,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_fMeleeCameraMinExtraZDist_SetterFunction", true)))
             fn_7100411d38(fn, "_m_fMeleeCameraMinExtraZDist_SetterFunction");
     }();
-    CVariable* field18 = AddReflectedField(cls, CStrId("fMeleeCameraMinExtraZDist", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field18 = AddReflectedField(cls, CStrId("fMeleeCameraMinExtraZDist", true), fn_710000abbc(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field18->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 1400.0f);
     [&] {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_fMeleeCameraTime_GetterFunction", true))) {
@@ -260,7 +260,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_fMeleeCameraTime_SetterFunction", true)))
             fn_7100411eb4(fn, "_m_fMeleeCameraTime_SetterFunction");
     }();
-    CVariable* field19 = AddReflectedField(cls, CStrId("fMeleeCameraTime", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field19 = AddReflectedField(cls, CStrId("fMeleeCameraTime", true), fn_710000abbc(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field19->attrs.Add<f32>(base::reflection::attr::DefaultValue(), -1.0f);
     [&] {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_fMeleeCounterCameraMinExtraZDist_GetterFunction", true))) {
@@ -273,7 +273,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_fMeleeCounterCameraMinExtraZDist_SetterFunction", true)))
             fn_7100412030(fn, "_m_fMeleeCounterCameraMinExtraZDist_SetterFunction");
     }();
-    CVariable* field20 = AddReflectedField(cls, CStrId("fMeleeCounterCameraMinExtraZDist", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field20 = AddReflectedField(cls, CStrId("fMeleeCounterCameraMinExtraZDist", true), fn_710000abbc(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field20->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 1200.0f);
     CVariable* field21 = AddReflectedField(cls, CStrId("sAutoLockOnColliderID", true), fn_7100009658(), 0x150, -1, -1);
     field21->attrs.Add<const char*>(base::reflection::attr::DefaultValue(), "");
@@ -322,7 +322,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_sNavMeshNavigationModes_SetterFunction", true)))
             fn_71004121ac(fn, "_sNavMeshNavigationModes_SetterFunction");
     }();
-    CVariable* field39 = AddReflectedField(cls, CStrId("sNavMeshNavigationModes", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field39 = AddReflectedField(cls, CStrId("sNavMeshNavigationModes", true), fn_7100009658(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field39->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(base::global::CStrId::Empty()));
     [&] {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_sNavMeshEnvironmentTypes_GetterFunction", true))) {
@@ -335,7 +335,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_sNavMeshEnvironmentTypes_SetterFunction", true)))
             fn_7100412328(fn, "_sNavMeshEnvironmentTypes_SetterFunction");
     }();
-    CVariable* field40 = AddReflectedField(cls, CStrId("sNavMeshEnvironmentTypes", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field40 = AddReflectedField(cls, CStrId("sNavMeshEnvironmentTypes", true), fn_7100009658(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field40->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(base::global::CStrId::Empty()));
     [&] {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_sForbiddenNavigateOverNavMeshPolygonLogicTypeFlags_GetterFunction", true))) {
@@ -348,7 +348,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_sForbiddenNavigateOverNavMeshPolygonLogicTypeFlags_SetterFunction", true)))
             fn_71004124a4(fn, "_sForbiddenNavigateOverNavMeshPolygonLogicTypeFlags_SetterFunction");
     }();
-    CVariable* field41 = AddReflectedField(cls, CStrId("sForbiddenNavigateOverNavMeshPolygonLogicTypeFlags", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field41 = AddReflectedField(cls, CStrId("sForbiddenNavigateOverNavMeshPolygonLogicTypeFlags", true), fn_7100009658(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field41->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(base::global::CStrId::Empty()));
     [&] {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_sForbiddenNavigateInsideNavMeshPolygonLogicTypeFlags_GetterFunction", true))) {
@@ -361,7 +361,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_sForbiddenNavigateInsideNavMeshPolygonLogicTypeFlags_SetterFunction", true)))
             fn_7100412620(fn, "_sForbiddenNavigateInsideNavMeshPolygonLogicTypeFlags_SetterFunction");
     }();
-    CVariable* field42 = AddReflectedField(cls, CStrId("sForbiddenNavigateInsideNavMeshPolygonLogicTypeFlags", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field42 = AddReflectedField(cls, CStrId("sForbiddenNavigateInsideNavMeshPolygonLogicTypeFlags", true), fn_7100009658(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field42->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId("DynamicItems", true));
     CVariable* field43 = AddReflectedField(cls, CStrId("bAwaitOnTargetTunnelEntrances", true), fn_710000d228(), 0x22c, -1, -1);
     field43->attrs.Add<bool>(base::reflection::attr::DefaultValue(), false);
@@ -377,7 +377,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_sNavMeshGlobalSmartLinkTypes_SetterFunction", true)))
             fn_710041279c(fn, "_sNavMeshGlobalSmartLinkTypes_SetterFunction");
     }();
-    CVariable* field44 = AddReflectedField(cls, CStrId("sNavMeshGlobalSmartLinkTypes", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field44 = AddReflectedField(cls, CStrId("sNavMeshGlobalSmartLinkTypes", true), fn_7100009658(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field44->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(base::global::CStrId::Empty()));
     [&] {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_fVisitedNavMeshEdgesDistance_GetterFunction", true))) {
@@ -390,7 +390,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_fVisitedNavMeshEdgesDistance_SetterFunction", true)))
             fn_7100412918(fn, "_fVisitedNavMeshEdgesDistance_SetterFunction");
     }();
-    CVariable* field45 = AddReflectedField(cls, CStrId("fVisitedNavMeshEdgesDistance", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field45 = AddReflectedField(cls, CStrId("fVisitedNavMeshEdgesDistance", true), fn_710000abbc(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field45->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 0.0f);
     CVariable* field46 = AddReflectedField(cls, CStrId("vNavMeshAStarExtraSize", true), fn_7100024504(), 0x3a4, -1, -1);
     field46->attrs.Add<base::math::CVector2D>(base::reflection::attr::DefaultValue(), base::math::CVector2D{0.0f, 0.0f});
@@ -511,7 +511,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_bMeleeBigAIReaction_SetterFunction", true)))
             fn_7100412a94(fn, "_m_bMeleeBigAIReaction_SetterFunction");
     }();
-    CVariable* field90 = AddReflectedField(cls, CStrId("bMeleeBigAIReaction", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field90 = AddReflectedField(cls, CStrId("bMeleeBigAIReaction", true), fn_710000d228(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field90->attrs.Add<bool>(base::reflection::attr::DefaultValue(), false);
     field90->attrs.Add<const char*>(base::reflection::attr::Description(), "Determines if Samus reacts as a big enemy or not");
     [&] {
@@ -525,7 +525,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_bAllowMultipleMeleeHits_SetterFunction", true)))
             fn_7100412c10(fn, "_m_bAllowMultipleMeleeHits_SetterFunction");
     }();
-    CVariable* field91 = AddReflectedField(cls, CStrId("bAllowMultipleMeleeHits", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field91 = AddReflectedField(cls, CStrId("bAllowMultipleMeleeHits", true), fn_710000d228(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field91->attrs.Add<bool>(base::reflection::attr::DefaultValue(), false);
     CVariable* field92 = AddReflectedField(cls, CStrId("bUsingDCCenter", true), fn_710000d228(), 0x40a, -1, -1);
     field92->attrs.Add<bool>(base::reflection::attr::DefaultValue(), false);
@@ -574,7 +574,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_sDefaultInvulnerableDamageMask_SetterFunction", true)))
             fn_7100412d8c(fn, "_m_sDefaultInvulnerableDamageMask_SetterFunction");
     }();
-    CVariable* field109 = AddReflectedField(cls, CStrId("sDefaultInvulnerableDamageMask", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field109 = AddReflectedField(cls, CStrId("sDefaultInvulnerableDamageMask", true), fn_7100009658(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field109->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(base::global::CStrId::Empty()));
     field109->attrs.Add<const char*>(base::reflection::attr::Description(), "Invulnerability to damage sources by default");
     [&] {
@@ -588,7 +588,7 @@ void fn_7100408c20(CClass* cls) {
         if (CFunction* fn = AddReflectedFunction(cls, CStrId("_m_sArmoredInvulnerableDamageMask_SetterFunction", true)))
             fn_7100412f08(fn, "_m_sArmoredInvulnerableDamageMask_SetterFunction");
     }();
-    CVariable* field110 = AddReflectedField(cls, CStrId("sArmoredInvulnerableDamageMask", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field110 = AddReflectedField(cls, CStrId("sArmoredInvulnerableDamageMask", true), fn_7100009658(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field110->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(base::global::CStrId::Empty()));
     field110->attrs.Add<const char*>(base::reflection::attr::Description(), "Invulnerability to damage sources when armored");
     CVariable* field111 = AddReflectedField(cls, CStrId("sMorphingNode", true), fn_7100009658(), 0x458, -1, -1);

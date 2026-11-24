@@ -127,7 +127,7 @@ void CSpotLightComponent::refl_AddFields(CClass* cls) {
 }
 bool CSpotLightComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CSpotLightComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CSpotLightComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSpotLightComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CSpotLightComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSpotLightComponent*>(obj)->refl_GetDynamicClass(); }
 void CSpotLightComponent::refl_CopyConstruct(void*, const void*) {}
 void CSpotLightComponent::refl_MoveConstruct(void*, const void*) {}
 void CSpotLightComponent::refl_Destroy(void* obj) { static_cast<CSpotLightComponent*>(obj)->~CSpotLightComponent(); }

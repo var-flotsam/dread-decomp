@@ -22,7 +22,7 @@ void CCharClassIgnoreGravityTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreGravityTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreGravityTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreGravityTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreGravityTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreGravityTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreGravityTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreGravityTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreGravityTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreGravityTrack*>(obj)->~CCharClassIgnoreGravityTrack(); }
 struct CCharClassIgnoreGravityTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreGravityTrack);

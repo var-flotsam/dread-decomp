@@ -78,7 +78,7 @@ __attribute__((flatten)) static inline UnkReflParamAttrs_ovb0102& ParamAttrsAt(
 }
 
 // Resizes the function's parameter attribute containers to `count` and sets each one's +0x30 to 3.
-void fn_710009ae5c(base::reflection::CFunction* function, u32 count) {
+void ResizeParameterAttributes(base::reflection::CFunction* function, u32 count) {
     base::global::CRntVector<UnkReflParamAttrs_ovb0102>* v =
         &reinterpret_cast<UnkReflFunctionParams_ovb0102*>(function)->param_attrs;
     if (v->count < count) {

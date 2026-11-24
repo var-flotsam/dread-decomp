@@ -3,10 +3,12 @@
 // Reflection attributes: (key, typed value) pairs attached to a type (CType+0x80) or to a
 // member field. The keys are guarded static objects named by their own strings
 // ("Description", "TrackGroup", ...); their getters are declared here under those names
-// (base::reflection::attr::Description()), but for the two typed keys, whose comments give
-// their strings. A value is passed type-erased, as its type descriptor plus a pointer.
+// (base::reflection::attr::Description()); the two keys whose values are of their own enum type are
+// PersistenceKey() and EditorModeDataFlowKey(). A value is passed type-erased, as its type descriptor
+// plus a pointer.
 //
-// The container and the key type keep placeholder names.
+// AttributeKey, Attributes and TypedValueRef are our names for what they hold; the engine's names
+// for them are not known.
 
 #include <initializer_list>
 
@@ -18,24 +20,28 @@
 #include "base/math/CVector.h"
 #include "base/math/CVector4D.h"
 #include "base/reflection/CClass.h"
+#include "base/reflection/CPointerType.h"
+#include "base/reflection/PrimitiveType.h"
+#include "base/reflection/UnkReflTypeOf.h"  // the value types' getters by address, for the sources that still name them so
 #include "types.h"
 
 namespace base::reflection {
 
 // An attribute key: a guarded static built by its getter (refl_GetAttrKey<G>, UnkReflStatics.h)
 // from its name and its value type's descriptor. The destructor is out of line.
-struct UnkReflAttrKey {
+struct AttributeKey {
     base::global::CStrId name;
     const CType* type;  // the value type
-    u32 field_0x10;     // 0xf in all keys seen
+    u32 targets;        // what the attribute may be attached to, a bit per base::reflection::EAttributeTarget
+                        // (the insertion in src/base/reflection/UnkReflAttrs.cpp tests it); 0xf in all keys seen
     u16 field_0x14;
 
-    UnkReflAttrKey(const base::global::CStrId& name, const CType* type, u32 unk)
-        : name(name), type(type), field_0x10(unk), field_0x14(0) {}
-    ~UnkReflAttrKey();
+    AttributeKey(const base::global::CStrId& name, const CType* type, u32 targets)
+        : name(name), type(type), targets(targets), field_0x14(0) {}
+    ~AttributeKey();
 };
-static_assert(sizeof(UnkReflAttrKey) == 0x18, "UnkReflAttrKey layout");
-struct UnkReflAttrs;    // 0x38 bytes, created on first use
+static_assert(sizeof(AttributeKey) == 0x18, "AttributeKey layout");
+struct Attributes;   // an element's attributes (0x38 bytes), created on first use
 struct CVariable;    // a member field descriptor; its attributes are at +0x38
 // A reflected function (0xb8 bytes, in CClass+0x110). Getter/setter-backed fields register
 // one getter and one setter function and then a field that refers to them by index.
@@ -43,9 +49,9 @@ struct CFunction;
 // The reflected function's virtual table, as far as the registration functions use it.
 struct UnkReflFunctionVtbl {
     void* unk_0x0[9];
-    UnkReflAttrs* (*vf_0x48)(CFunction* self);  // the function's attributes
+    Attributes* (*vf_0x48)(CFunction* self);  // the function's attributes
     void* unk_0x50;
-    UnkReflAttrs* (*vf_0x58)(CFunction* self, u32 index);  // a parameter's attributes
+    Attributes* (*vf_0x58)(CFunction* self, u32 index);  // a parameter's attributes
 };
 struct CFunction {
     const UnkReflFunctionVtbl* vtbl;
@@ -58,15 +64,16 @@ struct CFunction {
     u16 field_0xb2;
     u8 unk_0xb4[0x4];
 
-    UnkReflAttrs* Attrs() { return vtbl->vf_0x48(this); }
-    UnkReflAttrs* ParamAttrs(u32 index) { return vtbl->vf_0x58(this, index); }
+    Attributes* Attrs() { return vtbl->vf_0x48(this); }
+    Attributes* ParamAttrs(u32 index) { return vtbl->vf_0x58(this, index); }
 };
 static_assert(sizeof(CFunction) == 0xb8, "function array stride");
 
 struct UnkTunableRegistry;  // 0x58 bytes, created on first use by the CTunable* field functions
 struct UnkTunable;          // the global a CTunable* class registers
 
-struct UnkReflValueRef {
+// A value passed type-erased: its type's descriptor and where it is.
+struct TypedValueRef {
     const CType* type;
     const void* value;
 };
@@ -74,15 +81,17 @@ struct UnkReflValueRef {
 }  // namespace base::reflection
 
 // Get (creating on first use) a type's attribute container (CType+0x80).
-base::reflection::UnkReflAttrs* TypeAttributes(base::reflection::CType* type);
+base::reflection::Attributes* TypeAttributes(base::reflection::CType* type);
 // Insert a (key, value) pair.
-void SetAttribute(base::reflection::UnkReflAttrs* attrs, const base::reflection::UnkReflAttrKey& key,
-                   const base::reflection::UnkReflValueRef& value);
+void SetAttribute(base::reflection::Attributes* attrs, const base::reflection::AttributeKey& key,
+                   const base::reflection::TypedValueRef& value);
 
-// Register a member field: name, type, offset in the object. The two -1s are unknown.
+// Register a member field: name, type, offset in the object (0xffffffff for a property, which has
+// none), and for a property the indices of its getter and setter among the class's functions (-1 for
+// a field, and for the setter of a read-only property).
 base::reflection::CVariable* AddReflectedField(base::reflection::CClass* cls, base::global::CStrId name,
-                                              const base::reflection::CType* type, u64 offset, s64 unk_4,
-                                              s64 unk_5);
+                                              const base::reflection::CType* type, u64 offset, s64 getter_index,
+                                              s64 setter_index);
 
 // The names of an associative collection's entry fields, "key" and "element", built once at start-up.
 extern base::global::CStrId g_unk_7101d5a450;
@@ -96,7 +105,7 @@ inline base::global::CStrId& ElementFieldName() { return g_unk_7101d5a458; }
 base::reflection::CFunction* AddReflectedFunction(base::reflection::CClass* cls, const base::global::CStrId& name);
 
 // Resize a function's parameter attribute containers (0x38 bytes each, at +0x88) to `count`.
-void fn_710009ae5c(base::reflection::CFunction* fn, u32 count);
+void ResizeParameterAttributes(base::reflection::CFunction* fn, u32 count);
 
 // Allocation (size, flags; the flags are 0x3f for the tunable registry), and the registry's
 // constructor.
@@ -138,7 +147,7 @@ inline CVariable* refl_FindField(CClass* cls, const base::global::CName& name) {
             return &data[count];
         }
     };
-    Fields& fields = *reinterpret_cast<Fields*>(&cls->m_array_0xe8);
+    Fields& fields = *reinterpret_cast<Fields*>(&cls->m_fields);
     auto* it = fields.Find(name.hash);
     return it == &fields.data[fields.count] ? nullptr : reinterpret_cast<CVariable*>(it);
 }
@@ -232,160 +241,122 @@ const u32& refl_GetEnumNot8() {
 }  // namespace base::reflection
 
 // Attribute keys: guarded statics, each built by its getter from its name and value type.
-// The keys whose values are of their own enum type (attr:: in base/reflection/ReflectedFields.h adds the type).
-const base::reflection::UnkReflAttrKey& fn_710000bf80();  // "Persistence"
-const base::reflection::UnkReflAttrKey& fn_71000923a0();  // "EditorModeDataFlow"
-
 namespace base::reflection::attr {
+// The keys whose values are of their own enum type, "Persistence" and "EditorModeDataFlow"
+// (Persistence() and EditorModeDataFlow() in base/reflection/ReflectedFields.h pair each with that type).
+const AttributeKey& PersistenceKey();
+const AttributeKey& EditorModeDataFlowKey();
 // The other keys, each named by the string it registers.
-const UnkReflAttrKey& Version();
-const UnkReflAttrKey& Description();
-const UnkReflAttrKey& sBinaryDeserialize();
-const UnkReflAttrKey& XmlAttribute();
-const UnkReflAttrKey& sSerializationType();
-const UnkReflAttrKey& DefaultValue();
-const UnkReflAttrKey& Name();
-const UnkReflAttrKey& UniqueId();
-const UnkReflAttrKey& DeleteElement();
-const UnkReflAttrKey& EraseElement();
-const UnkReflAttrKey& CreateElement();
-const UnkReflAttrKey& InsertElement();
-const UnkReflAttrKey& AfterElementDeserialization();
-const UnkReflAttrKey& FixedCollection();
-const UnkReflAttrKey& ElementKeyVariable();
-const UnkReflAttrKey& Required();
-const UnkReflAttrKey& RntFilePackedParams();
-const UnkReflAttrKey& bBinaryDumpable();
-const UnkReflAttrKey& IsLink();
-const UnkReflAttrKey& EditorVisible();
-const UnkReflAttrKey& CharEditorVisible();
-const UnkReflAttrKey& EventGroup();
-const UnkReflAttrKey& TrackGroup();
-const UnkReflAttrKey& MinValue();
-const UnkReflAttrKey& MaxValue();
-const UnkReflAttrKey& EmptyTrack();
-const UnkReflAttrKey& MinValueProperty();
-const UnkReflAttrKey& MaxValueProperty();
-const UnkReflAttrKey& MinValueI();
-const UnkReflAttrKey& MaxValueI();
-const UnkReflAttrKey& Extension();
-const UnkReflAttrKey& DisplayName();
-const UnkReflAttrKey& TypeSelectionEnabled();
-const UnkReflAttrKey& SPointChClassSelectEnabled();
-const UnkReflAttrKey& AddNewItemButtonEnabled();
-const UnkReflAttrKey& DeleteItemButtonEnabled();
-const UnkReflAttrKey& bEditorModeDataFlowInit();
-const UnkReflAttrKey& bSkipDataFlowOrder();
-const UnkReflAttrKey& CompleteGameModelActionTreeFrom();
-const UnkReflAttrKey& DisableListAddRemove();
-const UnkReflAttrKey& DisableListAdd();
-const UnkReflAttrKey& ShowInConfig();
-const UnkReflAttrKey& ShowInDevConfig();
-const UnkReflAttrKey& DeprecatedVar();
-const UnkReflAttrKey& WidgetReadOnly();
-const UnkReflAttrKey& SetRenderItemSelectionIdCall();
-const UnkReflAttrKey& ePersistenceTarget();
-const UnkReflAttrKey& eLinkTarget();
-const UnkReflAttrKey& bWeakLink();
-const UnkReflAttrKey& ePersistenceTargetExclude();
-const UnkReflAttrKey& ControlFloatStep();
-const UnkReflAttrKey& InternalTag();
-const UnkReflAttrKey& ControlIntStep();
-const UnkReflAttrKey& InternalDevTag();
-const UnkReflAttrKey& DefaultPasteValue();
-const UnkReflAttrKey& FileFilter();
-const UnkReflAttrKey& AssetType();
-const UnkReflAttrKey& BasePath();
-const UnkReflAttrKey& FolderFilter();
-const UnkReflAttrKey& FileNameOnly();
-const UnkReflAttrKey& eActorLinkToComponentLinkTransform();
+const AttributeKey& Version();
+const AttributeKey& Description();
+const AttributeKey& sBinaryDeserialize();
+const AttributeKey& XmlAttribute();
+const AttributeKey& sSerializationType();
+const AttributeKey& DefaultValue();
+const AttributeKey& Name();
+const AttributeKey& UniqueId();
+const AttributeKey& DeleteElement();
+const AttributeKey& EraseElement();
+const AttributeKey& CreateElement();
+const AttributeKey& InsertElement();
+const AttributeKey& AfterElementDeserialization();
+const AttributeKey& FixedCollection();
+const AttributeKey& ElementKeyVariable();
+const AttributeKey& Required();
+const AttributeKey& RntFilePackedParams();
+const AttributeKey& bBinaryDumpable();
+const AttributeKey& IsLink();
+const AttributeKey& EditorVisible();
+const AttributeKey& CharEditorVisible();
+const AttributeKey& EventGroup();
+const AttributeKey& TrackGroup();
+const AttributeKey& MinValue();
+const AttributeKey& MaxValue();
+const AttributeKey& EmptyTrack();
+const AttributeKey& MinValueProperty();
+const AttributeKey& MaxValueProperty();
+const AttributeKey& MinValueI();
+const AttributeKey& MaxValueI();
+const AttributeKey& Extension();
+const AttributeKey& DisplayName();
+const AttributeKey& TypeSelectionEnabled();
+const AttributeKey& SPointChClassSelectEnabled();
+const AttributeKey& AddNewItemButtonEnabled();
+const AttributeKey& DeleteItemButtonEnabled();
+const AttributeKey& bEditorModeDataFlowInit();
+const AttributeKey& bSkipDataFlowOrder();
+const AttributeKey& CompleteGameModelActionTreeFrom();
+const AttributeKey& DisableListAddRemove();
+const AttributeKey& DisableListAdd();
+const AttributeKey& ShowInConfig();
+const AttributeKey& ShowInDevConfig();
+const AttributeKey& DeprecatedVar();
+const AttributeKey& WidgetReadOnly();
+const AttributeKey& SetRenderItemSelectionIdCall();
+const AttributeKey& ePersistenceTarget();
+const AttributeKey& eLinkTarget();
+const AttributeKey& bWeakLink();
+const AttributeKey& ePersistenceTargetExclude();
+const AttributeKey& ControlFloatStep();
+const AttributeKey& InternalTag();
+const AttributeKey& ControlIntStep();
+const AttributeKey& InternalDevTag();
+const AttributeKey& DefaultPasteValue();
+const AttributeKey& FileFilter();
+const AttributeKey& AssetType();
+const AttributeKey& BasePath();
+const AttributeKey& FolderFilter();
+const AttributeKey& FileNameOnly();
+const AttributeKey& eActorLinkToComponentLinkTransform();
 }  // namespace base::reflection::attr
 
-// Type descriptors of attribute value types (each a guarded static named by the type).
-const base::reflection::CType* fn_7100005178();  // "unsigned"
-const base::reflection::CType* fn_71000081e8();  // "char const*"
-const base::reflection::CType* fn_7100009658();  // "base::global::CStrId"
-const base::reflection::CType* fn_7100014768();  // "int"
-const base::reflection::CType* fn_710000abbc();  // "float"
-const base::reflection::CType* fn_710000d228();  // "bool"
-const base::reflection::CType* fn_7100024504();  // "base::math::CVector2D"
-const base::reflection::CType* fn_71000246e4();  // "base::math::CVector3D"
-const base::reflection::CType* fn_71000248c4();  // "base::math::CVector4D"
-const base::reflection::CType* fn_7100007f84();  // "base::global::CRntString"
-const base::reflection::CType* fn_710000ad9c();  // "base::global::CFilePathStrId"
-const base::reflection::CType* fn_710000fd7c();  // "base::global::CName"
+// The getters of the attribute and field value types' descriptors (refl_GetType<T>: a plain type's is
+// PrimitiveType<T>::Get, base/reflection/PrimitiveType.h; a string literal's, "char const*", is the pointer
+// type's, base/reflection/CPointerType.h). Each is defined in one unit of src/reflection_types/ and called here.
+extern template const base::reflection::CType& base::reflection::PrimitiveType<u32>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<s32>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<f32>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CRntString>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CName>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector2D>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector4D>::Get();
+extern template const base::reflection::CType* base::reflection::PointerType<const char*>::Get();
 
 namespace base::reflection {
 
-// T -> its type descriptor getter.
+// The descriptor of a value's type T.
 template <class T>
-struct UnkReflTypeOf;
+inline const CType* ValueType() {
+    return &PrimitiveType<T>::Get();
+}
 template <>
-struct UnkReflTypeOf<u32> {
-    static const CType* Get() { return fn_7100005178(); }
-};
-template <>
-struct UnkReflTypeOf<const char*> {
-    static const CType* Get() { return fn_71000081e8(); }
-};
-template <>
-struct UnkReflTypeOf<global::CStrId> {
-    static const CType* Get() { return fn_7100009658(); }
-};
-template <>
-struct UnkReflTypeOf<s32> {
-    static const CType* Get() { return fn_7100014768(); }
-};
-template <>
-struct UnkReflTypeOf<f32> {
-    static const CType* Get() { return fn_710000abbc(); }
-};
-template <>
-struct UnkReflTypeOf<bool> {
-    static const CType* Get() { return fn_710000d228(); }
-};
-template <>
-struct UnkReflTypeOf<math::CVector2D> {
-    static const CType* Get() { return fn_7100024504(); }
-};
-template <>
-struct UnkReflTypeOf<math::CVector3D> {
-    static const CType* Get() { return fn_71000246e4(); }
-};
-template <>
-struct UnkReflTypeOf<math::CVector4D> {
-    static const CType* Get() { return fn_71000248c4(); }
-};
-template <>
-struct UnkReflTypeOf<global::CRntString> {
-    static const CType* Get() { return fn_7100007f84(); }
-};
-template <>
-struct UnkReflTypeOf<global::CFilePathStrId> {
-    static const CType* Get() { return fn_710000ad9c(); }
-};
-template <>
-struct UnkReflTypeOf<global::CName> {
-    static const CType* Get() { return fn_710000fd7c(); }
-};
+inline const CType* ValueType<const char*>() {
+    return PointerType<const char*>::Get();
+}
 
 // An attribute key whose values are enum values of the key's own enum type.
 struct TypedAttrKey {
-    const UnkReflAttrKey& key;
+    const AttributeKey& key;
     const CType* type;
 };
 
-struct UnkReflAttrs {
+// An element's attributes: values under their keys' names. Only its size is written here (its layout
+// is in src/base/reflection/UnkReflAttrs.cpp, which defines the insertion).
+struct Attributes {
     u8 unk_0x0[0x38];
 
     template <class T>
-    void Add(const UnkReflAttrKey& key, const T& value) {
-        SetAttribute(this, key, UnkReflValueRef{UnkReflTypeOf<T>::Get(), &value});
+    void Add(const AttributeKey& key, const T& value) {
+        SetAttribute(this, key, TypedValueRef{ValueType<T>(), &value});
     }
     // With an explicit type descriptor (enum values of a field typed by a global descriptor).
     template <class T>
-    void Add(const UnkReflAttrKey& key, const CType* type, const T& value) {
-        SetAttribute(this, key, UnkReflValueRef{type, &value});
+    void Add(const AttributeKey& key, const CType* type, const T& value) {
+        SetAttribute(this, key, TypedValueRef{type, &value});
     }
     template <class T>
     void Add(const TypedAttrKey& key, const T& value) {
@@ -393,15 +364,15 @@ struct UnkReflAttrs {
     }
     // The same with the type getter called after the value is stored.
     template <class T, auto Get>
-    void AddTyped(const UnkReflAttrKey& key, const T& value) {
-        SetAttribute(this, key, UnkReflValueRef{Get(), &value});
+    void AddTyped(const AttributeKey& key, const T& value) {
+        SetAttribute(this, key, TypedValueRef{Get(), &value});
     }
 };
 
 struct CVariable {
     u8 unk_0x0[0x38];
-    UnkReflAttrs attrs;
-    UnkReflAttrs attrs_0x70;  // a second container (e.g. "TypeSelectionEnabled" on vector fields)
+    Attributes attrs;
+    Attributes attrs_0x70;  // a second container (e.g. "TypeSelectionEnabled" on vector fields)
 
     // Its own reflection: the functions its descriptor points to and the description naming them
     // (src/reflection/, tools/gen_reflection.py).

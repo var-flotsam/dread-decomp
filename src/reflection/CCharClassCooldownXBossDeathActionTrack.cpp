@@ -26,7 +26,7 @@ void CCharClassCooldownXBossDeathActionTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassCooldownXBossDeathActionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCooldownXBossDeathActionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCooldownXBossDeathActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCooldownXBossDeathActionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCooldownXBossDeathActionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCooldownXBossDeathActionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCooldownXBossDeathActionTrack::refl_Destroy(void* obj) { static_cast<CCharClassCooldownXBossDeathActionTrack*>(obj)->~CCharClassCooldownXBossDeathActionTrack(); }
 struct CCharClassCooldownXBossDeathActionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCooldownXBossDeathActionTrack);

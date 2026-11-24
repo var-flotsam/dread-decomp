@@ -115,17 +115,17 @@ struct UnkHeldValue_l0f0f38 {
 
     template <class T>
     explicit UnkHeldValue_l0f0f38(T&& value) : type(UnkContextClass_l0f0f38<T>::Get()) {
-        if (type->m_fn_0x38)
-            type->m_fn_0x38(storage, &value);
+        if (type->m_moveConstruct)
+            type->m_moveConstruct(storage, &value);
     }
     UnkHeldValue_l0f0f38(UnkHeldValue_l0f0f38&& other) : type(other.type) {
-        if (type && type->m_fn_0x38)
-            type->m_fn_0x38(storage, other.storage);
+        if (type && type->m_moveConstruct)
+            type->m_moveConstruct(storage, other.storage);
         other.type = nullptr;
     }
     ~UnkHeldValue_l0f0f38() {
         if (type) {
-            type->m_fn_0x40(storage);
+            type->m_destroy(storage);
             type = nullptr;
         }
     }

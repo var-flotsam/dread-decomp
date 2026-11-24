@@ -23,7 +23,7 @@ void behaviortree::CStoreSamusDirectionAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CStoreSamusDirectionAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CStoreSamusDirectionAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CStoreSamusDirectionAction::refl_TypeOf(const void* obj) { return *static_cast<const CStoreSamusDirectionAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CStoreSamusDirectionAction::refl_TypeOf(const void* obj) { return *static_cast<const CStoreSamusDirectionAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CStoreSamusDirectionAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CStoreSamusDirectionAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CStoreSamusDirectionAction::refl_Destroy(void* obj) { static_cast<CStoreSamusDirectionAction*>(obj)->~CStoreSamusDirectionAction(); }

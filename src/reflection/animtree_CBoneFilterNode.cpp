@@ -14,7 +14,7 @@ void animtree::CBoneFilterNode::refl_AddAttributes(CClass*) {}
 void animtree::CBoneFilterNode::refl_AddFields(CClass*) {}
 bool animtree::CBoneFilterNode::refl_Equals(const void*, const void*) { return false; }
 s32 animtree::CBoneFilterNode::refl_Hash() { return -1; }
-const base::reflection::CType& animtree::CBoneFilterNode::refl_TypeOf(const void* obj) { return *static_cast<const CBoneFilterNode*>(obj)->vf_0x0(); }
+const base::reflection::CType& animtree::CBoneFilterNode::refl_TypeOf(const void* obj) { return *static_cast<const CBoneFilterNode*>(obj)->refl_GetDynamicClass(); }
 void animtree::CBoneFilterNode::refl_CopyConstruct(void*, const void*) {}
 void animtree::CBoneFilterNode::refl_MoveConstruct(void*, const void*) {}
 void animtree::CBoneFilterNode::refl_Destroy(void* obj) { static_cast<CBoneFilterNode*>(obj)->~CBoneFilterNode(); }

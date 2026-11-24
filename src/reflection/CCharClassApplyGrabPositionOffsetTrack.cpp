@@ -22,7 +22,7 @@ void CCharClassApplyGrabPositionOffsetTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassApplyGrabPositionOffsetTrack::refl_AddFields(CClass*) {}
 bool CCharClassApplyGrabPositionOffsetTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassApplyGrabPositionOffsetTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassApplyGrabPositionOffsetTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassApplyGrabPositionOffsetTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassApplyGrabPositionOffsetTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassApplyGrabPositionOffsetTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassApplyGrabPositionOffsetTrack::refl_Destroy(void* obj) { static_cast<CCharClassApplyGrabPositionOffsetTrack*>(obj)->~CCharClassApplyGrabPositionOffsetTrack(); }
 struct CCharClassApplyGrabPositionOffsetTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassApplyGrabPositionOffsetTrack);

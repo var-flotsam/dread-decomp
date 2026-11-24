@@ -27,7 +27,7 @@ void CCharClassPlayerMovement::refl_AddFields(CClass* cls) {
 }
 bool CCharClassPlayerMovement::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassPlayerMovement::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassPlayerMovement::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPlayerMovement*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassPlayerMovement::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassPlayerMovement*>(obj)->refl_GetDynamicClass(); }
 void CCharClassPlayerMovement::refl_CopyConstruct(void*, const void*) {}
 void CCharClassPlayerMovement::refl_MoveConstruct(void*, const void*) {}
 void CCharClassPlayerMovement::refl_Destroy(void* obj) { static_cast<CCharClassPlayerMovement*>(obj)->~CCharClassPlayerMovement(); }

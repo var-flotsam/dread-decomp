@@ -22,7 +22,7 @@ void CCharClassFXDeleteEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassFXDeleteEvent::refl_AddFields(CClass*) {}
 bool CCharClassFXDeleteEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFXDeleteEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFXDeleteEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXDeleteEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFXDeleteEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFXDeleteEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFXDeleteEvent::refl_Destroy(void* obj) { static_cast<CCharClassFXDeleteEvent*>(obj)->~CCharClassFXDeleteEvent(); }
 struct CCharClassFXDeleteEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFXDeleteEvent);

@@ -22,7 +22,7 @@ void CCharClassKraidLaunchDeathCutsceneEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassKraidLaunchDeathCutsceneEvent::refl_AddFields(CClass*) {}
 bool CCharClassKraidLaunchDeathCutsceneEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassKraidLaunchDeathCutsceneEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassKraidLaunchDeathCutsceneEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidLaunchDeathCutsceneEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassKraidLaunchDeathCutsceneEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassKraidLaunchDeathCutsceneEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassKraidLaunchDeathCutsceneEvent::refl_Destroy(void* obj) { static_cast<CCharClassKraidLaunchDeathCutsceneEvent*>(obj)->~CCharClassKraidLaunchDeathCutsceneEvent(); }
 struct CCharClassKraidLaunchDeathCutsceneEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassKraidLaunchDeathCutsceneEvent);

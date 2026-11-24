@@ -14,7 +14,7 @@ void animtree::CPoseNode::refl_AddAttributes(CClass*) {}
 void animtree::CPoseNode::refl_AddFields(CClass*) {}
 bool animtree::CPoseNode::refl_Equals(const void*, const void*) { return false; }
 s32 animtree::CPoseNode::refl_Hash() { return -1; }
-const base::reflection::CType& animtree::CPoseNode::refl_TypeOf(const void* obj) { return *static_cast<const CPoseNode*>(obj)->vf_0x0(); }
+const base::reflection::CType& animtree::CPoseNode::refl_TypeOf(const void* obj) { return *static_cast<const CPoseNode*>(obj)->refl_GetDynamicClass(); }
 void animtree::CPoseNode::refl_CopyConstruct(void*, const void*) {}
 void animtree::CPoseNode::refl_MoveConstruct(void*, const void*) {}
 void animtree::CPoseNode::refl_Destroy(void* obj) { static_cast<CPoseNode*>(obj)->~CPoseNode(); }

@@ -22,7 +22,7 @@ void CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack::refl_AddAttributes(CClass*
 void CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack::refl_AddFields(CClass*) {}
 bool CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack::refl_Destroy(void* obj) { static_cast<CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack*>(obj)->~CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack(); }
 struct CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack);

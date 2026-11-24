@@ -27,7 +27,7 @@ void CCharClassFakeDropEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassFakeDropEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFakeDropEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFakeDropEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFakeDropEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFakeDropEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFakeDropEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFakeDropEvent::refl_Destroy(void* obj) { static_cast<CCharClassFakeDropEvent*>(obj)->~CCharClassFakeDropEvent(); }
 struct CCharClassFakeDropEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFakeDropEvent);

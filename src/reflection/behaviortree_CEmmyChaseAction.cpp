@@ -14,7 +14,7 @@ void behaviortree::CEmmyChaseAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CEmmyChaseAction::refl_AddFields(CClass*) {}
 bool behaviortree::CEmmyChaseAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CEmmyChaseAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CEmmyChaseAction::refl_TypeOf(const void* obj) { return *static_cast<const CEmmyChaseAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CEmmyChaseAction::refl_TypeOf(const void* obj) { return *static_cast<const CEmmyChaseAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CEmmyChaseAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CEmmyChaseAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CEmmyChaseAction::refl_Destroy(void* obj) { static_cast<CEmmyChaseAction*>(obj)->~CEmmyChaseAction(); }

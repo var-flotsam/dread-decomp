@@ -26,7 +26,7 @@ void CItemLifeComponent::refl_AddFields(CClass* cls) {
 }
 bool CItemLifeComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CItemLifeComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CItemLifeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CItemLifeComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CItemLifeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CItemLifeComponent*>(obj)->refl_GetDynamicClass(); }
 void CItemLifeComponent::refl_Destroy(void* obj) { static_cast<CItemLifeComponent*>(obj)->~CItemLifeComponent(); }
 struct CItemLifeComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CItemLifeComponent);

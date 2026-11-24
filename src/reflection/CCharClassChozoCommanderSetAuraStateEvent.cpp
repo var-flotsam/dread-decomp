@@ -26,7 +26,7 @@ void CCharClassChozoCommanderSetAuraStateEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassChozoCommanderSetAuraStateEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassChozoCommanderSetAuraStateEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassChozoCommanderSetAuraStateEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChozoCommanderSetAuraStateEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassChozoCommanderSetAuraStateEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChozoCommanderSetAuraStateEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassChozoCommanderSetAuraStateEvent::refl_Destroy(void* obj) { static_cast<CCharClassChozoCommanderSetAuraStateEvent*>(obj)->~CCharClassChozoCommanderSetAuraStateEvent(); }
 struct CCharClassChozoCommanderSetAuraStateEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassChozoCommanderSetAuraStateEvent);

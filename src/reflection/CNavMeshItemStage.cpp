@@ -14,7 +14,7 @@ void CNavMeshItemStage::refl_AddAttributes(CClass*) {}
 void CNavMeshItemStage::refl_AddFields(CClass*) {}
 bool CNavMeshItemStage::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CNavMeshItemStage::refl_Hash() { return -1; }
-const base::reflection::CType& CNavMeshItemStage::refl_TypeOf(const void* obj) { return *static_cast<const CNavMeshItemStage*>(obj)->vf_0x0(); }
+const base::reflection::CType& CNavMeshItemStage::refl_TypeOf(const void* obj) { return *static_cast<const CNavMeshItemStage*>(obj)->refl_GetDynamicClass(); }
 void CNavMeshItemStage::refl_Destroy(void* obj) { static_cast<CNavMeshItemStage*>(obj)->~CNavMeshItemStage(); }
 struct CNavMeshItemStage::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CNavMeshItemStage);

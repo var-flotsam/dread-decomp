@@ -14,7 +14,7 @@ void behaviortree::CXParasiteSpawnAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CXParasiteSpawnAction::refl_AddFields(CClass*) {}
 bool behaviortree::CXParasiteSpawnAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CXParasiteSpawnAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CXParasiteSpawnAction::refl_TypeOf(const void* obj) { return *static_cast<const CXParasiteSpawnAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CXParasiteSpawnAction::refl_TypeOf(const void* obj) { return *static_cast<const CXParasiteSpawnAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CXParasiteSpawnAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CXParasiteSpawnAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CXParasiteSpawnAction::refl_Destroy(void* obj) { static_cast<CXParasiteSpawnAction*>(obj)->~CXParasiteSpawnAction(); }

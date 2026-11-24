@@ -102,7 +102,7 @@ void CSmartObjectComponent::refl_AddFields(CClass* cls) {
 }
 bool CSmartObjectComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CSmartObjectComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CSmartObjectComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSmartObjectComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CSmartObjectComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSmartObjectComponent*>(obj)->refl_GetDynamicClass(); }
 void CSmartObjectComponent::refl_CopyConstruct(void*, const void*) {}
 void CSmartObjectComponent::refl_MoveConstruct(void*, const void*) {}
 void CSmartObjectComponent::refl_Destroy(void* obj) { static_cast<CSmartObjectComponent*>(obj)->~CSmartObjectComponent(); }

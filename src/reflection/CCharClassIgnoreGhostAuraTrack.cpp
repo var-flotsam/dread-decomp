@@ -26,7 +26,7 @@ void CCharClassIgnoreGhostAuraTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassIgnoreGhostAuraTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreGhostAuraTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreGhostAuraTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreGhostAuraTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreGhostAuraTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreGhostAuraTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreGhostAuraTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreGhostAuraTrack*>(obj)->~CCharClassIgnoreGhostAuraTrack(); }
 struct CCharClassIgnoreGhostAuraTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreGhostAuraTrack);

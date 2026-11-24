@@ -39,7 +39,7 @@ void CComponent::refl_AddFields(CClass* cls) {
 }
 bool CComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CComponent::refl_TypeOf(const void* obj) { return *static_cast<const CComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CComponent::refl_TypeOf(const void* obj) { return *static_cast<const CComponent*>(obj)->refl_GetDynamicClass(); }
 void CComponent::refl_CopyConstruct(void*, const void*) {}
 void CComponent::refl_MoveConstruct(void*, const void*) {}
 void CComponent::refl_Destroy(void* obj) { static_cast<CComponent*>(obj)->~CComponent(); }

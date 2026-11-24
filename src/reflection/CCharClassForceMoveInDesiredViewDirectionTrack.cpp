@@ -22,7 +22,7 @@ void CCharClassForceMoveInDesiredViewDirectionTrack::refl_AddAttributes(CClass* 
 void CCharClassForceMoveInDesiredViewDirectionTrack::refl_AddFields(CClass*) {}
 bool CCharClassForceMoveInDesiredViewDirectionTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassForceMoveInDesiredViewDirectionTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassForceMoveInDesiredViewDirectionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceMoveInDesiredViewDirectionTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassForceMoveInDesiredViewDirectionTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassForceMoveInDesiredViewDirectionTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassForceMoveInDesiredViewDirectionTrack::refl_Destroy(void* obj) { static_cast<CCharClassForceMoveInDesiredViewDirectionTrack*>(obj)->~CCharClassForceMoveInDesiredViewDirectionTrack(); }
 struct CCharClassForceMoveInDesiredViewDirectionTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassForceMoveInDesiredViewDirectionTrack);

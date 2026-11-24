@@ -65,7 +65,7 @@ void COmniLightComponent::refl_AddFields(CClass* cls) {
 }
 bool COmniLightComponent::refl_Equals(const void*, const void*) { return false; }
 s32 COmniLightComponent::refl_Hash() { return -1; }
-const base::reflection::CType& COmniLightComponent::refl_TypeOf(const void* obj) { return *static_cast<const COmniLightComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& COmniLightComponent::refl_TypeOf(const void* obj) { return *static_cast<const COmniLightComponent*>(obj)->refl_GetDynamicClass(); }
 void COmniLightComponent::refl_CopyConstruct(void*, const void*) {}
 void COmniLightComponent::refl_MoveConstruct(void*, const void*) {}
 void COmniLightComponent::refl_Destroy(void* obj) { static_cast<COmniLightComponent*>(obj)->~COmniLightComponent(); }

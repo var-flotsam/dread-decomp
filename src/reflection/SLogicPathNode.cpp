@@ -41,7 +41,7 @@ void SLogicPathNode::refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_vPos_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0x101, fn_710105cdb4);
     DREAD_REFLECTED_FUNCTION("_vPos_SetterFunction")
         fn_7101054b10(fn, "_vPos_SetterFunction");
-    CVariable* field0 = AddReflectedField(cls, CStrId("vPos", true), &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field0 = AddReflectedField(cls, CStrId("vPos", true), &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field0->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &base::reflection::TypeObject<CompleteInfo>::object, base::reflection::UnkReflStringList(0x3, base::reflection::UnkReflList<base::global::CRntString>({"vPos", "vSegments:*:vPos"}, 0xa, nullptr, 0xf)));
     field0->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Position"));
     field0->attrs.Add<s32>(base::reflection::attr::EditorModeDataFlow(), 3);
@@ -51,7 +51,7 @@ void SLogicPathNode::refl_AddFields(CClass* cls) {
 }
 bool SLogicPathNode::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 SLogicPathNode::refl_Hash() { return -1; }
-const base::reflection::CType& SLogicPathNode::refl_TypeOf(const void* obj) { return *static_cast<const SLogicPathNode*>(obj)->vf_0x0(); }
+const base::reflection::CType& SLogicPathNode::refl_TypeOf(const void* obj) { return *static_cast<const SLogicPathNode*>(obj)->refl_GetDynamicClass(); }
 void SLogicPathNode::refl_Destroy(void* obj) { static_cast<SLogicPathNode*>(obj)->~SLogicPathNode(); }
 struct SLogicPathNode::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(SLogicPathNode);
@@ -84,7 +84,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("CreateElement") {
         fn_7101055b34(fn, "CreateElement");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create Node At Index");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
         fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
         fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("vPos", true));
@@ -93,20 +93,20 @@ void refl_AddFields(CClass* cls) {
         DREAD_REFLECTED_FUNCTION_DESCRIPTION("InsertElement", &base::reflection::TypeObject<void>::object, 0, fn_710105d328);
         fn_710105d188(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Insert Node At Index");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
         fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("rData", true));
     }
     DREAD_REFLECTED_FUNCTION("EraseElement") {
         fn_7101055bf4(fn, "EraseElement");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Erase Node At Index");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
     }
     DREAD_REFLECTED_FUNCTION("DeleteElement") {
         fn_7101055d70(fn, "DeleteElement");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Delete Node At Index");
-        fn_710009ae5c(fn, fn->params.count);
+        ResizeParameterAttributes(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
     }
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SLogicPathNode>", "tNodes", 0x8, (Description, base::global::CRntString("LogicPathNode")), (EditorVisible, false), (CreateElement, CStrId("CreateElement", true)), (InsertElement, CStrId("InsertElement", true)), (EraseElement, CStrId("EraseElement", true)), (DeleteElement, CStrId("DeleteElement", true)), (AfterElementDeserialization, CStrId("AfterNodesDeserialization", true)));
@@ -446,10 +446,10 @@ void fn_710105db6c();
 void fn_710105dbbc();
 void fn_71010563b4(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710105db6c);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", SLogicPathNode::refl_GetClass(), 0x1, fn_710105dbbc);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), SLogicPathNode::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), SLogicPathNode::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/ReflectedAttributes.h"
@@ -463,10 +463,10 @@ void fn_710105dd24();
 void fn_710105dd74();
 void fn_71010569a4(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710105dd24);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", SLogicPathNode::refl_GetClass(), 0x101, fn_710105dd74);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), SLogicPathNode::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), SLogicPathNode::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/ReflectedAttributes.h"
@@ -480,10 +480,10 @@ void fn_710105ea20();
 void fn_710105ea70();
 void fn_7101057344(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710105ea20);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", SLogicSubPath::refl_GetClass(), 0x1, fn_710105ea70);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), SLogicSubPath::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), SLogicSubPath::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/ReflectedAttributes.h"
@@ -497,9 +497,9 @@ void fn_710105ec80();
 void fn_710105ecd0();
 void fn_7101057934(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710105ec80);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", SLogicSubPath::refl_GetClass(), 0x101, fn_710105ecd0);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), SLogicSubPath::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), SLogicSubPath::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }

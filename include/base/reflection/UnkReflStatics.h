@@ -15,24 +15,24 @@ namespace base::reflection {
 template <class G>
 struct UnkReflStatic;
 
-// An attribute key (e.g. "Description"): name, value type, a u32 (0xf).
+// An attribute key (e.g. "Description"): name, value type, its targets (0xf).
 template <class G>
-const UnkReflAttrKey& refl_GetAttrKey() {
-    static UnkReflAttrKey s_key(base::global::CStrId(UnkReflStatic<G>::name, true), UnkReflStatic<G>::type(),
-                                UnkReflStatic<G>::field_0x10);
+const AttributeKey& refl_GetAttrKey() {
+    static AttributeKey s_key(base::global::CStrId(UnkReflStatic<G>::name, true), UnkReflStatic<G>::type(),
+                              UnkReflStatic<G>::field_0x10);
     return s_key;
 }
 
 // The same for keys with a non-zero u16 at +0x14 (0x100 seen).
-struct UnkReflAttrKeyFlags : UnkReflAttrKey {
-    UnkReflAttrKeyFlags(const base::global::CStrId& name, const CType* type, u32 unk, u16 flags)
-        : UnkReflAttrKey(name, type, unk) {
+struct UnkReflAttrKeyFlags : AttributeKey {
+    UnkReflAttrKeyFlags(const base::global::CStrId& name, const CType* type, u32 targets, u16 flags)
+        : AttributeKey(name, type, targets) {
         field_0x14 = flags;
     }
 };
 
 template <class G>
-const UnkReflAttrKey& refl_GetAttrKeyFlags() {
+const AttributeKey& refl_GetAttrKeyFlags() {
     static UnkReflAttrKeyFlags s_key(base::global::CStrId(UnkReflStatic<G>::name, true), UnkReflStatic<G>::type(),
                                      UnkReflStatic<G>::field_0x10, UnkReflStatic<G>::field_0x14);
     return s_key;

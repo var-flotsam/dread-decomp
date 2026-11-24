@@ -26,7 +26,7 @@ void CCharClassShowRandomNodeEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassShowRandomNodeEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassShowRandomNodeEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassShowRandomNodeEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassShowRandomNodeEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassShowRandomNodeEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassShowRandomNodeEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassShowRandomNodeEvent::refl_Destroy(void* obj) { static_cast<CCharClassShowRandomNodeEvent*>(obj)->~CCharClassShowRandomNodeEvent(); }
 struct CCharClassShowRandomNodeEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassShowRandomNodeEvent);

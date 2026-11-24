@@ -22,7 +22,7 @@ void CCharClassAllowSlowDownDutingGrabTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassAllowSlowDownDutingGrabTrack::refl_AddFields(CClass*) {}
 bool CCharClassAllowSlowDownDutingGrabTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassAllowSlowDownDutingGrabTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassAllowSlowDownDutingGrabTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowSlowDownDutingGrabTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassAllowSlowDownDutingGrabTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassAllowSlowDownDutingGrabTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassAllowSlowDownDutingGrabTrack::refl_Destroy(void* obj) { static_cast<CCharClassAllowSlowDownDutingGrabTrack*>(obj)->~CCharClassAllowSlowDownDutingGrabTrack(); }
 struct CCharClassAllowSlowDownDutingGrabTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassAllowSlowDownDutingGrabTrack);

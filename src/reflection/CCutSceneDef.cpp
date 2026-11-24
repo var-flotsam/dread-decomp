@@ -658,10 +658,10 @@ void fn_7100c8e80c();
 void fn_7100c8e85c();
 void fn_7100c8398c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100c8e80c);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", CCutSceneDef::CActorDef::refl_GetClass(), 0x1, fn_7100c8e85c);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCutSceneDef::CActorDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCutSceneDef::CActorDef::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/ReflectedAttributes.h"
@@ -675,10 +675,10 @@ void fn_7100c8e974();
 void fn_7100c8e9c4();
 void fn_7100c83f7c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100c8e974);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", CCutSceneDef::CActorDef::refl_GetClass(), 0x101, fn_7100c8e9c4);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCutSceneDef::CActorDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCutSceneDef::CActorDef::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/ReflectedAttributes.h"
@@ -692,10 +692,10 @@ void fn_7100c901dc();
 void fn_7100c9022c();
 void fn_7100c84f5c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100c901dc);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", CCutSceneDef::CAnimationLayerDef::refl_GetClass(), 0x1, fn_7100c9022c);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCutSceneDef::CAnimationLayerDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCutSceneDef::CAnimationLayerDef::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/ReflectedAttributes.h"
@@ -709,10 +709,10 @@ void fn_7100c903f8();
 void fn_7100c90448();
 void fn_7100c8554c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100c903f8);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", CCutSceneDef::CAnimationLayerDef::refl_GetClass(), 0x101, fn_7100c90448);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCutSceneDef::CAnimationLayerDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCutSceneDef::CAnimationLayerDef::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/ReflectedAttributes.h"
@@ -726,10 +726,10 @@ void fn_7100c91b30();
 void fn_7100c91b80();
 void fn_7100c86aa4(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100c91b30);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", CCutSceneDef::CTakeDef::refl_GetClass(), 0x1, fn_7100c91b80);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCutSceneDef::CTakeDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCutSceneDef::CTakeDef::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/ReflectedAttributes.h"
@@ -743,9 +743,9 @@ void fn_7100c91e20();
 void fn_7100c91e70();
 void fn_7100c87094(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100c91e20);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", CCutSceneDef::CTakeDef::refl_GetClass(), 0x101, fn_7100c91e70);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCutSceneDef::CTakeDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCutSceneDef::CTakeDef::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }

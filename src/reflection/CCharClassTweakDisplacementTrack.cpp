@@ -26,7 +26,7 @@ void CCharClassTweakDisplacementTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassTweakDisplacementTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassTweakDisplacementTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTweakDisplacementTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakDisplacementTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTweakDisplacementTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTweakDisplacementTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTweakDisplacementTrack::refl_Destroy(void* obj) { static_cast<CCharClassTweakDisplacementTrack*>(obj)->~CCharClassTweakDisplacementTrack(); }
 struct CCharClassTweakDisplacementTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassTweakDisplacementTrack);

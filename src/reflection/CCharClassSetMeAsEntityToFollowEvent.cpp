@@ -22,7 +22,7 @@ void CCharClassSetMeAsEntityToFollowEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassSetMeAsEntityToFollowEvent::refl_AddFields(CClass*) {}
 bool CCharClassSetMeAsEntityToFollowEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSetMeAsEntityToFollowEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSetMeAsEntityToFollowEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetMeAsEntityToFollowEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSetMeAsEntityToFollowEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetMeAsEntityToFollowEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSetMeAsEntityToFollowEvent::refl_Destroy(void* obj) { static_cast<CCharClassSetMeAsEntityToFollowEvent*>(obj)->~CCharClassSetMeAsEntityToFollowEvent(); }
 struct CCharClassSetMeAsEntityToFollowEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSetMeAsEntityToFollowEvent);

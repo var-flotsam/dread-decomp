@@ -23,7 +23,7 @@ void behaviortree::CComputeTargetPositionInPathAction::refl_AddFields(CClass* cl
 }
 bool behaviortree::CComputeTargetPositionInPathAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CComputeTargetPositionInPathAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CComputeTargetPositionInPathAction::refl_TypeOf(const void* obj) { return *static_cast<const CComputeTargetPositionInPathAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CComputeTargetPositionInPathAction::refl_TypeOf(const void* obj) { return *static_cast<const CComputeTargetPositionInPathAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CComputeTargetPositionInPathAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CComputeTargetPositionInPathAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CComputeTargetPositionInPathAction::refl_Destroy(void* obj) { static_cast<CComputeTargetPositionInPathAction*>(obj)->~CComputeTargetPositionInPathAction(); }

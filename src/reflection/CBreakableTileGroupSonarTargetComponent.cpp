@@ -14,7 +14,7 @@ void CBreakableTileGroupSonarTargetComponent::refl_AddAttributes(CClass*) {}
 void CBreakableTileGroupSonarTargetComponent::refl_AddFields(CClass*) {}
 bool CBreakableTileGroupSonarTargetComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CBreakableTileGroupSonarTargetComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CBreakableTileGroupSonarTargetComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBreakableTileGroupSonarTargetComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CBreakableTileGroupSonarTargetComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBreakableTileGroupSonarTargetComponent*>(obj)->refl_GetDynamicClass(); }
 void CBreakableTileGroupSonarTargetComponent::refl_CopyConstruct(void*, const void*) {}
 void CBreakableTileGroupSonarTargetComponent::refl_MoveConstruct(void*, const void*) {}
 void CBreakableTileGroupSonarTargetComponent::refl_Destroy(void* obj) { static_cast<CBreakableTileGroupSonarTargetComponent*>(obj)->~CBreakableTileGroupSonarTargetComponent(); }

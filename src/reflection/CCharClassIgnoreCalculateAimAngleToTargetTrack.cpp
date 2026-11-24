@@ -22,7 +22,7 @@ void CCharClassIgnoreCalculateAimAngleToTargetTrack::refl_AddAttributes(CClass* 
 void CCharClassIgnoreCalculateAimAngleToTargetTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreCalculateAimAngleToTargetTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreCalculateAimAngleToTargetTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreCalculateAimAngleToTargetTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreCalculateAimAngleToTargetTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreCalculateAimAngleToTargetTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreCalculateAimAngleToTargetTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreCalculateAimAngleToTargetTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreCalculateAimAngleToTargetTrack*>(obj)->~CCharClassIgnoreCalculateAimAngleToTargetTrack(); }
 struct CCharClassIgnoreCalculateAimAngleToTargetTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreCalculateAimAngleToTargetTrack);

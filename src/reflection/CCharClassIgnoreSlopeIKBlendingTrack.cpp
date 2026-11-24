@@ -22,7 +22,7 @@ void CCharClassIgnoreSlopeIKBlendingTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreSlopeIKBlendingTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreSlopeIKBlendingTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreSlopeIKBlendingTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreSlopeIKBlendingTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreSlopeIKBlendingTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreSlopeIKBlendingTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreSlopeIKBlendingTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreSlopeIKBlendingTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreSlopeIKBlendingTrack*>(obj)->~CCharClassIgnoreSlopeIKBlendingTrack(); }
 struct CCharClassIgnoreSlopeIKBlendingTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreSlopeIKBlendingTrack);

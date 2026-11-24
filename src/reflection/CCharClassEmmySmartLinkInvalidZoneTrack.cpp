@@ -26,7 +26,7 @@ void CCharClassEmmySmartLinkInvalidZoneTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassEmmySmartLinkInvalidZoneTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassEmmySmartLinkInvalidZoneTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassEmmySmartLinkInvalidZoneTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmySmartLinkInvalidZoneTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassEmmySmartLinkInvalidZoneTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassEmmySmartLinkInvalidZoneTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassEmmySmartLinkInvalidZoneTrack::refl_Destroy(void* obj) { static_cast<CCharClassEmmySmartLinkInvalidZoneTrack*>(obj)->~CCharClassEmmySmartLinkInvalidZoneTrack(); }
 struct CCharClassEmmySmartLinkInvalidZoneTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassEmmySmartLinkInvalidZoneTrack);

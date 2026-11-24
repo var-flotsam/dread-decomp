@@ -26,7 +26,7 @@ void behaviortree::CParticleEnableEmission::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CParticleEnableEmission::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CParticleEnableEmission::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CParticleEnableEmission::refl_TypeOf(const void* obj) { return *static_cast<const CParticleEnableEmission*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CParticleEnableEmission::refl_TypeOf(const void* obj) { return *static_cast<const CParticleEnableEmission*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CParticleEnableEmission::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CParticleEnableEmission::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CParticleEnableEmission::refl_Destroy(void* obj) { static_cast<CParticleEnableEmission*>(obj)->~CParticleEnableEmission(); }

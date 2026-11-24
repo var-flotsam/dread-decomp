@@ -31,7 +31,7 @@ void CCharClassSetActionToOtherEntityEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassSetActionToOtherEntityEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassSetActionToOtherEntityEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassSetActionToOtherEntityEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetActionToOtherEntityEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassSetActionToOtherEntityEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassSetActionToOtherEntityEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassSetActionToOtherEntityEvent::refl_Destroy(void* obj) { static_cast<CCharClassSetActionToOtherEntityEvent*>(obj)->~CCharClassSetActionToOtherEntityEvent(); }
 struct CCharClassSetActionToOtherEntityEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassSetActionToOtherEntityEvent);

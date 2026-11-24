@@ -26,7 +26,7 @@ void CCharClassIgnoreAttackTrack::refl_AddFields(CClass* cls) {
 }
 bool CCharClassIgnoreAttackTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreAttackTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreAttackTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreAttackTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreAttackTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreAttackTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreAttackTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreAttackTrack*>(obj)->~CCharClassIgnoreAttackTrack(); }
 struct CCharClassIgnoreAttackTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreAttackTrack);

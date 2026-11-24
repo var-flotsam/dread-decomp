@@ -22,7 +22,7 @@ void CCharClassShowSmartObjectDialogEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassShowSmartObjectDialogEvent::refl_AddFields(CClass*) {}
 bool CCharClassShowSmartObjectDialogEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassShowSmartObjectDialogEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassShowSmartObjectDialogEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassShowSmartObjectDialogEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassShowSmartObjectDialogEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassShowSmartObjectDialogEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassShowSmartObjectDialogEvent::refl_Destroy(void* obj) { static_cast<CCharClassShowSmartObjectDialogEvent*>(obj)->~CCharClassShowSmartObjectDialogEvent(); }
 struct CCharClassShowSmartObjectDialogEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassShowSmartObjectDialogEvent);

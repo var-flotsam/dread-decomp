@@ -22,7 +22,7 @@ void CCharClassIgnoreRodotukSuckAttackTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreRodotukSuckAttackTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreRodotukSuckAttackTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreRodotukSuckAttackTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreRodotukSuckAttackTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreRodotukSuckAttackTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreRodotukSuckAttackTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreRodotukSuckAttackTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreRodotukSuckAttackTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreRodotukSuckAttackTrack*>(obj)->~CCharClassIgnoreRodotukSuckAttackTrack(); }
 struct CCharClassIgnoreRodotukSuckAttackTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreRodotukSuckAttackTrack);

@@ -30,7 +30,7 @@ void behaviortree::CGoToPointAction::refl_AddFields(CClass* cls) {
 }
 bool behaviortree::CGoToPointAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CGoToPointAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CGoToPointAction::refl_TypeOf(const void* obj) { return *static_cast<const CGoToPointAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CGoToPointAction::refl_TypeOf(const void* obj) { return *static_cast<const CGoToPointAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CGoToPointAction::refl_Destroy(void* obj) { static_cast<CGoToPointAction*>(obj)->~CGoToPointAction(); }
 void* behaviortree::CGoToPointAction::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* behaviortree::CGoToPointAction::refl_MoveAssign(void*, const void*) { return nullptr; }

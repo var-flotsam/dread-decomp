@@ -22,7 +22,7 @@ void CCharClassCollideAgainstIgnoredCollidersTrack::refl_AddAttributes(CClass* c
 void CCharClassCollideAgainstIgnoredCollidersTrack::refl_AddFields(CClass*) {}
 bool CCharClassCollideAgainstIgnoredCollidersTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassCollideAgainstIgnoredCollidersTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassCollideAgainstIgnoredCollidersTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCollideAgainstIgnoredCollidersTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassCollideAgainstIgnoredCollidersTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassCollideAgainstIgnoredCollidersTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassCollideAgainstIgnoredCollidersTrack::refl_Destroy(void* obj) { static_cast<CCharClassCollideAgainstIgnoredCollidersTrack*>(obj)->~CCharClassCollideAgainstIgnoredCollidersTrack(); }
 struct CCharClassCollideAgainstIgnoredCollidersTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassCollideAgainstIgnoredCollidersTrack);

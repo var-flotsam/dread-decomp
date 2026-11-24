@@ -14,7 +14,7 @@ void CCooldownXBossWeakPointLifeComponent::refl_AddAttributes(CClass*) {}
 void CCooldownXBossWeakPointLifeComponent::refl_AddFields(CClass*) {}
 bool CCooldownXBossWeakPointLifeComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCooldownXBossWeakPointLifeComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCooldownXBossWeakPointLifeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCooldownXBossWeakPointLifeComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCooldownXBossWeakPointLifeComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCooldownXBossWeakPointLifeComponent*>(obj)->refl_GetDynamicClass(); }
 void CCooldownXBossWeakPointLifeComponent::refl_Destroy(void* obj) { static_cast<CCooldownXBossWeakPointLifeComponent*>(obj)->~CCooldownXBossWeakPointLifeComponent(); }
 struct CCooldownXBossWeakPointLifeComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCooldownXBossWeakPointLifeComponent);

@@ -14,7 +14,7 @@ void behaviortree::CFlyingChaseTargetAction::refl_AddAttributes(CClass*) {}
 void behaviortree::CFlyingChaseTargetAction::refl_AddFields(CClass*) {}
 bool behaviortree::CFlyingChaseTargetAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CFlyingChaseTargetAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CFlyingChaseTargetAction::refl_TypeOf(const void* obj) { return *static_cast<const CFlyingChaseTargetAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CFlyingChaseTargetAction::refl_TypeOf(const void* obj) { return *static_cast<const CFlyingChaseTargetAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CFlyingChaseTargetAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CFlyingChaseTargetAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CFlyingChaseTargetAction::refl_Destroy(void* obj) { static_cast<CFlyingChaseTargetAction*>(obj)->~CFlyingChaseTargetAction(); }

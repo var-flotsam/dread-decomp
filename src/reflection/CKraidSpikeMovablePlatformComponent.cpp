@@ -14,7 +14,7 @@ void CKraidSpikeMovablePlatformComponent::refl_AddAttributes(CClass*) {}
 void CKraidSpikeMovablePlatformComponent::refl_AddFields(CClass*) {}
 bool CKraidSpikeMovablePlatformComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CKraidSpikeMovablePlatformComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CKraidSpikeMovablePlatformComponent::refl_TypeOf(const void* obj) { return *static_cast<const CKraidSpikeMovablePlatformComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CKraidSpikeMovablePlatformComponent::refl_TypeOf(const void* obj) { return *static_cast<const CKraidSpikeMovablePlatformComponent*>(obj)->refl_GetDynamicClass(); }
 void CKraidSpikeMovablePlatformComponent::refl_CopyConstruct(void*, const void*) {}
 void CKraidSpikeMovablePlatformComponent::refl_MoveConstruct(void*, const void*) {}
 void CKraidSpikeMovablePlatformComponent::refl_Destroy(void* obj) { static_cast<CKraidSpikeMovablePlatformComponent*>(obj)->~CKraidSpikeMovablePlatformComponent(); }

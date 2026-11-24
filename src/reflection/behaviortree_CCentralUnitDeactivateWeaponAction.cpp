@@ -23,7 +23,7 @@ void behaviortree::CCentralUnitDeactivateWeaponAction::refl_AddFields(CClass* cl
 }
 bool behaviortree::CCentralUnitDeactivateWeaponAction::refl_Equals(const void*, const void*) { return false; }
 s32 behaviortree::CCentralUnitDeactivateWeaponAction::refl_Hash() { return -1; }
-const base::reflection::CType& behaviortree::CCentralUnitDeactivateWeaponAction::refl_TypeOf(const void* obj) { return *static_cast<const CCentralUnitDeactivateWeaponAction*>(obj)->vf_0x0(); }
+const base::reflection::CType& behaviortree::CCentralUnitDeactivateWeaponAction::refl_TypeOf(const void* obj) { return *static_cast<const CCentralUnitDeactivateWeaponAction*>(obj)->refl_GetDynamicClass(); }
 void behaviortree::CCentralUnitDeactivateWeaponAction::refl_CopyConstruct(void*, const void*) {}
 void behaviortree::CCentralUnitDeactivateWeaponAction::refl_MoveConstruct(void*, const void*) {}
 void behaviortree::CCentralUnitDeactivateWeaponAction::refl_Destroy(void* obj) { static_cast<CCentralUnitDeactivateWeaponAction*>(obj)->~CCentralUnitDeactivateWeaponAction(); }

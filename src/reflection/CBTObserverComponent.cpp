@@ -14,7 +14,7 @@ void CBTObserverComponent::refl_AddAttributes(CClass*) {}
 void CBTObserverComponent::refl_AddFields(CClass*) {}
 bool CBTObserverComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CBTObserverComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CBTObserverComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBTObserverComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CBTObserverComponent::refl_TypeOf(const void* obj) { return *static_cast<const CBTObserverComponent*>(obj)->refl_GetDynamicClass(); }
 void CBTObserverComponent::refl_CopyConstruct(void*, const void*) {}
 void CBTObserverComponent::refl_MoveConstruct(void*, const void*) {}
 void CBTObserverComponent::refl_Destroy(void* obj) { static_cast<CBTObserverComponent*>(obj)->~CBTObserverComponent(); }

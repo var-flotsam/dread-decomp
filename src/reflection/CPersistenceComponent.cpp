@@ -14,7 +14,7 @@ void CPersistenceComponent::refl_AddAttributes(CClass*) {}
 void CPersistenceComponent::refl_AddFields(CClass*) {}
 bool CPersistenceComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CPersistenceComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CPersistenceComponent::refl_TypeOf(const void* obj) { return *static_cast<const CPersistenceComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CPersistenceComponent::refl_TypeOf(const void* obj) { return *static_cast<const CPersistenceComponent*>(obj)->refl_GetDynamicClass(); }
 void CPersistenceComponent::refl_CopyConstruct(void*, const void*) {}
 void CPersistenceComponent::refl_MoveConstruct(void*, const void*) {}
 void CPersistenceComponent::refl_Destroy(void* obj) { static_cast<CPersistenceComponent*>(obj)->~CPersistenceComponent(); }

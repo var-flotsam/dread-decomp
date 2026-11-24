@@ -22,7 +22,7 @@ void CharClassLaunchKraidMorphballGrabEvent::refl_AddAttributes(CClass* cls) {
 void CharClassLaunchKraidMorphballGrabEvent::refl_AddFields(CClass*) {}
 bool CharClassLaunchKraidMorphballGrabEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CharClassLaunchKraidMorphballGrabEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CharClassLaunchKraidMorphballGrabEvent::refl_TypeOf(const void* obj) { return *static_cast<const CharClassLaunchKraidMorphballGrabEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CharClassLaunchKraidMorphballGrabEvent::refl_TypeOf(const void* obj) { return *static_cast<const CharClassLaunchKraidMorphballGrabEvent*>(obj)->refl_GetDynamicClass(); }
 void CharClassLaunchKraidMorphballGrabEvent::refl_Destroy(void* obj) { static_cast<CharClassLaunchKraidMorphballGrabEvent*>(obj)->~CharClassLaunchKraidMorphballGrabEvent(); }
 struct CharClassLaunchKraidMorphballGrabEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CharClassLaunchKraidMorphballGrabEvent);

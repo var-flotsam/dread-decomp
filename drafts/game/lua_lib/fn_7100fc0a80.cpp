@@ -55,7 +55,7 @@ struct UnkLuaReadScratch_b49a6 {
 
 UnkReflValue fn_710009da40(const CType* type, const UnkTypedRef* src, const CType* to);
 
-// A field of a class (CClass::m_array_0xe8's elements, 0xb0 bytes).
+// A field of a class (CClass::m_fields's elements, 0xb0 bytes).
 struct UnkClassField_lfc0a80 {
     u8 pad_0x0[0x10];
     const CType* type;
@@ -79,12 +79,12 @@ static inline const CCollectionType* AsCollection(char* type) {
 
 // The field of a class with the given name hash, or the end of its fields.
 static inline UnkClassField_lfc0a80* FindField(const CClass* cls, u64 key) {
-    UnkClassField_lfc0a80* fields = static_cast<UnkClassField_lfc0a80*>(cls->m_array_0xe8.data);
-    const u64* keys = static_cast<const u64*>(cls->m_array_0xe8.keys);
-    for (u32 i = 0; i < cls->m_array_0xe8.count; ++i)
+    UnkClassField_lfc0a80* fields = static_cast<UnkClassField_lfc0a80*>(cls->m_fields.data);
+    const u64* keys = static_cast<const u64*>(cls->m_fields.keys);
+    for (u32 i = 0; i < cls->m_fields.count; ++i)
         if (keys[i] == key)
             return &fields[i];
-    return &fields[cls->m_array_0xe8.count];
+    return &fields[cls->m_fields.count];
 }
 
 // An empty value of `type`.
@@ -117,7 +117,7 @@ void fn_7100fc0a80(lua_State* L, UnkTypedPair_ovb0016* value, CStrId* name) {
     if (IsKindOf(type, fn_7100096100())) {
         const CClass* cls = reinterpret_cast<const CClass*>(type);
         UnkClassField_lfc0a80* field = FindField(cls, name->data->Key());
-        UnkClassField_lfc0a80* end = &static_cast<UnkClassField_lfc0a80*>(cls->m_array_0xe8.data)[cls->m_array_0xe8.count];
+        UnkClassField_lfc0a80* end = &static_cast<UnkClassField_lfc0a80*>(cls->m_fields.data)[cls->m_fields.count];
         if (field == end || !field)
             return;
         UnkReflValue v;

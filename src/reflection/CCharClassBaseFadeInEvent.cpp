@@ -30,7 +30,7 @@ void CCharClassBaseFadeInEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassBaseFadeInEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassBaseFadeInEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassBaseFadeInEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBaseFadeInEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassBaseFadeInEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassBaseFadeInEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassBaseFadeInEvent::refl_Destroy(void* obj) { static_cast<CCharClassBaseFadeInEvent*>(obj)->~CCharClassBaseFadeInEvent(); }
 struct CCharClassBaseFadeInEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassBaseFadeInEvent);

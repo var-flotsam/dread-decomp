@@ -26,7 +26,7 @@ void CCharClassDetachFromMovingPlatformEvent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassDetachFromMovingPlatformEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassDetachFromMovingPlatformEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassDetachFromMovingPlatformEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDetachFromMovingPlatformEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassDetachFromMovingPlatformEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassDetachFromMovingPlatformEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassDetachFromMovingPlatformEvent::refl_Destroy(void* obj) { static_cast<CCharClassDetachFromMovingPlatformEvent*>(obj)->~CCharClassDetachFromMovingPlatformEvent(); }
 struct CCharClassDetachFromMovingPlatformEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassDetachFromMovingPlatformEvent);

@@ -14,7 +14,7 @@ void CSceneComponent::refl_AddAttributes(CClass*) {}
 void CSceneComponent::refl_AddFields(CClass*) {}
 bool CSceneComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CSceneComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CSceneComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSceneComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CSceneComponent::refl_TypeOf(const void* obj) { return *static_cast<const CSceneComponent*>(obj)->refl_GetDynamicClass(); }
 void CSceneComponent::refl_Destroy(void* obj) { static_cast<CSceneComponent*>(obj)->~CSceneComponent(); }
 void* CSceneComponent::refl_CopyAssign(void*, const void*) { return nullptr; }
 void* CSceneComponent::refl_MoveAssign(void*, const void*) { return nullptr; }

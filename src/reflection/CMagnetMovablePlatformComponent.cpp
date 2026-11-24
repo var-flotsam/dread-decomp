@@ -14,7 +14,7 @@ void CMagnetMovablePlatformComponent::refl_AddAttributes(CClass*) {}
 void CMagnetMovablePlatformComponent::refl_AddFields(CClass*) {}
 bool CMagnetMovablePlatformComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CMagnetMovablePlatformComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CMagnetMovablePlatformComponent::refl_TypeOf(const void* obj) { return *static_cast<const CMagnetMovablePlatformComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CMagnetMovablePlatformComponent::refl_TypeOf(const void* obj) { return *static_cast<const CMagnetMovablePlatformComponent*>(obj)->refl_GetDynamicClass(); }
 void CMagnetMovablePlatformComponent::refl_CopyConstruct(void*, const void*) {}
 void CMagnetMovablePlatformComponent::refl_MoveConstruct(void*, const void*) {}
 void CMagnetMovablePlatformComponent::refl_Destroy(void* obj) { static_cast<CMagnetMovablePlatformComponent*>(obj)->~CMagnetMovablePlatformComponent(); }

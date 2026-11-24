@@ -118,13 +118,13 @@ class GetterOk(unittest.TestCase):
 class ConstructorLines(unittest.TestCase):
     def test_traits_and_instantiation(self):
         lines = gr.constructor_lines(0x7100000020, 0x50, True, {0x58: 0x7100000058, 0x28: 0x7100000028})
-        self.assertEqual(lines[1], "struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100000020> {")
+        self.assertEqual(lines[1], "struct base::reflection::ClassTraits<UnkRefl_fn_7100000020> {")
         self.assertIn("    static constexpr u64 size = 0x50;", lines)
         self.assertIn("    static constexpr bool abstract = true;", lines)
-        self.assertIn("    static constexpr EqualsFn fn_0x58 = &fn_7100000058;", lines)
-        self.assertIn("    static constexpr SlotFn fn_0x28 = &fn_7100000028;", lines)
-        self.assertIn("    static constexpr HashFn fn_0x60 = nullptr;", lines)
-        self.assertEqual(sum(ln.startswith("    static constexpr ") and " fn_0x" in ln for ln in lines),
+        self.assertIn("    static constexpr EqualsFn equals = &fn_7100000058;", lines)
+        self.assertIn("    static constexpr SlotFn construct = &fn_7100000028;", lines)
+        self.assertIn("    static constexpr HashFn hash = nullptr;", lines)
+        self.assertEqual(sum(ln.startswith("    static constexpr ") and "Fn " in ln for ln in lines),
                          len(gr.TRAIT_SLOTS))
         self.assertTrue(lines[-1].endswith("UnkRefl_fn_7100000020*);"))
 
@@ -314,7 +314,7 @@ class TypesByType(unittest.TestCase):
 class AttributeKeysByName(unittest.TestCase):
     def test_keys_by_name(self):
         text = "\n".join(['#include "base/reflection/CClass.h"', "",
-                          "const base::reflection::UnkReflAttrKey& fn_7100007e80();  // \"Description\"",
+                          "const base::reflection::AttributeKey& fn_7100007e80();  // \"Description\"",
                           "void f(CClass* cls) {",
                           '    TypeAttributes(cls)->Add<const char*>(fn_7100007e80(), "Text");',
                           "    g(fn_7100000400());",
@@ -541,7 +541,7 @@ class FunctionsInOneLine(unittest.TestCase):
 class TypedKeysByName(unittest.TestCase):
     def test_key_and_declaration(self):
         keys = {"fn_710000bf80": ("Persistence", "T<E>::object")}
-        text = "const base::reflection::UnkReflAttrKey& fn_710000bf80();\nf->attrs.Add<s32>(fn_710000bf80(), &T<E>::object, 0);"
+        text = "const base::reflection::AttributeKey& fn_710000bf80();\nf->attrs.Add<s32>(fn_710000bf80(), &T<E>::object, 0);"
         out = gr.typed_keys_by_name(text, keys)
         self.assertIn("f->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);", out)
         self.assertNotIn("fn_710000bf80", out)

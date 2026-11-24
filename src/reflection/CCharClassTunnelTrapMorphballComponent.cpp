@@ -28,7 +28,7 @@ void CCharClassTunnelTrapMorphballComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassTunnelTrapMorphballComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassTunnelTrapMorphballComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTunnelTrapMorphballComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTunnelTrapMorphballComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTunnelTrapMorphballComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTunnelTrapMorphballComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTunnelTrapMorphballComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassTunnelTrapMorphballComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassTunnelTrapMorphballComponent::refl_Destroy(void* obj) { static_cast<CCharClassTunnelTrapMorphballComponent*>(obj)->~CCharClassTunnelTrapMorphballComponent(); }

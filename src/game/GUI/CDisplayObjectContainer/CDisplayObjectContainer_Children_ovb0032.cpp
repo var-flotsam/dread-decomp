@@ -178,10 +178,10 @@ struct UnkGuiNamedObject_ovb0032 {
 void* fn_71011d9780(char* self, u32 index, void* arg) {
     const CClass* cls = static_cast<const CClass*>(arg);
     void* mem = nullptr;
-    if (fn_710009d50c(cls, fn_71011c3868()) && cls->m_fn_0x28) {
+    if (fn_710009d50c(cls, fn_71011c3868()) && cls->m_construct) {
         mem = GetDefaultAllocator()->vf_0x40(cls->m_size, 8, 0xc);
         if (mem)
-            reinterpret_cast<void (*)(void*)>(cls->m_fn_0x28)(mem);
+            reinterpret_cast<void (*)(void*)>(cls->m_construct)(mem);
     }
     UnkGuiDisplayObject* object = static_cast<UnkGuiDisplayObject*>(mem);
     object->vf_0x30();

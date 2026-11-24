@@ -22,7 +22,7 @@ void CCharClassIgnoreBossCameraTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassIgnoreBossCameraTrack::refl_AddFields(CClass*) {}
 bool CCharClassIgnoreBossCameraTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassIgnoreBossCameraTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassIgnoreBossCameraTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreBossCameraTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassIgnoreBossCameraTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassIgnoreBossCameraTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassIgnoreBossCameraTrack::refl_Destroy(void* obj) { static_cast<CCharClassIgnoreBossCameraTrack*>(obj)->~CCharClassIgnoreBossCameraTrack(); }
 struct CCharClassIgnoreBossCameraTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassIgnoreBossCameraTrack);

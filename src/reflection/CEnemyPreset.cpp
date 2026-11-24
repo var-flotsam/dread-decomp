@@ -28,7 +28,7 @@ void CEnemyPreset::refl_AddFields(CClass* cls) {
 }
 bool CEnemyPreset::refl_Equals(const void*, const void*) { return false; }
 s32 CEnemyPreset::refl_Hash() { return -1; }
-const base::reflection::CType& CEnemyPreset::refl_TypeOf(const void* obj) { return *static_cast<const CEnemyPreset*>(obj)->vf_0x0(); }
+const base::reflection::CType& CEnemyPreset::refl_TypeOf(const void* obj) { return *static_cast<const CEnemyPreset*>(obj)->refl_GetDynamicClass(); }
 void CEnemyPreset::refl_CopyConstruct(void*, const void*) {}
 void CEnemyPreset::refl_MoveConstruct(void*, const void*) {}
 void CEnemyPreset::refl_Destroy(void* obj) { static_cast<CEnemyPreset*>(obj)->~CEnemyPreset(); }

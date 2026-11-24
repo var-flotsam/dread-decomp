@@ -22,7 +22,7 @@ void CCharClassFloorSlideDefaultMeleeTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassFloorSlideDefaultMeleeTrack::refl_AddFields(CClass*) {}
 bool CCharClassFloorSlideDefaultMeleeTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassFloorSlideDefaultMeleeTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassFloorSlideDefaultMeleeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFloorSlideDefaultMeleeTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassFloorSlideDefaultMeleeTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassFloorSlideDefaultMeleeTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassFloorSlideDefaultMeleeTrack::refl_Destroy(void* obj) { static_cast<CCharClassFloorSlideDefaultMeleeTrack*>(obj)->~CCharClassFloorSlideDefaultMeleeTrack(); }
 struct CCharClassFloorSlideDefaultMeleeTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassFloorSlideDefaultMeleeTrack);

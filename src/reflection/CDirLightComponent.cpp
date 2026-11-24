@@ -43,7 +43,7 @@ void CDirLightComponent::refl_AddFields(CClass* cls) {
 }
 bool CDirLightComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CDirLightComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CDirLightComponent::refl_TypeOf(const void* obj) { return *static_cast<const CDirLightComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CDirLightComponent::refl_TypeOf(const void* obj) { return *static_cast<const CDirLightComponent*>(obj)->refl_GetDynamicClass(); }
 void CDirLightComponent::refl_CopyConstruct(void*, const void*) {}
 void CDirLightComponent::refl_MoveConstruct(void*, const void*) {}
 void CDirLightComponent::refl_Destroy(void* obj) { static_cast<CDirLightComponent*>(obj)->~CDirLightComponent(); }

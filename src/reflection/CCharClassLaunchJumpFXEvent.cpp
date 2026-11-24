@@ -22,7 +22,7 @@ void CCharClassLaunchJumpFXEvent::refl_AddAttributes(CClass* cls) {
 void CCharClassLaunchJumpFXEvent::refl_AddFields(CClass*) {}
 bool CCharClassLaunchJumpFXEvent::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassLaunchJumpFXEvent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassLaunchJumpFXEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLaunchJumpFXEvent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassLaunchJumpFXEvent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassLaunchJumpFXEvent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassLaunchJumpFXEvent::refl_Destroy(void* obj) { static_cast<CCharClassLaunchJumpFXEvent*>(obj)->~CCharClassLaunchJumpFXEvent(); }
 struct CCharClassLaunchJumpFXEvent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassLaunchJumpFXEvent);

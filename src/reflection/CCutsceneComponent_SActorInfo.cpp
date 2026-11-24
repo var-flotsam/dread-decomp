@@ -42,7 +42,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_lnkActor_GetterFunction", &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x101, fn_71007ad0ec);
     DREAD_REFLECTED_FUNCTION("_m_lnkActor_SetterFunction")
         fn_71007a2ac8(fn, "_m_lnkActor_SetterFunction");
-    CVariable* field1 = AddReflectedField(cls, CStrId("lnkActor", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    CVariable* field1 = AddReflectedField(cls, CStrId("lnkActor", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0xffffffff, cls->m_functions.size() - 2, cls->m_functions.size() - 1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     field1->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &base::reflection::TypeObject<CompleteInfo>::object, base::reflection::UnkReflStringList(0x1, base::reflection::UnkReflList<base::global::CRntString>({"sId"}, 0xa, nullptr, 0xf)));
     DREAD_REFLECTED_FIELD(bool, "bStartingVisibleState", 0x81, (EditorVisible, false), (DefaultValue, true));
@@ -306,10 +306,10 @@ void fn_71007abea0();
 void fn_71007abef0();
 void fn_71007a13a4(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_71007abea0);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", CCutsceneComponent::SActorInfo::refl_GetClass(), 0x1, fn_71007abef0);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCutsceneComponent::SActorInfo::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCutsceneComponent::SActorInfo::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/ReflectedAttributes.h"
@@ -323,9 +323,9 @@ void fn_71007ac010();
 void fn_71007ac060();
 void fn_71007a1994(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_71007ac010);
-    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", CCutsceneComponent::SActorInfo::refl_GetClass(), 0x101, fn_71007ac060);
-    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCutsceneComponent::SActorInfo::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    CVariable* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCutsceneComponent::SActorInfo::refl_GetClass(), 0xffffffff, cls->m_functions.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }

@@ -22,7 +22,7 @@ void CCharClassGobblerCanCounterAttackTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassGobblerCanCounterAttackTrack::refl_AddFields(CClass*) {}
 bool CCharClassGobblerCanCounterAttackTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassGobblerCanCounterAttackTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassGobblerCanCounterAttackTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGobblerCanCounterAttackTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassGobblerCanCounterAttackTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassGobblerCanCounterAttackTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassGobblerCanCounterAttackTrack::refl_Destroy(void* obj) { static_cast<CCharClassGobblerCanCounterAttackTrack*>(obj)->~CCharClassGobblerCanCounterAttackTrack(); }
 struct CCharClassGobblerCanCounterAttackTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassGobblerCanCounterAttackTrack);

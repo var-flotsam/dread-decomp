@@ -24,7 +24,7 @@ void CCharClassChangeStageNavMeshItemComponent::refl_AddFields(CClass* cls) {
 }
 bool CCharClassChangeStageNavMeshItemComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CCharClassChangeStageNavMeshItemComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassChangeStageNavMeshItemComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChangeStageNavMeshItemComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassChangeStageNavMeshItemComponent::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassChangeStageNavMeshItemComponent*>(obj)->refl_GetDynamicClass(); }
 void CCharClassChangeStageNavMeshItemComponent::refl_CopyConstruct(void*, const void*) {}
 void CCharClassChangeStageNavMeshItemComponent::refl_MoveConstruct(void*, const void*) {}
 void CCharClassChangeStageNavMeshItemComponent::refl_Destroy(void* obj) { static_cast<CCharClassChangeStageNavMeshItemComponent*>(obj)->~CCharClassChangeStageNavMeshItemComponent(); }

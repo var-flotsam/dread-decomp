@@ -14,7 +14,7 @@ void CThermalReactionComponent::refl_AddAttributes(CClass*) {}
 void CThermalReactionComponent::refl_AddFields(CClass*) {}
 bool CThermalReactionComponent::refl_Equals(const void*, const void*) { return false; }
 s32 CThermalReactionComponent::refl_Hash() { return -1; }
-const base::reflection::CType& CThermalReactionComponent::refl_TypeOf(const void* obj) { return *static_cast<const CThermalReactionComponent*>(obj)->vf_0x0(); }
+const base::reflection::CType& CThermalReactionComponent::refl_TypeOf(const void* obj) { return *static_cast<const CThermalReactionComponent*>(obj)->refl_GetDynamicClass(); }
 void CThermalReactionComponent::refl_Destroy(void* obj) { static_cast<CThermalReactionComponent*>(obj)->~CThermalReactionComponent(); }
 struct CThermalReactionComponent::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CThermalReactionComponent);

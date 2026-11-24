@@ -15,17 +15,17 @@ s32 fn_710009c6f0() { return -1; }
 const base::reflection::CType& fn_710009c6f8(const void* obj);
 void fn_710009c714(void* obj);
 template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_710009bfd4> {
+struct base::reflection::ClassTraits<UnkRefl_fn_710009bfd4> {
     static constexpr u64 size = 0x108;
     static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_710009c6e4;
-    static constexpr HashFn fn_0x60 = &fn_710009c6f0;
-    static constexpr TypeOfFn fn_0x68 = &fn_710009c6f8;
-    static constexpr SlotFn fn_0x28 = nullptr;
-    static constexpr CopyConstructFn fn_0x30 = nullptr;
-    static constexpr CopyConstructFn fn_0x38 = nullptr;
-    static constexpr DestroyFn fn_0x40 = &fn_710009c714;
-    static constexpr AssignFn fn_0x48 = nullptr;
-    static constexpr AssignFn fn_0x50 = nullptr;
+    static constexpr EqualsFn equals = &fn_710009c6e4;
+    static constexpr HashFn hash = &fn_710009c6f0;
+    static constexpr TypeOfFn type_of = &fn_710009c6f8;
+    static constexpr SlotFn construct = nullptr;
+    static constexpr CopyConstructFn copy_construct = nullptr;
+    static constexpr CopyConstructFn move_construct = nullptr;
+    static constexpr DestroyFn destroy = &fn_710009c714;
+    static constexpr AssignFn copy_assign = nullptr;
+    static constexpr AssignFn move_assign = nullptr;
 };
 DREAD_REFL_CLASS_GETTER(710009bedc, 710009bfd4, "base::reflection::CPointerType", 710009c7b8, 710009bed8, 710009bfd0);

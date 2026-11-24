@@ -22,7 +22,7 @@ void CCharClassTakumakuAllowSpikesTrack::refl_AddAttributes(CClass* cls) {
 void CCharClassTakumakuAllowSpikesTrack::refl_AddFields(CClass*) {}
 bool CCharClassTakumakuAllowSpikesTrack::refl_Equals(const void* a, const void* b) { return a == b; }
 s32 CCharClassTakumakuAllowSpikesTrack::refl_Hash() { return -1; }
-const base::reflection::CType& CCharClassTakumakuAllowSpikesTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTakumakuAllowSpikesTrack*>(obj)->vf_0x0(); }
+const base::reflection::CType& CCharClassTakumakuAllowSpikesTrack::refl_TypeOf(const void* obj) { return *static_cast<const CCharClassTakumakuAllowSpikesTrack*>(obj)->refl_GetDynamicClass(); }
 void CCharClassTakumakuAllowSpikesTrack::refl_Destroy(void* obj) { static_cast<CCharClassTakumakuAllowSpikesTrack*>(obj)->~CCharClassTakumakuAllowSpikesTrack(); }
 struct CCharClassTakumakuAllowSpikesTrack::refl_Description : ClassDescription {
     static constexpr u64 size = sizeof(CCharClassTakumakuAllowSpikesTrack);
