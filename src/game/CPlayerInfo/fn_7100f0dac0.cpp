@@ -88,7 +88,7 @@ static inline bool IsPlaying(const UnkHandle& h) {
     return h.Get() != g_unk_7101d586c0.Get();
 }
 
-void fn_7100f0dac0(UnkPlayerInfoEffect_lf0dac0* self, const UnkVec3f* pos, f32 a, f32 b, f32 c, f32 d,
+void CPlayerInfo_StartGaleEffect(UnkPlayerInfoEffect_lf0dac0* self, const UnkVec3f* pos, f32 a, f32 b, f32 c, f32 d,
                    const UnkVec3f* other, void* source) {
     if (self->active)
         return;

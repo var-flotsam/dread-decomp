@@ -101,7 +101,7 @@ struct UnkBlock22fa_b152 {
 void fn_71009e9268(UnkMove_b152* self, bool flag) {
     UnkBlock5198_b152* block = reinterpret_cast<UnkBlock5198_b152*>(reinterpret_cast<u8*>(self) + 0x5198);
     UnkBlock22fa_b152* small = reinterpret_cast<UnkBlock22fa_b152*>(reinterpret_cast<u8*>(self) + 0x22fa);
-    fn_71010d7b88(reinterpret_cast<UnkMorphBallMovement_b49a4*>(self), flag);
+    CPlayerMovement_Reset(reinterpret_cast<UnkMorphBallMovement_b49a4*>(self), flag);
     u64a* cleared = reinterpret_cast<u64a*>(self->field_0x2cdc);
     small->field_0x0 = 0;
     self->field_0x22fc = 0;

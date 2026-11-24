@@ -520,7 +520,7 @@ address,size,name,name_source,subsystem,status
 0x7101126d28,352,fn_7101126d28,unknown,unknown,O
 0x7101126e88,700,fn_7101126e88,unknown,unknown,O
 0x7101127144,1172,fn_7101127144,unknown,game/components?,U
-0x71011275d8,460,fn_71011275d8,unknown,unknown,O
+0x71011275d8,460,CSpawnPointComponent_OnEntityGenerated,inferred,unknown,O
 0x71011277a4,144,fn_71011277a4,unknown,game/ai?,O
 0x7101127834,304,fn_7101127834,unknown,game/components?,U
 0x7101127964,176,fn_7101127964,unknown,unknown,O

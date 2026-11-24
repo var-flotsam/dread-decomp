@@ -102,7 +102,7 @@ struct UnkFxObjectPool_b0068 {
 
 // Gives `object` back to the pool: when it is one of the pool's objects, it is stopped (vf_0x40,
 // vf_0x110) and its bit cleared.
-bool fn_710104ddcc(UnkFxObjectPool_b0068* self, UnkFxReleasable_b0068* object) {
+bool CFXPool_ReleaseObject(UnkFxObjectPool_b0068* self, UnkFxReleasable_b0068* object) {
     if (self->objects.count == 0)
         return false;
     UnkFxPooledObject* target = reinterpret_cast<UnkFxPooledObject*>(object);

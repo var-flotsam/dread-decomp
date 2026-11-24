@@ -14,7 +14,7 @@ void fn_7100f0e85c(UnkTimedEntry_ovb0071* self);
 void fn_7100f0e98c(void*, void*, void*, void*);
 extern void* g_unk_7101caa4b0[];
 extern char g_unk_7101caa450[];
-u32 fn_7100f0cc48(UnkEventTable_b0188* table, u32 value);
+u32 CPlayerInfo_GetInputPresetBinding(UnkEventTable_b0188* table, u32 value);
 extern base::global::CFilePathStrId g_unk_71729db988 __attribute__((visibility("hidden")));  // the looping vibration file
 void fn_7100f0e4e4(void* a, void* b, void* c, void* d);
 void fn_7100f0dd3c(UnkPlayerInfo_ovb0071* self);

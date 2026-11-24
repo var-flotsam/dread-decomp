@@ -27,7 +27,7 @@ struct __attribute__((packed)) UnkKeyedSlot_b49 {
     u8 pad_0x30[0x8];
 };
 
-u32 fn_7100f0cc48(UnkKeyedSlot_b49* self, s32 key) {
+u32 CPlayerInfo_GetInputPresetBinding(UnkKeyedSlot_b49* self, s32 key) {
     UnkInputTunableView_b49* tunable = reinterpret_cast<UnkInputTunableView_b49*>(&g_unk_71727298b0);
     s32 slot = tunable->slot;
     if (slot >= self->slot_count) {

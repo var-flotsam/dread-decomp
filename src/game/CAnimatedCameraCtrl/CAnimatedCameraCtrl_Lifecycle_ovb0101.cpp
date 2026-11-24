@@ -30,7 +30,7 @@
 using base::global::CStrId;
 
 // The interpolation kind a name gives.
-s32 fn_71010ec868(const char* name) {
+s32 CAnimatedCameraCtrl_GetInterpolationKindFromName(const char* name) {
     if (strcmp(name, "Smooth") == 0)
         return 0;
     if (strcmp(name, "Linear") == 0)
@@ -212,7 +212,7 @@ struct UnkPlayer_b0101 {
     UnkInputComponent* input;  // 0x1d8
 };
 
-void fn_71010e917c(UnkAnimatedCameraEnd_b0101* self) {
+void CAnimatedCameraCtrl_UnPossess(UnkAnimatedCameraEnd_b0101* self) {
     if (self->state == 2 && self->field_0x2a8) {
         if (self->field_0x2a0)
             fn_71002199d8(g_unk_7101d47300, self->field_0x2a8, 0);

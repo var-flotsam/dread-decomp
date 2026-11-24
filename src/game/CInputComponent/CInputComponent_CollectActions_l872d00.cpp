@@ -27,7 +27,7 @@ struct UnkActionOwner_l872d00 {
 
 // Appends `action` when every pressed button is part of its binding.
 inline void AddIfBound(UnkEventTable_b0188* mapping, u32 buttons, UnkActionList_l872d00& actions, u32 action) {
-    if ((buttons & ~fn_7100f0cc48(mapping, action)) == 0)
+    if ((buttons & ~CPlayerInfo_GetInputPresetBinding(mapping, action)) == 0)
         actions.PushBack(action);
 }
 

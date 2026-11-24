@@ -56,7 +56,7 @@ struct UnkQidPairFlag_ov110 : UnkQidPairBase_ov110 {
     }
 };
 
-void fn_7100f10e18(void* self) {
+void CReserveTankInfo_ConstructSpecialEnergyTankInfo(void* self) {
     new (self) UnkQidPairFlag_ov110(Qid_ov110(g_unk_71729dbcc0), Qid_ov110(g_unk_71729dbd00));
 }
 

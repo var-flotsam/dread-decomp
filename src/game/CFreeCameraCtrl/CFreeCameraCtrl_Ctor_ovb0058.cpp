@@ -165,7 +165,7 @@ static inline void ConstructRest(T* self) {
     fn_7100219dbc(g_unk_7101d47300, &g_unk_7172a04a30, true);
 }
 
-void fn_71010ef0ec(UnkFreeCameraCtrl_b0058* self) {
+void CFreeCameraCtrl_Construct(UnkFreeCameraCtrl_b0058* self) {
     fn_71010ed044(reinterpret_cast<UnkBase_7100763ed4*>(self));
     self->vtable = &g_unk_7101cb1860[2];
     new (&self->list) base::global::CRntVector<UnkFreeCameraCallback_b0058*>(0xf);
@@ -243,7 +243,7 @@ void fn_71010f014c(UnkFreeCameraCtrl_b0058* self, bool on) {
 // Deactivation: after the base step (fn_71010edd64), switches the sub-area manager's flag off again,
 // resets +0x248, takes the target's angle, unregisters the input member, runs the callbacks of the
 // array at +0x1d8 (dropping empty slots) and removes the camera key from the world.
-void fn_71010ef41c(UnkFreeCameraCtrl_b0058* self) {
+void CFreeCameraCtrl_UnPossess(UnkFreeCameraCtrl_b0058* self) {
     fn_71010edd64(reinterpret_cast<UnkGrabCameraCtrl*>(self));
     if (self->field_0x200) {
         void* manager = SubAreaManager();
