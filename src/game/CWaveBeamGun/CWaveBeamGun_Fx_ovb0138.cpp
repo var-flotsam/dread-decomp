@@ -18,8 +18,8 @@ struct UnkWaveBeamGun_ovb0138 {
 };
 
 struct UnkPlasmaBeamGun_ovb0135;
-void fn_71008548bc(UnkPlasmaBeamGun_ovb0135*);
-void fn_7100854db8(UnkPlasmaBeamGun_ovb0135*);
+void CPowerBeamGun_PreloadEffects(UnkPlasmaBeamGun_ovb0135*);
+void CPowerBeamGun_ReleaseEffects(UnkPlasmaBeamGun_ovb0135*);
 
 static inline UnkFxCache* GetCache() {
     if (!g_unk_71726b0cd8) {
@@ -55,7 +55,7 @@ void fn_7100867b2c(UnkWaveBeamGun_ovb0138* self) {
         PreloadModel("actors/weapons/wavebeam/fx/explosion_game.bcmdl", 0xc);
         self->fx_registered = true;
     }
-    fn_71008548bc(reinterpret_cast<UnkPlasmaBeamGun_ovb0135*>(self));
+    CPowerBeamGun_PreloadEffects(reinterpret_cast<UnkPlasmaBeamGun_ovb0135*>(self));
 }
 
 void fn_7100867d14(UnkWaveBeamGun_ovb0138* self) {
@@ -65,5 +65,5 @@ void fn_7100867d14(UnkWaveBeamGun_ovb0138* self) {
         ReleaseFx("actors/weapons/wavebeam/fx/explosion_game.bcmdl");
         self->fx_registered = false;
     }
-    fn_7100854db8(reinterpret_cast<UnkPlasmaBeamGun_ovb0135*>(self));
+    CPowerBeamGun_ReleaseEffects(reinterpret_cast<UnkPlasmaBeamGun_ovb0135*>(self));
 }

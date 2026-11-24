@@ -41,7 +41,7 @@ struct UnkPull_b0266 {
 struct UnkDoorGrapplePoint_A5_b66;
 struct UnkPullableGrapplePoint_b54;
 
-void fn_71008263e4(UnkPull_b0266* self, void* arg, bool pulled) {
+void CActionSwitcherOnPullGrapplePointComponent_PlayPullOrDetachAction(UnkPull_b0266* self, void* arg, bool pulled) {
     fn_710082ccec(reinterpret_cast<UnkDoorGrapplePoint_A5_b66*>(self), arg, pulled);
     void* animation = self->owner->animation;
     switch (static_cast<int>(pulled)) {
