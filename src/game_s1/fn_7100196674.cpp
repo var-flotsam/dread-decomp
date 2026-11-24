@@ -25,7 +25,7 @@ UnkMatrix44* GetCachedXformMatrixAdjustedByAspectRatio(UnkCachedMatrix_710019667
         const UnkMatrix44& m = self->xform.GetMatrix();
         for (int i = 0; i < 16; ++i)
             reinterpret_cast<a_u32*>(self->matrix.m)[i] = reinterpret_cast<const a_u32*>(m.m)[i];
-        fn_710015bf40(&self->matrix, (f32)size->width / (f32)size->height);
+        ScaleMatrixYByAspectRatioAndNegateElement7(&self->matrix, (f32)size->width / (f32)size->height);
     }
     return &self->matrix;
 }

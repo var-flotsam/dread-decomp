@@ -212,7 +212,7 @@ UnkSides_l550f34 fn_7100550f34(UnkEmmyAI_l550f34* self) {
     f32 scale[2] = {2.0f, 0.9f};
     CAABoxShape2D_ScaleAboutCentreByVector2(reinterpret_cast<UnkScaledBoxShape2D*>(&shape), scale);
 
-    if (fn_7100d5b484(tree, movement->collision_mask, reinterpret_cast<UnkShape*>(&shape),
+    if (QueryCollisionTreeForTransformedShapeOverlaps(tree, movement->collision_mask, reinterpret_cast<UnkShape*>(&shape),
                       reinterpret_cast<const UnkMtx44*>(&xf), &hits, 0)) {
         bool below = false;
         bool above = false;

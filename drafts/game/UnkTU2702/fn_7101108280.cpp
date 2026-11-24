@@ -208,7 +208,7 @@ void fn_7101108280(UnkLeapAI_l108280* self, UnkLeapActor_l108280* target) {
         {
             UnkMatrix44 identity;
             SetIdentity(&identity);
-            hit = fn_7100d5b484(tree, 1, reinterpret_cast<UnkShape*>(&shape),
+            hit = QueryCollisionTreeForTransformedShapeOverlaps(tree, 1, reinterpret_cast<UnkShape*>(&shape),
                                 reinterpret_cast<const UnkMtx44*>(&identity), &query, 0);
         }
 

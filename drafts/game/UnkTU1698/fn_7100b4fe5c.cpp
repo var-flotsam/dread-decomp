@@ -43,7 +43,7 @@ static inline u64 ChildId(const char (&name)[N]) {
 }
 
 bool fn_7100b4fe5c(UnkMainMenuScreen_lb4fe5c* self) {
-    self->composition = fn_71011b69d8(g_unk_717271e8f8, CRntString("MainMenuComposition")).Get();
+    self->composition = GetGuiCompositionHandleByName(g_unk_717271e8f8, CRntString("MainMenuComposition")).Get();
     if (self->composition) {
         self->ResetComposition();
         self->header_bg = fn_71011d98ec(self->composition, ChildId("Header-R-Bg"));

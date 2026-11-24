@@ -109,12 +109,12 @@ bool fn_71006abe10(UnkDetectCondition* self) {
         fn_710007b430(&screen, reinterpret_cast<CVector3D*>(&min));
         f32 radius = self->owner->radius;
         if (Outside(radius, ua, ub, screen))
-            return !fn_7100219588(g_unk_7101d47300, &min, 0, 0);
+            return !IsPositionOnScreen(g_unk_7101d47300, &min, 0, 0);
         return false;
     }
     fn_710007b430(&screen, reinterpret_cast<CVector3D*>(&max));
     f32 radius = self->owner->radius;
     if (Outside(radius, ua, ub, screen))
-        return !fn_7100219588(g_unk_7101d47300, &max, 0, 0);
+        return !IsPositionOnScreen(g_unk_7101d47300, &max, 0, 0);
     return false;
 }

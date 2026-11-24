@@ -173,7 +173,7 @@ UnkGroundPoint fn_7100d7b540(UnkGroundEntity* self, const UnkGroundPoint* pos) {
         {
             UnkMatrix44 identity;
             SetIdentity(&identity);
-            hit = fn_7100d5b484(tree, self->collision_mask, reinterpret_cast<UnkShape*>(&shape),
+            hit = QueryCollisionTreeForTransformedShapeOverlaps(tree, self->collision_mask, reinterpret_cast<UnkShape*>(&shape),
                                 reinterpret_cast<const UnkMtx44*>(&identity), &query, 0);
         }
         if (hit) {

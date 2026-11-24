@@ -21,7 +21,7 @@ using base::reflection::UnkReflObject;
 
 template <s32 Value>
 __attribute__((always_inline)) static inline bool SetUp(UnkMenuScreen* self, const char* name) {
-    self->composition = fn_71011b69d8(g_unk_717271e8f8, CRntString(name)).Get();
+    self->composition = GetGuiCompositionHandleByName(g_unk_717271e8f8, CRntString(name)).Get();
     if (UnkGuiDisplayObject* composition = self->composition) {
         fn_71011cdce8(composition, 0);
         fn_71011cf2a4(self->composition, 0);

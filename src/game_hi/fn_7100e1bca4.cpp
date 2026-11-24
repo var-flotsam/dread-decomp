@@ -27,6 +27,6 @@ struct UnkMapSet {
     __attribute__((always_inline)) UnkMapSet() : field_0x48(0) {}
 };
 
-void fn_7100e1bca4(UnkMapSet* self) {
+void ConstructBillboardManager(UnkMapSet* self) {
     new (self) UnkMapSet();
 }

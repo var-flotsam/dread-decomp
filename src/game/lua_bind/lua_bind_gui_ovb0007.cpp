@@ -271,7 +271,7 @@ namespace lua_bind {
 int CreateMSCPInstanceEx(lua_State* L) {
     const char* name = g_unk_710162e2ed;
     if (fn_71010c0270(L, "s", &name)) {
-        UnkGuiDisplayObject* object = fn_71011b69d8(g_unk_717271e8f8, CRntString(name)).Get();
+        UnkGuiDisplayObject* object = GetGuiCompositionHandleByName(g_unk_717271e8f8, CRntString(name)).Get();
         if (object)
             return fn_7101075ad0(L, object);
     }

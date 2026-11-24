@@ -30,7 +30,7 @@ UnkWorldBounds_ld68654 fn_7100d68654(const UnkOBoxShape2D* self, const UnkXform*
     base::math::CVector2D t = {xf->m[0][3], xf->m[1][3]};
     base::math::CVector2D center = {box.center.x + t.x, box.center.y + t.y};
     box.center = center;
-    fn_7100110664(&box, fn_7100076acc(xf).z + box.angle);
+    SetOBox2DAngleAndRebuildAxes(&box, fn_7100076acc(xf).z + box.angle);
     UnkAABox2D_ld68654 bounds = fn_7100110550(&box);
     f32 z = xf->m[2][3];
     UnkWorldBounds_ld68654 result;

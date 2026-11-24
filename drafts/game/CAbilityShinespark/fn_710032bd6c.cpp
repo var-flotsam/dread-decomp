@@ -11,7 +11,7 @@
 #include "game/logic/collision/UnkBvhTree.h"
 #include "types.h"
 
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 
 struct UnkMatrix44_7100078c9c {
     f32 m[16];
@@ -134,7 +134,7 @@ bool fn_710032bd6c(UnkShinespark_l32bd6c* self, const UnkVec3f* from, UnkVec3f* 
         UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(point);
         base::math::CVector2D sweep2;
         fn_710007b430(&sweep2, &sweep);
-        if (fn_7100d5babc(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf),
+        if (SweepShapeAgainstCollisionTree(tree, mask, shape, reinterpret_cast<const UnkMtx44*>(&xf),
                           reinterpret_cast<const Vec2*>(&sweep2), &query, false)) {
             f32 t = query.hit.fraction;
             point.x = t * sweep.x + point.x;

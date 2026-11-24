@@ -70,7 +70,7 @@ static inline void* BillboardManager() {
     void* p = g_unk_71726da048;
     if (!p) {
         p = fn_71000839a0(0xe0, 0x3f);
-        fn_7100e1bca4(p);
+        ConstructBillboardManager(p);
         g_unk_71726da048 = p;
     }
     return p;

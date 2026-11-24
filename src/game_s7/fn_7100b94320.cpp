@@ -48,7 +48,7 @@ struct UnkResults_7100b94320 {
 // from the object. Same behaviour.
 void fn_7100b94320(UnkResults_7100b94320* self) {
     UnkGuiRoot* root = g_unk_717271e8f8;
-    self->composition = fn_71011b69d8(root, CRntString("bossrushresults")).Get();
+    self->composition = GetGuiCompositionHandleByName(root, CRntString("bossrushresults")).Get();
     UnkGuiObj*& composition = self->composition;
     fn_71011d968c(g_unk_717271e8f8->menu, composition);
     fn_71011cdce8(composition, 1);

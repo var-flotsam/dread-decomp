@@ -159,7 +159,7 @@ UnkHit_l948b68 fn_7100948b68(UnkBallOwner_l948b68* self, const UnkBallRay_l948b6
 
     CVector3D origin = self->field_0x178 && self->field_0x178->field_0x10 ? self->center : self->actor->GetPosition();
     UnkShapeQuery_l948b68 query(origin);
-    fn_7100d5b484(tree, self->mask, reinterpret_cast<UnkShape*>(shape), reinterpret_cast<const UnkMtx44*>(&xf),
+    QueryCollisionTreeForTransformedShapeOverlaps(tree, self->mask, reinterpret_cast<UnkShape*>(shape), reinterpret_cast<const UnkMtx44*>(&xf),
                   &query, 0);
     shape->Delete();
     return query.hit;

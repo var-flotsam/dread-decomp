@@ -4,11 +4,11 @@
 #include "types.h"
 
 struct UnkPool;
-base::global::CRntVector<u64>* fn_71002b1a3c(UnkPool* pool, u32 id);
+base::global::CRntVector<u64>* GrowOwnedListArrayAndGetListAt(UnkPool* pool, u32 id);
 
 // NON_MATCHING(minor): the id test is `mvn` + `tst #0xffff` in the original, `add #1` here.
 void fn_71002b199c(UnkPool* pool, u32 id, u32 count) {
     if (((id + 1) & 0xffff) == 0)
         return;
-    fn_71002b1a3c(pool, (u16)id)->Reserve(count);
+    GrowOwnedListArrayAndGetListAt(pool, (u16)id)->Reserve(count);
 }

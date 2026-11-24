@@ -130,5 +130,5 @@ bool fn_71009225b8(UnkSlidingWithCollisions_ovb0133* self, f32 t) {
     UnkSlideQuery_ovb0133 query(self->owner->Position(), self->owner);
     UnkShape* shape = reinterpret_cast<UnkSlideShaped_ovb0133*>(self->collision_object->target)->shape;
     UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(reinterpret_cast<const UnkVec3f&>(point.v));
-    return !fn_7100d5b484(tree, 8, shape, reinterpret_cast<const UnkMtx44*>(&xf), &query, 1);
+    return !QueryCollisionTreeForTransformedShapeOverlaps(tree, 8, shape, reinterpret_cast<const UnkMtx44*>(&xf), &query, 1);
 }

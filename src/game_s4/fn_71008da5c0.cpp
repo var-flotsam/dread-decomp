@@ -38,7 +38,7 @@ struct UnkIdRecord_0x68 {
     UnkStrIdTwoStep ids[13];
 };
 
-void fn_7100964b64(UnkIdRecord_0x68* self) {
+void DestroyThirteenStrIds(UnkIdRecord_0x68* self) {
 #pragma clang loop unroll(full)
     for (int i = 13; i-- > 0;)
         self->ids[i].~UnkStrIdTwoStep();
@@ -48,7 +48,7 @@ struct UnkIdRecord_0x28 {
     UnkStrIdTwoStep ids[5];
 };
 
-void fn_710086e288(UnkIdRecord_0x28* self) {
+void DestroyStrIdArrayOf5(UnkIdRecord_0x28* self) {
     for (int i = 5; i-- > 0;)
         self->ids[i].~UnkStrIdTwoStep();
 }

@@ -584,7 +584,7 @@ void fn_7100e8f6bc(UnkMinimapOwner* self) {
     UnkMinimapVec2 scale(width / fn_7100132fc0(), height / fn_7100132fc0());
     scale.x *= self->field_0xb4;
     scale.y *= self->field_0xb4;
-    fn_710020a5a0(reinterpret_cast<UnkStruct_710020a5a0*>(self->viewport->node),
+    SetNode2DScale(reinterpret_cast<UnkStruct_710020a5a0*>(self->viewport->node),
                   reinterpret_cast<const base::math::CVector2D*>(&scale));
     {
         UnkMinimapVec2 screen_pos = self->screen_pos;

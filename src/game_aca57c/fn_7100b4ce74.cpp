@@ -28,7 +28,7 @@ static inline void CallVf78(void* composition, s32 a, bool b) {
 template <s32 Value>
 __attribute__((always_inline)) static inline bool SetUpForMenu(UnkMenuScreen* self, const char* name) {
     UnkGuiDisplayObject*& composition = self->composition;
-    composition = fn_71011b69d8(g_unk_717271e8f8, CRntString(name)).Get();
+    composition = GetGuiCompositionHandleByName(g_unk_717271e8f8, CRntString(name)).Get();
     if (composition) {
         fn_71011cdce8(composition, 0);
         fn_71011cf2a4(composition, 0);
@@ -57,7 +57,7 @@ template <s32 Value, s32 Vf78>
 __attribute__((always_inline)) static inline bool SetUpOnce(UnkMenuScreen* self, const char* name) {
     if (self->composition)
         return false;
-    self->composition = fn_71011b69d8(g_unk_717271e8f8, CRntString(name)).Get();
+    self->composition = GetGuiCompositionHandleByName(g_unk_717271e8f8, CRntString(name)).Get();
     if (!self->composition)
         return false;
     fn_71011cdce8(self->composition, 0);

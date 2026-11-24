@@ -23,7 +23,7 @@
 
 using base::reflection::UnkReflObject;
 
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
+bool SweepShapeAgainstCollisionTree(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 UnkVec3f RotateVec3ByAngles(const UnkVec3f& v, const UnkMatrix44& m);
 void fn_71000769f0(UnkMatrix44* out, const void* a, const void* b, const void* c, const void* d);
 
@@ -280,7 +280,7 @@ void fn_7101134718(UnkAIAttackComponent_l134718* self, UnkTurnTarget_l134718* ta
                     UnkSweepOffset_l134718 sweep(pos, moved);
                     UnkSweepQuery_l134718 sweep_hit;
                     UnkMatrix44_7100078c9c xf = BuildTranslationMatrixFromVec3(pos);
-                    if (fn_7100d5babc(static_cast<UnkTree*>(tracker), 3, shape,
+                    if (SweepShapeAgainstCollisionTree(static_cast<UnkTree*>(tracker), 3, shape,
                                       reinterpret_cast<const UnkMtx44*>(&xf), reinterpret_cast<const Vec2*>(&sweep.v),
                                       &sweep_hit, false)) {
                         // Stops short of the hit.

@@ -2096,7 +2096,7 @@ address,size,name,name_source,subsystem,status
 0x71004643e4,52,CCharClassChozoRobotSoldierUppercutAttack::refl_Construct,reflection,game/characters,O
 0x7100464418,12,CCharClassChozoRobotSoldierUppercutAttack::refl_Destroy,reflection,game/characters,O
 0x7100464430,232,fn_7100464430,unknown,game/characters?,O
-0x7100464520,128,fn_7100464520,unknown,unknown,O
+0x7100464520,128,InitSpinjump2attackCannonshotIdOnce,inferred,unknown,O
 0x71004645a0,352,fn_71004645a0,unknown,unknown,O
 0x7100464700,4,CChozoRobotSoldierCannonShotAttack::refl_AddAttributes,reflection,game/ai,O
 0x7100464704,244,CChozoRobotSoldierCannonShotAttack::refl_GetClass,reflection,game/ai,O
@@ -2137,7 +2137,7 @@ address,size,name,name_source,subsystem,status
 0x7100467b2c,408,fn_7100467b2c,unknown,game/ai?,O
 0x7100467cc4,300,fn_7100467cc4,unknown,game/ai?,O
 0x7100467df0,128,CChozoRobotSoldierCannonShotAttack_InitAttackDashSlash4mStrId,inferred,game/ai?,O
-0x7100467e70,128,fn_7100467e70,unknown,game/ai?,O
+0x7100467e70,128,InitSpinjump2AttackDashslashStrId,inferred,game/ai?,O
 0x7100467ef0,160,fn_7100467ef0,unknown,game/ai?,O
 0x7100467f90,4,CChozoRobotSoldierDashSlashAttack::refl_AddAttributes,reflection,game/ai,O
 0x7100467f94,244,CChozoRobotSoldierDashSlashAttack::refl_GetClass,reflection,game/ai,O
@@ -2189,7 +2189,7 @@ address,size,name,name_source,subsystem,status
 0x7100469c88,36,CChozoRobotSoldierDisruptionFieldAttack::refl_CopyAssign,reflection,game/ai,O
 0x7100469cac,36,CChozoRobotSoldierDisruptionFieldAttack::refl_MoveAssign,reflection,game/ai,O
 0x7100469cd0,280,fn_7100469cd0,unknown,game/ai?,O
-0x7100469df0,128,fn_7100469df0,unknown,game/ai?,O
+0x7100469df0,128,InitSpinjump2attackUppercutId,inferred,game/ai?,O
 0x7100469e70,160,fn_7100469e70,unknown,game/ai?,O
 0x7100469f10,4,CChozoRobotSoldierUppercutAttack::refl_AddAttributes,reflection,game/ai,O
 0x7100469f14,244,CChozoRobotSoldierUppercutAttack::refl_GetClass,reflection,game/ai,O

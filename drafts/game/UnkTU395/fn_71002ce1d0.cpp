@@ -36,16 +36,16 @@ struct UnkElem_l2ce1d0 {
 };
 static_assert(sizeof(UnkElem_l2ce1d0) == 0x48, "layout");
 
-void fn_71002cd854(base::global::CRntVector<UnkElem_l2ce1d0>* self, u32 capacity);
+void ReserveListStrIdElementVector(base::global::CRntVector<UnkElem_l2ce1d0>* self, u32 capacity);
 
 UnkElem_l2ce1d0* fn_71002ce1d0(base::global::CRntVector<UnkElem_l2ce1d0>* self, u32 index) {
     if (self->field_0x14 && self->count <= index) {
         u32 capacity = self->capacity;
         if (capacity <= index && self->step != 0)
             capacity = (index / self->step + 1) * self->step;
-        fn_71002cd854(self, capacity);
+        ReserveListStrIdElementVector(self, capacity);
         u32 n = index + 1;
-        fn_71002cd854(self, n);
+        ReserveListStrIdElementVector(self, n);
         for (u32 i = self->count; i < n; ++i)
             new (&self->data[i]) UnkElem_l2ce1d0();
         self->count = n;

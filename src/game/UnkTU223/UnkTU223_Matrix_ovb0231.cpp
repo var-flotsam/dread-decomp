@@ -25,7 +25,7 @@ UnkMatrix44* fn_710019c3c8(UnkCachedMatrix_b0231* self, const UnkSize_b0231* siz
     if (!self->cached) {
         self->cached = true;
         UnkCopyMatrix(&self->matrix, self->source);
-        fn_710015bf40(&self->matrix, (f32)size->width / (f32)size->height);
+        ScaleMatrixYByAspectRatioAndNegateElement7(&self->matrix, (f32)size->width / (f32)size->height);
     }
     return &self->matrix;
 }

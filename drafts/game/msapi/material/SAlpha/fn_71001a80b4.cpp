@@ -88,7 +88,7 @@ void fn_71001a80b4(UnkMatStateOwner_ovb0098* owner, u32 id, void* stageList) {
             u32 index = texture - 1;
             texture = reinterpret_cast<u64>(fn_71001d086c(gfx, NameAt(&self->names, index)));
         }
-        fn_710015f770(s->slot, reinterpret_cast<void*>(texture), id);
+        SetGraphicsSlotPointer(s->slot, reinterpret_cast<void*>(texture), id);
         fn_7100160990(s->slot, s->field_0x30, id);
         fn_7100160ab0(s->slot, s->field_0x34, id);
         fn_7100160d50(s->slot, s->field_0x38, id);

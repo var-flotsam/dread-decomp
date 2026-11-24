@@ -5,7 +5,7 @@
 #include "types.h"
 
 struct UnkOwner_710070f240;  // src/game_lo/fn_710070f240.cpp
-void fn_710070f240(UnkOwner_710070f240* self, u32 value);
+void RemoveU32ValueFromLinkedList(UnkOwner_710070f240* self, u32 value);
 
 struct UnkAnimComponent_b52 {
     u8 pad_0x0[0x4c0];
@@ -16,7 +16,7 @@ void CAnimationComponent_ResendActionsToAllTracks(UnkAnimComponent_b52* self, bo
 
 // Removes `value` from the list at +0x4c0 and, when `apply` is set, runs fn_7101178c88.
 void fn_7101178e08(UnkAnimComponent_b52* self, u32 value, bool apply, bool flag, f32 time) {
-    fn_710070f240(reinterpret_cast<UnkOwner_710070f240*>(self->list_0x4c0), value);
+    RemoveU32ValueFromLinkedList(reinterpret_cast<UnkOwner_710070f240*>(self->list_0x4c0), value);
     if (apply)
         CAnimationComponent_ResendActionsToAllTracks(self, flag, time);
 }

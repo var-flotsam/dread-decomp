@@ -16,7 +16,7 @@ struct UnkVec3Result {
 };
 
 struct UnkStruct_71007455dc;
-UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self);
+UnkVec3Result GetPositionFromParentAndOffset(UnkStruct_71007455dc* self);
 void fn_710074566c(UnkStruct_71007455dc* self, const f32* pos);
 struct UnkTarget;
 void fn_71007456fc(UnkTarget* target, u8 value);
@@ -72,7 +72,7 @@ void fn_7100659014(UnkSwarmController_l659014* self, UnkSwarmMember_l659014* mem
     pos.z += center.z;
 
     f32 heading = member->heading;
-    UnkVec3Result current = fn_71007455dc(reinterpret_cast<UnkStruct_71007455dc*>(member));
+    UnkVec3Result current = GetPositionFromParentAndOffset(reinterpret_cast<UnkStruct_71007455dc*>(member));
     f32 dx = pos.x - current.x;
     f32 dy = pos.y - current.y;
     f32 dz = pos.z - current.z;

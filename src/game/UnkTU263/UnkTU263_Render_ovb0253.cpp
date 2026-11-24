@@ -75,7 +75,7 @@ void fn_71001e2518(UnkPassOwner_b0253* self) {
     fn_71001cde84(self->target, 0x10, true, true);
     fn_71001cde84(self->target, 0xe, true, true);
     fn_71001cde48(self->target);
-    fn_71001cdd18(self->target);
+    PopPairListStackAndReapplyTop(self->target);
     fn_71001cdd70(self->target);
 }
 
@@ -94,7 +94,7 @@ void fn_71001e2184(UnkPassOwner_b0253* self) {
     fn_71001ced08(self->target, 0);
     fn_71001cde84(self->target, 0x1f, true, true);
     fn_71001cde48(self->target);
-    fn_71001cdd18(self->target);
+    PopPairListStackAndReapplyTop(self->target);
     fn_71001cdd70(self->target);
 }
 
@@ -114,7 +114,7 @@ void fn_71001e1788(UnkPassOwner_b0253* self) {
     fn_71001ce704(self->target, 0x10);
     fn_71001cf5e4(self->target, 0);
     fn_71001cde48(self->target);
-    fn_71001cdd18(self->target);
+    PopPairListStackAndReapplyTop(self->target);
     fn_71001cdd70(self->target);
 }
 
@@ -135,7 +135,7 @@ void fn_71001e2334(UnkPassOwner_b0253* self) {
     fn_71001cde84(self->target, 0x10, true, true);
     fn_71001cde84(self->target, 0xe, true, true);
     fn_71001cde48(self->target);
-    fn_71001cdd18(self->target);
+    PopPairListStackAndReapplyTop(self->target);
     fn_71001cdd70(self->target);
 }
 

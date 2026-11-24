@@ -82,7 +82,7 @@ __attribute__((always_inline)) static inline void PlayGunSoundId_A5_b66(void* pl
     UnkInterp_7100105f94* sound_obj =
         h.ref && h.ref->serial == h.serial && h.serial != -1 ? h.ref->sound : nullptr;
     if (params && sound_obj && params->has_level)
-        fn_7100105f94(sound_obj, params->level, 0.0f);
+        SetSoundLevelOverTime(sound_obj, params->level, 0.0f);
 }
 
 __attribute__((always_inline)) static inline void PlayGunSound_A5_b66(void* player, UnkGunSoundOwner_A5_b66* self,

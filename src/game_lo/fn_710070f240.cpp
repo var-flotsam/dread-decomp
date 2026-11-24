@@ -12,7 +12,7 @@ struct UnkNode_710070f240 {
 
 struct UnkOwner_710070f240 : base::UnkVtableList<UnkNode_710070f240> {};
 
-void fn_710070f240(UnkOwner_710070f240* self, u32 value) {
+void RemoveU32ValueFromLinkedList(UnkOwner_710070f240* self, u32 value) {
     UnkNode_710070f240* node = self->head;
     for (; node; node = node->next) {
         if (node->value == value)

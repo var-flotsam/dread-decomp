@@ -12,7 +12,7 @@ struct UnkClone_fn_71002b1eac;
 using UnkTrackerListeners = base::UnkDeferredSet<base::UnkDeferredCallback<u64>>;
 extern template void base::refl_DeferredInvoke<UnkClone_fn_71002b1eac, u64>(UnkTrackerListeners*, const u64*);
 
-UnkOwnedList* fn_71002b1a3c(base::global::CRntVector<UnkOwnedList>* self, u32 index);
+UnkOwnedList* GrowOwnedListArrayAndGetListAt(base::global::CRntVector<UnkOwnedList>* self, u32 index);
 
 struct UnkTrackedObject {
     u16 field_0x0;
@@ -30,7 +30,7 @@ void fn_71002b1c7c(UnkObjectTracker* self, UnkTrackedObject* object) {
     u64 key = reinterpret_cast<u64>(object);
     if (!object)
         return;
-    CRntVector<u64>* list = reinterpret_cast<CRntVector<u64>*>(fn_71002b1a3c(&self->cells, object->cell));
+    CRntVector<u64>* list = reinterpret_cast<CRntVector<u64>*>(GrowOwnedListArrayAndGetListAt(&self->cells, object->cell));
     u32 n = list->count;
     u64* values = list->data;
     u32 index = 0;

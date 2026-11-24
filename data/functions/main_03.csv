@@ -1083,7 +1083,7 @@ address,size,name,name_source,subsystem,status
 0x7100358ed4,144,fn_7100358ed4,unknown,game/components?,O
 0x7100358f64,436,fn_7100358f64,unknown,game/components?,O
 0x7100359118,492,fn_7100359118,unknown,game/components?,O
-0x7100359310,796,fn_7100359310,unknown,game/components?,O
+0x7100359310,796,EInputAimDir_InitStatics,inferred,game/components?,O
 0x710035962c,716,fn_710035962c,unknown,engine/reflection?,O
 0x71003598f8,384,base::reflection::refl_InitType<EAimDirection>,reflection,engine/reflection,O
 0x7100359a78,12,fn_7100359a78,unknown,engine/reflection?,O
@@ -1097,7 +1097,7 @@ address,size,name,name_source,subsystem,status
 0x7100359ad8,4,base::reflection::ValueOps<EAimDirection>::Destroy,reflection,engine/reflection,O
 0x7100359adc,20,base::reflection::ValueOps<EAimDirection>::CopyAssign,reflection,engine/reflection,O
 0x7100359af0,20,base::reflection::ValueOps<EAimDirection>::MoveAssign,reflection,engine/reflection,O
-0x7100359b10,412,fn_7100359b10,unknown,engine/reflection?,O
+0x7100359b10,412,EAimDirection_InitStatics,inferred,engine/reflection?,O
 0x7100359cac,4,CCharClassAimComponent::refl_AddAttributes,reflection,game/characters,O
 0x7100359cb0,244,CCharClassAimComponent::refl_GetClass,reflection,game/characters,O
 0x7100359da4,5472,CCharClassAimComponent::refl_AddFields,reflection,game/characters,O
@@ -5205,7 +5205,7 @@ address,size,name,name_source,subsystem,status
 0x71003eeb8c,136,SBigkranXSpitLaunchConfig::refl_Destroy,reflection,game,O
 0x71003eec14,148,SBigkranXSpitLaunchConfig::refl_CopyAssign,reflection,game,O
 0x71003eeca8,208,SBigkranXSpitLaunchConfig::refl_MoveAssign,reflection,game,O
-0x71003eed80,1056,fn_71003eed80,unknown,engine/reflection?,O
+0x71003eed80,1056,InitBigkranXSpitLaunchPatternStatics,inferred,engine/reflection?,O
 0x71003ef1a0,4,CCharClassBigkranXMagmaRainAttack::refl_AddAttributes,reflection,game/characters,O
 0x71003ef1a4,244,CCharClassBigkranXMagmaRainAttack::refl_GetClass,reflection,game/characters,O
 0x71003ef298,1040,CCharClassBigkranXMagmaRainAttack::refl_AddFields,reflection,game/characters,O

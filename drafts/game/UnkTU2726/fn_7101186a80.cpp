@@ -71,7 +71,7 @@ static inline void CreateItems(const CFilePathStrId* path) {
 // Hides an item and places it.
 static inline void Place(UnkItemBase_71011a91c4*& item, const CVector2D* scale) {
     fn_710020ac34(reinterpret_cast<UnkToggle*>(Quad(item)->node), false);
-    fn_710020a5a0(reinterpret_cast<UnkStruct_710020a5a0*>(Quad(item)->node), scale);
+    SetNode2DScale(reinterpret_cast<UnkStruct_710020a5a0*>(Quad(item)->node), scale);
     fn_710020ad90(Quad(item)->node, -2004);
     CVector3D pos = {0.0f, -0.25f, 0.0f};
     fn_710020a4c4(Quad(item)->node, reinterpret_cast<const UnkMinimapVec3&>(pos));

@@ -36,7 +36,7 @@ static inline void CallVf78(void* composition, s32 a, bool b) {
 
 template <u32 Offset, s32 Value, bool Vf78 = false>
 __attribute__((always_inline)) static inline void SetUp(UnkMenu<Offset>* self, const char* name) {
-    self->composition = fn_71011b69d8(g_unk_717271e8f8, CRntString(name)).Get();
+    self->composition = GetGuiCompositionHandleByName(g_unk_717271e8f8, CRntString(name)).Get();
     UnkGuiDisplayObject* const& composition = self->composition;
     if (composition) {
         fn_71011cdce8(composition, 0);
@@ -77,7 +77,7 @@ __attribute__((always_inline)) static inline void SetUpHandle(UnkHandleMenu<Offs
     if (self->menu.Get())
         return;
     UnkGuiHandle& menu = self->menu;
-    fn_7100b2c458(&menu, fn_71011b69d8(g_unk_717271e8f8, CRntString(name)));
+    fn_7100b2c458(&menu, GetGuiCompositionHandleByName(g_unk_717271e8f8, CRntString(name)));
     if (!menu.Get())
         return;
     fn_71011cdce8(menu.Get(), 0);
@@ -96,7 +96,7 @@ void CIngameMenu_SetUpMissionMenuComposition(UnkHandleMenu<0x490>* self) { SetUp
 // The icons HUD: the looked-up object is kept at 0x2d0 only as a GUI::CHUD (else null) and set
 // up through that slot.
 void CIngameMenu_SetUpIconsHudComposition(UnkMenu<0x2d0>* self) {
-    UnkGuiDisplayObject* obj = fn_71011b69d8(g_unk_717271e8f8, CRntString("IconsHudComposition")).Get();
+    UnkGuiDisplayObject* obj = GetGuiCompositionHandleByName(g_unk_717271e8f8, CRntString("IconsHudComposition")).Get();
     if (!obj)
         return;
     self->composition = fn_710009d50c(obj->GetClass(), fn_71011dce90()) ? obj : nullptr;

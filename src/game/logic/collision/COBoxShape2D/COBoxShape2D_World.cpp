@@ -13,6 +13,6 @@ UnkOBoxPlacement fn_7100d685c0(const UnkOBoxShape2D* self, const UnkXform* xf) {
     base::math::CVector2D t = {xf->m[0][3], xf->m[1][3]};
     base::math::CVector2D center = {t.x + box.center.x, t.y + box.center.y};
     box.center = center;
-    fn_7100110664(&box, fn_7100076acc(xf).z + box.angle);
+    SetOBox2DAngleAndRebuildAxes(&box, fn_7100076acc(xf).z + box.angle);
     return box;
 }

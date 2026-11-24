@@ -128,7 +128,7 @@ bool fn_7101190fa4(UnkMainMenu_ovb0186* self, void* arg) {
         {
             UnkGuiRoot* root = g_unk_717271e8f8;
             CRntString name("popupgeneric");
-            UnkGuiHandle handle = fn_71011b69d8(root, name);
+            UnkGuiHandle handle = GetGuiCompositionHandleByName(root, name);
             if (UnkGuiDisplayObject* object = handle.Get())
                 popup = fn_710009d50c(object->GetClass(), fn_7100b60d58()) ? object : nullptr;
         }

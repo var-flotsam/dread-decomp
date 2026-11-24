@@ -127,7 +127,7 @@ UnkFlags fn_7100d570cc(UnkWorld* self, const UnkQueryBox* box, UnkShape40* shape
     const Vec3 t = xf->GetTranslation();
     placed.center_x = t.x + placed.center_x;
     placed.center_y = t.y + placed.center_y;
-    fn_7100110664(reinterpret_cast<base::spatial::COBox2D*>(&placed),
+    SetOBox2DAngleAndRebuildAxes(reinterpret_cast<base::spatial::COBox2D*>(&placed),
                   fn_7100076acc(reinterpret_cast<const UnkXform*>(xf)).z + placed.angle);
     UnkSweepContact_d570cc contact;
     // The original also passes arg2 to fn_710012bb00, which takes no fourth argument.

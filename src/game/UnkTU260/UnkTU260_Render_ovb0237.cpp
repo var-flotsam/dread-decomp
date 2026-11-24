@@ -200,7 +200,7 @@ void fn_71001de554(UnkRenderOwner_b0237* self) {
     fn_71001cb604(self->target, 1, nullptr, nullptr, nullptr, nullptr);
     fn_71001ce704(self->target, 1);
     fn_71001cde48(self->target);
-    fn_71001cdd18(self->target);
+    PopPairListStackAndReapplyTop(self->target);
     fn_71001cb604(self->target, 0, nullptr, nullptr, nullptr, nullptr);
     fn_71001cdd70(self->target);
 }
@@ -269,7 +269,7 @@ void fn_71001debe8(UnkRenderOwner_b0237* self) {
     bound[3] = fn_710015c450(self->slot_0x498);
     fn_71001d09fc(self->target, g_unk_7101a1e970);
     fn_71001d54e0(self->target, &self->field_0x118, self->block_0x8, bound, 4);
-    fn_71001cdd18(self->target);
+    PopPairListStackAndReapplyTop(self->target);
     fn_71001cb604(self->target, 0, nullptr, nullptr, nullptr, nullptr);
     fn_71001cdd70(self->target);
 }
@@ -297,7 +297,7 @@ void fn_71001de3a8(UnkRenderOwner_b0237* self) {
         UnkRenderTargetA1* target = self->target;
         fn_71001d4dbc(target, fn_710015c450(reinterpret_cast<UnkBoundTarget*>(self->field_0x418)),
                       &self->rect_0x100);
-        fn_71001cdd18(self->target);
+        PopPairListStackAndReapplyTop(self->target);
     }
     PopStateStackAndApplyNewTop(true);
     fn_71001cdd70(self->target);

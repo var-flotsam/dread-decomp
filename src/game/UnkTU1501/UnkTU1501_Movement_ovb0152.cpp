@@ -594,7 +594,7 @@ bool IsCapsuleSweepAheadInFacingDirectionClear(UnkMove_b152* self) {
     void* tracker = g_unk_7101d47310->field_0x608->field_0x820;
     u32 mask = self->field_0x3cc;
     UnkMatrix44_7100078c9c mtx = BuildTranslationMatrixFromVec3(pos);
-    bool hit = fn_7100d5babc(static_cast<UnkTree*>(tracker), mask, reinterpret_cast<UnkShape*>(&shape),
+    bool hit = SweepShapeAgainstCollisionTree(static_cast<UnkTree*>(tracker), mask, reinterpret_cast<UnkShape*>(&shape),
                              reinterpret_cast<const UnkMtx44*>(&mtx), reinterpret_cast<const Vec2*>(delta), nullptr, false);
     return !hit;
 }

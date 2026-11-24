@@ -100,7 +100,7 @@ bool fn_71006efe18(UnkYamplot_l6efe18* self) {
     fn_7100d5e260(&shape, &placement, &box);
     UnkMatrix44 identity;
     SetIdentity(identity);
-    bool hit = fn_7100d5b484(tree, self->owner->field_0x218->field_0x3c8, reinterpret_cast<UnkShape*>(&shape),
+    bool hit = QueryCollisionTreeForTransformedShapeOverlaps(tree, self->owner->field_0x218->field_0x3c8, reinterpret_cast<UnkShape*>(&shape),
                              reinterpret_cast<const UnkMtx44*>(&identity), nullptr, 0);
     fn_7100d5e2c8(&shape);
     return !hit;

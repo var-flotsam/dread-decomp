@@ -285,7 +285,7 @@ void SetChildSetting(UnkGuiDisplayObject* container, const char* name, s32 value
 void Load(UnkWidgetSlot* slot, const char* name) {
     UnkGuiRoot* root = g_unk_717271e8f8;
     CRntString path(name);
-    UnkGuiHandle loaded = fn_71011b69d8(root, path);
+    UnkGuiHandle loaded = GetGuiCompositionHandleByName(root, path);
     slot->Set(loaded.ptr->target);
 }
 

@@ -233,7 +233,7 @@ bool fn_7101103080(UnkAIComponent_CAIComponent* self, void* path, UnkAIPathPoint
     if (fn_7101109e8c(self, &side)) {
         UnkNavQuery query;
         fn_710028659c(&query);
-        fn_7100286798(reinterpret_cast<UnkStruct_7100286798*>(&query),
+        InitNavQueryFromActor(reinterpret_cast<UnkStruct_7100286798*>(&query),
                       reinterpret_cast<UnkActor_7100286798*>(self->owner));
         fn_7100286920(&query, &side.point, side.cell, side.side);
         void* component = self->owner->field_0x240;

@@ -2561,7 +2561,7 @@ address,size,name,name_source,subsystem,status
 0x71011b659c,352,fn_71011b659c,unknown,unknown,O
 0x71011b66fc,352,fn_71011b66fc,unknown,unknown,O
 0x71011b685c,380,fn_71011b685c,unknown,script/bindings?,O
-0x71011b69d8,388,fn_71011b69d8,unknown,gui?,O
+0x71011b69d8,388,GetGuiCompositionHandleByName,inferred,gui?,O
 0x71011b6b5c,96,fn_71011b6b5c,unknown,unknown,O
 0x71011b6bbc,592,fn_71011b6bbc,unknown,gui?,O
 0x71011b6e0c,476,fn_71011b6e0c,unknown,unknown,U

@@ -1663,7 +1663,7 @@ address,size,name,name_source,subsystem,status
 0x7100572328,4,base::reflection::ValueOps<EGrabEmmySamusQTEMode>::Destroy,reflection,engine/reflection,O
 0x710057232c,20,base::reflection::ValueOps<EGrabEmmySamusQTEMode>::CopyAssign,reflection,engine/reflection,O
 0x7100572340,20,base::reflection::ValueOps<EGrabEmmySamusQTEMode>::MoveAssign,reflection,engine/reflection,O
-0x7100572360,664,fn_7100572360,unknown,engine/reflection?,O
+0x7100572360,664,InitStatics_EEmmyAlertLevel_EGrabEmmySamusQTEMode,inferred,engine/reflection?,O
 0x71005725f8,108,fn_71005725f8,unknown,unknown,O
 0x7100572664,52,fn_7100572664,unknown,unknown,O
 0x7100572698,40,fn_7100572698,unknown,unknown,O

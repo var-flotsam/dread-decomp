@@ -434,7 +434,7 @@ void fn_710071f634(UnkAudioComponent_ovb0015* self, const u32* groups, s32 level
             if (!(*groups & bit))
                 continue;
             if (UnkInterp_7100105f94* sound = reinterpret_cast<UnkInterp_7100105f94*>(Resolve_ovb0015(&s->handle)))
-                fn_7100105f94(sound, level, time);
+                SetSoundLevelOverTime(sound, level, time);
         }
     }
 }

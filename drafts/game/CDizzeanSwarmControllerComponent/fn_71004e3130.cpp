@@ -26,7 +26,7 @@ struct UnkVec3Result {
 };
 
 struct UnkStruct_71007455dc;
-UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self);
+UnkVec3Result GetPositionFromParentAndOffset(UnkStruct_71007455dc* self);
 void fn_710074566c(UnkStruct_71007455dc* self, const f32* pos);
 u8 fn_71007452a4(UnkTarget* target);
 void fn_71007456fc(UnkTarget* target, u8 value);
@@ -186,7 +186,7 @@ void fn_71004e3130(UnkDizzeanController_l4e3130* self, s32 index, f32 dt) {
         if (!IsActive(member) || member->field_0x28 != 0)
             continue;
         UnkVec3Result position = member->position;
-        UnkVec3Result home = fn_71007455dc(AsNode(member));
+        UnkVec3Result home = GetPositionFromParentAndOffset(AsNode(member));
 
         if (member->timer <= 0.0f) {
             // A new hop towards a random point around the group.
@@ -227,7 +227,7 @@ void fn_71004e3130(UnkDizzeanController_l4e3130* self, s32 index, f32 dt) {
             void* manager = g_unk_71726da048;
             if (!manager) {
                 manager = fn_71000839a0(0xe0, 0x3f);
-                fn_7100e1bca4(manager);
+                ConstructBillboardManager(manager);
                 g_unk_71726da048 = manager;
             }
             u64 key = billboard->field_0xd0->field_0x30;

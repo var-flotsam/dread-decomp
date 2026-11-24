@@ -18,7 +18,7 @@ struct UnkVec3Result {
 
 UnkVec3f RotateVec3AboutZ(const UnkVec3f& v, f32 angle);
 struct UnkStruct_71007455dc;
-UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self);
+UnkVec3Result GetPositionFromParentAndOffset(UnkStruct_71007455dc* self);
 void fn_710074566c(UnkStruct_71007455dc* self, const f32* pos);
 struct UnkTarget;
 void fn_71007456fc(UnkTarget* target, u8 value);
@@ -107,7 +107,7 @@ void fn_710065a514(UnkSwarmController_l65a514* self, UnkSwarmMember_l65a514* mem
     member->speed = speed;
 
     f32 step = speed * dt;
-    UnkVec3Result pos = Advanced_l65a514(fn_71007455dc(reinterpret_cast<UnkStruct_71007455dc*>(member)), forward, step);
+    UnkVec3Result pos = Advanced_l65a514(GetPositionFromParentAndOffset(reinterpret_cast<UnkStruct_71007455dc*>(member)), forward, step);
     fn_710074566c(reinterpret_cast<UnkStruct_71007455dc*>(member), &pos.x);
 
     if (time <= 0.0f)

@@ -153,7 +153,7 @@ void fn_71007251e0(UnkBillboardCollision_ovb0137* self) {
             CBillboardCollisionComponent_RemoveEntry(self, entry);
             continue;
         }
-        UnkVec3Result pos = fn_71007455dc(reinterpret_cast<UnkStruct_71007455dc*>(key));
+        UnkVec3Result pos = GetPositionFromParentAndOffset(reinterpret_cast<UnkStruct_71007455dc*>(key));
         UnkMatrix44_7100078c9c m = BuildTranslationMatrixFromVec3(reinterpret_cast<const UnkVec3f&>(pos));
         reinterpret_cast<UnkBillboardObject_ovb0137*>(entry)->vf_0x78(&m);
     }

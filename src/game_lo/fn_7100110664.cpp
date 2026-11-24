@@ -8,7 +8,7 @@
 
 using base::spatial::COBox2D;
 
-void fn_7100110664(COBox2D* self, f32 angle) {
+void SetOBox2DAngleAndRebuildAxes(COBox2D* self, f32 angle) {
     self->angle = fn_710007a1d0(angle);
     self->axis_x.x = cosf(self->angle + self->offset);
     self->axis_x.y = sinf(self->angle + self->offset);

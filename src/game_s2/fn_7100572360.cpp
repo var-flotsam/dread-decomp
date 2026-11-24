@@ -27,7 +27,7 @@ extern UnkConversion g_unk_71726e3370;
 void fn_7100572254() __attribute__((visibility("hidden")));
 void fn_7100572260() __attribute__((visibility("hidden")));
 
-void fn_7100572360() {
+void InitStatics_EEmmyAlertLevel_EGrabEmmySamusQTEMode() {
     InitHeaderIds(&g_unk_71726e3390.ids);
     InitEnum(&base::reflection::TypeObject<EEmmyAlertLevel, UnkEnumType>::object, "EEmmyAlertLevel", fn_7100571cc4, fn_7100571b18,
              g_unk_71726e31e8, &g_unk_71726e31f0, fn_710057223c, &g_unk_71726e3210, fn_7100572248);
