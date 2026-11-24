@@ -57,7 +57,7 @@ void fn_71003b1a18(UnkDummyComp_ovb0267* self, const f32* color) {
     if (!marker->data->field_0x4fc)
         return;
     if (marker->effect) {
-        fn_71002199d8(g_unk_7101d47300, reinterpret_cast<UnkItemBase_71011a91c4*>(reinterpret_cast<char*>(marker->effect) + 8), 0);
+        fn_71002199d8(g_unk_7101d47300, reinterpret_cast<UnkItemBase_71011a91c4*>(&marker->effect->field_0x8), 0);
         marker->effect = nullptr;
     }
     UnkDummyActor_ovb0267* actor = reinterpret_cast<UnkDummyActor_ovb0267*>(self->field_0x30);

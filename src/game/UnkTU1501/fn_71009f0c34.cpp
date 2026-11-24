@@ -49,7 +49,7 @@ UnkTargetArray_l9f0c34* fn_71009f0c34(UnkTargetArray_l9f0c34* self, const UnkTar
             for (u64 i = 0; i < self->count; i++)
                 self->data()[i] = other->data()[i];
         }
-        for (u64 i = self->count; i < other->count; i++)
+        for (u32 i = self->count; i < other->count; i++)
             self->PushBack(other->data()[i]);
         self->count = other->count;
     }

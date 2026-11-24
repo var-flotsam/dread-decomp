@@ -16,6 +16,16 @@ struct UnkRefl_fn_710083a2ac;
 extern template base::reflection::UnkReflObject*
 base::reflection::refl_FindTyped<UnkRefl_fn_710083a2ac>(void*);
 
+struct UnkHandle_710093aca8 {
+    u8 pad_0x0[0x10];
+    void* field_0x10;  // 0x10
+};
+
+struct UnkGameManagerHandles_710093aca8 {
+    u8 pad_0x0[0x29a0];
+    UnkHandle_710093aca8* field_0x29a0;  // 0x29a0
+};
+
 void fn_710093aca8(char* self, const u64* id) {
     void* actor = *reinterpret_cast<void**>(self + 0x30);
     void* player = fn_7100defcd4(g_unk_7101d47310);
@@ -24,8 +34,8 @@ void fn_710093aca8(char* self, const u64* id) {
     if (actor != player) {
         owner = fn_7100defcd4(manager);
     } else {
-        char* entry = *reinterpret_cast<char**>(reinterpret_cast<char*>(manager) + 0x29a0);
-        owner = entry ? *reinterpret_cast<void**>(entry + 0x10) : nullptr;
+        UnkHandle_710093aca8* entry = reinterpret_cast<UnkGameManagerHandles_710093aca8*>(manager)->field_0x29a0;
+        owner = entry ? entry->field_0x10 : nullptr;
     }
     if (owner != nullptr) {
         if (void* updater = base::reflection::refl_FindTyped<UnkRefl_fn_710083a2ac>(owner))

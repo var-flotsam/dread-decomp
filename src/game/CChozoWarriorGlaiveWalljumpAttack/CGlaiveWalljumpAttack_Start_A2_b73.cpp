@@ -53,6 +53,15 @@ struct UnkWalljumpStart_A2_b73 {
     UnkWeakRef handle;        // 0x60
 };
 
+// Takes `link` off the object the attack's handle refers to, then drops the handle.
+static inline void WalljumpDetachLink(UnkWalljumpStart_A2_b73* self, UnkWalljumpLink_A2_b73* link) {
+    if (UnkWeakHandle* handle = self->handle.handle) {
+        if (UnkWeakTarget* target = handle->target)
+            fn_710117b3f0(target, link);
+        ResetRef(&self->handle.handle);
+    }
+}
+
 void fn_71004954d4(UnkWalljumpStart_A2_b73* self) {
     fn_71003608ac(reinterpret_cast<UnkAttackBase*>(self));
     UnkReflObject* ai = *reinterpret_cast<UnkReflObject**>(self->owner + 0x240);
@@ -76,18 +85,9 @@ void fn_71004954d4(UnkWalljumpStart_A2_b73* self) {
     link->context = self;
     link->callback = fn_7100496570;
     UnkWeakTarget* track = *reinterpret_cast<UnkWeakTarget**>(self->owner + 0x220);
-    if (UnkWeakHandle* handle = self->handle.handle) {
-        if (UnkWeakTarget* target = handle->target)
-            fn_710117b3f0(target, link);
-        if (UnkWeakHandle* p = self->handle.handle) {
-            if (--p->ref_count == 0)
-                p->vf_0x10();
-            self->handle.handle = nullptr;
-        }
-    }
+    WalljumpDetachLink(self, link);
     if (!track)
         return;
-    asm("" : "+r"(self));
     CAbilityGhostAura_AssignWeakHandleToRef(track, &self->handle);
     fn_710117b3e8(self->handle.handle ? self->handle.handle->target : nullptr, link);
 }

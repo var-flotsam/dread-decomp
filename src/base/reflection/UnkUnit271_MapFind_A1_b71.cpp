@@ -182,6 +182,11 @@ struct UnkMapOwnerE_A1b71 {
     UnkMap_A1b71 map;  // 0x40
 };
 
+// Stores the object's enabled flag.
+static inline void SetEnabled(UnkMapValueE_A1b71* value, bool enabled) {
+    value->enabled = enabled;
+}
+
 // Sets the enabled flag of the object stored under `*key` (when it can be toggled), first resetting
 // its state's entries when asked and the state is of kind 2. False when there is no such object.
 bool fn_71001efa3c(UnkMapOwnerE_A1b71* self, bool enabled, const u64* key, bool reset) {
@@ -194,10 +199,7 @@ bool fn_71001efa3c(UnkMapOwnerE_A1b71* self, bool enabled, const u64* key, bool 
     UnkMapState_A1b71* state = value->vf_0x88();
     if (reset && state->kind == 2)
         fn_71001c3270(state->entries);
-    if ((value->enabled != 0) != enabled && value->can_toggle) {
-        bool e = enabled;
-        asm("" : "+r"(e));
-        value->enabled = e;
-    }
+    if ((value->enabled != 0) != enabled && value->can_toggle)
+        SetEnabled(value, enabled);
     return true;
 }

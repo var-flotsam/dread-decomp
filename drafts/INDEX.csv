@@ -102,7 +102,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71000d0dc0,316,drafts/game/UnkTU83/fn_71000d0dc0.cpp,operations,55.7,35,lean-b1,index register split and pool reload after move-from folded (312 vs 316 bytes); sibling of fn_71000ce604 on CF
 0x71000d6c94,332,drafts/game/UnkTU83/fn_71000d6c94.cpp,registers or order,78.3,18,lean-b1,tail reloaded after node->prev store in original (one load more); otherwise register choice
 0x71000e8044,212,drafts/game/UnkTU85/fn_71000e8044.cpp,control flow,34.0,31,lean-b1,control flow: not-found path jumps to shared end compare instead of duplicating it; found path laid out after
-0x71000e9d60,416,drafts/game/UnkTU88/fn_71000e9d60.cpp,registers or order,99.0,1,overnight,
 0x71000eaf20,984,drafts/game/UnkTU88/fn_71000eaf20.cpp,registers or order,65.4,85,lean-ob1,registers only with a u32 flag (src/base/UnkResRegistry.cpp declares u8; the caller's declaration must follow)
 0x71000ed2b8,456,drafts/game/UnkTU90/fn_71000ed2b8.cpp,operations,7.9,98,lean-r2kg,original copies the pushed entry's 7 padding bytes (0x11-0x17) from an unset stack temp; ours drops them (shif
 0x71000ef534,560,drafts/game/UnkTU93/fn_71000ef534.cpp,calls,2.9,132,lean-r2kg,id dtor merged into one block (original duplicates it per path; 3 fn_71000803a4 calls vs 2); pool kept in an e
@@ -1435,7 +1434,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71009ed53c,1152,drafts/game/UnkTU1501/fn_71009ed53c.cpp,control flow,51.2,140,lean-r2ki,scheduling of the query's origin copy and the sweep/dot loads; register choice; structure and calls line up
 0x71009eff9c,344,drafts/game/UnkTU1501/fn_71009eff9c.cpp,control flow,57.0,29,lean-b2,direction compare if-converted to selects where the original branches with duplicated tails; running/booster b
 0x71009f07e8,768,drafts/game/UnkTU1501/fn_71009f07e8.cpp,operations,28.4,136,lean-r2k,CParams copy of the request: original copies field by field from sp offsets after the derived vtable load; our
-0x71009f0c34,508,drafts/game/UnkTU1501/fn_71009f0c34.cpp,registers or order,96.1,5,lean-o2,push loop: index and storage base swap x22/x23
 0x71009f1f60,1376,drafts/game/CCharClassSceneModelAnimationComponent/fn_71009f1f60.cpp,operations,46.2,177,lean-fam0a,8 bytes short: the original saves/restores x19/x24 around the file-path id's inline constructor (strlen path);
 0x71009f35b0,432,drafts/game/CShockWaveComponent/fn_71009f35b0.cpp,operations,42.2,62,lean-oc1,four floats at 0x194 stored as one stp in the original; 1.0f kept in x20 for 0x208
 0x71009f3bf8,652,drafts/game/CShockWaveComponent/fn_71009f3bf8.cpp,registers or order,97.5,4,lean-r2kg,defaulted operator= (asm label); only the 9-byte u64+bool run at 0x108 loads/stores in another order; header d
@@ -1991,7 +1989,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710108bdd0,700,drafts/game/UnkTU2666/fn_710108bdd0.cpp,operations,85.1,24,lean-r2kc,only the static params init differs: guard-to-object offset 0x1c0 in the original (unit GlobalMerge of statics
 0x710108c4d0,692,drafts/game/UnkTU2666/fn_710108c4d0.cpp,operations,82.7,26,lean-r2kc,only the static sound-params init differs: original object sits 0x228 past its guard in .bss (offsets beyond s
 0x710108da80,824,drafts/game/UnkTU2666/fn_710108da80.cpp,operations,85.4,26,lean-r2kb,only the static params initialiser differs: original guard is 0x290 below the object (bss layout of the unit);
-0x710108e6e0,916,drafts/game/UnkTU2666/fn_710108e6e0.cpp,registers or order,97.4,6,lean-r2k,register choice and order in the #-to-/ copy loop (constant 0x2f and buffer base swapped)
 0x7101095fb0,552,drafts/game/UnkTU2666/fn_7101095fb0.cpp,registers or order,99.3,1,overnight,
 0x710109703c,448,drafts/game/UnkTU2666/fn_710109703c.cpp,calls,14.3,37,lean-oc2,original reloads count after each element store (record type field aliases the vector count; ours is struct-pa
 0x71010971fc,452,drafts/game/UnkTU2666/fn_71010971fc.cpp,control flow,23.0,82,lean-oc2,grow loop copies 24 bytes (original 20 bytes field-wise with count reload); exhausted-search block placed inli

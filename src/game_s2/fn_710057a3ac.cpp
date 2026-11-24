@@ -29,17 +29,16 @@ struct UnkSelf_57a3ac {
     UnkNode_57a3ac* head;
 };
 
+// The checked cast to the infester AI component: null when the component is of another class.
+static inline UnkInfesterComponent* cast_to_infester(UnkAIComponent_57a3ac* component) {
+    return fn_710009d50c(component->vf_0x0(), fn_71005ca678()) ? static_cast<UnkInfesterComponent*>(component) : nullptr;
+}
+
 bool fn_710057a3ac(UnkSelf_57a3ac* self) {
     for (UnkNode_57a3ac* node = self->head; node; node = node->next) {
         UnkEntity* entity = node->entity;
-        UnkAIComponent_57a3ac* component = entity->component;
-        UnkInfesterComponent* infester = nullptr;
-        if (fn_710009d50c(component->vf_0x0(), fn_71005ca678()))
-            infester = static_cast<UnkInfesterComponent*>(component);
-        // The original reads the flag through the (possibly null) result of the cast; volatile
-        // keeps the compiler from assuming it is non-null.
-        if (*reinterpret_cast<volatile u8*>(reinterpret_cast<u8*>(infester) + 0x146e1) ||
-            fn_7101136308(entity->field_0x278))
+        // The original reads the flag through the result of the cast without testing it.
+        if (cast_to_infester(entity->component)->field_0x146e1 || fn_7101136308(entity->field_0x278))
             return true;
     }
     return false;
